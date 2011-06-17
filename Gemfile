@@ -5,7 +5,12 @@ group :development do
   gem "foreman"
 end
 
+group :test, :development do
+  gem "rspec-rails", "~> 2.4"
+end
+
 group :test do
+  gem "autotest"
   gem "rspec"
 end
 
