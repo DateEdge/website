@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  
+  belongs_to :country
+  has_many :photos
 
   validates :username, :name, :email, :presence => true
   validates :email, :format => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
