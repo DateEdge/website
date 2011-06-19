@@ -12,6 +12,8 @@
     <% if current_user %>
       Welcome, <%= current_user.name %>!
       <%= link_to "Sign Out", signout_path %>
+      <%= link_to "Profile", user_path(current_user) %>
+      <%= link_to "Settings", edit_user_path(current_user) %>
     <% else %>
       <%= link_to "Sign in with Twitter",  "/auth/twitter"  %>
       <%= link_to "Sign in with Facebook", "/auth/facebook" %>
