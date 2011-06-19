@@ -44,6 +44,11 @@ GEM
     foreman (0.18.0)
       term-ansicolor (~> 1.0.5)
       thor (>= 0.13.6)
+    growl (1.0.3)
+    guard (0.4.2)
+      thor (~> 0.14.6)
+    guard-rspec (0.4.0)
+      guard (>= 0.4.0)
     i18n (0.5.0)
     mail (2.2.19)
       activesupport (>= 2.3.6)
@@ -122,6 +127,7 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.4)
     rake (0.9.2)
+    rb-fsevent (0.4.0)
     rdoc (3.5.3)
     rest-client (1.6.3)
       mime-types (>= 1.16)
@@ -161,10 +167,13 @@ PLATFORMS
 DEPENDENCIES
   autotest
   foreman
+  growl
+  guard-rspec
   omniauth (= 0.2.6)
   paperclip (~> 2.3)
   pg
   rails (= 3.0.9)
+  rb-fsevent
   rspec
   rspec-rails (~> 2.4)
   sqlite3-ruby

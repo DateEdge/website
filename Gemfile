@@ -3,6 +3,9 @@ source "http://rubygems.org"
 group :development do
   gem "sqlite3-ruby", :require => "sqlite3"
   gem "foreman"
+  gem 'rb-fsevent'
+  gem 'growl'
+  gem "guard-rspec"
 end
 
 group :test, :development do
@@ -10,7 +13,6 @@ group :test, :development do
 end
 
 group :test do
-  gem "autotest"
   gem "rspec"
 end
 
