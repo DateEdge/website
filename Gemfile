@@ -20,3 +20,4 @@ group :production do
 end
 
 gem "rails", "3.0.9"
+gem "omniauth", "0.2.6"
