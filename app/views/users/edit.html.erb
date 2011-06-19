@@ -1,2 +1,52 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<style>
+  /* temp */
+  label {display: block;font-weight: bold;}
+</style>
+
+<div>
+  <%= flash[:error] %>
+  <%= flash[:notice] %>
+</div>
+
+<%= form_for current_user do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.label :birthday %>
+  <%= f.date_select :birthday,
+                    :order      => [:month, :day, :year],
+                    :start_year => 60.years.ago.year,
+                    :end_year   => Time.now.year %>
+
+  <%= f.label :city %>
+  <%= f.text_field :city %>
+
+  <%= f.label :state %>
+  <%= f.select :state_id, State.options_for_select, :include_blank => true %>
+
+  <%= f.label :zipcode %>
+  <%= f.text_field :zipcode %>
+
+  <%= f.label :country %>
+  <%= f.select :country_id, Country.options_for_select, :include_blank => true %>
+
+  <%= f.label :bio %>
+  <%= f.text_area :bio %>
+
+  <%= f.label :diet %>
+  <%= f.select :diet_id, Diet.options_for_select, :include_blank => true %>
+
+  <%= f.label :me_gender, "My Gender" %>
+  <%= f.text_field :me_gender %>
+
+  <%= f.label :you_gender, "Desired Gender" %>
+  <%= f.text_field :you_gender %>
+
+  <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+<% end %>
