@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
-  
+
   belongs_to :country
+  belongs_to :diet
   has_many :photos
 
   validates :username, :presence => { :on => :update }
-  validates :name, :email, :presence => true
-  validates :email, :format => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
+  validates :name, :presence => true
+  validates :email, :presence => { :on => :update }
+  # validates :email, :format => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
 
   class << self
     def create_with_omniauth(auth)
@@ -17,10 +19,12 @@ class User < ActiveRecord::Base
       end
     end
   end
-  
+
   def age
-    now = Time.now.utc.to_date
-    now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
+    unless birthday.nil?
+      now = Time.now.utc.to_date
+      now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
+    end
   end
 
 end
