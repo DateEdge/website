@@ -10,18 +10,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110619024122) do
+ActiveRecord::Schema.define(:version => 20110619033718) do
+
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "waitlists", :force => true do |t|
+    t.string   "username"
     t.string   "email"
+    t.date     "birthday"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.integer  "country"
+    t.text     "bio"
+    t.integer  "diet_id"
+    t.string   "me_gender"
+    t.string   "me_gender_map"
+    t.string   "you_gender"
+    t.string   "you_gender_map"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
