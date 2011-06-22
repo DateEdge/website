@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :photos
 
   has_many :your_labels
-  has_many :desired_labels, :through => :your_labels, :source => :label
+  has_many :desired_labels, :through => :your_labels, :source => :label, :uniq => true
   accepts_nested_attributes_for :your_labels, :allow_destroy => true
   
   validates :username, :presence => { :on => :update }

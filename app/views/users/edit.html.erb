@@ -51,7 +51,7 @@
   <%= f.text_field :you_gender %>
 
   <%= f.label  :label_id, "My Label" %>
-  
+
   <table>
     <% Label.all.each do |label| %>
       <tr>
@@ -60,25 +60,22 @@
       </tr>
     <% end %>
   </table>
-  
+
   <%= f.label :your_labels_attributes, "Desired Labels" %>
   <table>
     <% Label.all.each_with_index do |label, index| %>
       <%= f.fields_for "your_labels_attributes[#{index}]", :child_index => index do |ff| -%>
         <tr>
-          <th>
-            
-            <% if current_user.desired_labels.include? label %>
-              <%= ff.hidden_field :id, :value => current_user.your_labels.where(:label_id => label.id).first.id %>
-              <%= ff.check_box :_destroy, {:checked => true}, 0, 1 %> 
-              <td><%= ff.label :_destroy, label.name %></td>
-            <% else %>
-              <%= ff.check_box :label_id, {}, label.id %>
-              <td><%= ff.label :label_id, label.name %></td>
-            <% end %>
-          </th>
-          
-        </tr>
+          <% if current_user.desired_labels.include? label %>
+            <%# HACK remove find from view, do it in the controller %>
+            <%= ff.hidden_field :id, :value => current_user.your_labels.where(:label_id => label.id).first.id, :style => "display:none" %>
+            <td><%= ff.check_box :_destroy, {:checked => true}, 0, 1 %></td>
+            <th><%= ff.label :_destroy, label.name %></th>
+          <% else %>
+            <td><%= ff.check_box :label_id, {}, label.id %></td>
+            <th><%= ff.label :label_id, label.name %></th>
+          <% end %>
+        </th>
       <% end %>
     <% end -%>
   </table>

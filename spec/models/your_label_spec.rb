@@ -36,4 +36,6 @@ describe YourLabel do
 
     your_label.should be_invalid
   end
+
+  it "should not allow duplicate labels for a user"
 end
