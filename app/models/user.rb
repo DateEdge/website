@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
   belongs_to :diet
   belongs_to :state
   has_many :photos
+  has_many :my_labels
+  has_many :your_labels
+
+  has_many :labels,         :through => :my_labels,   :source => :label
+  has_many :desired_labels, :through => :your_labels, :source => :label
 
   validates :username, :presence => { :on => :update }
   validates :name, :presence => true

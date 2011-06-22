@@ -5,10 +5,6 @@ class CreateDiets < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    %w(raw vegan vegetarian pescatarian freegan kosher omnivore).each do |diet|
-      Diet.create!(:name => diet)
-    end
   end
 
   def self.down

@@ -1,7 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Mayor.create(:name => 'Daley', :city => cities.first)
+["straightedge","drug free","straightedge curious","some cigarettes/alcohol/drugs"].each do |label|
+  Label.create!(:name => label)
+end
+
+%w(raw vegan vegetarian pescatarian kosher freegan omnivore).each do |label|
+  Diet.create!(:name => diet)
+end
