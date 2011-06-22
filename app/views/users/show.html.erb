@@ -25,6 +25,20 @@
   looking for a <b><%= current_user.you_gender %></b>
 </h3>
 
+<h4>My Labels</h4>
+<ul>
+  <%= current_user.labels.each do |label| %>
+    <li><%= label.name %></li>
+  <% end %>
+</ul>
+
+<h4>Desired Labels</h4>
+<ul>
+  <%= current_user.desired_labels.each do |label| %>
+    <li><%= label.name %></li>
+  <% end %>
+</ul>
+
 <section>
   <%= simple_format current_user.bio %>
   <p><%= current_user.diet %></p>
@@ -33,5 +47,7 @@
 <section>
   <%= current_user.zipcode %>
   <a href="mailto:<%= current_user.email %>"><%= current_user.email %></a>
-  <time><%= current_user.birthday.strftime("%B %d, %Y") %></time>
+  <% if current_user.birthday %>
+    <time><%= current_user.birthday.strftime("%B %d, %Y") %></time>
+  <% end %>
 </section>

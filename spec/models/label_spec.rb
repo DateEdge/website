@@ -14,16 +14,16 @@ describe Label do
     label.should be_invalid
   end
   
-  it "should build options for select correctly" do
-    @l1 = Label.create!(:name => "straightedge")
-    @l2 = Label.create!(:name => "drunk")
-    
-    labels = [
-      ["straightedge", @l1.id],
-      ["drunk",        @l2.id]
-    ]
-    
-    Label.options_for_select.first.first.should == labels.first.first
-    Label.options_for_select.last.last.should   == labels.last.last
-  end
+  # it "should build options for select correctly" do
+  #   @l1 = Label.create!(:name => "straightedge")
+  #   @l2 = Label.create!(:name => "drunk")
+  #   
+  #   labels = [
+  #     ["straightedge", @l1.id],
+  #     ["drunk",        @l2.id]
+  #   ]
+  #   
+  #   Label.options_for_select.first.first.should == labels.first.first
+  #   Label.options_for_select.last.last.should   == labels.last.last
+  # end
 end

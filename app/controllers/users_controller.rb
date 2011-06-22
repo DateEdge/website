@@ -7,11 +7,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def edit; end
+  def edit 
+    # current_user.my_labels.build
+  end
 
   def update
     @user = User.find(params[:id])
-
+    # @user.label = Label.find(params[:my_label_id])
     if @user.update_attributes(params[:user])
       redirect_to(@user, :notice => 'User was successfully updated.')
     else

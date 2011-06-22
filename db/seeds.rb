@@ -2,6 +2,6 @@
   Label.create!(:name => label)
 end
 
-%w(raw vegan vegetarian pescatarian kosher freegan omnivore).each do |label|
+%w(raw vegan vegetarian pescatarian kosher freegan omnivore).each do |diet|
   Diet.create!(:name => diet)
 end

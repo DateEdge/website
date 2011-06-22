@@ -48,5 +48,15 @@
   <%= f.label :you_gender, "Desired Gender" %>
   <%= f.text_field :you_gender %>
 
+  <%= f.label  :my_label_id, "My Label" %>
+  <table>
+    <% Label.all.each do |label| %>
+      <tr>
+        <th><%= f.radio_button :my_label_id, label.id %></th>
+        <td><%= f.label "my_label_id_#{label.id}", label.name %></td>
+      </tr>
+    <% end %>
+  </table>
+
   <%= f.submit "Submit", :disable_with => 'Submiting...' %>
 <% end %>

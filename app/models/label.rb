@@ -3,7 +3,8 @@ class Label < ActiveRecord::Base
   
   class << self
     def options_for_select
-      Label.all.map{ |d| [d.name, d.id] }
+      all.map{ |d| [d.name.capitalize, d.id] }
     end
   end
+  
 end

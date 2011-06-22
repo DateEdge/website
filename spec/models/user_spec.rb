@@ -21,12 +21,13 @@ describe User do
     @user.should have(1).error
   end
 
-  it "should be able to have labels" do
-    %w(straightedge drug-free).each do |label|
-      @user.labels.create!(:name => label)
-    end
+  it "should be able to a have label" do
+    Label.create!(:name => "straightedge")
 
-    @user.labels.should == Label.all
+    @user.label = Label.first
+    @user.save!
+    
+    @user.label.name.should == "straightedge"
   end
 
   it "should be able to have desired labels" do
