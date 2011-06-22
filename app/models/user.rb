@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   private
 
   def downcase_genders
-    you_gender.downcase!
-    me_gender.downcase!
+    you_gender.downcase! if you_gender?
+    me_gender.downcase! if me_gender?
   end
 end
