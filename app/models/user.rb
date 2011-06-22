@@ -1,16 +1,15 @@
 class User < ActiveRecord::Base
-  attr  :my_label_id
 
   belongs_to :country
   belongs_to :diet
   belongs_to :state
-  has_many :photos
-
   belongs_to :label
+
+  has_many :photos
 
   has_many :your_labels
   has_many :desired_labels, :through => :your_labels, :source => :label
-
+  
   validates :username, :presence => { :on => :update }
   validates :name, :presence => true
   validates :email, :presence => { :on => :update }

@@ -25,12 +25,8 @@
   looking for a <b><%= current_user.you_gender %></b>
 </h3>
 
-<h4>My Labels</h4>
-<ul>
-  <%= current_user.labels.each do |label| %>
-    <li><%= label.name %></li>
-  <% end %>
-</ul>
+<h4>I am <%= current_user.label.name if current_user.label%></h4>
+  
 
 <h4>Desired Labels</h4>
 <ul>

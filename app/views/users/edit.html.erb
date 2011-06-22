@@ -8,6 +8,8 @@
   <%= flash[:notice] %>
 </div>
 
+<%= @user.errors.full_messages.to_sentence %>
+
 <%= form_for current_user do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -48,12 +50,13 @@
   <%= f.label :you_gender, "Desired Gender" %>
   <%= f.text_field :you_gender %>
 
-  <%= f.label  :my_label_id, "My Label" %>
+  <%= f.label  :label_id, "My Label" %>
+  
   <table>
     <% Label.all.each do |label| %>
       <tr>
-        <th><%= f.radio_button :my_label_id, label.id %></th>
-        <td><%= f.label "my_label_id_#{label.id}", label.name %></td>
+        <th><%= f.radio_button :label_id, label.id, :checked => current_user.label == label %></th>
+        <td><%= f.label "label_id#{label.id}", label.name %></td>
       </tr>
     <% end %>
   </table>
