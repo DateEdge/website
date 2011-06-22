@@ -1,21 +1,37 @@
 <h1>
   <%= current_user.name %>
-  (<%= current_user.age %>)
+
+  <% if current_user.username %>
+    <%= current_user.username %>
+  <% end %>
+
+  <% if current_user.age %>
+    (<%= current_user.age %>)
+  <% end %>
 </h1>
+
+<h2>
+  <% unless current_user.city.blank? %>
+    <span class="locality"><%= current_user.city %></span>,
+  <% end %>
+  <% unless current_user.state.blank? %>
+    <span class="region"><%= current_user.state %></span>,
+  <% end %>
+  <span class="country"><%= current_user.country %></span>
+</h2>
+
+<h3>
+  I am a <b><%= current_user.me_gender %></b>
+  looking for a <b><%= current_user.you_gender %></b>
+</h3>
 
 <section>
   <%= simple_format current_user.bio %>
+  <p><%= current_user.diet %></p>
 </section>
 
-name
-username
-email
-birthday
-city
-state
-zip
-bio
-me_gender
-you_gender
-country
-diet
+<section>
+  <%= current_user.zipcode %>
+  <a href="mailto:<%= current_user.email %>"><%= current_user.email %></a>
+  <time><%= current_user.birthday.strftime("%B %d, %Y") %></time>
+</section>

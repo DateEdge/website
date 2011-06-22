@@ -5,7 +5,8 @@ class CreateCountries < ActiveRecord::Migration
       t.timestamps
     end
     
-    countries = { "GB" => "United Kingdom",
+    countries = {
+      "GB" => "United Kingdom",
       "US" => "United States",
       "AF" => "Afghanistan",
       "AL" => "Albania",

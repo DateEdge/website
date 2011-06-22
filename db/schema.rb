@@ -10,11 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110619034615) do
+ActiveRecord::Schema.define(:version => 20110619062045) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
     t.string   "abbreviation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diets", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,23 +36,30 @@ ActiveRecord::Schema.define(:version => 20110619034615) do
     t.datetime "updated_at"
   end
 
+  create_table "states", :force => true do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
+    t.date     "birthday"
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
     t.string   "username"
     t.string   "email"
-    t.date     "birthday"
     t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.integer  "country"
-    t.text     "bio"
-    t.integer  "diet_id"
+    t.string   "zipcode"
     t.string   "me_gender"
     t.string   "me_gender_map"
     t.string   "you_gender"
     t.string   "you_gender_map"
+    t.text     "bio"
+    t.integer  "state_id"
+    t.integer  "country_id"
+    t.integer  "diet_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

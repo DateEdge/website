@@ -1,23 +1,26 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
+      t.date   :birthday
+
       t.string :provider
       t.string :uid
       t.string :name
       t.string :username
       t.string :email
-      t.date   :birthday
       t.string :city
-      t.string :state
-      t.string :zip
-      t.text   :bio
+      t.string :zipcode
       t.string :me_gender
       t.string :me_gender_map
       t.string :you_gender
       t.string :you_gender_map
+
+      t.text   :bio
+
+      t.belongs_to :state
       t.belongs_to :country
       t.belongs_to :diet
-      
+
       t.timestamps
     end
   end
