@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :your_labels
   has_many :desired_labels, :through => :your_labels, :source => :label
+  accepts_nested_attributes_for :your_labels, :allow_destroy => true
   
   validates :username, :presence => { :on => :update }
   validates :name, :presence => true

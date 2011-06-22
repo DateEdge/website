@@ -30,7 +30,7 @@
 
 <h4>Desired Labels</h4>
 <ul>
-  <%= current_user.desired_labels.each do |label| %>
+  <% current_user.desired_labels.each do |label| %>
     <li><%= label.name %></li>
   <% end %>
 </ul>
