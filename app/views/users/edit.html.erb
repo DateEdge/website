@@ -1,6 +1,6 @@
 <style>
   /* temp */
-  label {display: block;font-weight: bold;}
+  label { display: block; font-weight: bold; }
 </style>
 
 <div>
@@ -11,73 +11,75 @@
 <%= @user.errors.full_messages.to_sentence %>
 
 <%= form_for current_user do |f| %>
-  <%= f.label :name %>
+  <%= f.label      :name %>
   <%= f.text_field :name %>
 
-  <%= f.label :username %>
-  <%= f.text_field :username %>
+  <% if @user.username.blank? %>
+    <%= f.label      :username %>
+    <%= f.text_field :username %>
+  <% end %>
 
-  <%= f.label :email %>
+  <%= f.label      :email %>
   <%= f.text_field :email %>
 
-  <%= f.label :birthday %>
+  <%= f.label       :birthday %>
   <%= f.date_select :birthday,
                     :order      => [:month, :day, :year],
                     :start_year => 60.years.ago.year,
                     :end_year   => Time.now.year %>
 
-  <%= f.label :city %>
+  <%= f.label      :city %>
   <%= f.text_field :city %>
 
-  <%= f.label :state %>
+  <%= f.label  :state %>
   <%= f.select :state_id, State.options_for_select, :include_blank => true %>
 
-  <%= f.label :zipcode %>
+  <%= f.label      :zipcode %>
   <%= f.text_field :zipcode %>
 
-  <%= f.label :country %>
+  <%= f.label  :country %>
   <%= f.select :country_id, Country.options_for_select, :include_blank => true %>
 
-  <%= f.label :bio %>
+  <%= f.label     :bio %>
   <%= f.text_area :bio %>
 
-  <%= f.label :diet %>
+  <%= f.label  :diet %>
   <%= f.select :diet_id, Diet.options_for_select, :include_blank => true %>
 
-  <%= f.label :me_gender, "My Gender" %>
+  <%= f.label      :me_gender, "My Gender" %>
   <%= f.text_field :me_gender %>
 
-  <%= f.label :you_gender, "Desired Gender" %>
+  <%= f.label      :you_gender, "Desired Gender" %>
   <%= f.text_field :you_gender %>
 
-  <%= f.label  :label_id, "My Label" %>
+  <%= f.label :label_id, "My Label" %>
 
   <table>
     <% Label.all.each do |label| %>
       <tr>
-        <th><%= f.radio_button :label_id, label.id, :checked => current_user.label == label %></th>
-        <td><%= f.label "label_id_#{label.id}", label.name %></td>
+        <th><%= f.radio_button :label_id, label.id, :checked => current_user.label      == label %></th>
+        <td><%= f.label        "label_id_#{label.id}", label.name %></td>
       </tr>
     <% end %>
   </table>
 
-  <%= f.label :your_labels_attributes, "Desired Labels" %>
+  <%= f.label      :your_labels_attributes, "Desired Labels" %>
   <table>
     <% Label.all.each_with_index do |label, index| %>
-      <%= f.fields_for "your_labels_attributes[#{index}]", :child_index => index do |ff| -%>
+      <%= f.fields_for "your_labels_attributes[#{index}]", :child_index => index do |ff| %>
         <tr>
           <% if current_user.desired_labels.include? label %>
             <%# HACK remove find from view, do it in the controller %>
             <%= ff.hidden_field :id, :value => current_user.your_labels.where(:label_id => label.id).first.id, :style => "display:none" %>
             <td><%= ff.check_box :_destroy, {:checked => true}, 0, 1 %></td>
-            <th><%= ff.label :_destroy, label.name %></th>
+            <th><%= ff.label     :_destroy, label.name %></th>
           <% else %>
             <td><%= ff.check_box :label_id, {}, label.id %></td>
-            <th><%= ff.label :label_id, label.name %></th>
+            <th><%= ff.label     :label_id, label.name %></th>
           <% end %>
         </th>
       <% end %>
-    <% end -%>
+    <% end %>
   </table>
 
   <%= f.submit "Submit", :disable_with => 'Submiting...' %>

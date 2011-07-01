@@ -6,4 +6,5 @@ Dxe::Application.routes.draw do
 
   match "/signout" => "sessions#destroy", :as => :signout
   match "/auth/:provider/callback" => "sessions#create"
+  match "/auth/failure" => redirect("/")
 end

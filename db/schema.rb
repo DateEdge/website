@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20110622031541) do
     t.string   "me_gender_map"
     t.string   "you_gender"
     t.string   "you_gender_map"
+    t.boolean  "public",         :default => false
     t.text     "bio"
     t.integer  "label_id"
     t.integer  "state_id"

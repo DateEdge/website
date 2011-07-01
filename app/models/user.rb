@@ -6,10 +6,12 @@ class User < ActiveRecord::Base
   belongs_to :label
 
   has_many :photos
-
   has_many :your_labels
   has_many :desired_labels, :through => :your_labels, :source => :label, :uniq => true
+
   accepts_nested_attributes_for :your_labels, :allow_destroy => true
+  scope :public,  where(:public => true)
+  scope :private, where(:public => false)
 
   validates :username, :presence => { :on => :update }
   validates :name, :presence => true
@@ -17,10 +19,13 @@ class User < ActiveRecord::Base
   # validates :email, :format => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
 
   before_save :downcase_genders
+  # before_save :publicize!
 
   class << self
     def create_with_omniauth(auth)
-      send("create_for_#{auth["provider"]}", auth)
+      user = send("create_for_#{auth["provider"]}", auth)
+      user.publicize!
+      user
     end
 
     def create_for_twitter(auth)
@@ -50,7 +55,7 @@ class User < ActiveRecord::Base
         user.name      = auth["user_info"]["name"]
         user.city      = location.split(",").first.strip
         user.state     = State.where(:name => location.split(",").last.strip).first
-        user.username  = available_username(auth["extra"]["user_hash"]["screen_name"])
+        user.username  = available_username(auth["extra"]["user_hash"]["username"])
         user.uid       = auth["uid"]
         user.name      = auth["user_info"]["name"]
         user.email     = auth["user_info"]["email"]
@@ -68,6 +73,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def publicize!
+    update_attributes(:public => (email? && username?))
+  end
+
   def age
     unless birthday.nil?
       now = Time.now.utc.to_date
@@ -79,6 +88,6 @@ class User < ActiveRecord::Base
 
   def downcase_genders
     you_gender.downcase! if you_gender?
-    me_gender.downcase! if me_gender?
+    me_gender.downcase!  if me_gender?
   end
 end

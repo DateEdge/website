@@ -15,6 +15,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :you_gender
       t.string :you_gender_map
 
+      t.boolean :public, :default => false
+
       t.text   :bio
 
       t.belongs_to :label
