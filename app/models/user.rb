@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
-
   belongs_to :country
   belongs_to :diet
   belongs_to :state
   belongs_to :label
 
+  has_many :providers
   has_many :photos
   has_many :your_labels
   has_many :desired_labels, :through => :your_labels, :source => :label, :uniq => true
@@ -12,14 +12,13 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :your_labels, :allow_destroy => true
   scope :public,  where(:public => true)
   scope :private, where(:public => false)
-
+  scope :with_provider, lambda { |name, uid| joins(:providers).where(:providers => {:name => name, :uid => uid}) }
   validates :username, :presence => { :on => :update }
   validates :name, :presence => true
   validates :email, :presence => { :on => :update }
   # validates :email, :format => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
 
   before_save :downcase_genders
-  # before_save :publicize!
 
   class << self
     def create_with_omniauth(auth)
@@ -30,17 +29,17 @@ class User < ActiveRecord::Base
 
     def create_for_twitter(auth)
       location = auth["extra"]["user_hash"]["location"]
+      provider = Provider.create!(:name => auth["provider"], :uid => auth['uid'])
 
       create! do |user|
-        user.provider  = auth["provider"]
-        user.name      = auth["user_info"]["name"]
-        user.city      = location.split(",").first.strip
-        user.state     = State.where(:abbreviation => location.split(",").last.strip).first
-        user.username  = available_username(auth["extra"]["user_hash"]["screen_name"])
-        user.uid       = auth["uid"]
-        user.name      = auth["user_info"]["name"]
-        user.bio       = auth["user_info"]["description"]
-        user.country   = Country.where(:abbreviation => "US").first
+        user.providers << provider
+        user.name       = auth["user_info"]["name"]
+        user.city       = location.split(",").first.strip
+        user.state      = State.where(:abbreviation => location.split(",").last.strip).first
+        user.username   = available_username(auth["extra"]["user_hash"]["screen_name"])
+        user.name       = auth["user_info"]["name"]
+        user.bio        = auth["user_info"]["description"]
+        user.country    = Country.where(:abbreviation => "US").first
         # user.url       = auth["user_info"]["urls"]["Website"]
         # user.url       = auth["user_info"]["urls"]["Twitter"]
         # user.image     = auth["user_info"]["image"].sub(/_normal\./, ".")
@@ -49,19 +48,19 @@ class User < ActiveRecord::Base
 
     def create_for_facebook(auth)
       location = auth["extra"]["user_hash"]["location"]["name"]
+      provider = Provider.create!(:name => auth["provider"], :uid => auth['uid'])
 
       create! do |user|
-        user.provider  = auth["provider"]
-        user.name      = auth["user_info"]["name"]
-        user.city      = location.split(",").first.strip
-        user.state     = State.where(:name => location.split(",").last.strip).first
-        user.username  = available_username(auth["extra"]["user_hash"]["username"])
-        user.uid       = auth["uid"]
-        user.name      = auth["user_info"]["name"]
-        user.email     = auth["user_info"]["email"]
-        user.bio       = auth["extra"]["user_hash"]["bio"]
-        user.country   = Country.where(:abbreviation => "US").first
-        user.me_gender = auth["extra"]["user_hash"]["gender"]
+        user.providers << provider
+        user.name       = auth["user_info"]["name"]
+        user.city       = location.split(",").first.strip
+        user.state      = State.where(:name => location.split(",").last.strip).first
+        user.username   = available_username(auth["extra"]["user_hash"]["username"])
+        user.name       = auth["user_info"]["name"]
+        user.email      = auth["user_info"]["email"]
+        user.bio        = auth["extra"]["user_hash"]["bio"]
+        user.country    = Country.where(:abbreviation => "US").first
+        user.me_gender  = auth["extra"]["user_hash"]["gender"]
         # user.url       = auth["user_info"]["urls"]["Website"]
         # user.url       = auth["user_info"]["urls"]["Facebook"]
         # user.image     = auth["user_info"]["image"].sub(/type=square/, "type=large")

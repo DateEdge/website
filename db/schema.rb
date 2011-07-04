@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110622031541) do
+ActiveRecord::Schema.define(:version => 20110704191328) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(:version => 20110622031541) do
     t.datetime "updated_at"
   end
 
+  create_table "providers", :force => true do |t|
+    t.string   "name"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "states", :force => true do |t|
     t.string   "name"
     t.string   "abbreviation"
@@ -58,8 +66,6 @@ ActiveRecord::Schema.define(:version => 20110622031541) do
 
   create_table "users", :force => true do |t|
     t.date     "birthday"
-    t.string   "provider"
-    t.string   "uid"
     t.string   "name"
     t.string   "username"
     t.string   "email"
