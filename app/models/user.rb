@@ -83,7 +83,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  def twitter?
+    check_provider "twitter"
+  end
+
+  def facebook?
+    check_provider "facebook"
+  end
+
   private
+
+  def check_provider(name)
+    providers.any? {|p| p.name == name }
+  end
 
   def downcase_genders
     you_gender.downcase! if you_gender?

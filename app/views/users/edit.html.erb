@@ -8,6 +8,16 @@
   <%= flash[:notice] %>
 </div>
 
+<p>
+  <% unless @user.twitter? && @user.facebook? %>
+    <% if @user.twitter? %>
+      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+    <% elsif @user.facebook? %>
+      <%= link_to "Sign in with Twitter",  "/auth/twitter"  %>
+    <% end %>
+  <% end %>
+</p>
+
 <%= @user.errors.full_messages.to_sentence %>
 
 <%= form_for current_user do |f| %>
