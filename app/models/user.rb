@@ -72,6 +72,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def merge!(merging_user)
+    %w(name email birthday city state zipcode country bio).each do |property|
+      self.send("#{property}=", merging_user.send(property)) if self.send(property).blank?
+    end
+
+    merging_user.your_labels.each do |your_label|
+      if self.your_labels.map{ |l| l.label_id }.include?(your_label.label_id)
+        your_label.destroy
+      else
+        your_label.update_attributes!(:user_id => self.id)
+      end
+    end
+
+    save!
+  end
+
   def publicize!
     update_attributes(:public => (email? && username?))
   end

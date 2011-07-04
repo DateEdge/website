@@ -31,13 +31,6 @@ ActiveRecord::Schema.define(:version => 20110704191328) do
     t.datetime "updated_at"
   end
 
-  create_table "my_labels", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "label_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "photos", :force => true do |t|
     t.string   "image_content_type"
     t.string   "image_file_name"

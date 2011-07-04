@@ -4,13 +4,15 @@ describe YourLabel do
   require 'spec_helper'
 
   before do
+    DatabaseCleaner.clean
+
     @user = User.create!(
-    :provider => "twitter",
-    :uid      => "641013",
-    :name     => "Shane Becker",
-    :username => "veganstraightedge",
-    :email    => "veganstraightedge@gmail.com"
+      :name     => "Shane Becker",
+      :username => "veganstraightedge",
+      :email    => "veganstraightedge@gmail.com"
     )
+
+    provider = Provider.create!(:name => "twitter", :uid => "641013", :user_id => @user.id)
 
     @label = Label.create!(:name => "straightedge")
   end

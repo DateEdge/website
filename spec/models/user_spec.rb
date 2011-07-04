@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   before do
-    User.delete_all
+    DatabaseCleaner.clean
     @user = User.create(:username => "Shane", :name => "SB", :email => "test@example.com", :birthday => 15.years.ago)
   end
 
@@ -26,7 +26,7 @@ describe User do
 
     @user.label = Label.first
     @user.save!
-    
+
     @user.label.name.should == "straightedge"
   end
 
@@ -36,5 +36,25 @@ describe User do
     end
 
     @user.desired_labels.should == Label.all
+  end
+
+  describe "merge!" do
+    before(:each) do
+      sxe    = Label.create(:name => "sXe")
+      @crunk = Label.create(:name => 'crunk')
+
+      @user.providers << Provider.create(:name => "twitter", :uid => '123')
+      @user.desired_labels << sxe
+
+      @merging_user = User.create(:username => "Becker", :bio => "This should merge into the old user", :name => "SB", :email => "test@example.com", :birthday => 15.years.ago)
+      @merging_user.providers << Provider.create(:name => "fb", :uid => '456')
+      @merging_user.desired_labels << [sxe, @crunk]
+
+      @user.merge! @merging_user
+    end
+
+    it "Should add crunk to the og user" do
+      @user.desired_labels.should include @crunk
+    end
   end
 end

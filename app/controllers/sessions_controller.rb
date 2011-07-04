@@ -3,7 +3,15 @@ class SessionsController < ApplicationController
     auth = request.env["omniauth.auth"]
 
     if current_user
-      current_user.providers << Provider.create!(:name => auth["provider"], :uid => auth['uid'])
+      provider = Provider.where(:name => auth["provider"], :uid => auth["uid"]).first
+
+      if provider
+        current_user.merge! provider.user
+        current_user.providers << provider
+      else
+        current_user.providers << Provider.create!(:name => auth["provider"], :uid => auth['uid'])
+      end
+
     else
       user = User.with_provider(auth["provider"], auth["uid"]).first ||
              User.create_with_omniauth(auth)
