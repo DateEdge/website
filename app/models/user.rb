@@ -44,9 +44,12 @@ class User < ActiveRecord::Base
         user.name       = auth["user_info"]["name"]
         user.bio        = auth["user_info"]["description"]
         user.country    = Country.where(:abbreviation => "US").first
+        # user.image     = auth["user_info"]["image"].sub(/_normal\./, ".")
+        # user.avatar     = auth["user_info"]["image"].sub(/_normal\./, "_reasonably_small.")
+
+        # v2
         # user.url       = auth["user_info"]["urls"]["Website"]
         # user.url       = auth["user_info"]["urls"]["Twitter"]
-        # user.image     = auth["user_info"]["image"].sub(/_normal\./, ".")
       end
     end
 
