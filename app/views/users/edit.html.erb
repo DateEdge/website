@@ -20,7 +20,7 @@
 
 <%= @user.errors.full_messages.to_sentence %>
 
-<%= form_for current_user do |f| %>
+<%= form_for @user do |f| %>
   <%= f.label      :name %>
   <%= f.text_field :name %>
 
@@ -68,7 +68,7 @@
   <table>
     <% Label.all.each do |label| %>
       <tr>
-        <th><%= f.radio_button :label_id, label.id, :checked => current_user.label      == label %></th>
+        <th><%= f.radio_button :label_id, label.id, :checked => @user.label      == label %></th>
         <td><%= f.label        "label_id_#{label.id}", label.name %></td>
       </tr>
     <% end %>
@@ -79,9 +79,9 @@
     <% Label.all.each_with_index do |label, index| %>
       <%= f.fields_for "your_labels_attributes[#{index}]", :child_index => index do |ff| %>
         <tr>
-          <% if current_user.desired_labels.include? label %>
+          <% if @user.desired_labels.include? label %>
             <%# HACK remove find from view, do it in the controller %>
-            <%= ff.hidden_field :id, :value => current_user.your_labels.where(:label_id => label.id).first.id, :style => "display:none" %>
+            <%= ff.hidden_field :id, :value => @user.your_labels.where(:label_id => label.id).first.id, :style => "display:none" %>
             <td><%= ff.check_box :_destroy, {:checked => true}, 0, 1 %></td>
             <th><%= ff.label     :_destroy, label.name %></th>
           <% else %>

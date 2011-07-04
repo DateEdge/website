@@ -1,49 +1,49 @@
 <h1>
-  <%= current_user.name %>
+  <%= @user.name %>
 
-  <% if current_user.username %>
-    <%= current_user.username %>
+  <% if @user.username %>
+    <%= @user.username %>
   <% end %>
 
-  <% if current_user.age %>
-    (<%= current_user.age %>)
+  <% if @user.age %>
+    (<%= @user.age %>)
   <% end %>
 </h1>
 
 <h2>
-  <% unless current_user.city.blank? %>
-    <span class="locality"><%= current_user.city %></span>,
+  <% unless @user.city.blank? %>
+    <span class="locality"><%= @user.city %></span>,
   <% end %>
-  <% unless current_user.state.blank? %>
-    <span class="region"><%= current_user.state %></span>,
+  <% unless @user.state.blank? %>
+    <span class="region"><%= @user.state %></span>,
   <% end %>
-  <span class="country"><%= current_user.country %></span>
+  <span class="country"><%= @user.country %></span>
 </h2>
 
 <h3>
-  I am a <b><%= current_user.me_gender %></b>
-  looking for a <b><%= current_user.you_gender %></b>
+  I am a <b><%= @user.me_gender %></b>
+  looking for a <b><%= @user.you_gender %></b>
 </h3>
 
-<h4>I am <%= current_user.label.name if current_user.label%></h4>
+<h4>I am <%= @user.label.name if @user.label%></h4>
   
 
 <h4>Desired Labels</h4>
 <ul>
-  <% current_user.desired_labels.each do |label| %>
+  <% @user.desired_labels.each do |label| %>
     <li><%= label.name %></li>
   <% end %>
 </ul>
 
 <section>
-  <%= simple_format current_user.bio %>
-  <p><%= current_user.diet %></p>
+  <%= simple_format @user.bio %>
+  <p><%= @user.diet %></p>
 </section>
 
 <section>
-  <%= current_user.zipcode %>
-  <a href="mailto:<%= current_user.email %>"><%= current_user.email %></a>
-  <% if current_user.birthday %>
-    <time><%= current_user.birthday.strftime("%B %d, %Y") %></time>
+  <%= @user.zipcode %>
+  <a href="mailto:<%= @user.email %>"><%= @user.email %></a>
+  <% if @user.birthday %>
+    <time><%= @user.birthday.strftime("%B %d, %Y") %></time>
   <% end %>
 </section>

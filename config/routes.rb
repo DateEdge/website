@@ -4,6 +4,8 @@ Dxe::Application.routes.draw do
 
   resources :users, :except => [:new, :create]
 
+  match "/settings" => "users#edit", :as => :settings
+
   match "/signout" => "sessions#destroy", :as => :signout
   match "/auth/:provider/callback" => "sessions#create"
   match "/auth/failure" => redirect("/")

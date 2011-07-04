@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @users = User.age_appropes(current_user)
   end
 
   def show
     @user = User.find(params[:id])
+
+    unless @user.age_appropiate?(current_user)
+      redirect_to users_path
+    end
   end
 
   def edit

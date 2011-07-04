@@ -10,9 +10,13 @@ class User < ActiveRecord::Base
   has_many :desired_labels, :through => :your_labels, :source => :label, :uniq => true
 
   accepts_nested_attributes_for :your_labels, :allow_destroy => true
+
   scope :public,  where(:public => true)
   scope :private, where(:public => false)
   scope :with_provider, lambda { |name, uid| joins(:providers).where(:providers => {:name => name, :uid => uid}) }
+  scope :adults, lambda {where(['birthday >= ?', 18.years.ago]) }
+  scope :kids,   lambda {where(['birthday <  ?', 18.years.ago]) }
+
   validates :username, :presence => { :on => :update }
   validates :name, :presence => true
   validates :email, :presence => { :on => :update }
@@ -70,6 +74,17 @@ class User < ActiveRecord::Base
     def available_username(username)
       User.where(:username => username).first ? nil : username
     end
+
+    def age_appropes(user)
+      if user.nil?
+        User.all
+      elsif user.birthday < 18.years.ago.to_date
+        User.kids
+      else
+        User.adults
+      end
+    end
+
   end
 
   def merge!(merging_user)
@@ -107,7 +122,19 @@ class User < ActiveRecord::Base
     check_provider "facebook"
   end
 
+  def age_appropiate?(user)
+    if user
+      user.age_group == self.age_group
+    else
+      true
+    end
+  end
+
   private
+
+  def age_group
+    birthday > 18.years.ago.to_date ? :adult : :kid
+  end
 
   def check_provider(name)
     providers.any? {|p| p.name == name }
