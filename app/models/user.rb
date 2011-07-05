@@ -91,7 +91,8 @@ class User < ActiveRecord::Base
   end
 
   def avatar
-    photos.where(:avatar => true).first.image_url(:avatar)
+    photo = photos.where(:avatar => true).first
+    photo ? photo.image_url(:avatar) : PLACEHOLDER_AVATAR_URL
   end
 
   def merge!(merging_user)
@@ -130,7 +131,7 @@ class User < ActiveRecord::Base
   end
 
   def age_appropiate?(user)
-    if user
+    if user && user.birthday?
       user.age_group == self.age_group
     else
       true
