@@ -14,7 +14,8 @@ ActiveRecord::Schema.define(:version => 20110705054514) do
 
   create_table "conversations", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "receipient_id"
+    t.integer  "recipient_id"
+    t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -49,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20110705054514) do
   create_table "messages", :force => true do |t|
     t.integer  "conversation_id"
     t.integer  "sender_id"
-    t.integer  "receipient_id"
+    t.integer  "recipient_id"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"

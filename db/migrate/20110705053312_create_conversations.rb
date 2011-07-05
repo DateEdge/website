@@ -2,7 +2,8 @@ class CreateConversations < ActiveRecord::Migration
   def self.up
     create_table :conversations do |t|
       t.belongs_to :user
-      t.integer    :receipient_id
+      t.integer    :recipient_id
+      t.string     :subject
 
       t.timestamps
     end
