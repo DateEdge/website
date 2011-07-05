@@ -5,11 +5,11 @@ Dxe::Application.routes.draw do
 
   resources :users, :only => [:update]
   resources :photos
-  
+
   match "/signout" => "sessions#destroy", :as => :signout
   match "/auth/:provider/callback" => "sessions#create"
   match "/auth/failure" => redirect("/")
-  
+
   match "/settings"  => "users#edit",   :as => :settings
   match "/people"    => "users#index",  :as => :people
   match "/:username" => "users#show",   :as => :person

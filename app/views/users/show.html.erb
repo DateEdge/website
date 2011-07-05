@@ -26,7 +26,7 @@
 </h3>
 
 <h4>I am <%= @user.label.name if @user.label%></h4>
-  
+
 
 <h4>Desired Labels</h4>
 <ul>
@@ -49,9 +49,18 @@
 </section>
 
 <section>
-  <% @user.photos.each do |photo| %>
-    <%= image_tag photo.image_url(:large).to_s %>
-    <%= photo.caption %>
-  <% end %>
+  <ul>
+    <% @user.photos.each do |photo| %>
+      <li>
+        <%= image_tag photo.image_url(:large).to_s %>
+        <p><%= photo.caption %></p>
+
+        <ul>
+          <li><%= link_to "Edit Photo or Caption", edit_photo_path(photo) %></li>
+          <li><%= link_to "Delete Photo", photo, :method => :delete, :confirm => "Are you SURE? Like for sure, for sure? There is NO UNDO!" %></li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
   <%= link_to "New Photo", new_photo_path %>
 </section>
