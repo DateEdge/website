@@ -24,4 +24,7 @@ end
 
 gem "rails",     "3.0.9"
 gem "omniauth",  "0.2.6"
-gem "paperclip", "~> 2.3"
+# gem "paperclip", "~> 2.3"
+gem "rmagick"
+gem 'fog'
+gem "carrierwave"

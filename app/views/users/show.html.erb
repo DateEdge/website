@@ -47,3 +47,11 @@
     <time><%= @user.birthday.strftime("%B %d, %Y") %></time>
   <% end %>
 </section>
+
+<section>
+  <% @user.photos.each do |photo| %>
+    <%= image_tag photo.image_url(:large).to_s %>
+    <%= photo.caption %>
+  <% end %>
+  <%= link_to "New Photo", new_photo_path %>
+</section>
