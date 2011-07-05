@@ -5,8 +5,12 @@
   <%= f.label :caption, "Caption" %>
   <%= f.text_area :caption, :rows => 5 %>
 
-  <%= f.label :avatar, "Avatar?" %>
-  <%= f.check_box :avatar %>
+  <% if @photo.avatar? %>
+    <h3>This is your avatar!</h3>
+  <% else %>
+    <%= f.label :avatar, "Avatar?" %>
+    <%= f.check_box :avatar %>
+  <% end %>
 
   <%= f.submit "Submit", :disable_with => 'Submiting...' %>
 

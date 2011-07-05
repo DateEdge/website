@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.age_appropes(current_user)
+    @users = User.in_my_age_group(current_user)
   end
 
   def show
