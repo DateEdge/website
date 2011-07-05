@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.where(:username => params[:username]).first
-
+    @user  = User.where(:username => params[:username]).first
+    @crush = Crush.new
     unless @user.age_appropiate?(current_user)
       redirect_to people_path
     end

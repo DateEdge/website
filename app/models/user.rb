@@ -160,6 +160,10 @@ class User < ActiveRecord::Base
       true
     end
   end
+  
+  def crushing_on?(user)
+    crushes.include? user
+  end
 
   private
 

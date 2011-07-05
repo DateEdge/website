@@ -1,3 +1,16 @@
+<% if current_user.crushing_on?(@user) %>
+  Crushed!
+<% elsif current_user != @user %>
+  <%= form_for @crush, :url => crush_url do |f| %>
+
+    <%= f.hidden_field :crushee_id, :value => @user.id %>
+
+    <%= f.check_box :secret %>
+    <%= f.label :secret, "Secret" %>
+
+    <%= f.submit "Crush" %>
+  <% end %>
+<% end %>
 <h1>
   <%= @user.name %>
 
@@ -49,6 +62,15 @@
     <time><%= @user.birthday.strftime("%B %d, %Y") %></time>
   <% end %>
 </section>
+
+<% if current_user && current_user == @user %>
+  <section>
+    <h3>Crushers</h3>
+    <% @user.crushers.each do |crusher| %>
+      <%= link_to crusher.username, person_path(crusher.username) %>
+    <% end %>
+  </section>
+<% end %>
 
 <section>
   <ul>
