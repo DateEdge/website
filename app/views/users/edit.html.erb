@@ -29,10 +29,11 @@
 
   <%= f.label       :birthday %>
   <%= f.date_select :birthday,
-                    :order      => [:month, :day, :year],
-                    :start_year => 60.years.ago.year,
-                    :end_year   => 12.years.ago.year,
-                    :default    => 12.years.ago %>
+                    :order         => [:month, :day, :year],
+                    :start_year    => 60.years.ago.year,
+                    :end_year      => 12.years.ago.year,
+                    :default       => 12.years.ago,
+                    :include_blank => true %>
 
   <%= f.label      :city %>
   <%= f.text_field :city %>

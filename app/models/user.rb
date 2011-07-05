@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   belongs_to :state
   belongs_to :label
 
-  has_many :providers
+  has_many :providers, :dependent => :destroy
   has_many :photos
   has_many :your_labels
   has_many :desired_labels, :through => :your_labels, :source => :label, :uniq => true
@@ -35,29 +35,32 @@ class User < ActiveRecord::Base
       location = auth["extra"]["user_hash"]["location"]
       provider = Provider.create!(:name => auth["provider"], :uid => auth['uid'])
 
-      create! do |user|
+      u = create! do |user|
         user.providers << provider
-        user.name       = auth["user_info"]["name"]
-        user.city       = location.split(",").first.strip
-        user.state      = State.where(:abbreviation => location.split(",").last.strip).first
-        user.username   = available_username(auth["extra"]["user_hash"]["screen_name"])
-        user.name       = auth["user_info"]["name"]
-        user.bio        = auth["user_info"]["description"]
-        user.country    = Country.where(:abbreviation => "US").first
-        # user.image     = auth["user_info"]["image"].sub(/_normal\./, ".")
-        # user.avatar     = auth["user_info"]["image"].sub(/_normal\./, "_reasonably_small.")
+        user.name             = auth["user_info"]["name"]
+        user.city             = location.split(",").first.strip
+        user.state            = State.where(:abbreviation => location.split(",").last.strip).first
+        user.username         = available_username(auth["extra"]["user_hash"]["screen_name"])
+        user.name             = auth["user_info"]["name"]
+        user.bio              = auth["user_info"]["description"]
+        user.country          = Country.where(:abbreviation => "US").first
 
         # v2
         # user.url       = auth["user_info"]["urls"]["Website"]
         # user.url       = auth["user_info"]["urls"]["Twitter"]
       end
+
+      unless auth["user_info"]["image"].blank?
+        u.photos.create!(:remote_image_url => auth["user_info"]["image"].sub(/_normal\./, "."), :avatar => true)
+      end
+      u
     end
 
     def create_for_facebook(auth)
       location = auth["extra"]["user_hash"]["location"]["name"]
       provider = Provider.create!(:name => auth["provider"], :uid => auth['uid'])
 
-      create! do |user|
+      u = create! do |user|
         user.providers << provider
         user.name       = auth["user_info"]["name"]
         user.city       = location.split(",").first.strip
@@ -72,16 +75,21 @@ class User < ActiveRecord::Base
         # user.url       = auth["user_info"]["urls"]["Facebook"]
         # user.image     = auth["user_info"]["image"].sub(/type=square/, "type=large")
       end
+
+      unless auth["user_info"]["image"].blank?
+        u.photos.create!(:remote_image_url => auth["user_info"]["image"].sub(/type=square/, "type=large"), :avatar => true)
+      end
+      u
     end
 
     def available_username(username)
       User.where(:username => username).first ? nil : username
     end
 
-    def age_appropes(user)
-      if user.nil?
+    def in_my_age_group(user)
+      if user.nil? || user.birthday.nil?
         User.all
-      elsif user.birthday < 18.years.ago.to_date
+      elsif user.birthday? && user.birthday < 18.years.ago.to_date
         User.kids
       else
         User.adults
