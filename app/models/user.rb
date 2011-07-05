@@ -118,7 +118,8 @@ class User < ActiveRecord::Base
   end
 
   def conversations
-    (inbound_conversations + outbound_conversations).sort_by { |c| c.updated_at }.uniq
+    # (inbound_conversations + outbound_conversations).sort_by { |c| c.updated_at }.uniq
+    Conversation.where(['conversations.user_id = ? OR conversations.recipient_id = ?', self.id, self.id])
   end
 
   def avatar
