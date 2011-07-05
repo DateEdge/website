@@ -19,6 +19,9 @@ class User < ActiveRecord::Base
   has_many :crusheeings, :foreign_key => "crushee_id", :class_name => "Crush", :conditions => {:secret => false}
   has_many :crushers, :through => :crusheeings, :source => :crusher
 
+  has_many :outbound_conversations, :class_name => "Conversation", :foreign_key => :user_id
+  has_many :inbound_conversations,  :class_name => "Conversation", :foreign_key => :receipient_id
+
   has_many :providers, :dependent => :destroy
   has_many :photos
   has_many :your_labels
@@ -113,6 +116,10 @@ class User < ActiveRecord::Base
 
   end
 
+  def conversations
+    (inbound_conversations + outbound_conversations).sort_by { |c| c.updated_at }.uniq
+  end
+
   def avatar
     photo = photos.where(:avatar => true).first
     photo ? photo.image_url(:avatar) : PLACEHOLDER_AVATAR_URL
@@ -160,7 +167,7 @@ class User < ActiveRecord::Base
       true
     end
   end
-  
+
   def crushing_on?(user)
     crushes.include? user
   end
