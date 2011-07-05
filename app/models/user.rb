@@ -1,7 +1,9 @@
 class BlacklistValidator < ActiveModel::EachValidator
   # USERNAME_BLACKLIST
   def validate_each(record, attribute, value)
-    record.errors[attribute] << "#{value} is not an allowed username." if USERNAME_BLACKLIST.include? value.downcase
+    if USERNAME_BLACKLIST.include? value.downcase
+      record.errors[attribute] << "#{value} is not an allowed username."
+    end
   end
 end
 
@@ -10,6 +12,12 @@ class User < ActiveRecord::Base
   belongs_to :diet
   belongs_to :state
   belongs_to :label
+
+  has_many :crushings, :foreign_key => "crusher_id", :class_name => "Crush"
+  has_many :crushes, :through => :crushings, :source => :crushee
+
+  has_many :crusheeings, :foreign_key => "crushee_id", :class_name => "Crush", :conditions => {:secret => false}
+  has_many :crushers, :through => :crusheeings, :source => :crusher
 
   has_many :providers, :dependent => :destroy
   has_many :photos
