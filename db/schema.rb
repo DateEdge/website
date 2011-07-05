@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20110705054514) do
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.text     "body"
+    t.boolean  "unread",          :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

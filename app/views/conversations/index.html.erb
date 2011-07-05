@@ -1,2 +1,12 @@
-<h1>Conversations#index</h1>
-<p>Find me in app/views/conversations/index.html.erb</p>
+<% if @conversations.blank? %>
+  You don't have any conversations started, go messages someone.
+<% else %>
+  <ol>
+    <% @conversations.each do |conversation| %>
+      <li>
+        <h3><%= link_to conversation.subject, conversation %> (<%= conversation.messages.count %>)</h3>
+        <%= truncate conversation.messages.first.body, :length => 200 %>
+      </li>
+    <% end %>
+  </ol>
+<% end %>
