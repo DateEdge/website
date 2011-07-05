@@ -32,10 +32,7 @@ ActiveRecord::Schema.define(:version => 20110704191328) do
   end
 
   create_table "photos", :force => true do |t|
-    t.string   "image_content_type"
-    t.string   "image_file_name"
-    t.datetime "image_updated_at"
-    t.integer  "image_file_size"
+    t.string   "image"
     t.text     "caption"
     t.integer  "user_id"
     t.datetime "created_at"
