@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = current_user
     params[:user][:your_labels_attributes].delete_if {|k, v| v['label_id'] == "0"}
 
     if current_user.username

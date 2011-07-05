@@ -90,6 +90,10 @@ class User < ActiveRecord::Base
 
   end
 
+  def avatar
+    photos.where(:avatar => true).first.image_url(:avatar)
+  end
+
   def merge!(merging_user)
     %w(name email birthday city state zipcode country bio).each do |property|
       self.send("#{property}=", merging_user.send(property)) if self.send(property).blank?
