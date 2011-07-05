@@ -1,3 +1,5 @@
+<%= link_to "Send Message", new_message_path(:recipient => @user.username) %>
+
 <% if current_user.crushing_on?(@user) %>
   Crushed!
 <% elsif current_user != @user %>
@@ -11,6 +13,7 @@
     <%= f.submit "Crush" %>
   <% end %>
 <% end %>
+
 <h1>
   <%= @user.name %>
 

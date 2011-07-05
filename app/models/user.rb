@@ -1,7 +1,6 @@
 class BlacklistValidator < ActiveModel::EachValidator
-  # USERNAME_BLACKLIST
   def validate_each(record, attribute, value)
-    if USERNAME_BLACKLIST.include? value.downcase
+    if value && USERNAME_BLACKLIST.include?(value.downcase)
       record.errors[attribute] << "#{value} is not an allowed username."
     end
   end
@@ -20,7 +19,7 @@ class User < ActiveRecord::Base
   has_many :crushers, :through => :crusheeings, :source => :crusher
 
   has_many :outbound_conversations, :class_name => "Conversation", :foreign_key => :user_id
-  has_many :inbound_conversations,  :class_name => "Conversation", :foreign_key => :receipient_id
+  has_many :inbound_conversations,  :class_name => "Conversation", :foreign_key => :recipient_id
 
   has_many :providers, :dependent => :destroy
   has_many :photos
@@ -81,8 +80,10 @@ class User < ActiveRecord::Base
       u = create! do |user|
         user.providers << provider
         user.name       = auth["user_info"]["name"]
-        user.city       = location.split(",").first.strip
-        user.state      = State.where(:name => location.split(",").last.strip).first
+        unless location.blank?
+          user.city       = location.split(",").first.strip
+          user.state      = State.where(:name => location.split(",").last.strip).first
+        end
         user.username   = available_username(auth["extra"]["user_hash"]["username"])
         user.name       = auth["user_info"]["name"]
         user.email      = auth["user_info"]["email"]

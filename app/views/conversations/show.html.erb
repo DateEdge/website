@@ -1,0 +1,8 @@
+<h1><%= @conversation.subject %></h1>
+<ol>
+  <% @conversation.messages.each do |message| %>
+    <li><%= simple_format message.body %> -<%= message.sender.name %></li>
+  <% end %>  
+</ol>
+
+<%= link_to "Reply", new_message_path(:conversation_id => @conversation.id) %>
