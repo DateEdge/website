@@ -1,3 +1,10 @@
+class BlacklistValidator < ActiveModel::EachValidator
+  # USERNAME_BLACKLIST
+  def validate_each(record, attribute, value)
+    record.errors[attribute] << "#{value} is not an allowed username." if USERNAME_BLACKLIST.include? value.downcase
+  end
+end
+
 class User < ActiveRecord::Base
   belongs_to :country
   belongs_to :diet
@@ -17,7 +24,7 @@ class User < ActiveRecord::Base
   scope :adults, lambda {where(['birthday >= ?', 18.years.ago]) }
   scope :kids,   lambda {where(['birthday <  ?', 18.years.ago]) }
 
-  validates :username, :presence => { :on => :update }
+  validates :username, :presence => { :on => :update }, :blacklist => true
   validates :name, :presence => true
   validates :email, :presence => { :on => :update }
   # validates :email, :format => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
