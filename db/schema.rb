@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20110704191328) do
 
   create_table "photos", :force => true do |t|
     t.string   "image"
+    t.boolean  "avatar"
     t.text     "caption"
     t.integer  "user_id"
     t.datetime "created_at"
