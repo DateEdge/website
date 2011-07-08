@@ -13,7 +13,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :you_gender
       t.string :you_gender_map
 
-      t.boolean :public, :default => false
+      t.boolean :visible, :default => false
 
       t.text   :bio
 

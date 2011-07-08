@@ -41,8 +41,8 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :your_labels, :allow_destroy => true
 
-  scope :public,  where(:public => true)
-  scope :private, where(:public => false)
+  scope :visible,  where(:visible => true)
+  scope :invisible, where(:visible => false)
   scope :with_provider, lambda { |name, uid| joins(:providers).where(:providers => {:name => name, :uid => uid}) }
   scope :adults, lambda {where(['birthday >= ?', 18.years.ago]) }
   scope :kids,   lambda {where(['birthday <  ?', 18.years.ago]) }
@@ -168,8 +168,8 @@ class User < ActiveRecord::Base
     save!
   end
 
-  def publicize!
-    update_attributes(:public => (email? && username?))
+  def visiblize!
+    update_attributes(:visible => (email? && username?))
   end
 
   def age
@@ -185,6 +185,10 @@ class User < ActiveRecord::Base
 
   def facebook?
     check_provider "facebook"
+  end
+
+  def age_inappropiate?(user)
+    !age_appropiate?(user)
   end
 
   def age_appropiate?(user)
