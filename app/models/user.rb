@@ -5,10 +5,15 @@ class UsernameValidator < ActiveModel::EachValidator
     end
 
     if record.available_username(value).nil?
-      p attribute.inspect
-      p value.inspect
-      p "   "
       record.errors[attribute] << "#{value} has already been taken"
+    end
+  end
+end
+
+class BirthdayValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    if value.blank? || value < 100.years.ago.to_date
+      record.errors[attribute] << "is required"
     end
   end
 end
@@ -43,8 +48,9 @@ class User < ActiveRecord::Base
   scope :kids,   lambda {where(['birthday <  ?', 18.years.ago]) }
 
   validates :username, :presence => { :on => :update }, :username => true, :length => { :minimum => 1, :maximum => 100 }
-  validates :name, :presence => true
-  validates :email, :presence => { :on => :update }
+  validates :name,     :presence => true
+  validates :email,    :presence => { :on => :update }
+  validates :birthday, :birthday => { :on => :update }
   # validates :email, :format => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
 
   before_save :downcase_genders
@@ -75,7 +81,10 @@ class User < ActiveRecord::Base
         # user.url       = auth["user_info"]["urls"]["Twitter"]
       end
       unless auth["user_info"]["image"].blank?
-        u.photos.create!(:remote_image_url => auth["user_info"]["image"].sub(/_normal\./, "."), :avatar => true)
+        begin
+          u.photos.create!(:remote_image_url => auth["user_info"]["image"].sub(/_normal\./, "."), :avatar => true)
+        rescue OpenURI::HTTPError
+        end
       end
 
       u
@@ -111,8 +120,9 @@ class User < ActiveRecord::Base
       u
     end
 
+    # TODO refactor this and user#available_username
     def available_username(username)
-      User.where(:username => username).first ? "username-#{Time.now.strftime('%Y%m%d%H%M%S')}" : username
+      User.where(:username => username).first || username.blank? ? "username-#{Time.now.strftime('%Y%m%d%H%M%S')}" : username
     end
 
     def in_my_age_group(user)
@@ -127,9 +137,9 @@ class User < ActiveRecord::Base
 
   end
 
+  # TODO refactor this and User.available_username
   def available_username(new_name)
-    p "user#available_username(#{new_name})"
-    User.where(['lower(username) = ? AND id != ?', new_name.to_s.downcase, id]).first ? nil : new_name
+    User.where(['lower(username) = ? AND id != ?', new_name.to_s.downcase, id]).first || new_name.blank? ? nil : new_name
   end
 
   def conversations
