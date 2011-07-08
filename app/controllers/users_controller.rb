@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_filter :restrict_non_visible_user, :only => [:new, :create]
+
   def index
     @users = User.in_my_age_group(current_user)
   end
@@ -50,9 +52,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to users_url
-  end
+  # TODO implement
+  def destroy; end
 end

@@ -1,11 +1,11 @@
 class MessagesController < ApplicationController
   def new
     if params["recipient"].present?
-      # make sure the user is age appropiate
+      # TODO make sure the user is age appropiate
       @conversation = Conversation.new
       @user = User.where(:username => params["recipient"]).first
     else
-      # make sure the user is authorized to see this conversation
+      # TODO make sure the user is authorized to see this conversation
       @conversation = Conversation.find(params[:conversation_id])
       @user = @conversation.counterpart(current_user)
     end

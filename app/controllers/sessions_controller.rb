@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_filter :restrict_non_visible_user
+
   def create
     auth = request.env["omniauth.auth"]
 
