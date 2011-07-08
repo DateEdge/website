@@ -203,11 +203,11 @@ class User < ActiveRecord::Base
     crushes.include? user
   end
 
-  private
-
   def age_group
     birthday > 18.years.ago.to_date ? :adult : :kid
   end
+
+  private
 
   def check_provider(name)
     providers.any? {|p| p.name == name }
