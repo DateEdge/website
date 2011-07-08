@@ -1,0 +1,26 @@
+<h1>Before we start we just need 3 things from ya'll</h1>
+<div>
+  <%= flash[:error] %>
+  <%= flash[:notice] %>
+</div>
+
+<%= @user.errors.full_messages.to_sentence %>
+
+<%= form_for @user, :url => create_path, :method => :post do |f| %>
+
+  <%= f.label      :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label      :email %>
+  <%= f.text_field :email %>
+
+  <%= f.label       :birthday %>
+  <%= f.date_select :birthday,
+                    :order         => [:month, :day, :year],
+                    :start_year    => 60.years.ago.year,
+                    :end_year      => 12.years.ago.year,
+                    :default       => 12.years.ago,
+                    :include_blank => true %>
+
+  <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+<% end %>
