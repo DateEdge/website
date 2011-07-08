@@ -4,9 +4,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user  = User.public.where(:username => params[:username]).first
+    @user  = User.visible.where(['lower(username) = ?', params[:username].downcase]).first
     @crush = Crush.new
-    unless @user.age_appropiate?(current_user)
+
+    if @user.nil? || @user.age_inappropiate?(current_user)
       redirect_to people_path
     end
   end
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
     @user.attributes = params[:user]
 
     if @user.save
-      @user.publicize!
+      @user.visiblize!
       redirect_to new_photo_path
     else
       render :new

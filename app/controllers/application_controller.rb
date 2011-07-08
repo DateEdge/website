@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  # before_filter :restrict_non_public_user, :except => [:new, :create, :destroy]
+  # before_filter :restrict_non_visible_user, :except => [:new, :create, :destroy]
   helper_method :current_user
   helper_method :unread_count
 
   private
 
-  def restrict_non_public_user
-    if current_user && !current_user.public?
+  def restrict_non_visible_user
+    if current_user && !current_user.visible?
       redirect_to start_path
     end
   end
