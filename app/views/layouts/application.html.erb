@@ -14,7 +14,7 @@
       <%= link_to "Sign Out", signout_path %>
       <%= link_to "Profile", person_path(current_user.username) if current_user.username %>
       <%= link_to "Settings", settings_path %>
-      <%= link_to "Inbox (#{Conversation.unread_messages(current_user)})", conversations_path %>
+      <%= link_to "Inbox (#{unread_count})", conversations_path %>
     <% else %>
       <%= link_to "Sign in with Twitter",  "/auth/twitter"  %>
       <%= link_to "Sign in with Facebook", "/auth/facebook" %>

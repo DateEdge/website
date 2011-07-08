@@ -1,12 +1,20 @@
-class BlacklistValidator < ActiveModel::EachValidator
+class UsernameValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     if value && USERNAME_BLACKLIST.include?(value.downcase)
       record.errors[attribute] << "#{value} is not an allowed username."
+    end
+
+    if record.available_username(value).nil?
+      p attribute.inspect
+      p value.inspect
+      p "   "
+      record.errors[attribute] << "#{value} has already been taken"
     end
   end
 end
 
 class User < ActiveRecord::Base
+  attr_protected :username, :email
   belongs_to :country
   belongs_to :diet
   belongs_to :state
@@ -34,7 +42,7 @@ class User < ActiveRecord::Base
   scope :adults, lambda {where(['birthday >= ?', 18.years.ago]) }
   scope :kids,   lambda {where(['birthday <  ?', 18.years.ago]) }
 
-  validates :username, :presence => { :on => :update }, :blacklist => true
+  validates :username, :presence => { :on => :update }, :username => true, :length => { :minimum => 1, :maximum => 100 }
   validates :name, :presence => true
   validates :email, :presence => { :on => :update }
   # validates :email, :format => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
@@ -44,13 +52,13 @@ class User < ActiveRecord::Base
   class << self
     def create_with_omniauth(auth)
       user = send("create_for_#{auth["provider"]}", auth)
-      user.publicize!
       user
     end
 
     def create_for_twitter(auth)
       location = auth["extra"]["user_hash"]["location"]
-      provider = Provider.create!(:name => auth["provider"], :uid => auth['uid'])
+
+      provider = Provider.new(:name => auth["provider"], :uid => auth['uid'])
 
       u = create! do |user|
         user.providers << provider
@@ -66,16 +74,17 @@ class User < ActiveRecord::Base
         # user.url       = auth["user_info"]["urls"]["Website"]
         # user.url       = auth["user_info"]["urls"]["Twitter"]
       end
-
       unless auth["user_info"]["image"].blank?
         u.photos.create!(:remote_image_url => auth["user_info"]["image"].sub(/_normal\./, "."), :avatar => true)
       end
+
       u
     end
 
     def create_for_facebook(auth)
       location = auth["extra"]["user_hash"]["location"]["name"]
-      provider = Provider.create!(:name => auth["provider"], :uid => auth['uid'])
+
+      provider = Provider.new(:name => auth["provider"], :uid => auth['uid'])
 
       u = create! do |user|
         user.providers << provider
@@ -84,6 +93,7 @@ class User < ActiveRecord::Base
           user.city       = location.split(",").first.strip
           user.state      = State.where(:name => location.split(",").last.strip).first
         end
+
         user.username   = available_username(auth["extra"]["user_hash"]["username"])
         user.name       = auth["user_info"]["name"]
         user.email      = auth["user_info"]["email"]
@@ -102,7 +112,7 @@ class User < ActiveRecord::Base
     end
 
     def available_username(username)
-      User.where(:username => username).first ? nil : username
+      User.where(:username => username).first ? "username-#{Time.now.strftime('%Y%m%d%H%M%S')}" : username
     end
 
     def in_my_age_group(user)
@@ -115,6 +125,11 @@ class User < ActiveRecord::Base
       end
     end
 
+  end
+
+  def available_username(new_name)
+    p "user#available_username(#{new_name})"
+    User.where(['lower(username) = ? AND id != ?', new_name.to_s.downcase, id]).first ? nil : new_name
   end
 
   def conversations
