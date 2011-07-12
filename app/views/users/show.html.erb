@@ -84,6 +84,7 @@
 
         <ul>
           <li><%= link_to "Edit Photo or Caption", edit_photo_path(photo) %></li>
+          <li><%= link_to "Use as Avatar", photo_path(photo, :photo => {:avatar => true}), :method => :put %></li>
           <li><%= link_to "Delete Photo", photo, :method => :delete, :confirm => "Are you SURE? Like for sure, for sure? There is NO UNDO!" %></li>
         </ul>
       </li>
