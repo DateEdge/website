@@ -91,3 +91,8 @@
 
   <%= f.submit "Submit", :disable_with => 'Submiting...' %>
 <% end %>
+<div>
+  <h2>DANGER ZONE</h2>
+
+  <%= button_to "Delete My Profile", user_path(@user), :method => :delete, :confirm => "Uhhhh... Are you sure you want to delete your profile?" %>
+</div>

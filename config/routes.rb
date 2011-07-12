@@ -2,7 +2,7 @@ Dxe::Application.routes.draw do
 
   root :to => "welcome#index"
 
-  resources :users, :only => [:update]
+  resources :users, :only => [:update, :destroy]
   resources :photos
 
   resources :conversations, :only => [:index, :show]
