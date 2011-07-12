@@ -8,10 +8,9 @@ class UsersController < ApplicationController
   def show
     @user  = User.visible.where(['lower(username) = ?', params[:username].downcase]).first
     @crush = Crush.new
-
-    if @user.nil? || @user.age_inappropiate?(current_user)
-      redirect_to people_path
-    end
+    
+    redirect_if_age_inappropriate(@user)
+    
   end
 
   def new

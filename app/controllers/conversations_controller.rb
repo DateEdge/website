@@ -4,14 +4,14 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @conversation = Conversation.find(params[:id])
-    if @conversation.messages.any? { |msg| msg.unread && msg.recipient_id == current_user.id}
+    @conversation = current_user.conversations.where(:id => params[:id]).first
+    
+    if @conversation.blank?
+      redirect_to root_path 
+    elsif @conversation.messages.any? { |msg| msg.unread && msg.recipient_id == current_user.id}
       @conversation.messages.where(:recipient_id => current_user.id).update_all(:unread => false)
     end
 
-    unless @conversation.participants.include? current_user
-      redirect_to root_path
-    end
   end
 
 end
