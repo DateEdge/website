@@ -52,5 +52,10 @@ class UsersController < ApplicationController
   end
 
   # TODO implement
-  def destroy; end
+  def destroy 
+    @user = current_user
+    @user.destroy
+    session.delete(:user_id)
+    redirect_to root_path, :notice => "Profile Deleted. Come on back any time."
+  end
 end
