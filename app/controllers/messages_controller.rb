@@ -14,8 +14,8 @@ class MessagesController < ApplicationController
   end
 
   def create
-    message = Message.new!(params[:message].merge!(:sender => current_user))
-    redirect_if_age_inappropriate(@user)
+    message = Message.create!(params[:message].merge!(:sender => current_user))
+    # redirect_if_age_inappropriate(@user)
     redirect_to conversation_path(message.conversation)
   end
 end
