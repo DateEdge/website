@@ -5,7 +5,7 @@ describe User do
     DatabaseCleaner.clean
     @user = User.create(:username => "Shane", :name => "SB", :email => "test@example.com", :birthday => 15.years.ago)
   end
-
+  
   it "should calculate the age correctly" do
     @user.age.should == 15
   end
