@@ -1,16 +1,18 @@
 <%= link_to "Send Message", new_message_path(:recipient => @user.username) %>
 
-<% if current_user.crushing_on?(@user) %>
-  Crushed!
-<% elsif current_user != @user %>
-  <%= form_for @crush, :url => crush_url do |f| %>
+<% if current_user %>
+  <% if current_user.crushing_on?(@user) %>
+    Crushed!
+  <% elsif current_user.isnt(@user) %>
+    <%= form_for @crush, :url => crush_url do |f| %>
 
-    <%= f.hidden_field :crushee_id, :value => @user.id %>
+      <%= f.hidden_field :crushee_id, :value => @user.id %>
 
-    <%= f.check_box :secret %>
-    <%= f.label :secret, "Secret" %>
+      <%= f.check_box :secret %>
+      <%= f.label :secret, "Secret" %>
 
-    <%= f.submit "Crush" %>
+      <%= f.submit "Crush" %>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -60,7 +62,10 @@
 
 <section>
   <%= @user.zipcode %>
-  <a href="mailto:<%= @user.email %>"><%= @user.email %></a>
+  <% if current_user.is(@user) %>
+    <a href="mailto:<%= @user.email %>"><%= @user.email %></a>
+  <% end %>
+
   <% if @user.birthday %>
     <time><%= @user.birthday.strftime("%B %d, %Y") %></time>
   <% end %>
