@@ -1,2 +1,16 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<% content_for :header do %>
+  <h1>Date Edge</h1>
+  <h2>Because straight edge kids need a date too&hellip;</h2>
+<% end %>
+
+
+<ul id="sign_in">
+  <li><%= link_to "Sign in with Twitter",  "/auth/twitter",  :class => "twitter"  %></li>
+  <li><%= link_to "Sign in with Facebook", "/auth/facebook", :class => "facebook" %></li>
+</ul>
+
+<% User.all.each do |user| %>
+  <%= link_to person_path(user.username) do %>
+    <%= image_tag user.avatar, :alt => user.username %>
+  <% end %>
+<% end %>
