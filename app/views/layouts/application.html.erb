@@ -4,58 +4,41 @@
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-  <title>DxE</title>
-	<meta name="description" content="">
-	<meta name="author"      content="">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="/favicon.ico">
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-  <%= javascript_include_tag "modernizr" %>
-
-  <%= stylesheet_link_tag :all %>
-  <%= csrf_meta_tag %>
-</head>
+<%= render :partial => '/shared/head' %>
 
 <body>
-  <nav role="navigation">
-    <% if current_user %>
-      Welcome, <%= current_user.name %>!
-      <%= link_to "Sign Out", signout_path %>
-      <%= link_to "Profile", person_path(current_user.username) if current_user.username %>
-      <%= link_to "Settings", settings_path %>
-      <%= link_to "Inbox (#{unread_count})", conversations_path %>
-    <% else %>
-      <%= link_to "Sign in with Twitter",  "/auth/twitter"  %>
-      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
-    <% end %>
-    <%= link_to "Everyone", people_path %>
-  </nav>
+  <% unless welcome? %>
+    <nav role="navigation">
+      <%= link_to "Everyone", people_path %>
 
-	<header role="banner">
-	</header>
+      <% if current_user %>
+        <%= link_to_unless_current "Sign Out", signout_path %>
+        <%= link_to_unless_current current_user.name, person_path(current_user.username) if current_user.username %>
+        <%= link_to_unless_current "Settings", settings_path %>
+        <%= link_to_unless_current "Inbox (#{unread_count})", conversations_path %>
+      <% else %>
+        <%= link_to "Sign in with Twitter",  "/auth/twitter"  %>
+        <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+      <% end %>
+    </nav>
+  <% end %>
 
-	<section role="main">
+  <header role="banner">
+    <%= yield :header %>
+  </header>
+
+  <section role="main">
     <%= yield %>
-	</section>
+  </section>
 
-	<footer role="contentinfo">
-	</footer>
+  <footer role="contentinfo">
+    <%= yield :footer %>
+  </footer>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
-	<script>!window.jQuery && document.write(unescape('%3Cscript src="javascripts/jquery.js"%3E%3C/script%3E'))</script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="javascripts/jquery.js"%3E%3C/script%3E'))</script>
   <%= javascript_include_tag "modernizr" %>
 
-	<script>
-		var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']]; // Change UA-XXXXX-X to be your site's ID
-		(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-		g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-		s.parentNode.insertBefore(g,s)}(document,'script'));
-	</script>
+  <%= render :partial => '/shared/google_analytics' %>
 </body>
 </html>

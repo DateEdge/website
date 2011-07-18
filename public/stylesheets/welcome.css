@@ -1,0 +1,42 @@
+/* welcome... */
+header[role=banner] h1 {
+  padding: 0 5%;
+  font-size: 400%;
+  letter-spacing: -.06em;
+  font-weight: bold;
+  background: black;
+  color: white;
+  line-height: 150%;
+}
+
+header[role=banner] h2 {
+  margin: .5em 5%;
+  font-size: 200%;
+  font-weight: normal;
+  line-height: 100%;
+  letter-spacing: -.02em;
+}
+
+#sign_in {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#sign_in li {
+  text-indent: -999em;
+}
+
+#sign_in a {
+  display: block;
+  background: transparent no-repeat center center;
+  -webkit-background-size:  300px auto;
+  -moz-background-size:     300px auto;
+  -o-background-size:       300px auto;
+  height: 50px;
+  margin-top: 1em;
+}
+
+#sign_in .twitter  { background-image: url(/images/buttons/twitter.png); }
+#sign_in .facebook { background-image:url(/images/buttons/facebook.png); }
+/* ...welcome */
