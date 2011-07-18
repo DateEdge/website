@@ -1,7 +1,7 @@
 <h1><%= @conversation.subject %></h1>
 <ol>
   <% @conversation.messages.each do |message| %>
-    <li><%= simple_format message.body %> -<%= message.sender.name %></li>
+    <li><%= image_tag message.sender.avatar %> <%= simple_format message.body %></li>
   <% end %>  
 </ol>
 
