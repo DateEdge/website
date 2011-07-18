@@ -52,11 +52,13 @@ puts
     :birthday => (rand(20) + 14).years.ago.to_date,
     :visible  => true
   )
-
+  
   user.username = username.to_s
   user.email    = "#{username}@dateedge.com"
   user.save!
 
   puts "       avatar"
   Photo.create!(:user_id => user.id, :remote_image_url => url, :avatar => true)
+  puts "       duplicate photo"
+  Photo.create!(:user_id => user.id, :remote_image_url => url)
 end
