@@ -24,13 +24,16 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   #
-  # def scale(width, height)
-  #   # do something
-  # end
+  def thumbnail(width, height)
+    manipulate! do |img|
+      img = img.crop(Magick::GravityType.new("CenterGravity", 5), width, height)
+    end
+  end
 
   # Create different versions of your uploaded files:
   version :avatar do
-    process :resize_to_limit => [130, 130]
+    process :thumbnail => [130, 130]
+    # process :resize_to_limit => [130, 130]
   end
   
   version :large do

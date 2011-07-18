@@ -6,6 +6,7 @@ class PhotosController < ApplicationController
   end
 
   def create
+    params[:photo][:remote_image_url].gsub!('+', '%20')
     @photo = current_user.photos.new(params[:photo])
     if @photo.save
       redirect_to person_path(current_user.username)
