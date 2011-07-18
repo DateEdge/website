@@ -19,7 +19,7 @@ header[role=banner] h2 {
 
 #sign_in {
   list-style-type: none;
-  margin: 0;
+  margin: 2em 0;
   padding: 0;
 }
 
@@ -39,4 +39,41 @@ header[role=banner] h2 {
 
 #sign_in .twitter  { background-image: url(/images/buttons/twitter.png); }
 #sign_in .facebook { background-image:url(/images/buttons/facebook.png); }
+
+#people h2 {
+  font-size: 150%;
+  margin-left: 5px;
+}
+
+#people ul,
+#people li {
+  margin: 0;
+  padding: 0;
+}
+
+#people ul {
+  margin-left: 5px;
+}
+
+#people li {
+  display: inline;
+}
+
+#about {
+  margin: 2em 5px;
+}
+
+@media screen and (max-device-width: 480px) and (orientation:portrait) {
+  #people img {
+    width: 100px;
+  }
+}
+
+@media screen and (max-device-width: 480px) and (orientation:landscape) {
+  #people img {
+    width: 115px;
+  }
+}
+
+
 /* ...welcome */
