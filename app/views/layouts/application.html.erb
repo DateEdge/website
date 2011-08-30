@@ -7,30 +7,10 @@
 <%= render :partial => '/shared/head' %>
 
 <body>
-  <header role="banner">
-    <h1><%= link_to_unless_current "Date Edge", root_path, :rel => "home" %></h1>
-
-    <% if welcome? %>
-      <h2>Because straight edge kids need a date too&hellip;</h2>
-    <% else %>
-
-    <% end %>
-  </header>
-
-  <% unless welcome? %>
-    <nav role="navigation">
-      <%= link_to "Everyone", people_path %>
-
-      <% if current_user %>
-        <%= link_to_unless_current "Sign Out", signout_path %>
-        <%= link_to_unless_current current_user.name, person_path(current_user.username) if current_user.username %>
-        <%= link_to_unless_current "Settings", settings_path %>
-        <%= link_to_unless_current "Inbox (#{unread_count})", conversations_path %>
-      <% else %>
-        <%= link_to "Sign in with Twitter",  "/auth/twitter"  %>
-        <%= link_to "Sign in with Facebook", "/auth/facebook" %>
-      <% end %>
-    </nav>
+  <% if welcome? %>
+    <%= render :partial => '/shared/welcome_header' %>
+  <% else %>
+    <%= render :partial => '/shared/header' %>
   <% end %>
 
   <section role="main">
