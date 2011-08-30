@@ -1,0 +1,9 @@
+$('#bio .short').show();
+$('#bio .long').hide();
+$('#bio .long a.truncate').show();
+
+$('#bio a.truncate').click(function() {
+  $('#bio div').toggle();
+  return false;
+});
+

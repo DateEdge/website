@@ -45,6 +45,12 @@
   <script>!window.jQuery && document.write(unescape('%3Cscript src="javascripts/jquery.js"%3E%3C/script%3E'))</script>
   <%= javascript_include_tag "modernizr" %>
 
+  <% if @slug %>
+    <script>
+      <%= render "/javascripts/#{@slug}" %>
+    </script>
+  <% end %>
+
   <%= render :partial => '/shared/google_analytics' %>
 </body>
 </html>
