@@ -2,15 +2,16 @@ class UsersController < ApplicationController
   skip_before_filter :restrict_non_visible_user, :only => [:new, :create]
 
   def index
-    @users = User.in_my_age_group(current_user)
+    @slug  = "people"
+    @users = User.visible.in_my_age_group(current_user)
   end
 
   def show
+    @slug  = "people"
     @user  = User.visible.where(['lower(username) = ?', params[:username].downcase]).first
     @crush = Crush.new
     
     redirect_if_age_inappropriate(@user)
-    
   end
 
   def new

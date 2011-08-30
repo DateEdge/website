@@ -1,9 +1,11 @@
-<%= link_to "Send Message", new_message_path(:recipient => @user.username) %>
+<% if not_mine? %>
+  <%= link_to "Send Message", new_message_path(:recipient => @user.username) %>
+<% end %>
 
-<% if current_user %>
-  <% if current_user.crushing_on?(@user) %>
+<% if not_mine? %>
+  <% if im.crushing_on?(@user) %>
     Crushed!
-  <% elsif current_user.isnt(@user) %>
+  <% else %>
     <%= form_for @crush, :url => crush_url do |f| %>
 
       <%= f.hidden_field :crushee_id, :value => @user.id %>
@@ -16,62 +18,41 @@
   <% end %>
 <% end %>
 
-<h1>
-  <%= @user.name %>
-
-  <% if @user.username %>
-    <%= @user.username %>
-  <% end %>
-
-  <% if @user.age %>
-    (<%= @user.age %>)
-  <% end %>
-</h1>
-
-<h2>
-  <% unless @user.city.blank? %>
-    <span class="locality"><%= @user.city %></span>,
-  <% end %>
-  <% unless @user.state.blank? %>
-    <span class="region"><%= @user.state %></span>,
-  <% end %>
-  <span class="country"><%= @user.country %></span>
-</h2>
-
-<%= image_tag @user.avatar %>
+<%= render :partial => @user %>
 
 <h3>
-  I am a <b><%= @user.me_gender %></b>
-  looking for a <b><%= @user.you_gender %></b>
+  <% if @user.me_gender || @user.you_gender %>
+    I am a
+    <% if @user.label %>
+      <b><%= @user.label.name %></b>
+    <% end %>
+
+    <% if @user.me_gender %>
+      <b><%= @user.me_gender %></b>.
+    <% end %>
+    
+    <% if @user.diet %>
+      I eat a <b><%= @user.diet.name.downcase %></b> diet.
+    <% end %>
+
+    <% if @user.you_gender %>
+      I'm looking for a
+      <% unless @user.desired_labels.blank? %>
+        <%= @user.desired_labels.map{ |dl| "<b>#{dl.name}</b>" }.join(" / ").html_safe %>
+      <% end %>
+
+      <b><%= @user.you_gender %></b>
+    <% end %>
+  <% end %>
 </h3>
 
-<h4>I am <%= @user.label.name if @user.label%></h4>
+<% if @user.bio %>
+  <section id="bio" class="note">
+    <%= simple_format "<b>BIO</b>: " + @user.bio %>
+  </section>
+<% end %>
 
-
-<h4>Desired Labels</h4>
-<ul>
-  <% @user.desired_labels.each do |label| %>
-    <li><%= label.name %></li>
-  <% end %>
-</ul>
-
-<section>
-  <%= simple_format @user.bio %>
-  <p><%= @user.diet %></p>
-</section>
-
-<section>
-  <%= @user.zipcode %>
-  <% if current_user.is(@user) %>
-    <a href="mailto:<%= @user.email %>"><%= @user.email %></a>
-  <% end %>
-
-  <% if @user.birthday %>
-    <time><%= @user.birthday.strftime("%B %d, %Y") %></time>
-  <% end %>
-</section>
-
-<% if current_user && current_user == @user %>
+<% if mine? && @user.crushers.any? %>
   <section>
     <h3>Crushers</h3>
     <% @user.crushers.each do |crusher| %>
@@ -80,20 +61,25 @@
   </section>
 <% end %>
 
-<section>
+<section id="photos">
   <ul>
     <% @user.photos.each do |photo| %>
       <li>
         <%= image_tag photo.image_url(:large).to_s %>
         <p><%= photo.caption %></p>
 
-        <ul>
-          <li><%= link_to "Edit Photo or Caption", edit_photo_path(photo) %></li>
-          <li><%= link_to "Use as Avatar", photo_path(photo, :photo => {:avatar => true}), :method => :put %></li>
-          <li><%= link_to "Delete Photo", photo, :method => :delete, :confirm => "Are you SURE? Like for sure, for sure? There is NO UNDO!" %></li>
-        </ul>
+        <% if mine? %>
+          <ul>
+            <li><%= link_to "Edit Photo or Caption", edit_photo_path(photo) %></li>
+            <li><%= link_to "Use as Avatar", photo_path(photo, :photo => {:avatar => true}), :method => :put %></li>
+            <li><%= link_to "Delete Photo", photo, :method => :delete, :confirm => "Are you SURE? Like for sure, for sure? There is NO UNDO!" %></li>
+          </ul>
+        <% end %>
       </li>
     <% end %>
   </ul>
-  <%= link_to "New Photo", new_photo_path %>
+
+  <% if mine? %>
+    <%= link_to "New Photo", new_photo_path %>
+  <% end %>
 </section>

@@ -1,0 +1,51 @@
+.person {
+  clear: both;
+  padding: 1em 0;
+  border-bottom: 1px solid #eee;
+  min-height: 4em;
+}
+
+#photos ul,
+#photos li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#photos li img {
+  max-width: 100%;
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,.5);
+  -moz-box-shadow:    0 0 5px rgba(0,0,0,.5);
+  box-shadow:         0 0 5px rgba(0,0,0,.5);
+}
+
+section[role=main] h3 {
+  clear: both;
+  margin-top: 1.5em;
+}
+
+.note {
+  margin-top: 1em;
+}
+
+.note p {
+  margin-bottom: .5em;
+}
+
+@media screen and (max-device-width: 480px) {
+  .photo {
+    width: 50px;
+    float: left;
+    margin-right: 10px;
+  }
+
+  section[role=main] h1 {
+    margin-top: .25em;
+    text-transform: uppercase;
+  }
+
+  section[role=main] h1,
+  section[role=main] h2 {
+    font-size: 125%;
+  }
+}
