@@ -1,0 +1,29 @@
+/* base... */
+h1, h2, h3 {
+  font-weight: normal;
+}
+
+b { font-weight: bold; }
+/* ...base */
+
+
+/* site header... */
+header[role=banner] h1 {
+  padding: 0 5%;
+  font-size: 400%;
+  letter-spacing: -.06em;
+  font-weight: bold;
+  background: black;
+  color: white;
+  line-height: 150%;
+}
+
+header[role=banner] h1 a {
+  text-decoration: none;
+  color: white;
+}
+
+section[role=main] {
+  padding: 10px;
+}
+/* ...site header */

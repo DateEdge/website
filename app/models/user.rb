@@ -152,6 +152,14 @@ class User < ActiveRecord::Base
     photo ? photo.image_url(:avatar) : PLACEHOLDER_AVATAR_URL
   end
 
+  def you_gender
+    self.you_gender? ? super : "person"
+  end
+
+  def me_gender
+    self.me_gender? ? super : "person"
+  end
+
   def merge!(merging_user)
     %w(name email birthday city state zipcode country bio).each do |property|
       self.send("#{property}=", merging_user.send(property)) if self.send(property).blank?
