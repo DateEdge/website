@@ -48,7 +48,17 @@
 
 <% if @user.bio %>
   <section id="bio" class="note">
-    <%= simple_format "<b>BIO</b>: " + @user.bio %>
+    <div class="short" style="display:none">
+      <%= simple_format "<b>BIO</b>: ".html_safe + truncate(@user.bio, :length => 150) %>
+      <% if @user.bio.length > 150 %>
+        <%= link_to "More", person_path(@user.username, :anchor => "bio"), :class => "truncate" %>
+      <% end %>
+    </div> <!-- /div.short -->
+
+    <div class="long">
+      <%= simple_format "<b>BIO</b>: " + @user.bio %>
+      <%= link_to "Less", person_path(@user.username, :anchor => "bio"), :class => "truncate", :style => "display:none" %>
+    </div> <!-- /div.long -->
   </section>
 <% end %>
 

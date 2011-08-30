@@ -5,6 +5,10 @@
   min-height: 4em;
 }
 
+#photos {
+  margin-top: 1em;
+}
+
 #photos ul,
 #photos li {
   list-style-type: none;
