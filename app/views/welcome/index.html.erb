@@ -4,7 +4,7 @@
 </ul>
 
 <div id="people">
-  <h2>People Using Date Edge</h2>
+  <h2>Some people using <b>Date Edge</b></h2>
   <ul>
     <% @users.each do |user| %>
       <li>
@@ -14,6 +14,7 @@
       </li>
     <% end %>
   </ul>
+  <%= link_to "See everyone...", people_path %>
 </div>
 
 <p id="about">

@@ -47,7 +47,7 @@
 
   <% if @slug %>
     <script>
-      <%= render "/javascripts/#{@slug}" %>
+      <%= render "/javascripts/#{@slug}" rescue nil %>
     </script>
   <% end %>
 

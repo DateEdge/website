@@ -1,6 +1,6 @@
 /* welcome... */
 header[role=banner] h2 {
-  margin: .5em 5%;
+  margin: .5em 5% 0 5%;
   font-size: 200%;
   font-weight: normal;
   line-height: 100%;
@@ -9,7 +9,7 @@ header[role=banner] h2 {
 
 #sign_in {
   list-style-type: none;
-  margin: 2em 0;
+  margin: 1em 0 2em 0;
   padding: 0;
 }
 
@@ -33,6 +33,7 @@ header[role=banner] h2 {
 #people h2 {
   font-size: 150%;
   margin-left: 5px;
+  margin-bottom: .2em;
 }
 
 #people ul,
@@ -41,7 +42,8 @@ header[role=banner] h2 {
   padding: 0;
 }
 
-#people ul {
+#people ul,
+#people ul + a {
   margin-left: 5px;
 }
 
@@ -55,13 +57,13 @@ header[role=banner] h2 {
 
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
   #people img {
-    width: 100px;
+    width: 95px;
   }
 }
 
 @media screen and (max-device-width: 480px) and (orientation:landscape) {
   #people img {
-    width: 115px;
+    width: 110px;
   }
 }
 /* ...welcome */
