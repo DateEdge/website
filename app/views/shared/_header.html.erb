@@ -1,14 +1,14 @@
 <header role="banner">
   <h1><%= link_to_unless_current "Date Edge", root_path, :rel => "home" %></h1>
-</header>
 
-<nav role="navigation">
-  <% if logged_in? %>
-    <%= link_to_unless_current current_user.name, person_path(current_user.username) if current_user.username %>
-    <%= link_to_unless_current "Settings", settings_path %>
-    <%= link_to_unless_current "Inbox (#{unread_count})", conversations_path %>
-  <% else %>
-    <%= link_to "Sign in with Twitter",  "/auth/twitter"  %>
-    <%= link_to "Sign in with Facebook", "/auth/facebook" %>
-  <% end %>
-</nav>
+  <nav role="navigation">
+    <% if logged_in? %>
+      <%= link_to current_user.name, person_path(current_user.username), :class => "profile-link" %>
+      <%= link_to "Inbox (#{unread_count})", conversations_path, :class => "inbox-link" %>
+      <%= link_to "Settings", settings_path, :class => "settings-link" %>
+    <% else %>
+      <%= link_to "Sign in with Twitter",  "/auth/twitter"  %>
+      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+    <% end %>
+  </nav>
+</header>

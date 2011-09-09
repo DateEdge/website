@@ -8,25 +8,52 @@ b { font-weight: bold; }
 
 
 /* site header... */
-header[role=banner] h1 {
-  padding: 0 5%;
-  font-size: 400%;
-  letter-spacing: -.06em;
-  font-weight: bold;
+header[role=banner] {
   background: black;
   color: white;
+  overflow: hidden;
   line-height: 150%;
+  padding: .5em 3%;
+  font-size: 100%;
 }
 
-header[role=banner] h1 a {
+header[role=banner] h1 {
+  letter-spacing: -.06em;
+  font-weight: bold;
+  display: inline-block;
+  float: left;
+}
+
+header[role=banner] a {
   text-decoration: none;
   color: white;
 }
 
+nav[role=navigation] {
+  display: inline-block;
+  float: right;
+}
+
+.settings-link,
+.inbox-link {
+  text-indent: -999em;
+  width:  16px;
+  height: 16px;
+  display: inline-block;
+  margin-left: .5em;
+}
+
+.settings-link { background: url(/images/buttons/nav/settings.png) no-repeat bottom center; }
+.inbox-link    { background: url(/images/buttons/nav/inbox.png)    no-repeat center 4px   ; }
+
+/* ...site header */
+
+/* main... */
 section[role=main] {
   padding: 10px;
 }
-/* ...site header */
+/* ...main */
+
 
 /* site footer... */
 footer[role=contentinfo] {
