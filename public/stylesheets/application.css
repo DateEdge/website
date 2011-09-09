@@ -34,6 +34,9 @@ nav[role=navigation] {
   float: right;
 }
 
+
+.twitter-sign-in-link,
+.facebook-sign-in-link,
 .settings-link,
 .inbox-link {
   text-indent: -999em;
@@ -43,8 +46,10 @@ nav[role=navigation] {
   margin-left: .5em;
 }
 
-.settings-link { background: url(/images/buttons/nav/settings.png) no-repeat bottom center; }
-.inbox-link    { background: url(/images/buttons/nav/inbox.png)    no-repeat center 4px   ; }
+.settings-link         { background: url(/images/buttons/nav/settings.png) no-repeat center bottom; }
+.inbox-link            { background: url(/images/buttons/nav/inbox.png)    no-repeat center 4px   ; }
+.twitter-sign-in-link  { background: url(/images/buttons/nav/twitter.png)  no-repeat center center; }
+.facebook-sign-in-link { background: url(/images/buttons/nav/facebook.png) no-repeat center center; }
 
 /* ...site header */
 

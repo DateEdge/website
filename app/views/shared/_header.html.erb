@@ -3,12 +3,13 @@
 
   <nav role="navigation">
     <% if logged_in? %>
-      <%= link_to current_user.name,         person_path(current_user.username), :class => "profile-link" %>
-      <%= link_to "Inbox (#{unread_count})", conversations_path,                 :class => "inbox-link" %>
+      <%= link_to current_user.name,         person_path(current_user.username), :class => "profile-link"  %>
+      <%= link_to "Inbox (#{unread_count})", conversations_path,                 :class => "inbox-link"    %>
       <%= link_to "Settings",                settings_path,                      :class => "settings-link" %>
     <% else %>
-      <%= link_to "Sign in with Twitter",  "/auth/twitter"  %>
-      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+      Sign in with
+      <%= link_to "Twitter",  "/auth/twitter" , :class => "twitter-sign-in-link"  %>
+      <%= link_to "Facebook", "/auth/facebook", :class => "facebook-sign-in-link" %>
     <% end %>
   </nav>
 </header>
