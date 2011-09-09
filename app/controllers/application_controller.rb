@@ -4,9 +4,16 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :unread_count
   helper_method :redirect_age_inappropriate
+  helper_method :logged_in?
+  helper_method :im
 
   private
-  
+
+  def logged_in?
+    current_user
+  end
+  alias :im :logged_in?
+
   def redirect_if_age_inappropriate(user)
     redirect_to people_path if user.nil? || user.age_inappropiate?(current_user)
   end

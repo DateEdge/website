@@ -1,9 +1,4 @@
 module ApplicationHelper
-  def logged_in?
-    current_user
-  end
-  alias :im :logged_in?
-
   def mine?
     current_user && current_user == @user
   end

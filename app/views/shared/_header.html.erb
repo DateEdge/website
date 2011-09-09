@@ -3,10 +3,7 @@
 </header>
 
 <nav role="navigation">
-  <%= link_to "Everyone", people_path %>
-
-  <% if current_user %>
-    <%= link_to_unless_current "Sign Out", signout_path %>
+  <% if logged_in? %>
     <%= link_to_unless_current current_user.name, person_path(current_user.username) if current_user.username %>
     <%= link_to_unless_current "Settings", settings_path %>
     <%= link_to_unless_current "Inbox (#{unread_count})", conversations_path %>
