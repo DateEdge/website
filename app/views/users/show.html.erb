@@ -61,6 +61,7 @@
   </section>
 <% end %>
 
+<!--
 <% if mine? && @user.crushers.any? %>
   <section>
     <h3>Crushers</h3>
@@ -69,6 +70,7 @@
     <% end %>
   </section>
 <% end %>
+-->
 
 <section id="photos">
   <ul>
@@ -78,17 +80,18 @@
         <p><%= photo.caption %></p>
 
         <% if mine? %>
-          <ul>
-            <li><%= link_to "Edit Photo or Caption", edit_photo_path(photo) %></li>
-            <li><%= link_to "Use as Avatar", photo_path(photo, :photo => {:avatar => true}), :method => :put %></li>
-            <li><%= link_to "Delete Photo", photo, :method => :delete, :confirm => "Are you SURE? Like for sure, for sure? There is NO UNDO!" %></li>
-          </ul>
+          <div class="actions">
+            <ul>
+              <li><%= link_to "Edit Photo or Caption", edit_photo_path(photo) %></li>
+              <li><%= link_to "Use as Avatar", photo_path(photo, :photo => {:avatar => true}), :method => :put %></li>
+            </ul>
+          </div> <!-- /div.actions -->
         <% end %>
       </li>
     <% end %>
   </ul>
 
   <% if mine? %>
-    <%= link_to "New Photo", new_photo_path %>
+    <%= link_to "New Photo", new_photo_path, :class => "button new-photo-link" %>
   <% end %>
 </section>
