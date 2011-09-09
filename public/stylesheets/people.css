@@ -23,6 +23,20 @@
   box-shadow:         0 0 5px rgba(0,0,0,.5);
 }
 
+#photos .new-photo-link {
+  background: green;
+  color: white;
+  font-weight: bold;
+}
+
+.actions {
+  overflow: hidden;
+  margin-bottom: 2em;
+}
+
+.actions li:first-child { float: left;  }
+.actions li:last-child  { float: right; }
+
 section[role=main] h3 {
   clear: both;
   margin-top: 1.5em;

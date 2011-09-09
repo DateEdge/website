@@ -61,11 +61,12 @@ footer[role=contentinfo] {
   margin: 3em 0;
 }
 
-.sign-out {
+.button {
   outline: 1px solid #ccc;
   background: #eee;
   display: block;
   padding: 1em;
+  margin-top: .5em;
   text-align: center;
   text-decoration: none;
   color: #666;
