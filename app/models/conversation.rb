@@ -1,6 +1,6 @@
 class Conversation < ActiveRecord::Base
 
-  default_scope joins(:messages).order('messages.updated_at desc')
+  default_scope joins(:messages).order('messages.updated_at asc')
   has_many :messages, :dependent => :destroy
 
   belongs_to :sender,     :foreign_key => :user_id,       :class_name => "User"
