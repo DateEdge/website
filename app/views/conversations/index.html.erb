@@ -3,10 +3,14 @@
 <% else %>
   <ol class="conversations">
     <% @conversations.each do |conversation| %>
-      <li class="conversation <%= 'unread' if conversation.unread?(current_user) %>">
-        <%= link_to conversation do %>
+      <li class="media conversation <%= 'unread' if conversation.unread?(current_user) %>">
+        <%= link_to conversation, :class => "img" do %>
+          <%= image_tag conversation.counterpart(current_user).avatar(:tiny) %>
+        <% end %>
+
+        <%= link_to conversation, :class => "bd" do %>
           <span class="message-subject"><%= conversation.subject %></span>
-          <span class="message-body"><%= truncate conversation.messages.first.body, :length => 200 %></span>
+          <span class="message-body"><%= truncate conversation.messages.first.body, :length => 40 %></span>
         <% end %>
       </li>
     <% end %>
