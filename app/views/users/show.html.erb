@@ -83,7 +83,13 @@
           <div class="actions">
             <ul>
               <li><%= link_to "Edit Photo or Caption", edit_photo_path(photo) %></li>
-              <li><%= link_to "Use as Avatar", photo_path(photo, :photo => {:avatar => true}), :method => :put %></li>
+              <li>
+                <%= form_for photo do |f| %>
+                  <%= f.hidden_field :avatar, :value => true %>
+                  <%= f.submit "Use as Avatar" %>
+                <% end %>
+                
+              </li>
             </ul>
           </div> <!-- /div.actions -->
         <% end %>

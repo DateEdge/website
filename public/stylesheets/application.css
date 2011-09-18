@@ -59,6 +59,25 @@ section[role=main] {
 }
 /* ...main */
 
+/* forms... */
+form {
+}
+
+label {
+  display: block;
+}
+
+input, select {
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+input[type=text] {
+  padding: .3em 0;
+  margin: 0;
+}
+/* ...forms */
+
 
 /* site footer... */
 footer[role=contentinfo] {

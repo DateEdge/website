@@ -12,7 +12,7 @@ Dxe::Application.routes.draw do
 
   match "/signout"                 => "sessions#destroy", :as => :signout
   match "/auth/:provider/callback" => "sessions#create"
-  match "/auth/failure"            => redirect("/")
+  match "/auth/failure"            => "sessions#failure"
 
   match "/start"     => "users#new",    :as => :start
   match "/oops"      => 'users#create', :as => :user_create
