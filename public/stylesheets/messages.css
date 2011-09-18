@@ -24,11 +24,17 @@
 }
 
 .conversation a {
+  color: black;
   text-decoration: none;
+}
+
+.message-counterpart {
+  color: gray;
 }
 
 .message-subject {
   font-weight: bold;
+  display: block;
 }
 
 .unread {
