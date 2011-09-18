@@ -31,8 +31,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    extension = original_filename.split(".").last
-    "photo.#{extension}" if original_filename
+     if original_filename
+       extension = original_filename.split(".").last
+       "photo.#{extension}"
+     end
   end
 
 end

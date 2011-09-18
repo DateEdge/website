@@ -1,11 +1,13 @@
 <% if @conversations.blank? %>
-  You don't have any conversations started, go messages someone.
+  You don't have any conversations started, go message someone.
 <% else %>
   <ol>
     <% @conversations.each do |conversation| %>
       <li>
-        <h3><%= link_to conversation.subject, conversation %> (<%= conversation.messages.count %>)</h3>
-        <%= truncate conversation.messages.first.body, :length => 200 %>
+        <%= link_to conversation do %>
+          <span class="message-subject"><%= conversation.subject %></span>
+          <span class="message-body"><%= truncate conversation.messages.first.body, :length => 200 %></span>
+        <% end %>
       </li>
     <% end %>
   </ol>
