@@ -147,9 +147,9 @@ class User < ActiveRecord::Base
     Conversation.where(['conversations.user_id = ? OR conversations.recipient_id = ?', self.id, self.id])
   end
 
-  def avatar
+  def avatar(size=:avatar)
     photo = photos.where(:avatar => true).first
-    photo ? photo.image_url(:avatar) : PLACEHOLDER_AVATAR_URL
+    photo ? photo.image_url(size) : PLACEHOLDER_AVATAR_URL
   end
 
   def you_gender

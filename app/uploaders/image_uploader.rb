@@ -17,6 +17,10 @@ class ImageUploader < CarrierWave::Uploader::Base
       img = img.crop(Magick::GravityType.new("CenterGravity", 5), width, height)
     end
   end
+  
+  version :tiny do
+    process :thumbnail => [24, 24]
+  end
 
   version :avatar do
     process :thumbnail => [130, 130]

@@ -1,0 +1,37 @@
+/* media block from oocss */
+/* https://github.com/stubbornella/oocss/blob/master/core/media/media.css */
+.media          { overflow:hidden;*overflow:visible;zoom:1; }
+.media .img     { float:left; margin: 0 10px; }
+.media .img img { display:block; }
+
+/* TEMP */
+.conversation img {
+  width:  40px;
+  height: 40px;
+}
+
+.conversations {
+  margin: 0;
+  padding: 0;
+}
+
+.conversation {
+  list-style-type: none;
+  opacity: 0.5;
+  margin: 0 0 10px 0;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.conversation a {
+  text-decoration: none;
+}
+
+.message-subject {
+  font-weight: bold;
+}
+
+.unread {
+  background: #eee;
+  opacity: 1;
+}

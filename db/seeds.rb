@@ -27,7 +27,7 @@ puts
   :xtofux               => "http://farm3.static.flickr.com/2016/5704504989_6b91552765_b.jpg",
   :ilovecarrots         => "http://cdn.buzznet.com/media/jjr/headlines/2009/02/miley-cyrus-carrot-top.jpg",
   :marryacarrot         => "http://www.motleycrow.com/ImageHost/carrot_top1.jpg",
-  :savesthedayisthebest => "http://upload.wikimedia.org/wikipedia/commons/5/56/Savesthedaycurrent.jpg",
+  :savesthedayisthebest => "http://electronicshrug.net/wp-content/uploads/2010/06/saves-the-day2.jpg",
   :slingshot            => "http://farm1.static.flickr.com/77/163422937_3a1917def0_b.jpg",
   :x                    => "http://farm4.static.flickr.com/3409/3472335277_108b35ab8f_b.jpg",
   :xvx                  => "http://25.media.tumblr.com/A6DXfwmvQisoe82obmcZweqBo1_400.jpg",
