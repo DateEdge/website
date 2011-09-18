@@ -19,7 +19,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
   
   version :tiny do
-    process :thumbnail => [24, 24]
+    process :thumbnail => [40, 40]
   end
 
   version :avatar do
