@@ -1,9 +1,9 @@
 <% if @conversations.blank? %>
   You don't have any conversations started, go message someone.
 <% else %>
-  <ol>
+  <ol class="conversations">
     <% @conversations.each do |conversation| %>
-      <li>
+      <li class="conversation <%= 'unread' if conversation.unread?(current_user) %>">
         <%= link_to conversation do %>
           <span class="message-subject"><%= conversation.subject %></span>
           <span class="message-body"><%= truncate conversation.messages.first.body, :length => 200 %></span>

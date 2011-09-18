@@ -16,8 +16,16 @@ class Conversation < ActiveRecord::Base
     p.first
   end
 
-  def self.unread_messages(user)
-    user.conversations.all.uniq.map { |convo| convo.messages.where(:recipient_id => user.id).unread.count }.sum
+  def unread(user)
+    messages.where(:recipient_id => user.id).unread
+  end
+  
+  def unread?(user)
+    unread(user).any?
   end
 
+  def self.unread_messages(user)
+    user.conversations.all.uniq.map { |convo| convo.messages.unread.count }.sum
+  end
+  
 end
