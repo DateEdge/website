@@ -12,13 +12,17 @@ class UsersController < ApplicationController
     @user  = User.visible.where(['lower(username) = ?', params[:username].downcase]).first
     @title = "#{@user.username}&rsquo;s Profile on Date Edge"
     @crush = Crush.new
-    
+
     redirect_if_age_inappropriate(@user)
   end
 
   def new
     @title = "Getting Started on Date Edge"
     @user  = current_user
+
+    if @user.nil? or @user.visible?
+      return redirect_to(root_path)
+    end
   end
 
   def create
@@ -60,7 +64,7 @@ class UsersController < ApplicationController
   # TODO implement
   # TODO is this done?
   # ***************************
-  def destroy 
+  def destroy
     @user = current_user
     @user.destroy
     session.delete(:user_id)
