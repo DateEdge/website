@@ -51,6 +51,17 @@ nav[role=navigation] {
 .twitter-sign-in-link  { background: url(/images/buttons/nav/twitter.png)  no-repeat center center; }
 .facebook-sign-in-link { background: url(/images/buttons/nav/facebook.png) no-repeat center center; }
 
+#unread-count {
+  background: white;
+  color: black;
+  padding: 0 2px;
+  line-height: 1.33em;
+  display: inline-block;
+  -webkit-border-radius: 3px;
+  -moz-border-radius:    3px;
+  border-radius:         3px;
+  opacity: .75;
+}
 /* ...site header */
 
 /* main... */
