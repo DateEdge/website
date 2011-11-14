@@ -33,38 +33,29 @@ th, td {
 /* ...my/desired labels */
 /* ...form */
 
-/* delete account... */
-#danger-zone {
-  margin-top: 5em;
-  outline: 1px solid #c00;
-}
-
-#danger-zone h2 {
-  background: #c00;
-  padding: .5em;
-  color: white;
+/* photo settings... */
+section[role=main] h1 {
   font-weight: bold;
+  font-size: 1.5em;
+  letter-spacing: -.04em;
 }
 
-#danger-zone > div {
-  padding: 1em;
-  overflow: hidden;
+#preview {
+  margin-top: .5em;
 }
 
-#danger-zone p {
-  margin-bottom: 1em;
+#preview img {
+  max-width: 100%;
 }
 
-#danger-zone b {
-  color: #c00;
+#avatar {
+  margin-top: 1em;
 }
 
-#danger-zone input {
-  float: right;
-  display: inline-block;
+#avatar td {
+  width: auto;
 }
-/* ...delete account */
-
+/* ...photo settings */
 
 /* iphone portrait... */
 @media screen and (max-device-width: 480px) {

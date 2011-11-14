@@ -4,6 +4,7 @@ h1, h2, h3 {
 }
 
 b { font-weight: bold; }
+i { font-style: italic; }
 /* ...base */
 
 
@@ -178,6 +179,40 @@ input[type=password] {
 }
 /* ...Login with Facebook */
 /* ...twitter and facebook buttons */
+
+
+/* DANGER ZONE... */
+#danger-zone {
+  margin-top: 5em;
+  outline: 1px solid #c00;
+}
+
+#danger-zone h2 {
+  background: #c00;
+  padding: .5em;
+  color: white;
+  font-weight: bold;
+}
+
+#danger-zone > div {
+  padding: 1em;
+  overflow: hidden;
+}
+
+#danger-zone p {
+  margin-bottom: 1em;
+}
+
+#danger-zone b {
+  color: #c00;
+}
+
+#danger-zone input {
+  float: right;
+  display: inline-block;
+}
+/* ...DANGER ZONE */
+
 
 
 /* site footer... */

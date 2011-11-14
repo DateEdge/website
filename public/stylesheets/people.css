@@ -24,6 +24,7 @@
 }
 
 #photos .new-photo-link {
+  margin-top: 3em;
   background: green;
   color: white;
   font-weight: bold;
@@ -31,7 +32,7 @@
 
 .actions {
   overflow: hidden;
-  margin-bottom: 2em;
+  margin: 1em 0;
 }
 
 .actions li:first-child { float: left;  }

@@ -5,7 +5,7 @@
     <% if logged_in? %>
       <%= link_to current_user.name, person_path(current_user.username), :class => "profile-link"  %>
       <%= link_to "Inbox",           conversations_path,                 :class => "inbox-link"    %>
-      <b id="unread-count"><%= unread_count %></b>
+      <% if unread_count %><b id="unread-count"><%= unread_count %></b><% end %>
       <%= link_to "Settings",        settings_path,                      :class => "settings-link" %>
     <% else %>
       Sign in with

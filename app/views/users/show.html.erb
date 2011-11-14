@@ -77,7 +77,7 @@
     <% @user.photos.each do |photo| %>
       <li>
         <%= image_tag photo.image_url(:large).to_s %>
-        <p><%= simple_format photo.caption %></p>
+        <p class="caption"><%= simple_format photo.caption %></p>
 
         <% if mine? %>
           <div class="actions">
@@ -97,6 +97,6 @@
   </ul>
 
   <% if mine? %>
-    <%= link_to "New Photo", new_photo_path, :class => "button new-photo-link" %>
+    <%= link_to "Upload a New Photo", new_photo_path, :class => "button new-photo-link" %>
   <% end %>
 </section>
