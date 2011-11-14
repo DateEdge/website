@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
 
   def new
-    @user = current_user
+    @user  = current_user
     @photo = current_user.photos.new
   end
 
@@ -16,6 +16,7 @@ class PhotosController < ApplicationController
   end
 
   def edit
+    @slug  = "settings"
     @photo = Photo.find(params[:id])
 
     unless @photo.user == current_user
