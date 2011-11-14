@@ -1,5 +1,4 @@
 <% form_for @message do |f| %>
-
   <% if @conversation.new_record? %>
     <%= f.label :subject, "Subject" %>
     <%= f.text_field :subject %>

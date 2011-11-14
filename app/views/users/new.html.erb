@@ -1,4 +1,5 @@
-<h1>Before we start we just need 3 things from ya'll</h1>
+<h1>Before we start we just need 3 things from you.</h1>
+
 <div>
   <%= flash[:error] %>
   <%= flash[:notice] %>
@@ -7,7 +8,6 @@
 <%= @user.errors.full_messages.to_sentence %>
 
 <%= form_for @user, :url => user_create_path, :method => :post do |f| %>
-
   <%= f.label      :username %>
   <%= f.text_field :username %>
 
@@ -22,5 +22,5 @@
                     :default       => 12.years.ago,
                     :include_blank => true %>
 
-  <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+  <%= f.submit "Submit", :disable_with => "Submitting..." %>
 <% end %>

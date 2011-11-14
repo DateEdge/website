@@ -1,5 +1,4 @@
 <%= form_for @photo, :html => {:multipart => true} do |f| %>
-  
   <%= f.label :image, "Select an Image" %>
   <%= f.file_field :image %>
   
@@ -10,5 +9,4 @@
   <%= f.text_area :caption, :rows => 5 %>
   
   <%= f.submit "Upload", :disable_with => 'Uploading...' %>
-  
 <% end %>
