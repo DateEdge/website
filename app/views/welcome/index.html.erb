@@ -1,7 +1,8 @@
-<ul id="sign_in">
-  <li><%= link_to "Sign in with Twitter",  "/auth/twitter",  :class => "twitter"  %></li>
-  <li><%= link_to "Sign in with Facebook", "/auth/facebook", :class => "facebook" %></li>
-</ul>
+<div id="sign_in">
+  <%= link_to "Sign in with Twitter",  "/auth/twitter",  :class => "twitter_button"  %>
+  <i>or</i>
+  <a href="/auth/twitter" class="facebook_button"><span>Login with <b>Facebook</b></span></a>
+</div>
 
 <div id="people">
   <h2>Some people using <b>Date Edge</b></h2>
