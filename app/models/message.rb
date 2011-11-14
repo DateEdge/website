@@ -3,7 +3,7 @@ class Message < ActiveRecord::Base
   default_scope order("created_at desc")
 
   belongs_to :conversation
-  belongs_to :sender,     :class_name => "User"
+  belongs_to :sender,    :class_name => "User"
   belongs_to :recipient, :class_name => "User"
 
   before_save :create_conversation, :unless => :conversation_id?

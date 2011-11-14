@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
   def new
+    @title = "Messenger on Date Edge"
+
     if params["recipient"].present?
       # TODO make sure the user is age appropiate
       @conversation = Conversation.new

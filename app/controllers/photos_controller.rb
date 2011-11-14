@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
 
   def new
+    @title = "Photo Uploader on Date Edge"
     @user  = current_user
     @photo = current_user.photos.new
   end
@@ -16,6 +17,7 @@ class PhotosController < ApplicationController
   end
 
   def edit
+    @title = "Photo Editor on Date Edge"
     @slug  = "settings"
     @photo = Photo.find(params[:id])
 

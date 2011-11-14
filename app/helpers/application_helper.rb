@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def page_title
+    @title || "Date Edge : The Straightedge Dating Site"
+  end
+
   def button_to_twitter_sign_in
     link_to "Sign in with Twitter",  "/auth/twitter", :class => "twitter_sign_in_button"
   end
