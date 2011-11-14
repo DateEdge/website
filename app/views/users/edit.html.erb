@@ -98,7 +98,7 @@
     <% end %>
   </table>
 
-  <%= f.submit "Save Changes", :disable_with => 'Saving...' %>
+  <%= f.submit "Save Changes", :disable_with => "Saving&hellip;".html_safe %>
 <% end %>
 
 
@@ -107,8 +107,8 @@
 
   <div>
     <p>
-      If you want to leave this place, that's your decision.
-      We'll be sad to see you go, but we can respect that.
+      If you want to leave this place, that&rsquo;s your decision.
+      We&rsquo;ll be sad to see you go, but we can respect that.
     </p>
 
     <p>
@@ -120,6 +120,9 @@
       <b>There is no undo. No regrets.</b>
     </p>
 
-    <%= button_to "I Want to Delete My Profile", user_path(@user), :method => :delete, :confirm => "Uhhhh... Are you sure you want to delete your profile?" %>
+    <%= button_to "I Want to Delete My Profile",
+                  user_path(@user),
+                  :method  => :delete,
+                  :confirm => "Uhhhh&hellip; Are you sure you want to delete your profile?".html_safe %>
   </div>
 </section>

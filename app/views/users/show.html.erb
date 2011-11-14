@@ -35,7 +35,7 @@
     <% end %>
 
     <% if @user.you_gender %>
-      I'm looking for a
+      I&rsquo;m looking for a
       <% unless @user.desired_labels.blank? %>
         <%= @user.desired_labels.map{ |dl| "<b>#{dl.name}</b>" }.join(" / ").html_safe %>
       <% end %>

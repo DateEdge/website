@@ -15,7 +15,7 @@
   </table>
   <% end %>
 
-  <%= f.submit "Save Photo", :disable_with => 'Saving...' %>
+  <%= f.submit "Save Photo", :disable_with => "Saving&hellip;".html_safe %>
 <% end %>
 
 <section id="danger-zone">
@@ -23,14 +23,14 @@
 
   <div>
     <p>
-      Maybe you think that you're making a stupid face in this picture.
+      Maybe you think that you&rsquo;re making a stupid face in this picture.
       Or that your face is stupid.
-      Or "<i>who has hair like anymore? That's so last year.</i>"
+      Or &ldquo;<i>who has hair like anymore? That&rsquo;s so last year.</i>&rdquo;
     </p>
 
     <p>
-      First, you're probably wrong.
-      Your face isn't stupid.
+      First, you&rsquo;re probably wrong.
+      Your face isn&rsquo;t stupid.
       You should probably leave the photo up.
       It adds character and helps tell your story.
       <em>But</em>, if you <i>must</i> delete it, no hard feelings.
