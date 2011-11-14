@@ -1,7 +1,28 @@
+/* form... */
 textarea {
   height: 8em;
 }
+/* ...form */
 
+table {
+  width: 100%;
+}
+
+th label,
+td label {
+  margin: 0;
+  text-align: left;
+}
+
+td {
+  width: 1.75em;
+}
+
+th, td {
+  padding: 0 0 .5em 0;
+}
+
+/* delete account... */
 #danger-zone {
   margin-top: 5em;
   outline: 1px solid #c00;
@@ -31,7 +52,10 @@ textarea {
   float: right;
   display: inline-block;
 }
+/* ...delete account */
 
+
+/* iphone portrait... */
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
   #settings textarea,
   #settings input[type=text],
@@ -43,7 +67,9 @@ textarea {
     width: 302px;
   }
 }
+/* ...iphone portrait */
 
+/* iphone landscape... */
 @media screen and (max-device-width: 480px) and (orientation:landscape) {
   #settings textarea,
   #settings input[type=text],
@@ -55,3 +81,4 @@ textarea {
     width: 462px;
   }
 }
+/* ...iphone landscape */
