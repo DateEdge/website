@@ -5,7 +5,7 @@ header[role=banner] {
 }
 
 header[role=banner] h1 {
-  padding: 0 5%;
+  padding: 0 10px;
   font-size: 400%;
   letter-spacing: -.06em;
   font-weight: bold;
@@ -23,10 +23,10 @@ header[role=banner] h1 a {
 }
 
 header[role=banner] h2 {
-  margin: .5em 5% 0 5%;
+  margin: .5em 10px 0 10px;
   font-size: 200%;
   font-weight: normal;
-  line-height: 120%;
+  line-height: 100%;
   letter-spacing: -.02em;
   color: black;
 }
@@ -53,7 +53,13 @@ header[role=banner] h2 {
 }
 
 #about {
+  border-top: 1px solid #ddd;
+  padding-top: 2em;
   margin: 2em 5px;
+}
+
+#about p {
+  margin-bottom: 1em;
 }
 
 
@@ -74,6 +80,11 @@ header[role=banner] h2 {
 }
 
 @media screen and (max-device-width: 480px) and (orientation:landscape) {
+  header[role=banner] h2 {
+    font-size: 160%;
+    line-height: 125%;
+  }
+  
   #people img {
     width: 110px;
   }
