@@ -102,8 +102,11 @@ input[type=password] {
 
 /* site footer... */
 footer[role=contentinfo] {
-  padding: 0 5%;
+  padding: 0;
   margin: 3em 0;
+  clear: both;
+  padding-top:    8em;
+  padding-bottom: 4em;
 }
 
 .button {
@@ -117,8 +120,44 @@ footer[role=contentinfo] {
   color: #666;
 }
 
+.sign-out {
+  width: 100%;
+  margin: 0;
+}
+
 .sign-out:hover {
   background: #666;
   color: white;
 }
 /* ...site footer */
+
+
+
+/* iphone portrait... */
+@media screen and (max-device-width: 480px) {
+  .sign-out {
+    padding-left:  0;
+    padding-right: 0;
+  }
+
+  footer[role=contentinfo] {
+    margin: 0 10px;
+  }
+}
+/* ...iphone portrait */
+
+/* iphone portrait... */
+@media screen and (max-device-width: 480px) and (orientation:portrait) {
+  footer[role=contentinfo] {
+    width: 300px;
+  }
+}
+/* ...iphone portrait */
+
+/* iphone landscape... */
+@media screen and (max-device-width: 480px) and (orientation:landscape) {
+  footer[role=contentinfo] {
+    width: 460px;
+  }
+}
+/* ...iphone landscape */
