@@ -1,17 +1,27 @@
-<div>
-  <%= flash[:error] %>
-  <%= flash[:notice] %>
-</div>
+<% if flash[:error] or flash[:notice] %>
+  <div>
+    <%= flash[:error] %>
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 
-<p>
-  <% unless @user.twitter? && @user.facebook? %>
+<% unless @user.twitter? && @user.facebook? %>
+  <div class="buttons">
     <% if @user.twitter? %>
-      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+      <%= button_to_facebook_sign_in %>
     <% elsif @user.facebook? %>
-      <%= link_to "Sign in with Twitter",  "/auth/twitter"  %>
+      <%= button_to_twitter_sign_in %>
     <% end %>
-  <% end %>
-</p>
+  </div>
+
+  <p class="note">
+    Connecting both your Twitter and Facebook accounts makes it easier to fill out your Date Edge profile, which helps you find people.
+  </p>
+
+  <p class="note">
+    And if Twitter or Facebook ever has downtime, you can use the other to sign in to Date Edge.
+  </p>
+<% end %>
 
 <%= @user.errors.full_messages.to_sentence %>
 
@@ -88,8 +98,9 @@
     <% end %>
   </table>
 
-  <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+  <%= f.submit "Save Changes", :disable_with => 'Saving...' %>
 <% end %>
+
 
 <section id="danger-zone">
   <h2>DANGER ZONE</h2>
@@ -109,6 +120,6 @@
       <b>There is no undo. No regrets.</b>
     </p>
 
-    <%= button_to "Delete My Profile", user_path(@user), :method => :delete, :confirm => "Uhhhh... Are you sure you want to delete your profile?" %>
+    <%= button_to "I Want to Delete My Profile", user_path(@user), :method => :delete, :confirm => "Uhhhh... Are you sure you want to delete your profile?" %>
   </div>
 </section>

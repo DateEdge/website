@@ -1,7 +1,5 @@
-<div id="sign_in">
-  <%= link_to "Sign in with Twitter",  "/auth/twitter",  :class => "twitter_button"  %>
-  <i>or</i>
-  <a href="/auth/twitter" class="facebook_button"><span>Login with <b>Facebook</b></span></a>
+<div class="sign-in buttons">
+  <%= button_to_twitter_sign_in %> <i>or</i> <%= button_to_facebook_sign_in %>
 </div>
 
 <div id="people">
