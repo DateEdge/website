@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def button_to_twitter_sign_in
+    link_to "Sign in with Twitter",  "/auth/twitter", :class => "twitter_sign_in_button"
+  end
+
+  def button_to_facebook_sign_in
+    '<a href="/auth/facebook" class="facebook_sign_in_button"><span>Login with <b>Facebook</b></span></a>'.html_safe
+  end
+
   def mine?
     current_user && current_user == @user
   end

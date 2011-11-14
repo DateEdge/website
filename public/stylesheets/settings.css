@@ -1,9 +1,18 @@
+.note {
+  color: #999;
+  margin-top: 1em;
+}
+
+.note + .note {
+  margin-bottom: 3em;
+}
+
 /* form... */
 textarea {
   height: 8em;
 }
-/* ...form */
 
+/* my/desired labels... */
 table {
   width: 100%;
 }
@@ -21,6 +30,8 @@ td {
 th, td {
   padding: 0 0 .5em 0;
 }
+/* ...my/desired labels */
+/* ...form */
 
 /* delete account... */
 #danger-zone {
@@ -56,15 +67,23 @@ th, td {
 
 
 /* iphone portrait... */
+@media screen and (max-device-width: 480px) {
+  input[type=submit] {
+    margin-top: 1em;
+    width: 100%;
+    display: block;
+  }
+}
+
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
   #settings textarea,
   #settings input[type=text],
   #settings input[type=password] {
-    width: 290px;
+    width: 288px;
   }
 
   #settings select {
-    width: 302px;
+    width: 300px;
   }
 }
 /* ...iphone portrait */
@@ -74,11 +93,11 @@ th, td {
   #settings textarea,
   #settings input[type=text],
   #settings input[type=password] {
-    width: 450px;
+    width: 448px;
   }
 
   #settings select {
-    width: 462px;
+    width: 460px;
   }
 }
 /* ...iphone landscape */

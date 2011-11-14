@@ -31,71 +31,6 @@ header[role=banner] h2 {
   color: black;
 }
 
-#sign_in {
-  margin: 1em 0 2em 0;
-  padding: 0;
-  position: relative;
-  display: block;
-  width: 100%;
-  overflow: hidden;
-  line-height: 366%;
-}
-
-
-/* Connect with Twitter... */
-#sign_in .twitter_button {
-  background: url(/images/buttons/sign-in/twitter.png) no-repeat left top;
-  display: inline-block;
-  text-indent: -999em;
-  width: 236px;
-  height: 38px;
-  position: absolute;
-  top:  0;
-  left: 0;
-}
-
-#sign_in .twitter_button:hover  { background-position: left center }
-#sign_in .twitter_button:active { background-position: left bottom }
-/* ...Connect with Twitter */
-
-/* or... */
-#sign_in i {
-  font-style: italic;
-  font-family: baskerville, times, serif;
-  font-size: 2em;
-  line-height: 1em;
-  color: #ccc;
-  display: inline-block;
-  margin-left: 240px;
-}
-/* ...or */
-
-/* Login with Facebook... */
-.facebook_button {
-  font-size: 24px;
-  line-height: 30px;
-  background: #29447E url(/images/buttons/sign-in/facebook.png) no-repeat left 64%;
-  display: inline-block;
-  padding: 0 0 0 1px;
-  text-decoration: none;
-}
-.facebook_button:hover      { background-position: left bottom }
-.facebook_button:hover span { background-position: left 25% }
-
-.facebook_button span {
-  background: #5F78AB url(/images/buttons/sign-in/facebook.png) repeat-x left top;
-  border-top:    solid 1px #879AC0;
-  border-bottom: solid 1px #1A356E;
-  color: white;
-  display: block;
-  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
-  margin: 1px 1px 0 38px;
-  padding: 3px 8px 3px 12px;
-  letter-spacing: -.05em;
-}
-/* ...Login with Facebook */
-
-
 #people h2 {
   font-size: 150%;
   margin-left: 5px;
@@ -121,6 +56,12 @@ header[role=banner] h2 {
   margin: 2em 5px;
 }
 
+
+@media screen and (max-device-width: 480px) {
+  .buttons {
+    height: 100px;
+  }
+}
 
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
   .facebook_button {
