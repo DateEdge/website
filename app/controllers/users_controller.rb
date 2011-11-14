@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   skip_before_filter :restrict_non_visible_user, :only => [:new, :create]
 
   def index
+    @title = "People Using Date Edge"
     @slug  = "people"
     @users = User.visible.in_my_age_group(current_user)
   end
@@ -9,13 +10,15 @@ class UsersController < ApplicationController
   def show
     @slug  = "people"
     @user  = User.visible.where(['lower(username) = ?', params[:username].downcase]).first
+    @title = "#{@user.username}&rsquo;s Profile on Date Edge"
     @crush = Crush.new
     
     redirect_if_age_inappropriate(@user)
   end
 
   def new
-    @user = current_user
+    @title = "Getting Started on Date Edge"
+    @user  = current_user
   end
 
   def create
@@ -34,8 +37,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @slug = "settings"
-    @user = current_user
+    @title = "Settings on Date Edge"
+    @slug  = "settings"
+    @user  = current_user
   end
 
   def update
@@ -54,6 +58,8 @@ class UsersController < ApplicationController
   end
 
   # TODO implement
+  # TODO is this done?
+  # ***************************
   def destroy 
     @user = current_user
     @user.destroy

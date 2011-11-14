@@ -263,6 +263,10 @@ footer[role=contentinfo] {
 
 /* iphone portrait... */
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
+  section[role=main] {
+    min-height: 215px;
+  }
+
   footer[role=contentinfo] {
     width: 300px;
   }
