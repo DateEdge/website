@@ -13,9 +13,33 @@
       </li>
     <% end %>
   </ul>
-  <%= link_to "See everyone...", people_path %>
+
+  <%= link_to "See everyone using Date Edge", people_path %>
 </div>
 
-<p id="about">
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</p>
+<div id="about">
+  <p>
+    <b>Date Edge</b> is simple, fun dating site for people who are straightedge.
+    And for the people that love them. ...or who <i>want to love them</i>.
+  </p>
+
+  <p>
+    Are you tired of other dating sites that are out of step with your
+    needs and desires? So are we.
+  </p>
+
+  <p>
+    Join <b>Date Edge</b> to find a person just like you.
+    Keep it positive. Be friendly. Have fun.
+    We hope you find what you're looking for.
+  </p>
+
+  <p>
+    It's <b>FREE</b> and easy to join. To get started...
+  </p>
+</div>
+
+<div class="sign-in buttons">
+  <%= button_to_twitter_sign_in %> <i>or</i> <%= button_to_facebook_sign_in %>
+</div>
+
