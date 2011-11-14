@@ -1,0 +1,57 @@
+textarea {
+  height: 8em;
+}
+
+#danger-zone {
+  margin-top: 5em;
+  outline: 1px solid #c00;
+}
+
+#danger-zone h2 {
+  background: #c00;
+  padding: .5em;
+  color: white;
+  font-weight: bold;
+}
+
+#danger-zone > div {
+  padding: 1em;
+  overflow: hidden;
+}
+
+#danger-zone p {
+  margin-bottom: 1em;
+}
+
+#danger-zone b {
+  color: #c00;
+}
+
+#danger-zone input {
+  float: right;
+  display: inline-block;
+}
+
+@media screen and (max-device-width: 480px) and (orientation:portrait) {
+  #settings textarea,
+  #settings input[type=text],
+  #settings input[type=password] {
+    width: 290px;
+  }
+
+  #settings select {
+    width: 302px;
+  }
+}
+
+@media screen and (max-device-width: 480px) and (orientation:landscape) {
+  #settings textarea,
+  #settings input[type=text],
+  #settings input[type=password] {
+    width: 450px;
+  }
+
+  #settings select {
+    width: 462px;
+  }
+}

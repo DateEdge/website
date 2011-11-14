@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @slug = "settings"
     @user = current_user
   end
 

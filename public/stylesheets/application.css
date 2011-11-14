@@ -60,21 +60,42 @@ section[role=main] {
 /* ...main */
 
 /* forms... */
-form {
-}
-
 label {
   display: block;
-}
-
-input, select {
-  margin-bottom: 1em;
-  width: 100%;
-}
-
-input[type=text] {
-  padding: .3em 0;
+  font-weight: bold;
   margin: 0;
+  margin-top: 1em;
+}
+
+label,
+input[type=text],
+input[type=password],
+select {
+  margin-bottom: .5em;
+}
+
+textarea,
+input[type=text],
+input[type=password] {
+  background: #eee;
+  color: #666;
+}
+
+textarea:focus,
+input[type=text]:focus,
+input[type=password]:focus {
+  background: white;
+  color: black;
+}
+
+textarea,
+input[type=text],
+input[type=password] {
+  padding: 5px;
+  margin: 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius:    5px;
+  border-radius:         5px;
 }
 /* ...forms */
 

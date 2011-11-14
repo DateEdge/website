@@ -91,8 +91,25 @@
 
   <%= f.submit "Submit", :disable_with => 'Submiting...' %>
 <% end %>
-<div>
+
+<section id="danger-zone">
   <h2>DANGER ZONE</h2>
 
-  <%= button_to "Delete My Profile", user_path(@user), :method => :delete, :confirm => "Uhhhh... Are you sure you want to delete your profile?" %>
-</div>
+  <div>
+    <p>
+      If you want to leave this place, that's your decision.
+      We'll be sad to see you go, but we can respect that.
+    </p>
+
+    <p>
+      All of your user profile and related data will be immediately deleted.
+      No Twitter or Facebook information will be further stored.
+    </p>
+
+    <p>
+      <b>There is no undo. No regrets.</b>
+    </p>
+
+    <%= button_to "Delete My Profile", user_path(@user), :method => :delete, :confirm => "Uhhhh... Are you sure you want to delete your profile?" %>
+  </div>
+</section>
