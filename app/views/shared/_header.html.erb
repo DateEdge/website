@@ -1,11 +1,26 @@
+<style>
+  #unread-count {
+    background: white;
+    color: black;
+    padding: 0 2px;
+    line-height: 1.33em;
+    display: inline-block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius:    3px;
+    border-radius:         3px;
+    opacity: .75;
+  }
+</style>
+
 <header role="banner">
   <h1><%= link_to_unless_current "Date Edge", root_path, :rel => "home" %></h1>
 
   <nav role="navigation">
     <% if logged_in? %>
-      <%= link_to current_user.name,         person_path(current_user.username), :class => "profile-link"  %>
-      <%= link_to "Inbox (#{unread_count})", conversations_path,                 :class => "inbox-link"    %>
-      <%= link_to "Settings",                settings_path,                      :class => "settings-link" %>
+      <%= link_to current_user.name, person_path(current_user.username), :class => "profile-link"  %>
+      <%= link_to "Inbox",           conversations_path,                 :class => "inbox-link"    %>
+      <b id="unread-count"><%= unread_count %></b>
+      <%= link_to "Settings",        settings_path,                      :class => "settings-link" %>
     <% else %>
       Sign in with
       <%= link_to "Twitter",  "/auth/twitter" , :class => "twitter-sign-in-link"  %>
