@@ -1,11 +1,11 @@
-<% if @crushers.any? %>
+<% if @crushers && @crushers.any? %>
   <section id="crushers">
     <h1>Crushers</h1>
     <%= render @crushers %>
   </section>
 <% end %>
 
-<% if @crushes.any? %>
+<% if @crushes && @crushes.any? %>
   <section id="crushes">
     <h1>Crushes</h1>
     <%= render @crushes %>
