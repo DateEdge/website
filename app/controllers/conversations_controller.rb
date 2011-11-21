@@ -6,7 +6,11 @@ class ConversationsController < ApplicationController
   end
 
   def show
+    @slug         = "messages"
     @conversation = current_user.conversations.where(:id => params[:id]).first
+    @avatar_size  = "tiny"
+    @message      = Message.new(:recipient_id    => @conversation.counterpart(current_user).id,
+                                :conversation_id => @conversation.id)
 
     unless @conversation.nil?
       @title = "&ldquo;#{@conversation.subject}&rdquo; Conversation
@@ -19,5 +23,4 @@ class ConversationsController < ApplicationController
       @conversation.messages.where(:recipient_id => current_user.id).update_all(:unread => false)
     end
   end
-
 end

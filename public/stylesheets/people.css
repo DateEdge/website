@@ -23,13 +23,6 @@
   box-shadow:         0 0 5px rgba(0,0,0,.5);
 }
 
-#photos .new-photo-link {
-  margin-top: 3em;
-  background: green;
-  color: white;
-  font-weight: bold;
-}
-
 .actions {
   overflow: hidden;
   margin: 1em 0;
@@ -49,22 +42,4 @@ section[role=main] h3 {
 
 .note p {
   margin-bottom: .5em;
-}
-
-@media screen and (max-device-width: 480px) {
-  .photo {
-    width: 50px;
-    float: left;
-    margin-right: 10px;
-  }
-
-  section[role=main] h1 {
-    margin-top: .25em;
-    text-transform: uppercase;
-  }
-
-  section[role=main] h1,
-  section[role=main] h2 {
-    font-size: 125%;
-  }
 }

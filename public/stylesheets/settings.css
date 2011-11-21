@@ -58,14 +58,6 @@ section[role=main] h1 {
 /* ...photo settings */
 
 /* iphone portrait... */
-@media screen and (max-device-width: 480px) {
-  input[type=submit] {
-    margin-top: 1em;
-    width: 100%;
-    display: block;
-  }
-}
-
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
   #settings textarea,
   #settings input[type=text],

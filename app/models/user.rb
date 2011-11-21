@@ -148,8 +148,10 @@ class User < ActiveRecord::Base
   end
 
   def avatar(size=:avatar)
+    size = :avatar if size.nil?
+
     photo = photos.where(:avatar => true).first
-    photo ? photo.image_url(size) : PLACEHOLDER_AVATAR_URL
+    photo ? photo.image_url(size) : PLACEHOLDER_AVATAR_URL 
   end
 
   def you_gender

@@ -1,6 +1,4 @@
-<div class="sign-in buttons">
-  <%= button_to_twitter_sign_in %> <i>or</i> <%= button_to_facebook_sign_in %>
-</div>
+<%= render :partial => 'sign_in_buttons' %>
 
 <div id="people">
   <h2>Some people using <b>Date Edge</b></h2>
@@ -39,7 +37,4 @@
   </p>
 </div>
 
-<div class="sign-in buttons">
-  <%= button_to_twitter_sign_in %> <i>or</i> <%= button_to_facebook_sign_in %>
-</div>
-
+<%= render :partial => 'sign_in_buttons' %>

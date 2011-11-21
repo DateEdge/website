@@ -41,3 +41,82 @@
   background: #eee;
   opacity: 1;
 }
+
+#conversation hgroup {
+  margin-bottom: 1em;
+}
+
+#conversation .subject {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+#conversation .message,
+#conversation .messages {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#conversation .message .person {
+  margin-bottom: 1em;
+  overflow: hidden;
+}
+
+#conversation .message {
+  background: #eee;
+  margin-bottom: 1em;
+  padding: 10px;
+}
+
+#conversation .message.from-me {
+  background: white;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+#conversation .message-body p {
+  margin-top: 1em;
+}
+
+#reply {
+  padding: 10px;
+}
+
+#reply h1 {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: .5em;
+}
+
+#reply label {
+  display: none;
+}
+
+#reply textarea {
+  height: 6em;
+}
+
+@media screen and (max-device-width: 480px) {
+  #conversation .message.from-me .person {
+    text-align: right;
+  }
+
+  .from-me .person .photo {
+    float: right;
+    margin-right: 0;
+    margin-left: 10px;
+  }
+}
+
+
+/* iphone portrait... */
+@media screen and (max-device-width: 480px) and (orientation:portrait) {
+  #reply textarea { width: 268px; }
+}
+/* ...iphone portrait */
+
+/* iphone landscape... */
+@media screen and (max-device-width: 480px) and (orientation:landscape) {
+  #reply textarea { width: 428px; }
+}
