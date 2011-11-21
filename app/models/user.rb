@@ -220,7 +220,7 @@ class User < ActiveRecord::Base
     crushes.include? user
   end
 
-  def crushed_on(user)
+  def crush_with(user)
     crushings.where(:crushee_id => user.id).first
   end
 
