@@ -61,17 +61,6 @@
   </section>
 <% end %>
 
-<!--
-<% if mine? && @user.crushers.any? %>
-  <section>
-    <h3>Crushers</h3>
-    <% @user.crushers.each do |crusher| %>
-      <%= link_to crusher.username, person_path(crusher.username) %>
-    <% end %>
-  </section>
-<% end %>
--->
-
 <section id="photos">
   <ul>
     <% @user.photos.each do |photo| %>

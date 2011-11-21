@@ -1,1 +1,18 @@
-<%= render :partial => @users %>
+<% if @crushers.any? %>
+  <section id="crushers">
+    <h1>Crushers</h1>
+    <%= render @crushers %>
+  </section>
+<% end %>
+
+<% if @crushes.any? %>
+  <section id="crushes">
+    <h1>Crushes</h1>
+    <%= render @crushes %>
+  </section>
+<% end %>
+
+<section id="everyone">
+  <h1>Everyone</h1>
+  <%= render @users %>
+</section>
