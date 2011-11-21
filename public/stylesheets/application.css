@@ -124,6 +124,14 @@ input[type=password] {
   line-height: 366%;
   height: 40px;
 }
+
+#conversation .reply-link,
+#photos .new-photo-link {
+  margin-top: 3em;
+  background: green;
+  color: white;
+  font-weight: bold;
+}
 /* ...container */
 
 /* Connect with Twitter... */
@@ -142,17 +150,20 @@ input[type=password] {
 .twitter_sign_in_button:active { background-position: left bottom }
 /* ...Connect with Twitter */
 
-/* or... */
-.sign-in i {
+/* small words... */
+.small-word {
   font-style: italic;
   font-family: baskerville, times, serif;
+  color: #ccc;
+}
+
+.sign-in i {
   font-size: 2em;
   line-height: 1em;
-  color: #ccc;
   display: inline-block;
   margin-left: 240px;
 }
-/* ...or */
+/* ...small words */
 
 /* Login with Facebook... */
 .facebook_sign_in_button {
@@ -248,8 +259,30 @@ footer[role=contentinfo] {
 
 
 
-/* iphone portrait... */
+/* iphone... */
 @media screen and (max-device-width: 480px) {
+  input[type=submit] {
+    margin-top: 1em;
+    width: 100%;
+    display: block;
+  }
+
+  .person .photo {
+    width: 50px;
+    float: left;
+    margin-right: 10px;
+  }
+
+  .person h1 {
+    margin-top: .25em;
+    text-transform: uppercase;
+  }
+
+  .person h1,
+  .person h2 {
+    font-size: 125%;
+  }
+
   .sign-out {
     padding-left:  0;
     padding-right: 0;
@@ -259,7 +292,7 @@ footer[role=contentinfo] {
     margin: 0 10px;
   }
 }
-/* ...iphone portrait */
+/* ...iphone */
 
 /* iphone portrait... */
 @media screen and (max-device-width: 480px) and (orientation:portrait) {

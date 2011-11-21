@@ -1,6 +1,5 @@
 class Message < ActiveRecord::Base
   attr_accessor :subject
-  default_scope order("created_at desc")
 
   belongs_to :conversation
   belongs_to :sender,    :class_name => "User"
