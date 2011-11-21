@@ -3,8 +3,13 @@ class WelcomeController < ApplicationController
 
   def index
     if logged_in?
+      @title = "People Using Date Edge"
       @slug  = "people"
-      @users = User.visible
+      @users = User.visible.in_my_age_group(current_user)
+
+      @crushers = current_user.crushers
+      @crushes  = current_user.crushes
+
       return render("/users/index")
     end
 
