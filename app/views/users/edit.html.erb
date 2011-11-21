@@ -98,7 +98,7 @@
     <% end %>
   </table>
 
-  <%= f.submit "Save Changes", :disable_with => "Saving&hellip;".html_safe %>
+  <%= f.submit "Save Changes", :disable_with => "Saving&hellip;".html_safe, :class => "button white full" %>
 <% end %>
 
 
@@ -123,6 +123,7 @@
     <%= button_to "I Want to Delete My Profile",
                   user_path(@user),
                   :method  => :delete,
-                  :confirm => "Uhhhh&hellip; Are you sure you want to delete your profile?".html_safe %>
+                  :confirm => "Uhhhh&hellip; Are you sure you want to delete your profile?".html_safe,
+                  :class   => "button red full" %>
   </div>
 </section>

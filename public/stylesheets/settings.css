@@ -12,6 +12,10 @@ textarea {
   height: 8em;
 }
 
+.edit_user input[type=submit] {
+  margin-top: 1em;
+}
+
 /* my/desired labels... */
 table {
   width: 100%;
@@ -54,6 +58,10 @@ section[role=main] h1 {
 
 #avatar td {
   width: auto;
+}
+
+#photo_submit {
+  margin-top: 1em;
 }
 /* ...photo settings */
 

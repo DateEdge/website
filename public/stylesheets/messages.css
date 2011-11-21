@@ -95,6 +95,7 @@
 
 #reply textarea {
   height: 6em;
+  margin-bottom: 1em;
 }
 
 @media screen and (max-device-width: 480px) {
