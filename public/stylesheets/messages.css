@@ -10,6 +10,11 @@
   height: 40px;
 }
 
+#new_message textarea {
+  height: 6em;
+  margin-bottom: 1em;
+}
+
 .conversations {
   margin: 0;
   padding: 0;
@@ -113,11 +118,23 @@
 
 /* iphone portrait... */
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
-  #reply textarea { width: 268px; }
+  #reply #new_message textarea { width: 268px; }
+
+  /* TEMP HACK duplicate from settings.css */
+  #new_message textarea,
+  #new_message input[type=text] {
+    width: 288px;
+  }
 }
 /* ...iphone portrait */
 
 /* iphone landscape... */
 @media screen and (max-device-width: 480px) and (orientation:landscape) {
-  #reply textarea { width: 428px; }
+  #reply #new_message textarea { width: 428px; }
+
+  /* TEMP HACK duplicate from settings.css */
+  #new_message textarea,
+  #new_message input[type=text] {
+    width: 448px;
+  }
 }
