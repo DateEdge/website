@@ -43,3 +43,12 @@ section[role=main] h3 {
 .note p {
   margin-bottom: .5em;
 }
+
+
+/* iphone... */
+@media screen and (max-device-width: 480px) {
+  #photo_submit {
+    margin-top: 0;
+  }
+}
+/* ...iphone */
