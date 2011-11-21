@@ -1,34 +1,4 @@
-<div class="profile-actions">
-  <%# message button %>
-  <% if not_mine? %>
-    <%= link_to "Message", new_message_path(:recipient => @user.username), :class => "message button" %>
-  <% end %>
-
-  <%# crush button %>
-  <% if not_mine? %>
-    <% if im.crushing_on?(@user) %>
-      <span class="crushed button">Crushed!</span>
-    <% else %>
-      <%= form_for @crush, :url => crush_url do |f| %>
-        <%= f.hidden_field :crushee_id, :value => @user.id %>
-        <%= f.submit "Crush", :class => "crush button" %>
-      <% end %>
-    <% end %>
-  <% end %>
-
-  <%# secret crush link %>
-  <% if not_mine? %>
-    <% if im.crushing_on?(@user) %>
-      <span class="crushed button">Secret Crushed!</span>
-    <% else %>
-      <%= form_for @crush, :url => crush_url, :html => { :id => "new_secret_crush" } do |f| %>
-        <%= f.hidden_field :crushee_id, :value => @user.id %>
-        <%= f.hidden_field :secret, :value => true %>
-        <%= f.submit "Secret Crush", :class => "secret-crush button" %>
-      <% end %>
-    <% end %>
-  <% end %>
-</div> <!-- .profile-actions -->
+<%= render :partial => 'profile_actions' %>
 
 <%= render :partial => @user %>
 
