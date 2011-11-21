@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
   skip_before_filter :restrict_non_visible_user, :only => [:new, :create]
 
-  def index; end
+  def index
+    if logged_in?
+      return redirect_to(root_path)
+    end
+
+    @title = "People Using Date Edge"
+    @slug  = "people"
+    @users = User.visible.in_my_age_group(current_user)
+  end
 
   def show
     @slug  = "people"
