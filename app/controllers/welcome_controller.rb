@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
     if logged_in?
       @title = "People Using Date Edge"
       @slug  = "people"
-      @users = User.visible.in_my_age_group(current_user)
+      @users = User.visible.in_my_age_group(current_user).without(current_user).order('created_at desc')
 
       @crushers = current_user.crushers
       @crushes  = current_user.crushes
@@ -14,6 +14,6 @@ class WelcomeController < ApplicationController
     end
 
     @slug  = "welcome"
-    @users = User.visible.limit(12)
+    @users = User.visible.order('created_at desc').limit(12)
   end
 end
