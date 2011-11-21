@@ -15,7 +15,7 @@
   </table>
   <% end %>
 
-  <%= f.submit "Save Photo", :disable_with => "Saving&hellip;".html_safe %>
+  <%= f.submit "Save Photo", :disable_with => "Saving&hellip;".html_safe, :class => "button white full" %>
 <% end %>
 
 <section id="danger-zone">
@@ -25,7 +25,7 @@
     <p>
       Maybe you think that you&rsquo;re making a stupid face in this picture.
       Or that your face is stupid.
-      Or &ldquo;<i>who has hair like anymore? That&rsquo;s so last year.</i>&rdquo;
+      Or &ldquo;<i>who has hair like that anymore? That&rsquo;s so last year.</i>&rdquo;
     </p>
 
     <p>
@@ -41,6 +41,10 @@
       <b>There is no undo. No regrets.</b>
     </p>
 
-    <%= button_to "I Want to Delete My Photo", @photo, :method => :delete, :confirm => "Are you SURE? Like for sure, for sure? There is NO UNDO." %>
+    <%= button_to "I Want to Delete My Photo",
+                  @photo,
+                  :method  => :delete,
+                  :confirm => "Are you SURE? Like for sure, for sure? There is NO UNDO.",
+                  :class   => "button red full" %>
   </div>
 </section>
