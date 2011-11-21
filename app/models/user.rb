@@ -27,10 +27,10 @@ class User < ActiveRecord::Base
 
   has_many :crushings, :foreign_key => "crusher_id", :class_name => "Crush"
   has_many :secret_crushes, :through => :crushings, :source => :crushee, :conditions => {:crushes => {:secret => true}}
-  has_many :crushes, :through => :crushings, :source => :crushee
+  has_many :crushes, :through => :crushings, :source => :crushee, :order => 'crushes.created_at desc'
 
   has_many :crusheeings, :foreign_key => "crushee_id", :class_name => "Crush", :conditions => {:secret => false}
-  has_many :crushers, :through => :crusheeings, :source => :crusher
+  has_many :crushers, :through => :crusheeings, :source => :crusher, :order => 'crushings.created_at desc'
 
   has_many :outbound_conversations, :class_name => "Conversation", :foreign_key => :user_id
   has_many :inbound_conversations,  :class_name => "Conversation", :foreign_key => :recipient_id
@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
   scope :adults, lambda {where(['birthday >= ?', 18.years.ago]) }
   scope :kids,   lambda {where(['birthday <  ?', 18.years.ago]) }
   scope :secret, joins(:crushes).where('crushes.secret = "true"')
+  scope :without, lambda{|user| where('id != ?', user.id) }
   
   validates :username, :presence => { :on => :update }, :username => true, :length => { :minimum => 1, :maximum => 100 }
   validates :name,     :presence => true
