@@ -235,7 +235,7 @@ footer[role=contentinfo] {
   padding-bottom: 4em;
 }
 
-.button {
+.clicker {
   outline: 1px solid #ccc;
   background: #eee;
   display: block;
@@ -244,16 +244,6 @@ footer[role=contentinfo] {
   text-align: center;
   text-decoration: none;
   color: #666;
-}
-
-.sign-out {
-  width: 100%;
-  margin: 0;
-}
-
-.sign-out:hover {
-  background: #666;
-  color: white;
 }
 /* ...site footer */
 
