@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   belongs_to :label
 
   has_many :crushings, :foreign_key => "crusher_id", :class_name => "Crush"
+  has_many :secret_crushes, :through => :crushings, :source => :crushee, :conditions => {:crushes => {:secret => true}}
   has_many :crushes, :through => :crushings, :source => :crushee
 
   has_many :crusheeings, :foreign_key => "crushee_id", :class_name => "Crush", :conditions => {:secret => false}
@@ -46,7 +47,8 @@ class User < ActiveRecord::Base
   scope :with_provider, lambda { |name, uid| joins(:providers).where(:providers => {:name => name, :uid => uid}) }
   scope :adults, lambda {where(['birthday >= ?', 18.years.ago]) }
   scope :kids,   lambda {where(['birthday <  ?', 18.years.ago]) }
-
+  scope :secret, joins(:crushes).where('crushes.secret = "true"')
+  
   validates :username, :presence => { :on => :update }, :username => true, :length => { :minimum => 1, :maximum => 100 }
   validates :name,     :presence => true
   validates :email,    :presence => { :on => :update }
@@ -207,6 +209,10 @@ class User < ActiveRecord::Base
     else
       true
     end
+  end
+  
+  def secret_crushing_on?(user)
+    secret_crushes.include? user
   end
 
   def crushing_on?(user)
