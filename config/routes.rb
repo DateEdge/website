@@ -4,11 +4,10 @@ Dxe::Application.routes.draw do
 
   resources :users, :only => [:update, :destroy]
   resources :photos
+  resources :crushes, :only => [:create, :destroy]
 
   resources :conversations, :only => [:index, :show]
   resources :messages,      :only => [:create, :new]
-
-  post "/crush" => "crushes#create", :as => :crush
 
   match "/signout"                 => "sessions#destroy", :as => :signout
   match "/auth/:provider/callback" => "sessions#create"

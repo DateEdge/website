@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   scope :kids,   lambda {where(['birthday <  ?', 18.years.ago]) }
   scope :secret, joins(:crushes).where('crushes.secret = "true"')
   scope :without, lambda{|user| where('id != ?', user.id) }
-  
+
   validates :username, :presence => { :on => :update }, :username => true, :length => { :minimum => 1, :maximum => 100 }
   validates :name,     :presence => true
   validates :email,    :presence => { :on => :update }
@@ -154,7 +154,7 @@ class User < ActiveRecord::Base
     size = :avatar if size.nil?
 
     photo = photos.where(:avatar => true).first
-    photo ? photo.image_url(size) : PLACEHOLDER_AVATAR_URL 
+    photo ? photo.image_url(size) : PLACEHOLDER_AVATAR_URL
   end
 
   def you_gender
@@ -211,13 +211,17 @@ class User < ActiveRecord::Base
       true
     end
   end
-  
+
   def secret_crushing_on?(user)
     secret_crushes.include? user
   end
 
   def crushing_on?(user)
     crushes.include? user
+  end
+
+  def crushed_on(user)
+    crushings.where(:crushee_id => user.id).first
   end
 
   def age_group
