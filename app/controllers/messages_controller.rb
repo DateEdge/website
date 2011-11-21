@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   def new
+    @slug  = "messages"
     @title = "Messenger on Date Edge"
 
     if params["recipient"].present?
