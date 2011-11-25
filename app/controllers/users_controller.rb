@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    @slug  = "settings"
     @title = "Getting Started on Date Edge"
     @user  = current_user
 
