@@ -1,12 +1,14 @@
 <%= form_for @photo, :html => {:multipart => true} do |f| %>
-  <%= f.label :image, "Select an Image" %>
-  <%= f.file_field :image %>
-  
-  <%= f.label :remote_image_url, "or a URL" %>
+
+
+  <%= f.label :remote_image_url, "Paste a URL" %>
   <%= f.text_field :remote_image_url %>
-  
+
+  <%= f.label :image, "or Select an Image" %>
+  <%= f.file_field :image %>
+
   <%= f.label :caption, "Caption" %>
   <%= f.text_area :caption, :rows => 5 %>
-  
-  <%= f.submit "Upload", :disable_with => 'Uploading...' %>
+
+  <%= f.submit "Upload", :disable_with => 'Uploading...', :class => "white button full" %>
 <% end %>
