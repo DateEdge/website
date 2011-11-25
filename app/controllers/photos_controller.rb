@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
 
   def new
+    @slug  = "settings"
     @title = "Photo Uploader on Date Edge"
     @user  = current_user
     @photo = current_user.photos.new
