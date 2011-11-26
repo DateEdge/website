@@ -9,7 +9,7 @@
         <% end %>
 
         <%= link_to conversation, :class => "bd" do %>
-          <span class="message-counterpart">from <b><%= conversation.counterpart(current_user).username %></b></span>
+          <span class="message-counterpart">Conversation with <b><%= conversation.counterpart(current_user).username %></b></span>
           <span class="message-subject"><%= conversation.subject %></span>
           <span class="message-body"><%= truncate conversation.messages.first.body, :length => 40 %></span>
         <% end %>
