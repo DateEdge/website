@@ -154,7 +154,7 @@ input[type=password] {
 .small-word {
   font-style: italic;
   font-family: baskerville, times, serif;
-  color: #ccc;
+  color: #666;
 }
 
 .sign-in i {

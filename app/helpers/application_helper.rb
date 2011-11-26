@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def link_to_username(user)
+    link_to user.username, person_path(user.username)
+  end
+
   def page_title
     @title || "Date Edge : The Straightedge Dating Site"
   end
