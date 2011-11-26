@@ -69,7 +69,7 @@
   <%= f.label      :you_gender, "Desired Gender" %>
   <%= f.text_field :you_gender %>
 
-  <%= f.label :label_id, "My Label" %>
+  <%= f.label :label_id, "My Straightedginess" %>
   <table id="my-label">
     <% Label.all.each do |label| %>
       <tr>
@@ -79,7 +79,7 @@
     <% end %>
   </table>
 
-  <%= f.label :your_labels_attributes, "Desired Labels" %>
+  <%= f.label :your_labels_attributes, "Desired Straightedginess" %>
   <table id="desired-labels">
     <% Label.all.each_with_index do |label, index| %>
       <%= f.fields_for "your_labels_attributes[#{index}]", :child_index => index do |ff| %>
