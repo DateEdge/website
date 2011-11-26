@@ -37,13 +37,8 @@
   <%= f.label      :email %>
   <%= f.text_field :email %>
 
-  <%= f.label       :birthday %>
-  <%= f.date_select :birthday,
-                    :order         => [:month, :day, :year],
-                    :start_year    => 60.years.ago.year,
-                    :end_year      => 12.years.ago.year,
-                    :default       => 12.years.ago,
-                    :include_blank => true %>
+  <%= f.label :birthday %>
+  <%= birthday_select_tag(f) %>
 
   <%= f.label      :city %>
   <%= f.text_field :city %>

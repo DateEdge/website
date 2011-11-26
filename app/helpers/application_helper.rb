@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def birthday_select_tag(f)
+    f.date_select :birthday,
+                  :order         => [:month, :day, :year],
+                  :start_year    => 12.years.ago.year,
+                  :end_year      => 60.years.ago.year,
+                  :include_blank => true
+  end
+
   def link_to_username(user)
     link_to user.username, person_path(user.username)
   end
