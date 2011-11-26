@@ -25,6 +25,7 @@ th label,
 td label {
   margin: 0;
   text-align: left;
+  font-weight: normal;
 }
 
 td {
