@@ -17,7 +17,11 @@ class ImageUploader < CarrierWave::Uploader::Base
       img = img.crop(Magick::GravityType.new("CenterGravity", 5), width, height)
     end
   end
-  
+
+  version :favicon do
+    process :thumbnail => [16, 16]
+  end
+
   version :tiny do
     process :thumbnail => [40, 40]
   end

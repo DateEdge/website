@@ -1,7 +1,10 @@
 <section id="conversation">
   <hgroup>
     <h1 class="subject"><%= @conversation.subject %></h1>
-    <h2 class="with"><i class="small-word">with</i> <%= @conversation.counterpart(current_user).username %></h2>
+    <h2 class="with">
+      <i class="small-word">with</i>
+      <%= link_to_username(@conversation.counterpart(current_user)) %>
+    </h2>
   </hgroup>
 
   <ol class="messages">
