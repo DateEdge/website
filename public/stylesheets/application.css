@@ -307,3 +307,19 @@ footer[role=contentinfo] {
   }
 }
 /* ...iphone landscape */
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .twitter-sign-in-link,
+  .facebook-sign-in-link,
+  .settings-link,
+  .inbox-link {
+    width:  16pt;
+    height: 16pt;
+  }
+
+  .settings-link         { background: url(/images/buttons/nav/settings@2x.png) no-repeat center bottom; }
+  .inbox-link            { background: url(/images/buttons/nav/inbox@2x.png)    no-repeat center 4px   ; }
+  .twitter-sign-in-link  { background: url(/images/buttons/nav/twitter@2x.png)  no-repeat center center; }
+  .facebook-sign-in-link { background: url(/images/buttons/nav/facebook@2x.png) no-repeat center center; }
+}
