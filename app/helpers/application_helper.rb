@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def profile_incomplete?
+    current_user &&
+    current_user.me_gender.nil? &&
+    current_user.you_gender.nil? &&
+    current_user.label_id.nil? &&
+    current_user.diet_id.nil?
+  end
+
   def birthday_select_tag(f)
     f.date_select :birthday,
                   :order         => [:month, :day, :year],
