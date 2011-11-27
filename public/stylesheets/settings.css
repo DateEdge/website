@@ -65,7 +65,27 @@ section[role=main] h1 {
   margin-top: 1em;
 }
 
+#getting-started .info {
+  margin-top: 1em;
+}
+
+#getting-started img {
+  margin-bottom: 1em;
+}
 /* ...photo settings */
+
+/* iphone... */
+@media screen and (max-device-width: 480px) {
+  .instructions {
+    display: block !important;
+  }
+
+  input#photo_image,
+  label[for='photo_image'] {
+    display: none;
+  }
+}
+/* ...iphone */
 
 /* iphone portrait... */
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
@@ -78,12 +98,6 @@ section[role=main] h1 {
   #settings select {
     width: 300px;
   }
-
-  input#photo_image,
-  label[for='photo_image'] {
-    display: none;
-  }
-
 }
 /* ...iphone portrait */
 
@@ -98,11 +112,5 @@ section[role=main] h1 {
   #settings select {
     width: 460px;
   }
-
-  input#photo_image,
-  label[for='photo_image'] {
-    display: none;
-  }
-
 }
 /* ...iphone landscape */
