@@ -1,10 +1,10 @@
 module ApplicationHelper
   def profile_incomplete?
     current_user &&
-    current_user.me_gender.nil? &&
-    current_user.you_gender.nil? &&
-    current_user.label_id.nil? &&
-    current_user.diet_id.nil?
+    current_user.me_gender.blank? &&
+    current_user.you_gender.blank? &&
+    current_user.label_id.blank? &&
+    current_user.diet_id.blank?
   end
 
   def birthday_select_tag(f)
