@@ -35,7 +35,7 @@
   <% end %>
 
   <%= f.label      :email %>
-  <%= f.text_field :email %>
+  <%= f.text_field :email, :type => "email", :autocapitalize => "off" %>
 
   <%= f.label :birthday %>
   <%= birthday_select_tag(f) %>
