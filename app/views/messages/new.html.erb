@@ -1,8 +1,7 @@
 <h1 id="message">
   <span>New Conversation</span>
   <i class="small-word">with</i>
-  <%= link_to image_tag(@message.recipient.avatar(:tiny), :class => "photo"),
-              person_path(@message.recipient.username) %>
+  <%= link_to_avatar(@message.recipient, :tiny) %>
 
   <%= link_to_username(@message.recipient) %>
 </h1>

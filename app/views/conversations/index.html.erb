@@ -5,7 +5,7 @@
     <% @conversations.each do |conversation| %>
       <li class="media conversation <%= 'unread' if conversation.unread?(current_user) %>">
         <%= link_to conversation, :class => "img" do %>
-          <%= image_tag conversation.counterpart(current_user).avatar(:tiny) %>
+          <%= link_to_avatar(conversation.counterpart(current_user), :tiny) %>
         <% end %>
 
         <%= link_to conversation, :class => "bd" do %>
