@@ -1,5 +1,5 @@
 <div class="person">
-  <%= link_to image_tag(user.avatar(@avatar_size), :class => "photo"), person_path(user.username) %>
+  <%= link_to_avatar(user, @avatar_size) %>
 
   <h1>
     <b class="fn n">
