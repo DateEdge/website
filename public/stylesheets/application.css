@@ -67,7 +67,7 @@ nav[role=navigation] {
   width:  16pt;
   height: 16pt;
   display: inline-block;
-/*  margin-left: .5em;*/
+  margin-left: .5em;
 }
 
 .settings-link         { background: url(/images/buttons/nav/settings.png) no-repeat center center; }
