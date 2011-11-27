@@ -7,6 +7,11 @@ module ApplicationHelper
                   :include_blank => true
   end
 
+  def link_to_avatar(user, avatar_size=nil)
+    link_to image_tag(user.avatar(avatar_size), :class => "photo"),
+            person_path(user.username)
+  end
+
   def link_to_username(user)
     link_to user.username, person_path(user.username)
   end

@@ -6,8 +6,13 @@ class ApplicationController < ActionController::Base
   helper_method :redirect_age_inappropriate
   helper_method :logged_in?
   helper_method :im
+  helper_method :getting_started?
 
   private
+
+  def getting_started?
+    params[:getting] == "started"
+  end
 
   def logged_in?
     current_user

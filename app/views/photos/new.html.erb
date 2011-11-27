@@ -1,7 +1,29 @@
+<h1>Add a photo to your profile</h1>
+
 <%= form_for @photo, :html => {:multipart => true} do |f| %>
+  <% if getting_started? %>
+    <div id="getting-started">
+      <p class="info">
+        We got this photo from
+        <b><%= @photo.user.providers.first.name.capitalize %></b>.<br />
+        You can add more photos below.
+      </p>
 
+      <ul class="actions">
+        <li><%= link_to "Add Another", "#url", :class => "button green full" %></li>
+        <li><%= link_to "No Thanks", settings_path(:getting => "started"), :class => "button black full" %></li>
+      </ul>
 
-  <%= f.label :remote_image_url, "Paste a URL" %>
+      <%= image_tag current_user.photos.first.image_url(:small).to_s %>
+
+      <p class="instructions notice" style="display: none;">
+        <b>From your phone/iPad, paste in a URL.</b><br />
+        Use your desktop to upload a file.
+      </p>
+    </div>
+  <% end %>
+
+  <%= f.label :remote_image_url, "Paste a URL", :id => "url" %>
   <%= f.text_field :remote_image_url %>
 
   <%= f.label :image, "or Select an Image" %>

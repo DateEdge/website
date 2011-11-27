@@ -49,14 +49,6 @@
   box-shadow:         0 0 5px rgba(0,0,0,.5);
 }
 
-.actions {
-  overflow: hidden;
-  margin: 1em 0;
-}
-
-.actions li:first-child { float: left;  width: 49%; }
-.actions li:last-child  { float: right; width: 49%; }
-
 section[role=main] h3 {
   clear: both;
   margin-top: 1.5em;
