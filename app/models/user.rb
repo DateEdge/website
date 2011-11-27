@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   has_many :crushes, :through => :crushings, :source => :crushee, :order => 'crushes.created_at desc'
 
   has_many :crusheeings, :foreign_key => "crushee_id", :class_name => "Crush", :conditions => {:secret => false}
-  has_many :crushers, :through => :crusheeings, :source => :crusher, :order => 'crushers.created_at desc'
+  has_many :crushers, :through => :crusheeings, :source => :crusher, :order => 'crushes.created_at desc'
 
   has_many :outbound_conversations, :class_name => "Conversation", :foreign_key => :user_id
   has_many :inbound_conversations,  :class_name => "Conversation", :foreign_key => :recipient_id
