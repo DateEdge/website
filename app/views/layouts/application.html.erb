@@ -14,6 +14,12 @@
   <% end %>
 
   <section role="main">
+    <% if profile_incomplete? %>
+      <p class="notice">
+        <b><%= link_to "Update your profile for great success &rarr;".html_safe, settings_path %></b>
+      </p>
+    <% end %>
+
     <%= yield %>
   </section>
 

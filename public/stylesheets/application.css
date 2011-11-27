@@ -15,6 +15,8 @@ i { font-style: italic; }
 .notice a { color: #514721; }
 .success a { color: #264409; }
 .info a { color: #205791; }
+
+.notice a { text-decoration: none; }
 /* ...base */
 
 /* buttons... */
