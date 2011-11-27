@@ -10,7 +10,10 @@ puts
   Diet.create!(:name => diet)
 end
 
-if Rails.development?
+__END__
+
+
+if Rails.env.development?
   puts "Adding fake users"
   puts
   {

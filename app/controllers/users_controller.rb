@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
     if @user.save
       @user.visiblize!
-      redirect_to new_photo_path
+      redirect_to new_photo_path(:getting => "started")
     else
       render :new
     end
