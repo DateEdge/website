@@ -19,7 +19,7 @@ end
 
 group :production do
   gem "pg"
-  gem "thin"
+  gem "puma"
 end
 
 gem "rails",     "3.0.9"
