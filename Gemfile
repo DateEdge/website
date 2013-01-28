@@ -9,11 +9,11 @@ group :development do
 end
 
 group :test, :development do
-  gem "rspec-rails", "~> 2.4"
+  gem "rspec-rails",     "~> 2.12.2"
 end
 
 group :test do
-  gem "rspec"
+  gem "rspec",           "~> 2.12.0"
   gem "database_cleaner"
 end
 
