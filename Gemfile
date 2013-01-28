@@ -22,7 +22,7 @@ group :production do
   gem "puma",             "~> 1.6.3"
 end
 
-gem "rails",              "~> 3.0.9"
+gem "rails",              "~> 3.2.11"
 gem "rmagick",            "~> 2.13.1"
 gem "fog",                "~> 1.9.0"
 gem "carrierwave"
