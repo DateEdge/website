@@ -3,8 +3,8 @@ source "http://rubygems.org"
 group :development do
   gem "sqlite3-ruby", :require => "sqlite3"
   gem "foreman"
-  # gem 'rb-fsevent'
-  gem 'growl'
+  # gem "rb-fsevent"
+  gem "growl"
   gem "guard-rspec"
 end
 
@@ -22,9 +22,9 @@ group :production do
   gem "puma"
 end
 
-gem "rails",            "~> 3.0.9"
+gem "rails",             "~> 3.0.9"
 gem "rmagick"
-gem 'fog'
+gem "fog",               "~> 1.9.0"
 gem "carrierwave"
 
 gem "omniauth-twitter",  "~> 0.0.14"
