@@ -158,7 +158,7 @@ DEPENDENCIES
   omniauth-facebook (~> 1.4.1)
   omniauth-twitter (~> 0.0.14)
   pg (~> 0.14.1)
-  puma
+  puma (~> 1.6.3)
   rails (~> 3.0.9)
   rmagick (~> 2.13.1)
   rspec

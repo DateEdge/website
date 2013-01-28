@@ -18,8 +18,8 @@ group :test do
 end
 
 group :production do
-  gem "pg", "~> 0.14.1"
-  gem "puma"
+  gem "pg",              "~> 0.14.1"
+  gem "puma",            "~> 1.6.3"
 end
 
 gem "rails",             "~> 3.0.9"
