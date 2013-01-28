@@ -186,7 +186,7 @@ DEPENDENCIES
   omniauth (= 0.2.6)
   pg
   puma
-  rails (= 3.0.9)
+  rails (~> 3.0.9)
   rmagick
   rspec
   rspec-rails (~> 2.4)
