@@ -22,7 +22,7 @@ group :production do
   gem "puma"
 end
 
-gem "rails",     "3.0.9"
+gem "rails",       "~> 3.0.9"
 gem "omniauth",  "0.2.6"
 gem "rmagick"
 gem 'fog'
