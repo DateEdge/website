@@ -160,7 +160,7 @@ DEPENDENCIES
   pg
   puma
   rails (~> 3.0.9)
-  rmagick
+  rmagick (~> 2.13.1)
   rspec
   rspec-rails (~> 2.4)
   sqlite3-ruby
