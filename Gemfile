@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 group :development do
+  gem "gx",               "~> 1.3.3"
   gem "sqlite3-ruby",     "~> 1.3.3", :require => "sqlite3"
   gem "foreman",          "~> 0.61.0"
   gem "growl",            "~> 1.0.3"
