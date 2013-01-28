@@ -3,7 +3,7 @@ source "http://rubygems.org"
 group :development do
   gem "sqlite3-ruby", :require => "sqlite3"
   gem "foreman",          "~> 0.61.0"
-  gem "growl"
+  gem "growl",            "~> 1.0.3"
   gem "guard-rspec"
   # gem "rb-fsevent"
 end
