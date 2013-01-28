@@ -183,7 +183,7 @@ DEPENDENCIES
   foreman
   growl
   guard-rspec
-  omniauth (= 0.2.6)
+  omniauth (~> 0.2.6)
   pg
   puma
   rails (~> 3.0.9)
