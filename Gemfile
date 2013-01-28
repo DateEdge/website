@@ -20,9 +20,6 @@ end
 group :production do
   gem "pg",               "~> 0.14.1"
   gem "puma",             "~> 1.6.3"
-  
-  # for heroku
-  gem "rails_log_stdout", "~> 0.1.1"
 end
 
 gem "rails",              "~> 3.2.11"
