@@ -226,8 +226,8 @@ input[type=password] {
 
 #some-people .h-card,
 #some-people .u-photo {
-  width:   100px;
-  height:  100px;
+  width:   90px;
+  height:  90px;
 }
 
 #some-people .p-name {
@@ -238,7 +238,7 @@ input[type=password] {
   font-weight: bold;
   line-height: 1em;
   font-size: 10px;
-  padding:   10px;
+  padding:   7.5px 5px;
   position: absolute;
   text-align: center;
   text-decoration: none;
