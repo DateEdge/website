@@ -358,16 +358,6 @@ footer[role=contentinfo] {
 
 /* iphone landscape... */
 @media screen and (max-device-width: 480px) and (orientation:landscape) {
-  #some-people .h-card,
-  #some-people .u-photo {
-    width:   112px;
-    height:  112px;
-  }
-
-  #some-people .p-name {
-    width: 102px; /*  #some-people .h-card's width - 10px */
-  }
-
   footer[role=contentinfo] {
     width: 460px;
   }

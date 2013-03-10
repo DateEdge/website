@@ -2,7 +2,7 @@
 header[role=banner] {
   background: none;
   padding: 0;
-  margin-bottom: 3em;
+  margin-bottom: 1em;
 }
 
 header[role=banner] h1 {
@@ -50,38 +50,55 @@ header[role=banner] h2 {
 #about {
   border-top: 1px solid #ddd;
   padding-top: 2em;
-  margin: 2em 5px;
+  margin: 2em 0;
 }
 
 #about p {
   margin-bottom: 1em;
 }
 
+#some-people .more-people {
+  font-size: 2em;
+  font-weight: bold;
+}
 
+
+/* iphone... */
 @media screen and (max-device-width: 480px) {
   .buttons {
     height: 100px;
   }
 }
+/* ...iphone */
 
+
+/* iphone portrait... */
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
   .facebook_button {
     font-size: 22px;
   }
-
-  #some-people img {
-    width: 95px;
-  }
 }
+/* ...iphone portrait */
 
+
+/* iphone landscape... */
 @media screen and (max-device-width: 480px) and (orientation:landscape) {
   header[role=banner] h2 {
     font-size: 160%;
     line-height: 125%;
   }
 
-  #some-people img {
-    width: 110px;
+  #some-people .h-card,
+  #some-people .u-photo {
+    width:   112px;
+    height:  112px;
+  }
+
+  #some-people .p-name {
+    width: 102px; /*  #some-people .h-card's width - 10px */
   }
 }
+/* ...iphone landscape */
+
+
 /* ...welcome */

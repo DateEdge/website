@@ -33,6 +33,7 @@ module ApplicationHelper
   end
 
   def button_to_facebook_sign_in
+    # link_to "Sign in with Facebook",  "/auth/facebook", :class => "facebook_sign_in_button"
     '<a href="/auth/facebook" class="facebook_sign_in_button"><span>Login with <b>Facebook</b></span></a>'.html_safe
   end
 
