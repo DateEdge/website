@@ -227,6 +227,8 @@ input[type=password] {
 }
 
 #people .u-photo {
+  width:   130px;
+  height:  130px;
   display: block;
 }
 
