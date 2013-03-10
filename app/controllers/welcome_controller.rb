@@ -4,7 +4,6 @@ class WelcomeController < ApplicationController
   def index
     if logged_in?
       @title = "People Using Date Edge"
-      @slug  = "people"
       @users = User.visible.in_my_age_group(current_user).without(current_user).order('created_at desc')
 
       @crushers = current_user.crushers
