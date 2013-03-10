@@ -226,8 +226,8 @@ input[type=password] {
 
 #some-people .h-card,
 #some-people .u-photo {
-  width:   95px;
-  height:  95px;
+  width:   97px;
+  height:  97px;
 }
 
 #some-people .p-name {
@@ -243,7 +243,7 @@ input[type=password] {
   text-align: center;
   text-decoration: none;
   top: 0;
-  width: 85px; /*  #some-people .h-card's width - 20px */
+  width: 87px; /*  #some-people .h-card's width - 10px */
 }
 /* ...home page */
 
@@ -358,6 +358,16 @@ footer[role=contentinfo] {
 
 /* iphone landscape... */
 @media screen and (max-device-width: 480px) and (orientation:landscape) {
+  #some-people .h-card,
+  #some-people .u-photo {
+    width:   112px;
+    height:  112px;
+  }
+
+  #some-people .p-name {
+    width: 102px; /*  #some-people .h-card's width - 10px */
+  }
+
   footer[role=contentinfo] {
     width: 460px;
   }
