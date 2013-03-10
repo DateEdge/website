@@ -4,8 +4,9 @@
   <h2>Some people using <b>Date Edge</b></h2>
   <ul>
     <% @users.each do |user| %>
-      <li>
+      <li class="h-card">
         <%= link_to_avatar(user) %>
+        <%= link_to_username(user) %>
       </li>
     <% end %>
   </ul>
@@ -15,7 +16,7 @@
 
 <div id="about">
   <p>
-    <b>Date Edge</b> is simple, fun dating site for people who are straightedge.
+    <b>Date Edge</b> is a simple, fun dating site for people who are straightedge.
     And for the people that love them. &hellip;or who <i>want to love them</i>.
   </p>
 

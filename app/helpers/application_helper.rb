@@ -16,12 +16,12 @@ module ApplicationHelper
   end
 
   def link_to_avatar(user, avatar_size=nil)
-    link_to image_tag(user.avatar(avatar_size), :class => "photo", :alt => user.username),
+    link_to image_tag(user.avatar(avatar_size), :class => "u-photo", :alt => user.username),
             person_path(user.username)
   end
 
   def link_to_username(user)
-    link_to user.username, person_path(user.username)
+    link_to user.username, person_path(user.username), :class => "p-name u-url"
   end
 
   def page_title
