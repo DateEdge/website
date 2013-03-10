@@ -385,12 +385,7 @@ footer[role=contentinfo] {
   #about {
     font-size: 200%;
   }
-}
-/* ...ipad */
 
-
-/* bigger screen... */
-@media screen and (min-width: 1000px) {
   #some-people .h-card,
   #some-people .u-photo {
     width:  200px;
@@ -398,7 +393,15 @@ footer[role=contentinfo] {
   }
 
   #some-people .p-name {
+    font-size: 12px;
+    padding: 10px;
     width: 180px;
   }
+}
+/* ...ipad */
+
+
+/* bigger screen... */
+@media screen and (min-width: 1000px) {
 }
 /* ...bigger screen */

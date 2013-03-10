@@ -44,11 +44,6 @@ header[role=banner] h2 {
   padding: 0;
 }
 
-#some-people ul,
-#some-people ul + a {
-  margin-left: 5px;
-}
-
 #some-people li {
   display: inline;
 }
