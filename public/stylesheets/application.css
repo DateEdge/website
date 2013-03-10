@@ -226,8 +226,8 @@ input[type=password] {
 
 #some-people .h-card,
 #some-people .u-photo {
-  width:   100px;
-  height:  100px;
+  width:   95px;
+  height:  95px;
 }
 
 #some-people .p-name {
@@ -243,7 +243,7 @@ input[type=password] {
   text-align: center;
   text-decoration: none;
   top: 0;
-  width: 90px; /*  #some-people .h-card's width - 20px */
+  width: 85px; /*  #some-people .h-card's width - 20px */
 }
 /* ...home page */
 
