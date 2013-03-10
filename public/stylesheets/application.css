@@ -38,6 +38,7 @@ header[role=banner] {
   line-height: 150%;
   padding: .5em 10px;
   font-size: 100%;
+  margin-bottom: 3em;
 }
 
 header[role=banner] h1 {
@@ -392,9 +393,6 @@ footer[role=contentinfo] {
 
 /* bigger screen... */
 @media screen and (min-width: 1000px) {
-  header[role=banner] {
-  }
-
   #people .h-card,
   #people .u-photo {
     width:  200px;
