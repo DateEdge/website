@@ -216,16 +216,18 @@ input[type=password] {
 /* home page... */
 #some-people .h-card {
   display: inline-block;
-  width:   130px;
-  height:  130px;
   margin-bottom: 1em;
   position: relative;
 }
 
 #some-people .u-photo {
-  width:   130px;
-  height:  130px;
   display: block;
+}
+
+#some-people .h-card,
+#some-people .u-photo {
+  width:   120px;
+  height:  120px;
 }
 
 #some-people .p-name {
@@ -240,7 +242,7 @@ input[type=password] {
   position: absolute;
   text-decoration: none;
   top: 0;
-  width: 110px;
+  width: 100px; /*  #some-people .h-card's width - 20px */
 }
 /* ...home page */
 
