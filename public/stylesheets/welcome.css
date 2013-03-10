@@ -2,6 +2,7 @@
 header[role=banner] {
   background: none;
   padding: 0;
+  margin-bottom: 3em;
 }
 
 header[role=banner] h1 {
@@ -31,24 +32,24 @@ header[role=banner] h2 {
   color: black;
 }
 
-#people h2 {
+#some-people h2 {
   font-size: 150%;
   margin-left: 5px;
   margin-bottom: .2em;
 }
 
-#people ul,
-#people li {
+#some-people ul,
+#some-people li {
   margin: 0;
   padding: 0;
 }
 
-#people ul,
-#people ul + a {
+#some-people ul,
+#some-people ul + a {
   margin-left: 5px;
 }
 
-#people li {
+#some-people li {
   display: inline;
 }
 
@@ -74,7 +75,7 @@ header[role=banner] h2 {
     font-size: 22px;
   }
 
-  #people img {
+  #some-people img {
     width: 95px;
   }
 }
@@ -84,8 +85,8 @@ header[role=banner] h2 {
     font-size: 160%;
     line-height: 125%;
   }
-  
-  #people img {
+
+  #some-people img {
     width: 110px;
   }
 }

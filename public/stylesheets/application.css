@@ -38,7 +38,6 @@ header[role=banner] {
   line-height: 150%;
   padding: .5em 10px;
   font-size: 100%;
-  margin-bottom: 3em;
 }
 
 header[role=banner] h1 {
@@ -215,11 +214,7 @@ input[type=password] {
 /* ...twitter and facebook buttons */
 
 /* home page... */
-#people {
-  margin-top: 2em;
-}
-
-#people .h-card {
+#some-people .h-card {
   display: inline-block;
   width:   130px;
   height:  130px;
@@ -227,13 +222,13 @@ input[type=password] {
   position: relative;
 }
 
-#people .u-photo {
+#some-people .u-photo {
   width:   130px;
   height:  130px;
   display: block;
 }
 
-#people .p-name {
+#some-people .p-name {
   background: black;
   background: rgba(0,0,0,.5);
   color: white;
@@ -393,13 +388,13 @@ footer[role=contentinfo] {
 
 /* bigger screen... */
 @media screen and (min-width: 1000px) {
-  #people .h-card,
-  #people .u-photo {
+  #some-people .h-card,
+  #some-people .u-photo {
     width:  200px;
     height: 200px;
   }
 
-  #people .p-name {
+  #some-people .p-name {
     width: 180px;
   }
 }
