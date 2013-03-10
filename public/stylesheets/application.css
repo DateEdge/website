@@ -35,7 +35,6 @@ i { font-style: italic; }
 header[role=banner] {
   background: black;
   color: white;
-  overflow: hidden;
   line-height: 150%;
   padding: .5em 10px;
   font-size: 100%;
@@ -214,8 +213,42 @@ input[type=password] {
 /* ...Login with Facebook */
 /* ...twitter and facebook buttons */
 
+/* home page... */
+#people {
+  margin-top: 2em;
+}
+
+#people .h-card {
+  display: inline-block;
+  width:   130px;
+  height:  130px;
+  margin-bottom: 1em;
+  position: relative;
+}
+
+#people .u-photo {
+  display: block;
+}
+
+#people .p-name {
+  background: black;
+  background: rgba(0,0,0,.5);
+  color: white;
+  display: block;
+  font-weight: bold;
+  line-height: 1em;
+  font-size: 12px;
+  padding:   10px;
+  position: absolute;
+  text-decoration: none;
+  top: 0;
+  width: 110px;
+}
+/* ...home page */
+
 
 /* DANGER ZONE... */
+/* lovingly inspired by GitHub's Danger Zone™ */
 #danger-zone {
   margin-top: 7em;
   outline: 1px solid #c00;
@@ -279,7 +312,6 @@ footer[role=contentinfo] {
 /* iphone... */
 @media screen and (max-device-width: 480px) {
   input[type=submit] {
-/*    margin-top: 1em;*/
     width: 100%;
     display: block;
   }
@@ -331,7 +363,7 @@ footer[role=contentinfo] {
 }
 /* ...iphone landscape */
 
-
+/* retina display... */
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
   .twitter-sign-in-link,
   .facebook-sign-in-link,
@@ -345,3 +377,30 @@ footer[role=contentinfo] {
   .twitter-sign-in-link  { background-image: url(/images/buttons/nav/twitter@2x.png) ; }
   .facebook-sign-in-link { background-image: url(/images/buttons/nav/facebook@2x.png); }
 }
+/* ...retina display */
+
+/* ipad... */
+@media screen and (min-width: 768px) {
+  #about {
+    font-size: 200%;
+  }
+}
+/* ...ipad */
+
+
+/* bigger screen... */
+@media screen and (min-width: 1000px) {
+  header[role=banner] {
+  }
+
+  #people .h-card,
+  #people .u-photo {
+    width:  200px;
+    height: 200px;
+  }
+
+  #people .p-name {
+    width: 180px;
+  }
+}
+/* ...bigger screen */
