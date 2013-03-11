@@ -46,6 +46,7 @@ header[role=banner] {
   line-height: 150%;
   padding: .5em 10px;
   font-size: 100%;
+  overflow: hidden;
 }
 
 header[role=banner] h1 {
