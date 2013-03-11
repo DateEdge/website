@@ -1,7 +1,7 @@
 module ApplicationHelper
   def profile_incomplete?
     current_user &&
-    current_user.me_gender == "person" &&
+    current_user.me_gender  == "person" &&
     current_user.you_gender == "person" &&
     current_user.label_id.blank? &&
     current_user.diet_id.blank?
@@ -29,12 +29,11 @@ module ApplicationHelper
   end
 
   def button_to_twitter_sign_in
-    link_to "Sign in with Twitter",  "/auth/twitter", :class => "twitter_sign_in_button"
+    link_to "Twitter",   "/auth/twitter",  :class => "twitter_sign_in_button button black"
   end
 
   def button_to_facebook_sign_in
-    # link_to "Sign in with Facebook",  "/auth/facebook", :class => "facebook_sign_in_button"
-    '<a href="/auth/facebook" class="facebook_sign_in_button"><span>Login with <b>Facebook</b></span></a>'.html_safe
+    link_to "Facebook",  "/auth/facebook", :class => "facebook_sign_in_button button black"
   end
 
   def mine?

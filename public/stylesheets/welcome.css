@@ -2,7 +2,6 @@
 header[role=banner] {
   background: none;
   padding: 0;
-  margin-bottom: 1em;
 }
 
 header[role=banner] h1 {
@@ -32,6 +31,53 @@ header[role=banner] h2 {
   color: black;
 }
 
+/* twitter and facebook buttons container... */
+/* container... */
+.buttons {
+  margin: 2em 0;
+  padding: 0;
+  width: 100%;
+}
+
+.sign-in.buttons h3 {
+  font-size: 1.25em;
+  margin-bottom: .5em;
+  font-weight: bold;
+}
+
+.sign-in.buttons a {
+  margin-bottom: .5em;
+  display: block;
+  text-align: left;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+#conversation .reply-link,
+#photos .new-photo-link {
+  margin-top: 3em;
+  background: green;
+  color: white;
+  font-weight: bold;
+}
+/* ...container */
+
+/* Connect with Twitter... */
+.twitter_sign_in_button {
+  background-image: url();
+}
+/* ...Connect with Twitter */
+
+/* Login with Facebook... */
+.facebook_sign_in_button {
+  background-image: url();
+}
+
+/* ...Login with Facebook */
+/* ...twitter and facebook buttons */
+
+
+
 #some-people h2 {
   font-size: 150%;
   margin-bottom: .2em;
@@ -43,9 +89,38 @@ header[role=banner] h2 {
   padding: 0;
 }
 
-#some-people li {
-  display: inline;
+#some-people .h-card {
+  display: inline-block;
+  margin-bottom: 1em;
+  position: relative;
 }
+
+#some-people .u-photo {
+  display: block;
+}
+
+#some-people .h-card,
+#some-people .u-photo {
+  width:   97px;
+  height:  97px;
+}
+
+#some-people .p-name {
+  background: black;
+  background: rgba(0,0,0,.5);
+  color: white;
+  display: block;
+  font-weight: bold;
+  line-height: 1em;
+  font-size: 10px;
+  padding:   7.5px 5px;
+  position: absolute;
+  text-align: center;
+  text-decoration: none;
+  top: 0;
+  width: 87px; /*  #some-people .h-card's width - 10px */
+}
+
 
 #about {
   border-top: 1px solid #ddd;
@@ -57,28 +132,12 @@ header[role=banner] h2 {
   margin-bottom: 1em;
 }
 
-#some-people .more-people {
-  font-size: 2em;
-  font-weight: bold;
-}
-
-
-/* iphone... */
+/* iphone landscape... */
 @media screen and (max-device-width: 480px) {
   .buttons {
-    height: 100px;
   }
 }
-/* ...iphone */
-
-
-/* iphone portrait... */
-@media screen and (max-device-width: 480px) and (orientation:portrait) {
-  .facebook_button {
-    font-size: 22px;
-  }
-}
-/* ...iphone portrait */
+/* ...iphone landscape */
 
 
 /* iphone landscape... */
@@ -100,5 +159,35 @@ header[role=banner] h2 {
 }
 /* ...iphone landscape */
 
+/* ipad... */
+@media screen and (min-width: 768px) {
+  #some-people .h-card,
+  #some-people .u-photo {
+    width:  200px;
+    height: 200px;
+  }
+
+  #some-people .p-name {
+    font-size: 12px;
+    padding: 10px;
+    width: 180px;
+  }
+
+  #some-people .more-people {
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  #about {
+    font-size: 200%;
+  }
+
+  .sign-in.buttons a {
+    margin-bottom: 1em;
+    display: inline-block;
+    font-size: 2em;
+  }
+}
+/* ...ipad */
 
 /* ...welcome */
