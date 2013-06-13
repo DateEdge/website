@@ -1,6 +1,6 @@
 <h1>Add a photo to your profile</h1>
 
-<%= form_for @photo, :html => {:multipart => true} do |f| %>
+<%= form_for @photo, :html => { :multipart => true } do |f| %>
   <% if getting_started? %>
     <div id="getting-started">
       <p class="info">
@@ -10,7 +10,7 @@
       </p>
 
       <ul class="actions">
-        <li><%= link_to "Add Another", "#url", :class => "button green full" %></li>
+        <li><%= link_to "Add Another", "#url",  :class => "button green full" %></li>
         <li><%= link_to "No Thanks", root_path, :class => "button black full" %></li>
       </ul>
 
@@ -23,14 +23,14 @@
     </div>
   <% end %>
 
-  <%= f.label :remote_image_url, "Paste a URL", :id => "url" %>
-  <%= f.text_field :remote_image_url %>
+  <%= f.label     :remote_image_url, "Paste a URL", :id => "url" %>
+  <%= f.url_field :remote_image_url, :autocapitalize => "off", :autocorrect => "off" %>
 
-  <%= f.label :image, "or Select an Image" %>
+  <%= f.label      :image, "or Select an Image" %>
   <%= f.file_field :image %>
 
-  <%= f.label :caption, "Caption" %>
-  <%= f.text_area :caption, :rows => 5 %>
+  <%= f.label     :caption, "Caption" %>
+  <%= f.text_area :caption, :autocapitalize => "sentences" %>
 
   <%= f.submit "Upload", :disable_with => 'Uploading...', :class => "button black full" %>
 <% end %>

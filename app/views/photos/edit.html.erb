@@ -4,15 +4,15 @@
 
 <%= form_for @photo do |f| %>
   <%= f.label :caption, "Caption" %>
-  <%= f.text_area :caption, :rows => 5 %>
+  <%= f.text_area :caption, :autocapitalize => "sentences" %>
 
   <% unless @photo.avatar? %>
-  <table id="avatar">
-    <tr>
-    <td><%= f.check_box :avatar %></td>
-    <th><%= f.label :avatar, "Want to use this as your avatar?" %></th>
-    </tr>
-  </table>
+    <table id="avatar">
+      <tr>
+        <td><%= f.check_box :avatar %></td>
+        <th><%= f.label     :avatar, "Want to use this as your avatar?" %></th>
+      </tr>
+    </table>
   <% end %>
 
   <%= f.submit "Save Photo", :disable_with => "Saving&hellip;".html_safe, :class => "button black full" %>

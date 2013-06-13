@@ -1,7 +1,7 @@
 <%= form_for message do |f| %>
   <% if @conversation.new_record? %>
     <%= f.label :subject, "Subject" %>
-    <%= f.text_field :subject %>
+    <%= f.text_field :subject, :autocapitalize => "words" %>
   <% else %>
     <%= f.hidden_field :conversation_id %>
   <% end %>
@@ -9,7 +9,7 @@
   <%= f.hidden_field :recipient_id %>
   
   <%= f.label :body, "Body" %>
-  <%= f.text_area :body, :placeholder => "Say something nice and more than 'hey...'" %>
+  <%= f.text_area :body, :autocapitalize => "sentences" %>, :placeholder => "Say something nice and more than 'hey...'" %>
 
   <%= f.submit "Send", :disable_with => 'Sending...', :class => "button black full" %>
 <% end %>
