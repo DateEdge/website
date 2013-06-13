@@ -1,14 +1,14 @@
-<div class="person media">
+<div class="person media h-card vcard">
   <%= link_to_avatar(user, @avatar_size) %>
 
   <h1>
-    <b class="fn n">
+    <b class="p-name fn n">
       <%= link_to user.username, person_path(user.username) %>
     </b>
 
     <span>
       <% if user.age %>
-        (<%= user.age %>)
+        (<span class="p-x-age"><%= user.age %></span>)
       <% end %>
     </span>
   </h1>
@@ -16,12 +16,12 @@
   <h2>
     <%= link_to google_map_url(user) do %>
       <% unless user.city.blank? %>
-        <span class="locality"><%= user.city %></span>,
+        <span class="p-locality locality"><%= user.city %></span>,
       <% end %>
       <% unless user.state.blank? %>
-        <span class="region"><%= user.state %></span>,
+        <span class="p-region region"><%= user.state %></span>,
       <% end %>
-      <span class="country"><%= user.country %></span>
+      <span class="p-country country"><%= user.country %></span>
     <% end %>
   </h2>
 </div> <!-- .person -->
