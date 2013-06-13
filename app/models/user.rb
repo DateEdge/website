@@ -69,8 +69,12 @@ class User < ActiveRecord::Base
       u = create! do |user|
         user.providers << provider
         user.name             = auth["info"]["name"]
-        user.city             = location.split(",").first.strip
-        user.state            = State.where(:abbreviation => location.split(",").last.strip).first
+
+        unless location.blank?
+          user.city             = location.split(",").first.strip
+          user.state            = State.where(:abbreviation => location.split(",").last.strip).first
+        end
+
         user.username         = available_username(auth["info"]["nickname"])
         user.bio              = auth["info"]["description"]
         user.country          = Country.where(:abbreviation => "US").first
@@ -90,9 +94,6 @@ class User < ActiveRecord::Base
     end
 
     def create_for_facebook(auth)
-      require "pp"; pp auth
-      
-      # location = auth["extra"]["user_hash"]["location"]["name"]
       location = auth["info"]["location"]
 
       provider = Provider.new(:name => auth["provider"], :uid => auth['uid'])
@@ -100,20 +101,19 @@ class User < ActiveRecord::Base
       u = create! do |user|
         user.providers << provider
         user.name       = auth["info"]["name"]
+
         unless location.blank?
           user.city       = location.split(",").first.strip
           user.state      = State.where(:name => location.split(",").last.strip).first
         end
 
-        user.username   = available_username(auth["extra"]["user_hash"]["username"])
-        user.name       = auth["info"]["name"]
+        user.username   = available_username(auth["info"]["nickname"])
         user.email      = auth["info"]["email"]
-        user.bio        = auth["extra"]["user_hash"]["bio"]
+        user.bio        = auth["info"]["description"]
         user.country    = Country.where(:abbreviation => "US").first
-        user.me_gender  = auth["extra"]["user_hash"]["gender"]
+        user.me_gender  = auth["extra"]["raw_info"]["gender"]
         # user.url       = auth["user_info"]["urls"]["Website"]
         # user.url       = auth["user_info"]["urls"]["Facebook"]
-        # user.image     = auth["user_info"]["image"].sub(/type=square/, "type=large")
       end
 
       unless auth["user_info"]["image"].blank?
