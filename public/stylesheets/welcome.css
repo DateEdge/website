@@ -64,12 +64,14 @@ header[role=banner] h2 {
 
 /* Connect with Twitter... */
 .twitter_sign_in_button {
+/*  background: red;*/
   background-image: url();
 }
 /* ...Connect with Twitter */
 
 /* Login with Facebook... */
 .facebook_sign_in_button {
+/*  background: blue;*/
   background-image: url();
 }
 
