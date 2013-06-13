@@ -90,21 +90,24 @@ class User < ActiveRecord::Base
     end
 
     def create_for_facebook(auth)
-      location = auth["extra"]["user_hash"]["location"]["name"]
+      require "pp"; pp auth
+      
+      # location = auth["extra"]["user_hash"]["location"]["name"]
+      location = auth["info"]["location"]
 
       provider = Provider.new(:name => auth["provider"], :uid => auth['uid'])
 
       u = create! do |user|
         user.providers << provider
-        user.name       = auth["user_info"]["name"]
+        user.name       = auth["info"]["name"]
         unless location.blank?
           user.city       = location.split(",").first.strip
           user.state      = State.where(:name => location.split(",").last.strip).first
         end
 
         user.username   = available_username(auth["extra"]["user_hash"]["username"])
-        user.name       = auth["user_info"]["name"]
-        user.email      = auth["user_info"]["email"]
+        user.name       = auth["info"]["name"]
+        user.email      = auth["info"]["email"]
         user.bio        = auth["extra"]["user_hash"]["bio"]
         user.country    = Country.where(:abbreviation => "US").first
         user.me_gender  = auth["extra"]["user_hash"]["gender"]
