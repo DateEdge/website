@@ -112,33 +112,34 @@ label {
 
 label,
 input[type=text],
+input[type=email],
 input[type=password],
+textarea,
 select {
   margin-bottom: .5em;
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+  width: 100%;
 }
 
 textarea,
 input[type=text],
+input[type=email],
 input[type=password] {
   background: #eee;
   color: #666;
+  padding: 5px;
+  margin: 0;
+  border-radius: 0;
 }
 
 textarea:focus,
 input[type=text]:focus,
+input[type=email]:focus,
 input[type=password]:focus {
   background: white;
   color: black;
-}
-
-textarea,
-input[type=text],
-input[type=password] {
-  padding: 5px;
-  margin: 0;
-  -webkit-border-radius: 5px;
-  -moz-border-radius:    5px;
-  border-radius:         5px;
 }
 /* ...forms */
 
@@ -194,13 +195,19 @@ footer[role=contentinfo] {
 }
 /* ...site footer */
 
-/* override native rounded form elements... */
-/*input[type=email],*/
+/* override native form styles... */
 input[type=upload],
 input[type=submit],
 button {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
+}
+
+input[type=email] {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+  width: 100%;
 }
 /* ...override native rounded form elements */
 

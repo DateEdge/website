@@ -8,13 +8,13 @@
 <%= @user.errors.full_messages.to_sentence %>
 
 <%= form_for @user, :url => user_create_path, :method => :post do |f| %>
-  <%= f.label      :username %>
-  <%= f.text_field :username %>
+  <%= f.label       :username %>
+  <%= f.text_field  :username, :autocapitalize => "off", :autocorrect => "off" %>
 
-  <%= f.label      :email %>
-  <%= f.text_field :email, :type => "email", :autocapitalize => "off" %>
+  <%= f.label       :email %>
+  <%= f.email_field :email,    :autocapitalize => "off", :autocorrect => "off" %>
 
-  <%= f.label      :birthday %>
+  <%= f.label       :birthday %>
   <%= birthday_select_tag(f) %>
 
   <%= f.submit "Submit", :disable_with => "Submitting...", :class => "button black full" %>
