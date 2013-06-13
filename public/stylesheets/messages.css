@@ -82,15 +82,9 @@
 }
 
 #conversation .message {
-  background: #eee;
-  margin-bottom: 1em;
-  padding: 0;
-}
-
-#conversation .message.from-me {
-  background: white;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 20px;
+  margin-bottom:  2em;
+  padding-bottom: 2em;
+  border-bottom: 1px solid #efefef;
 }
 
 #conversation .message-body p {
