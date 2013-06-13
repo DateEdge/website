@@ -19,6 +19,7 @@ class BirthdayValidator < ActiveModel::EachValidator
 end
 
 class User < ActiveRecord::Base
+  # TODO FIXME preventing saving "/settings" form
   attr_protected :username, :email
   belongs_to :country
   belongs_to :diet
