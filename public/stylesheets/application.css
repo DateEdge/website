@@ -194,6 +194,15 @@ footer[role=contentinfo] {
 }
 /* ...site footer */
 
+/* override native rounded form elements... */
+/*input[type=email],*/
+input[type=upload],
+input[type=submit],
+button {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+/* ...override native rounded form elements */
 
 
 /* iphone... */
