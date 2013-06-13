@@ -1,9 +1,4 @@
 /* TEMP */
-.conversation img {
-  width:  40px;
-  height: 40px;
-}
-
 #new_message textarea {
   height: 6em;
   margin-bottom: 1em;
