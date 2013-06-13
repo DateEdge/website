@@ -62,6 +62,12 @@ class User < ActiveRecord::Base
     end
 
     def create_for_twitter(auth)
+      puts "*" * 80
+      puts "this is here for debugging mysterious signup bugs"
+      require "pp"; pp auth
+      puts "*" * 80
+
+
       location = auth["info"]["location"]
 
       provider = Provider.new(:name => auth["provider"], :uid => auth['uid'])
@@ -94,6 +100,12 @@ class User < ActiveRecord::Base
     end
 
     def create_for_facebook(auth)
+      puts "*" * 80
+      puts "this is here for debugging mysterious signup bugs"
+      require "pp"; pp auth
+      puts "*" * 80
+
+
       location = auth["info"]["location"]
 
       provider = Provider.new(:name => auth["provider"], :uid => auth['uid'])
