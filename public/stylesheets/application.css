@@ -40,8 +40,11 @@ i { font-style: italic; }
   list-style-type: none;
 }
 
-.actions li:first-child { float: left;  width: 49%; }
-.actions li:last-child  { float: right; width: 49%; }
+.actions li form,
+.actions li .button,
+.actions li {
+  display: inline-block;
+}
 /* ...buttons */
 
 
