@@ -9,7 +9,6 @@
   text-decoration: none;
   font: 14px/150% Helvetica, Arial, sans-serif;
   padding: .5em 1em .55em;
-  box-shadow: 0 0 5px rgba(0,0,0,.2);
   text-decoration: none;
   border: none;
 }
@@ -44,10 +43,10 @@
   background: #999;
 }
 
-.white.disabled:hover,
-.white.disabled:active,
+.white:hover,
+.white:active,
 .white {
-  color: #606060 !important;
+  color: #999 !important;
   outline: solid 1px #eee;
   background: #fff;
 }
