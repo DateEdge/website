@@ -29,11 +29,11 @@ module ApplicationHelper
   end
 
   def button_to_twitter_sign_in
-    link_to "Twitter",   "/auth/twitter",  :class => "twitter_sign_in_button button black"
+    link_to "Twitter",   "/auth/twitter",  :class => "twitter-sign-in-button button black"
   end
 
   def button_to_facebook_sign_in
-    link_to "Facebook",  "/auth/facebook", :class => "facebook_sign_in_button button black"
+    link_to "Facebook",  "/auth/facebook", :class => "facebook-sign-in-button button black"
   end
 
   def mine?

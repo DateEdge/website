@@ -52,30 +52,19 @@ header[role=banner] h2 {
   background-repeat: no-repeat;
   background-position: left center;
 }
-
-#conversation .reply-link,
-#photos .new-photo-link {
-  margin-top: 3em;
-  background: green;
-  color: white;
-  font-weight: bold;
-}
 /* ...container */
 
-/* Connect with Twitter... */
-.twitter_sign_in_button {
-/*  background: red;*/
-  background-image: url();
-}
-/* ...Connect with Twitter */
-
-/* Login with Facebook... */
-.facebook_sign_in_button {
-/*  background: blue;*/
-  background-image: url();
+.twitter-sign-in-button,
+.facebook-sign-in-button {
+  padding-left: 42px;
+  height: 32px;
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
 }
 
-/* ...Login with Facebook */
+.twitter-sign-in-button  { background-image: url(/images/twitter@2x.png);  }
+.facebook-sign-in-button { background-image: url(/images/facebook@2x.png); }
 /* ...twitter and facebook buttons */
 
 
@@ -135,14 +124,6 @@ header[role=banner] h2 {
 }
 
 /* iphone landscape... */
-@media screen and (max-device-width: 480px) {
-  .buttons {
-  }
-}
-/* ...iphone landscape */
-
-
-/* iphone landscape... */
 @media screen and (max-device-width: 480px) and (orientation:landscape) {
   header[role=banner] h2 {
     font-size: 160%;
@@ -190,6 +171,19 @@ header[role=banner] h2 {
     font-size: 2em;
   }
 }
+
+/* retina display... */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .twitter-sign-in-button,
+  .facebook-sign-in-button {
+    background-size: 33px 32px;
+  }
+
+  .twitter-sign-in-button  { background-image: url(/images/twitter@4x.png);  }
+  .facebook-sign-in-button { background-image: url(/images/facebook@4x.png); }
+}
+/* ...retina display */
+
 /* ...ipad */
 
 /* ...welcome */
