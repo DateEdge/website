@@ -74,19 +74,6 @@ section[role=main] h1 {
 }
 /* ...photo settings */
 
-/* iphone... */
-@media screen and (max-device-width: 480px) {
-  .instructions {
-    display: block !important;
-  }
-
-  input#photo_image,
-  label[for='photo_image'] {
-    display: none;
-  }
-}
-/* ...iphone */
-
 /* iphone portrait... */
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
   #settings textarea,
