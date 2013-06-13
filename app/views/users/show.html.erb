@@ -29,7 +29,7 @@
 </h3>
 
 <% if @user.bio %>
-  <section id="bio" class="note">
+  <div id="bio" class="note">
     <div class="short" style="display:none">
       <%= simple_format "<b>BIO</b>: ".html_safe + truncate(@user.bio, :length => 150) %>
       <% if @user.bio.length > 150 %>
@@ -41,10 +41,10 @@
       <%= simple_format "<b>BIO</b>: " + @user.bio %>
       <%= link_to "Less", person_path(@user.username, :anchor => "bio"), :class => "truncate", :style => "display:none" %>
     </div> <!-- /div.long -->
-  </section>
+  </div>
 <% end %>
 
-<section id="photos">
+<div id="photos">
   <ul>
     <% @user.photos.each do |photo| %>
       <li>
@@ -54,15 +54,15 @@
         <% if mine? %>
           <div class="actions">
             <ul>
-              <li><%= link_to "Edit Photo or Caption", edit_photo_path(photo), :class => "button white small" %></li>
+              <li><%= link_to "Edit Photo or Caption", edit_photo_path(photo), :class => "button white" %></li>
               <li>
                 <%= form_for photo do |f| %>
                   <%= f.hidden_field :avatar, :value => true %>
-                  <%= f.submit "Use as Avatar", :class => "button white small" %>
+                  <%= f.submit "Use as Avatar", :class => "button white" %>
                 <% end %>
               </li>
             </ul>
-          </div> <!-- /div.actions -->
+          </div> <!-- .actions -->
         <% end %>
       </li>
     <% end %>
@@ -71,4 +71,4 @@
   <% if mine? %>
     <%= link_to "Upload a New Photo", new_photo_path, :class => "button green full" %>
   <% end %>
-</section>
+</div>
