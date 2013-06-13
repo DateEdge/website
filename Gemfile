@@ -6,7 +6,6 @@ group :development do
   gem "foreman",          "~> 0.61.0"
   gem "growl",            "~> 1.0.3"
   gem "guard-rspec",      "~> 2.4.0"
-  # gem "rb-fsevent"
 end
 
 group :test, :development do
@@ -20,7 +19,7 @@ end
 
 group :production do
   gem "pg",               "~> 0.14.1"
-  gem "puma",             "~> 1.6.3"
+  gem "puma",             "~> 2.0.1"
 end
 
 gem "rails",              "~> 3.2.11"
