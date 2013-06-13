@@ -1,18 +1,18 @@
 <% if @crushers && @crushers.any? %>
-  <section id="crushers">
+  <div id="crushers">
     <h1>Crushers</h1>
     <%= render @crushers %>
-  </section>
+  </div>
 <% end %>
 
 <% if @crushes && @crushes.any? %>
-  <section id="crushes">
+  <div id="crushes">
     <h1>Crushes</h1>
     <%= render @crushes %>
-  </section>
+  </div>
 <% end %>
 
-<section id="everyone">
+<div id="everyone">
   <h1>Everyone</h1>
   <%= render @users %>
-</section>
+</div>
