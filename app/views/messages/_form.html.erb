@@ -9,7 +9,7 @@
   <%= f.hidden_field :recipient_id %>
   
   <%= f.label :body, "Body" %>
-  <%= f.text_area :body, :autocapitalize => "sentences" %>, :placeholder => "Say something nice and more than 'hey...'" %>
+  <%= f.text_area :body, :autocapitalize => "sentences", :placeholder => "Say something nice and more than &lsquo;hey...&rsquo;".html_safe %>
 
   <%= f.submit "Send", :disable_with => 'Sending...', :class => "button black full" %>
 <% end %>

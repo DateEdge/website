@@ -19,6 +19,14 @@ i { font-style: italic; }
 .notice a { text-decoration: none; }
 /* ...base */
 
+/* media block from oocss... */
+/* https://github.com/stubbornella/oocss/blob/master/core/media/media.css */
+.media          { overflow: hidden; *overflow: visible; zoom: 1; }
+.media .img     { float: left; margin: 0 10px 0 0; }
+.media .img img { display: block; }
+/* ...media block from oocss */
+
+
 /* buttons... */
 .actions {
   overflow: hidden;
