@@ -152,10 +152,6 @@ input[type=password] {
 
 #danger-zone h2 {
   background: #c00;
-  background: #d81b21;
-  background: -webkit-gradient(linear, left top, left bottom, from(#ed1c24), to(#aa1317));
-  background: -moz-linear-gradient(top,  #ed1c24,  #aa1317);
-  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
   padding: .5em;
   color: white;
   font-weight: bold;
@@ -172,11 +168,6 @@ input[type=password] {
 
 #danger-zone b {
   color: #c00;
-}
-
-#danger-zone input {
-  float: right;
-  display: inline-block;
 }
 /* ...DANGER ZONE */
 
