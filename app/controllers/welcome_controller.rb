@@ -9,6 +9,7 @@ class WelcomeController < ApplicationController
       @crushers = current_user.crushers
       @crushes  = current_user.crushes
 
+      @slug     = "people"
       return render("/users/index")
     end
 
