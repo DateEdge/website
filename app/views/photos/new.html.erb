@@ -17,7 +17,7 @@
       <%= image_tag current_user.photos.first.image_url(:small).to_s %>
 
       <p class="instructions notice" style="display: none;">
-        <b>From your phone/iPad, paste in a URL.</b><br />
+        <b>From your phone or tablet, paste in a URL.</b><br />
         Use your desktop to upload a file.
       </p>
     </div>
@@ -32,5 +32,5 @@
   <%= f.label :caption, "Caption" %>
   <%= f.text_area :caption, :rows => 5 %>
 
-  <%= f.submit "Upload", :disable_with => 'Uploading...', :class => "white button full" %>
+  <%= f.submit "Upload", :disable_with => 'Uploading...', :class => "button black full" %>
 <% end %>
