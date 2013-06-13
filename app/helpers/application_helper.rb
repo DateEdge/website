@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def link_to_avatar(user, avatar_size=nil)
-    link_to image_tag(user.avatar(avatar_size), :class => "u-photo", :alt => user.username),
+    link_to image_tag(user.avatar(avatar_size), :class => "u-photo img", :alt => user.username),
             person_path(user.username)
   end
 
