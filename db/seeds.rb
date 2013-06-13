@@ -12,7 +12,7 @@ puts "Adding diets"
   puts "diet:  #{diet}"
 end
 
-# __END__
+__END__
 
 
 if Rails.env.development?
