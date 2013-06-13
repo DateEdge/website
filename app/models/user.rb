@@ -65,27 +65,26 @@ class User < ActiveRecord::Base
     end
 
     def create_for_twitter(auth)
-      location = auth["extra"]["user_hash"]["location"]
+      location = auth["info"]["location"]
 
       provider = Provider.new(:name => auth["provider"], :uid => auth['uid'])
 
       u = create! do |user|
         user.providers << provider
-        user.name             = auth["user_info"]["name"]
+        user.name             = auth["info"]["name"]
         user.city             = location.split(",").first.strip
         user.state            = State.where(:abbreviation => location.split(",").last.strip).first
-        user.username         = available_username(auth["extra"]["user_hash"]["screen_name"])
-        user.name             = auth["user_info"]["name"]
-        user.bio              = auth["user_info"]["description"]
+        user.username         = available_username(auth["info"]["nickname"])
+        user.bio              = auth["info"]["description"]
         user.country          = Country.where(:abbreviation => "US").first
 
         # v2
-        # user.url       = auth["user_info"]["urls"]["Website"]
-        # user.url       = auth["user_info"]["urls"]["Twitter"]
+        # user.url       = auth["info"]["urls"]["Website"]
+        # user.url       = auth["info"]["urls"]["Twitter"]
       end
-      unless auth["user_info"]["image"].blank?
+      unless auth["info"]["image"].blank?
         begin
-          u.photos.create!(:remote_image_url => auth["user_info"]["image"].sub(/_normal\./, "."), :avatar => true)
+          u.photos.create!(:remote_image_url => auth["info"]["image"].sub(/_normal\./, "."), :avatar => true)
         rescue OpenURI::HTTPError
         end
       end
