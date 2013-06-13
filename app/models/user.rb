@@ -1,9 +1,5 @@
 class UsernameValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    if value && USERNAME_BLACKLIST.include?(value.downcase)
-      record.errors[attribute] << "#{value} is not an allowed username."
-    end
-
     if record.available_username(value).nil?
       record.errors[attribute] << "#{value} has already been taken"
     end
