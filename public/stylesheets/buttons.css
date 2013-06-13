@@ -3,7 +3,7 @@
   zoom: 1;
   *display: inline;
   vertical-align: baseline;
-  margin: 10px 0;
+  margin: 0;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -21,15 +21,15 @@
   top: 0;
 }
 
-.button:active {
-  position: relative;
-  top: 1px;
-}
-
 .button.full {
+  border: none;
   padding: .55em 0;
   display: block;
   width: 100%;
+}
+
+.button.full.white {
+  outline: 1px solid #eee;
 }
 
 
@@ -47,7 +47,7 @@
 .white:active,
 .white {
   color: #999 !important;
-  outline: solid 1px #eee;
+  border: solid 1px #eee;
   background: #fff;
 }
 

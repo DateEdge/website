@@ -90,7 +90,7 @@
 #conversation .message {
   background: #eee;
   margin-bottom: 1em;
-  padding: 10px;
+  padding: 0;
 }
 
 #conversation .message.from-me {
@@ -101,10 +101,6 @@
 
 #conversation .message-body p {
   margin-top: 1em;
-}
-
-#reply {
-  padding: 10px;
 }
 
 #reply h1 {
@@ -120,6 +116,7 @@
 #reply textarea {
   height: 6em;
   margin-bottom: 1em;
+  width: 96%;
 }
 /* ...inbox */
 
