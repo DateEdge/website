@@ -18,8 +18,8 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    @title = "Photo Editor on Date Edge"
     @slug  = "settings"
+    @title = "Photo Editor on Date Edge"
     @photo = Photo.find(params[:id])
 
     unless @photo.user == current_user
