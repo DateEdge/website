@@ -11,6 +11,10 @@
   <% end %>
 
   <section role="main">
+    <% unless logged_in? || controller_name == "welcome" %>
+      <%= render :partial => "/shared/social_posting_info" %>
+    <% end %>
+
     <% if profile_incomplete? %>
       <p class="notice">
         <b><%= link_to "Update your profile for great success &rarr;".html_safe, settings_path %></b>
