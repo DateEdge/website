@@ -1,10 +1,9 @@
 Dxe::Application.routes.draw do
-
   root :to => "welcome#index"
 
-  resources :users,   :only => [:update, :destroy]
-  resources :photos
-  resources :crushes, :only => [:create, :destroy]
+  resources :users,   :only   => [:update, :destroy]
+  resources :photos,  :except => [:index, :show]
+  resources :crushes, :only   => [:create, :destroy]
 
   resources :conversations, :only => [:index, :show]
   resources :messages,      :only => [:create, :new]
@@ -17,5 +16,5 @@ Dxe::Application.routes.draw do
   match "/oops"       => 'users#create', :as => :user_create
   match "/settings"   => "users#edit",   :as => :settings
   match "/people"     => "users#index",  :as => :people
-  match "/@:username" => "users#show",  :as => :person
+  match "/@:username" => "users#show",   :as => :person
 end
