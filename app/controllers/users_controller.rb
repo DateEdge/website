@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @title = "Settings on Date Edge"
+    @title = "Your Settings on Date Edge"
     @slug  = "settings"
     @user  = current_user
   end
