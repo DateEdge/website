@@ -63,8 +63,8 @@ header[role=banner] h2 {
   box-sizing:         border-box;
 }
 
-.twitter-sign-in-button  { background-image: url(/images/twitter@2x.png);  }
-.facebook-sign-in-button { background-image: url(/images/facebook@2x.png); }
+.twitter-sign-in-button  { background-image: image-url("twitter@2x.png");  }
+.facebook-sign-in-button { background-image: image-url("facebook@2x.png"); }
 /* ...twitter and facebook buttons */
 
 
@@ -149,8 +149,8 @@ header[role=banner] h2 {
     background-size: 33px 32px;
   }
 
-  .twitter-sign-in-button  { background-image: url(/images/twitter@4x.png);  }
-  .facebook-sign-in-button { background-image: url(/images/facebook@4x.png); }
+  .twitter-sign-in-button  { background-image: image-url("twitter@4x.png");  }
+  .facebook-sign-in-button { background-image: image-url("facebook@4x.png"); }
 }
 /* ...retina phone display */
 
@@ -189,8 +189,8 @@ header[role=banner] h2 {
     padding-left: 82px;
   }
 
-  .twitter-sign-in-button  { background-image: url(/images/twitter@4x.png);  }
-  .facebook-sign-in-button { background-image: url(/images/facebook@4x.png); }
+  .twitter-sign-in-button  { background-image: image-url("twitter@4x.png");  }
+  .facebook-sign-in-button { background-image: image-url("facebook@4x.png"); }
 }
 
 /* retina ipad display... */
@@ -200,8 +200,8 @@ header[role=banner] h2 {
     background-size: 66px 64px;
   }
 
-  .twitter-sign-in-button  { background-image: url(/images/twitter@8x.png);  }
-  .facebook-sign-in-button { background-image: url(/images/facebook@8x.png); }
+  .twitter-sign-in-button  { background-image: image-url("twitter@8x.png");  }
+  .facebook-sign-in-button { background-image: image-url("facebook@8x.png"); }
 }
 /* ...retina ipad display */
 
