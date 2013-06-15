@@ -1,103 +1,112 @@
-.note {
-  color: #999;
-  margin-top: 1em;
-}
+#settings {
+  .note {
+    color: #999;
+    margin-top: 1em;
+  }
 
-.note + .note {
-  margin-bottom: 3em;
-}
+  .note + .note {
+    margin-bottom: 3em;
+  }
 
-/* form... */
-textarea {
-  height: 8em;
-}
+  /* form... */
+  textarea {
+    height: 8em;
+  }
 
-.edit_user input[type=submit] {
-  margin-top: 1em;
-}
+  .edit_user input[type=submit] {
+    margin-top: 1em;
+  }
 
-/* my/desired labels... */
-table {
-  width: 100%;
-}
+  /* my/desired labels... */
+  table {
+    width: 100%;
+  }
 
-th label,
-td label {
-  margin: 0;
-  text-align: left;
-  font-weight: normal;
-}
+  th label,
+  td label {
+    margin: 0;
+    text-align: left;
+    font-weight: normal;
+  }
 
-td {
-  width: 1.75em;
-}
+  td {
+    width: 1.75em;
+  }
 
-th, td {
-  padding: 0 0 .5em 0;
-}
-/* ...my/desired labels */
-/* ...form */
+  th, td {
+    padding: 0 0 .5em 0;
+  }
+  /* ...my/desired labels */
+  /* ...form */
 
-/* photo settings... */
-section[role=main] h1 {
-  font-weight: bold;
-  font-size: 1.5em;
-  letter-spacing: -.04em;
-}
+  /* photo settings... */
+  section[role=main] h1 {
+    font-weight: bold;
+    font-size: 1.5em;
+    letter-spacing: -.04em;
+  }
 
-#preview {
-  margin-top: .5em;
-}
+  #preview {
+    margin-top: .5em;
+  }
 
-#preview img {
-  max-width: 100%;
-}
+  #preview img {
+    max-width: 100%;
+  }
 
-#avatar {
-  margin-top: 1em;
-}
+  #avatar {
+    margin-top: 1em;
+  }
 
-#avatar td {
-  width: auto;
-}
+  #avatar td {
+    width: auto;
+  }
 
-#photo_submit {
-  margin-top: 1em;
-}
+  #photo_submit {
+    margin-top: 1em;
+  }
 
-#getting-started .info {
-  margin-top: 1em;
-}
+  #getting-started .info {
+    margin-top: 1em;
+  }
 
-#getting-started img {
-  margin-bottom: 1em;
+  #getting-started img {
+    margin-bottom: 1em;
+  }
+  /* ...photo settings */
 }
-/* ...photo settings */
+/* #settings */
 
 /* iphone portrait... */
 @media screen and (max-device-width: 480px) and (orientation:portrait) {
-  #settings textarea,
-  #settings input[type=text],
-  #settings input[type=password] {
-    width: 288px;
-  }
+  #settings {
+    #settings textarea,
+    #settings input[type=text],
+    #settings input[type=password] {
+      width: 288px;
+    }
 
-  #settings select {
-    width: 300px;
+    #settings select {
+      width: 300px;
+    }
   }
+  /* ...iphone portrait */
 }
-/* ...iphone portrait */
+/* #settings */
 
 /* iphone landscape... */
 @media screen and (max-device-width: 480px) and (orientation:landscape) {
-  #settings textarea,
-  #settings input[type=text],
-  #settings input[type=password] {
-    width: 448px;
-  }
+  #settings {
+    #settings textarea,
+    #settings input[type=text],
+    #settings input[type=password] {
+      width: 448px;
+    }
 
-  #settings select {
-    width: 460px;
+    #settings select {
+      width: 460px;
+    }
   }
+  /* ...iphone landscape */
 }
-/* ...iphone landscape */
+/* #settings */
