@@ -10,6 +10,10 @@
     <%= render :partial => '/shared/header' %>
   <% end %>
 
+<div class="error">
+  <h1>I'm aware of the problem and working on it now. Sorry.</h1>
+</div> <!-- /div.error -->
+
   <section role="main">
     <% unless logged_in? || controller_name == "welcome" %>
       <%= render :partial => "/shared/social_posting_info" %>
