@@ -48,6 +48,12 @@
   <ul>
     <% @user.photos.each do |photo| %>
       <li>
+
+        <% puts "*" * 80 %>
+        <% puts photo.image_url(:large).to_s %>
+        <% puts "*" * 80 %>
+        <p><%= photo.image_url(:large).to_s %></p>
+
         <%= image_tag photo.image_url(:large).to_s %>
         <p class="caption"><%= simple_format photo.caption %></p>
 
