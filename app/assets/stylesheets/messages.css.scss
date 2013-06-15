@@ -1,103 +1,107 @@
-/* TEMP */
-#new_message textarea {
-  height: 6em;
-  margin-bottom: 1em;
-}
+#messages {
 
-.conversations {
-  margin: 0;
-  padding: 0;
-}
+  /* TEMP */
+  #new_message textarea {
+    height: 6em;
+    margin-bottom: 1em;
+  }
 
-.conversation {
-  list-style-type: none;
-  opacity: 0.5;
-  margin: 0 0 10px 0;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
-}
+  .conversations {
+    margin: 0;
+    padding: 0;
+  }
 
-.conversation a {
-  color: black;
-  text-decoration: none;
-}
+  .conversation {
+    list-style-type: none;
+    opacity: 0.5;
+    margin: 0 0 10px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
 
-.message-counterpart {
-  color: gray;
-}
+  .conversation a {
+    color: black;
+    text-decoration: none;
+  }
 
-.message-subject {
-  font-weight: bold;
-  display: block;
-}
+  .message-counterpart {
+    color: gray;
+  }
 
-.unread {
-  background: #eee;
-  opacity: 1;
-}
+  .message-subject {
+    font-weight: bold;
+    display: block;
+  }
 
-/* new message... */
-#message {
-  font-size: 1.5em;
-}
+  .unread {
+    background: #eee;
+    opacity: 1;
+  }
 
-#message span {
-  display: block;
-  font-weight: bold;
-}
+  /* new message... */
+  #message {
+    font-size: 1.5em;
+  }
 
-#message img {
-  width:  16px;
-  height: 16px;
-  display: inline-block;
-  margin-bottom: -3px;
-}
-/* ...new message */
+  #message span {
+    display: block;
+    font-weight: bold;
+  }
 
-/* inbox... */
-#conversation hgroup {
-  margin-bottom: 1em;
-}
+  #message img {
+    width:  16px;
+    height: 16px;
+    display: inline-block;
+    margin-bottom: -3px;
+  }
+  /* ...new message */
 
-#conversation .subject {
-  font-weight: bold;
-  font-size: 2em;
-}
+  /* inbox... */
+  #conversation hgroup {
+    margin-bottom: 1em;
+  }
 
-#conversation .message,
-#conversation .messages {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
+  #conversation .subject {
+    font-weight: bold;
+    font-size: 2em;
+  }
 
-#conversation .message .person {
-  margin-bottom: 1em;
-  overflow: hidden;
-}
+  #conversation .message,
+  #conversation .messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
 
-#conversation .message {
-  margin-bottom:  2em;
-  padding-bottom: 2em;
-  border-bottom: 1px solid #efefef;
-}
+  #conversation .message .person {
+    margin-bottom: 1em;
+    overflow: hidden;
+  }
 
-#conversation .message-body p {
-  margin-top: 1em;
-}
+  #conversation .message {
+    margin-bottom:  2em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid #efefef;
+  }
 
-#reply h1 {
-  font-weight: bold;
-  font-size: 1.5em;
-  margin-bottom: .5em;
-}
+  #conversation .message-body p {
+    margin-top: 1em;
+  }
 
-#reply label {
-  display: none;
-}
+  #reply h1 {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: .5em;
+  }
 
-#reply textarea {
-  height: 6em;
-  margin-bottom: 1em;
+  #reply label {
+    display: none;
+  }
+
+  #reply textarea {
+    height: 6em;
+    margin-bottom: 1em;
+  }
+  /* ...inbox */
 }
-/* ...inbox */
+/* #messages */

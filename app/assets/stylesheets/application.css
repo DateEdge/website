@@ -1,10 +1,4 @@
 /*
 *= require_self
-*= require base
-*= require shared
-*= require buttons
-*= require welcome
-*= require people
-*= require settings
+*= require_tree .
 */
-
