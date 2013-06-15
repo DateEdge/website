@@ -132,12 +132,12 @@ header[role=banner] h2 {
 
   #some-people .h-card,
   #some-people .u-photo {
-    width:   112px;
-    height:  112px;
+    width:   134px;
+    height:  134px;
   }
 
   #some-people .p-name {
-    width: 102px; /*  #some-people .h-card's width - 10px */
+    width: 124px; /*  #some-people .h-card's width - 10px */
   }
 }
 /* ...iphone landscape */
@@ -158,14 +158,14 @@ header[role=banner] h2 {
 @media screen and (min-width: 768px) {
   #some-people .h-card,
   #some-people .u-photo {
-    width:  200px;
-    height: 200px;
+    width:  184px;
+    height: 184px;
   }
 
   #some-people .p-name {
     font-size: 12px;
-    padding: 10px;
-    width: 180px;
+    padding:   10px;
+    width:     164px;
   }
 
   #some-people .more-people {
@@ -193,7 +193,7 @@ header[role=banner] h2 {
   .facebook-sign-in-button { background-image: url(/images/facebook@4x.png); }
 }
 
-/* retina ipad (and up) display... */
+/* retina ipad display... */
 @media screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
   .twitter-sign-in-button,
   .facebook-sign-in-button {
@@ -203,8 +203,23 @@ header[role=banner] h2 {
   .twitter-sign-in-button  { background-image: url(/images/twitter@8x.png);  }
   .facebook-sign-in-button { background-image: url(/images/facebook@8x.png); }
 }
+/* ...retina ipad display */
 
-/* ...retina ipad (and up) display */
+/* ipad landscape... */
+@media screen and (min-width: 1024px) {
+  #some-people .h-card,
+  #some-people .u-photo {
+    width:  164px;
+    height: 164px;
+  }
+
+  #some-people .p-name {
+    font-size: 12px;
+    padding:   10px;
+    width:     144px;
+  }
+}
+/* ...ipad landscape */
 /* ...ipad */
 
 /* ...welcome */
