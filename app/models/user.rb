@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   scope :secret, joins(:crushes).where('crushes.secret = "true"')
   scope :without, lambda{|user| where('id != ?', user.id) }
 
-  validates :username, :presence => { :on => :update }, :length => { :minimum => 1, :maximum => 100 }
+  validates :username, :presence => { :on => :update }, :length => { :minimum => 1, :maximum => 100 }, :format => /[\w]+/
   validates :name,     :presence => true
   validates :email,    :presence => { :on => :update }
   validates :birthday, :birthday => { :on => :update }
