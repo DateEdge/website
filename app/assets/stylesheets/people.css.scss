@@ -1,3 +1,4 @@
+#people {
 #crushers {
   margin-top: .5em;
 }
@@ -91,10 +92,13 @@ input[type=submit].secondary.clicker {
   margin-right: 5px;
 }
 /* ...profile actions */
+}
+/* #people */
 
 /* iphone... */
 @media screen and (max-device-width: 480px) {
-  input[type=submit].crush.clicker {
+#people {
+    input[type=submit].crush.clicker {
     display: inline-block;
   }
 
@@ -109,3 +113,5 @@ input[type=submit].secondary.clicker {
   }
 }
 /* ...iphone */
+}
+/* #people */
