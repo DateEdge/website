@@ -142,6 +142,18 @@ header[role=banner] h2 {
 }
 /* ...iphone landscape */
 
+/* retina phone display... */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .twitter-sign-in-button,
+  .facebook-sign-in-button {
+    background-size: 33px 32px;
+  }
+
+  .twitter-sign-in-button  { background-image: url(/images/twitter@4x.png);  }
+  .facebook-sign-in-button { background-image: url(/images/facebook@4x.png); }
+}
+/* ...retina phone display */
+
 /* ipad... */
 @media screen and (min-width: 768px) {
   #some-people .h-card,
@@ -181,18 +193,18 @@ header[role=banner] h2 {
   .facebook-sign-in-button { background-image: url(/images/facebook@4x.png); }
 }
 
-/* retina display... */
-@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+/* retina ipad (and up) display... */
+@media screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
   .twitter-sign-in-button,
   .facebook-sign-in-button {
-    background-size: 33px 32px;
+    background-size: 66px 64px;
   }
 
-  .twitter-sign-in-button  { background-image: url(/images/twitter@4x.png);  }
-  .facebook-sign-in-button { background-image: url(/images/facebook@4x.png); }
+  .twitter-sign-in-button  { background-image: url(/images/twitter@8x.png);  }
+  .facebook-sign-in-button { background-image: url(/images/facebook@8x.png); }
 }
-/* ...retina display */
 
+/* ...retina ipad (and up) display */
 /* ...ipad */
 
 /* ...welcome */
