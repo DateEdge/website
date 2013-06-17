@@ -1,1 +1,1 @@
-rvm use 1.9.3@dxe --create
+rvm use rbx-d19@dxe --create
