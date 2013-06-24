@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
         # user.url       = auth["user_info"]["urls"]["Facebook"]
       end
 
-      unless auth["user_info"]["image"].blank?
+      if auth.try(:[], "user_info").try(:[], "image")
         u.photos.create!(:remote_image_url => auth["user_info"]["image"].sub(/type=square/, "type=large"), :avatar => true)
       end
       u
