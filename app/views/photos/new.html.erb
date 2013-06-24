@@ -3,18 +3,20 @@
 <%= form_for @photo, :html => { :multipart => true } do |f| %>
   <% if getting_started? %>
     <div id="getting-started">
-      <p class="info">
-        We got this photo from
-        <b><%= @photo.user.providers.first.name.capitalize %></b>.<br />
-        You can add more photos below.
-      </p>
+      
+      <% if current_user.photos.any? %>
+        <p class="info">
+          We got this photo from
+          <b><%= current_user.providers.first.name.capitalize %></b>.<br />
+          You can add more photos below.
+        </p>
 
-      <ul class="actions">
-        <li><%= link_to "Add Another", "#url",  :class => "button green full" %></li>
-        <li><%= link_to "No Thanks", root_path, :class => "button black full" %></li>
-      </ul>
-
-      <%= image_tag current_user.photos.first.image_url(:small).to_s %>
+        <ul class="actions">
+          <li><%= link_to "Add Another", "#url",  :class => "button green full" %></li>
+          <li><%= link_to "No Thanks", root_path, :class => "button black full" %></li>
+        </ul>
+        <%= image_tag current_user.photos.first.image_url(:small).to_s %>
+      <% end %>
 
       <p class="instructions notice" style="display: none;">
         <b>From your phone or tablet, paste in a URL.</b><br />
