@@ -12,13 +12,20 @@ class MessagesController < ApplicationController
       @conversation = Conversation.find(params[:conversation_id])
       @user = @conversation.counterpart(current_user)
     end
+    
     redirect_if_age_inappropriate(@user)
     @message = @conversation.messages.build(:recipient => @user)
   end
 
   def create
-    message = Message.create!(params[:message].merge!(:sender => current_user))
+    message = current_user.outbound_messages.create!(messages_params)
     # redirect_if_age_inappropriate(@user)
     redirect_to conversation_path(message.conversation)
+  end
+  
+  private
+  
+  def messages_params
+    params.require(:message).permit(:body, :subject, :recipient_id, :conversation_id)
   end
 end

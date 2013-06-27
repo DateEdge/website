@@ -7,7 +7,8 @@ class Message < ActiveRecord::Base
 
   before_save :create_conversation, :unless => :conversation_id?
 
-  scope :unread, where(:unread => true)
+  scope :unread, -> { where(:unread => true) }
+  scope :read,   -> { where(:unread => false) }
   scope :received, lambda { |user| where(:recipient_id => user.id) }
   
   private

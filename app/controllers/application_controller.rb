@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def unread_count
-    messages = Conversation.unread_messages(current_user)
+    messages = current_user.inbound_messages.unread.map(&:conversation_id).uniq.count
     messages.zero? ? nil : messages
   end
 end
