@@ -25,7 +25,7 @@
 
 <%= @user.errors.full_messages.to_sentence %>
 
-<%= form_for @user, url: user_path do |f| %>
+<%= form_for @user, url: update_settings_path do |f| %>
   <%= f.label      :name %>
   <%= f.text_field :name, :autocapitalize => "words" %>
 

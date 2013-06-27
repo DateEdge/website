@@ -33,9 +33,7 @@ class UsersController < ApplicationController
   def create
     @user = current_user
 
-    @user.username   = params[:user].delete(:username)
-    @user.email      = params[:user].delete(:email)
-    @user.attributes = params[:user]
+    @user.attributes = params.require(:user).permit(:username, :email, "birthday(1i)", "birthday(2i)", "birthday(3i)")
 
     if @user.save
       @user.visiblize!
@@ -53,12 +51,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-
-    if current_user.username
-      params[:user].delete(:username)
-    end
-
-    if current_user.update_attributes(params[:user])
+    if current_user.update(user_params)
       redirect_to(person_path(current_user.username), :notice => 'User was successfully updated.')
     else
       render :action => "edit"
@@ -73,5 +66,27 @@ class UsersController < ApplicationController
     @user.destroy
     session.delete(:user_id)
     redirect_to root_path, :notice => "Profile Deleted. Come on back any time."
+  end
+  
+  private 
+  
+  def user_params
+    params.require(:user).permit(
+      :name, 
+      :email, 
+      "birthday(1i)", 
+      "birthday(2i)", 
+      "birthday(3i)", 
+      :city, 
+      :state_id, 
+      :zipcode, 
+      :country_id, 
+      :bio, 
+      :diet_id, 
+      :me_gender, 
+      :you_gender, 
+      :label_id, 
+      your_labels_attributes: [:label_id, :id, :_destroy]
+    )
   end
 end

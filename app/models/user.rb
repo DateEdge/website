@@ -22,16 +22,18 @@ class User < ActiveRecord::Base
   belongs_to :state
   belongs_to :label
 
-  has_many :crushings, :foreign_key => "crusher_id", :class_name => "Crush"
-  has_many :secret_crushes, :through => :crushings, :source => :crushee, :conditions => {:crushes => {:secret => true}}
-  has_many :crushes, :through => :crushings, :source => :crushee, :order => 'crushes.created_at desc'
+  has_many :crushings, :foreign_key => "crusher_id", :class_name => "Crush", dependent: :destroy
+  has_many :secret_crushes, -> { where crushes: {:secret => true}}, :through => :crushings, :source => :crushee
+  has_many :crushes, -> { includes(:crushes).order("crushes.created_at desc")}, :through => :crushings, :source => :crushee
 
-  has_many :crusheeings, :foreign_key => "crushee_id", :class_name => "Crush", :conditions => {:secret => false}
-  has_many :crushers, :through => :crusheeings, :source => :crusher, :order => 'crushes.created_at desc'
+  has_many :crusheeings, -> { where secret: false }, :foreign_key => "crushee_id", :class_name => "Crush"
+  has_many :crushers, -> { includes(:crushes).order("crushes.created_at desc") }, :through => :crusheeings, :source => :crusher
 
-  has_many :outbound_conversations, :class_name => "Conversation", :foreign_key => :user_id
-  has_many :inbound_conversations,  :class_name => "Conversation", :foreign_key => :recipient_id
-
+  has_many :outbound_conversations, :class_name => "Conversation", :foreign_key => :user_id, dependent: :destroy
+  has_many :inbound_conversations,  :class_name => "Conversation", :foreign_key => :recipient_id, dependent: :destroy
+  has_many :outbound_messages, class_name: "Message", foreign_key: :sender_id
+  has_many :inbound_messages, class_name: "Message", foreign_key: :recipient_id
+  
   has_many :providers, :dependent => :destroy
   has_many :photos, :dependent => :destroy
   has_many :your_labels
@@ -40,13 +42,13 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :your_labels, :allow_destroy => true, reject_if: proc { |obj| obj['label_id'] == "0" }
   
 
-  scope :visible,  where(:visible => true)
-  scope :invisible, where(:visible => false)
+  scope :visible,       -> { where(:visible => true) }
+  scope :invisible,     -> { where(:visible => false) }
   scope :with_provider, lambda { |name, uid| joins(:providers).where(:providers => {:name => name, :uid => uid}) }
-  scope :adults, lambda {where(['birthday >= ?', 18.years.ago]) }
-  scope :kids,   lambda {where(['birthday <  ?', 18.years.ago]) }
-  scope :secret, joins(:crushes).where('crushes.secret = "true"')
-  scope :without, lambda{|user| where('id != ?', user.id) }
+  scope :adults,        -> { where(['birthday >= ?', 18.years.ago]) }
+  scope :kids,          -> { where(['birthday <  ?', 18.years.ago]) }
+  scope :secret,        -> { joins(:crushes).where('crushes.secret = "true"') }
+  scope :without,       lambda { |user| where('id != ?', user.id) }
 
   validates :username, :presence => { :on => :update }, :length => { :minimum => 1, :maximum => 100 }, :format => /[\w]+/
   validates :name,     :presence => true
