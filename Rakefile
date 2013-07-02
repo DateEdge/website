@@ -10,6 +10,10 @@ task recreate_photos: :environment do
   puts "Recreating Photos"
   Photo.all.each do |photo| 
     puts "Recreating photo #{photo.id}"
-    photo.image.recreate_versions! 
+    begin
+      photo.image.recreate_versions! 
+    rescue NoMethodError => e
+      puts "IMAGE DOES NOTE EXIST"
+    end
   end
 end
