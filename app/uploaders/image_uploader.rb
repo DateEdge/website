@@ -14,7 +14,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def thumbnail(width, height)
     manipulate! do |img|
-      img = img.crop(Magick::GravityType.new("CenterGravity", 5), width, height)
+      img = img.resize_to_fill(width, height)
     end
   end
 
@@ -27,6 +27,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :avatar do
+    # process :resize_to_limit => [130, 130]
     process :thumbnail => [130, 130]
   end
 
