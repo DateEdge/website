@@ -5,3 +5,10 @@ require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
 Dxe::Application.load_tasks
+
+task recreate_photos: :environment do
+  Photo.scoped.each do |photo| 
+    puts "Recreating photo #{photo.id}"
+    photo.image.recreate_versions! 
+  end
+end
