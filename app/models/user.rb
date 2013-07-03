@@ -168,7 +168,7 @@ class User < ActiveRecord::Base
     size = :avatar if size.nil?
 
     photo = photos.where(:avatar => true).first
-    photo ? photo.image_url(size) : PLACEHOLDER_AVATAR_URL
+    photo ? photo.image_url(size) : placeholder_avatar_url
   end
 
   def you_gender
@@ -243,6 +243,10 @@ class User < ActiveRecord::Base
   end
 
   private
+  
+  def placeholder_avatar_url
+    "placeholder.png"
+  end
 
   def check_provider(name)
     providers.any? {|p| p.name == name }
