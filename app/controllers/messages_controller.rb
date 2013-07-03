@@ -12,7 +12,6 @@ class MessagesController < ApplicationController
       @conversation = Conversation.find(params[:conversation_id])
       @user = @conversation.counterpart(current_user)
     end
-    
     redirect_if_age_inappropriate(@user)
     @message = @conversation.messages.build(:recipient => @user)
   end
