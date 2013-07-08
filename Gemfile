@@ -4,6 +4,7 @@ ruby "1.9.3"#, :engine => "rbx", :engine_version => "2.0.0.rc1"
 
 
 gem "rails",              "~> 4.0.0"
+gem "pg"
 gem "json"
 gem "jquery-rails"
 # image uploads
@@ -17,7 +18,6 @@ gem "omniauth-facebook",  "~> 1.4.1"
 
 group :development do
   gem "gx"
-  gem "sqlite3"
   gem "foreman"
   gem "guard-rspec"
   gem "better_errors"
@@ -34,7 +34,6 @@ group :test do
 end
 
 group :production do
-  gem "pg"
   gem "puma"
   gem 'rails_12factor'
 end
