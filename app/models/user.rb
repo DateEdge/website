@@ -6,6 +6,14 @@ class UsernameValidator < ActiveModel::EachValidator
   end
 end
 
+class EmailValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    if !EmailAddressValidator.validate_addr(value,true)
+      record.errors[attribute] << "is not valid"
+    end
+  end
+end
+
 class BirthdayValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     if value.blank? || value < 100.years.ago.to_date
@@ -40,7 +48,6 @@ class User < ActiveRecord::Base
   has_many :desired_labels, :through => :your_labels, :source => :label, :uniq => true
 
   accepts_nested_attributes_for :your_labels, :allow_destroy => true, reject_if: proc { |obj| obj['label_id'] == "0" }
-  
 
   scope :visible,       -> { where(:visible => true) }
   scope :invisible,     -> { where(:visible => false) }
@@ -52,9 +59,8 @@ class User < ActiveRecord::Base
 
   validates :username, :presence => { :on => :update }, :length => { :minimum => 1, :maximum => 100 }, :format => /[\w]+/
   validates :name,     :presence => true
-  validates :email,    :presence => { :on => :update }
+  validates :email,    :presence => { :on => :update }, email: true
   validates :birthday, :birthday => { :on => :update }
-  # validates :email, :format => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
 
   before_save :downcase_genders
 

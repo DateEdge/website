@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/bookis/email_address_validator
+  revision: 9e4a3d513ffb5458ffd58483b0c77725ee01a50c
+  specs:
+    email_address_validator (0.0.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -216,6 +222,7 @@ DEPENDENCIES
   binding_of_caller
   carrierwave
   database_cleaner
+  email_address_validator!
   fog (~> 1.12.1)
   foreman
   guard-rspec

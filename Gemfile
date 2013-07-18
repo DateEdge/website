@@ -7,6 +7,7 @@ gem "rails",              "~> 4.0.0"
 gem "pg"
 gem "json"
 gem "jquery-rails"
+gem "email_address_validator", git: 'git://github.com/bookis/email_address_validator'
 gem "rollbar" # Exception notifier
 # image uploads
 gem "rmagick",            "~> 2.13.2"
