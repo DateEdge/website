@@ -9,6 +9,7 @@ gem "json"
 gem "jquery-rails"
 gem "email_address_validator", "0.0.3", git: 'git://github.com/bookis/email_address_validator'
 gem "rollbar" # Exception notifier
+
 # image uploads
 gem "rmagick",            "~> 2.13.2"
 gem "fog",                "~> 1.12.1"
