@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
 
   validates :username, :presence => { :on => :update }, :length => { :minimum => 1, :maximum => 100 }, :format => /[\w]+/
   validates :name,     :presence => true
-  validates :email,    :presence => { :on => :update }, email: true
+  validates :email,    :presence => { :on => :update }, email: { on: :update }
   validates :birthday, :birthday => { :on => :update }
 
   before_save :downcase_genders
