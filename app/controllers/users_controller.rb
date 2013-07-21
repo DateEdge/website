@@ -33,8 +33,7 @@ class UsersController < ApplicationController
   def create
     @user = current_user
 
-    @user.attributes = params.require(:user).permit(:username, :email, "birthday(1i)", "birthday(2i)", "birthday(3i)")
-
+    @user.attributes = params.require(:user).permit(:username, :email, "birthday(1i)", "birthday(2i)", "birthday(3i)", :agreed_to_terms_at)
     if @user.save
       @user.visiblize!
       redirect_to new_photo_path(:getting => "started")
