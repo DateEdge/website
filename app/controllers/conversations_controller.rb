@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
   def index
-    @title = "Messages Inbox on Date Edge"
+    @title = "Inbox on Date Edge"
     @slug  = "messages"
     @conversations = current_user.conversations.uniq
   end
