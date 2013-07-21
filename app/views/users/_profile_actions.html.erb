@@ -1,15 +1,13 @@
 <% if not_mine? %>
   <div class="profile-actions">
     <ul class="actions">
-      <li>
-        <div id="new_message">
-          <%= link_to "Message", new_message_path(:recipient => @user.username), :class => "message button black full" %>
-        </div>
+      <li class="button black" id="new_message">
+        <%= link_to "Message", new_message_path(:recipient => @user.username), :class => "message" %>
       </li>
       
       <% if im.secret_crushing_on?(@user) %>
-        <li>
-          <span class="disabled crushed button white">Secret Crushed!</span>
+        <li class="disabled crushed button white">
+          <span>Secret Crushed!</span>
         </li>
       </ul>
 
@@ -18,8 +16,8 @@
       <% end %>
 
       <% elsif im.crushing_on?(@user) %>
-        <li>
-          <span class="disabled crushed button white">Crushed!</span>
+        <li class="disabled crushed button white">
+          <span>Crushed!</span>
         </li>
       </ul>
 
@@ -29,10 +27,10 @@
 
       <% else %>
 
-        <li>
+        <li class="crush button black">
           <%= form_for @crush do |f| %>
             <%= f.hidden_field :crushee_id, :value => @user.id %>
-            <%= f.submit "Crush", :class => "crush button black full" %>
+            <%= f.submit "Crush" %>
           <% end %>
         </li>
       </ul>
