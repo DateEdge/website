@@ -73,9 +73,22 @@ section[role=main] h3 {
 }
 
 .button.disabled {
+  /* for mobile? */
+  /*
   padding-left:  0;
   padding-right: 0;
-  display: block;
+  display: inline-block;
+  */
+}
+
+/* crush button is a form with an input inside of it */
+.crush input {
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: white;
 }
 
 input[type=submit].secondary.clicker {
