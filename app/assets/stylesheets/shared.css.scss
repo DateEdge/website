@@ -41,6 +41,13 @@ i { font-style: italic; }
   list-style-type: none;
 }
 
+/* HACK Button classes on li instead of a */
+/* /photos/new?getting=started            */
+.actions li a {
+  color: white;
+  text-decoration: none;
+}
+
 .actions li form,
 .actions li .button,
 .actions li {
