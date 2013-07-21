@@ -58,9 +58,10 @@ class User < ActiveRecord::Base
   scope :without,       lambda { |user| where('id != ?', user.id) }
 
   validates :username, :presence => { :on => :update }, :length => { :minimum => 1, :maximum => 100 }, :format => /[\w]+/
-  validates :name,     :presence => true
+  validates :name, :presence => true
   validates :email,    :presence => { :on => :update }, email: { on: :update }
   validates :birthday, :birthday => { :on => :update }
+  validates :agreed_to_terms_at, presence: { on: :update, message: "must be agreed upon"}
 
   before_save :downcase_genders
 
