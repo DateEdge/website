@@ -18,6 +18,7 @@ class MessagesController < ApplicationController
 
   def create
     message = current_user.outbound_messages.create!(messages_params)
+    # TODO why is this commented out?
     # redirect_if_age_inappropriate(@user)
     redirect_to conversation_path(message.conversation)
   end
