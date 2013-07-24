@@ -8,9 +8,9 @@
 <% unless @user.twitter? && @user.facebook? %>
   <div class="buttons">
     <% if @user.twitter? %>
-      <%= button_to_facebook_sign_in %>
+      <%= button_to_sign_in_with(:facebook) %>
     <% elsif @user.facebook? %>
-      <%= button_to_twitter_sign_in %>
+      <%= button_to_sign_in_with(:twitter) %>
     <% end %>
   </div>
 
