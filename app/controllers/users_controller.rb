@@ -57,9 +57,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # TODO implement
-  # TODO is this done?
-  # ***************************
   def destroy
     @user = current_user
     @user.destroy
