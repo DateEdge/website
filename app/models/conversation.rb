@@ -1,6 +1,6 @@
 class Conversation < ActiveRecord::Base
 
-  # TODO FIXME was causing a 500 on heroku but not locally, commented out for now
+  # TODO was causing a 500 on heroku but not locally, commented out for now
   # default_scope joins(:messages).order('messages.updated_at asc')
   has_many :messages, :dependent => :destroy
 

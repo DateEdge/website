@@ -80,7 +80,7 @@
       <%= f.fields_for "your_labels_attributes[#{index}]", :child_index => index do |ff| %>
         <tr>
           <% if @user.desired_labels.include? label %>
-            <%# HACK remove find from view, do it in the controller %>
+            <%# TODO remove find from view, do it in the controller %>
             <%= ff.hidden_field :id, :value => @user.your_labels.where(:label_id => label.id).first.id, :style => "display:none" %>
             <td><%= ff.check_box :_destroy, { :checked => true }, 0, 1 %></td>
             <th><%= ff.label     :_destroy, label.name.titleize %></th>

@@ -7,7 +7,7 @@ class Photo < ActiveRecord::Base
   private
   
   def clean_url
-    # TODO FIXME
+    # TODO what's wrong with this?
     @remote_image_url = self.remote_image_url.gsub("+", "%20")
   end
   
