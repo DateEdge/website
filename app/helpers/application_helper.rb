@@ -28,12 +28,12 @@ module ApplicationHelper
     @title || "Date Edge : The Straightedge Dating Site"
   end
 
-  def button_to_twitter_sign_in
-    link_to "Twitter",   "/auth/twitter",  :class => "twitter-sign-in-button button black"
-  end
-
-  def button_to_facebook_sign_in
-    link_to "Facebook",  "/auth/facebook", :class => "facebook-sign-in-button button black"
+  def button_to_sign_in_with(provider)
+    if provider.to_s.downcase    == "twitter"
+      link_to "Twitter",   "/auth/twitter",  :class => "twitter-sign-in-button button black"
+    elsif provider.to_s.downcase == "facebook"
+      link_to "Facebook",  "/auth/facebook", :class => "facebook-sign-in-button button black"
+    end
   end
 
   def mine?
