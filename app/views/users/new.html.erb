@@ -16,15 +16,16 @@
 
   <%= f.label       :birthday %>
   <%= birthday_select_tag(f) %>
-  
+
   <b>Pretty simple rules:</b>
   <ol>
     <li>Don't be a creep.</li>
     <li>Keep it positive.</li>
     <li>Have fun.</li>
   </ol>
-  <label for='users_agreed_to_terms_at' class='checkbox'>
-    <%= f.check_box :agreed_to_terms_at, {checked: @user.agreed_to_terms_at}, Time.now %> 
+
+  <label for='user_agreed_to_terms_at' class='checkbox'>
+    <%= f.check_box :agreed_to_terms_at, { checked: @user.agreed_to_terms_at }, Time.now %>
     <span>I agree to the <%= link_to "terms", terms_path, target: :blank %></span>
   </label>
 
