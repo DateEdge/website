@@ -1,5 +1,5 @@
 <% if @conversations.blank? %>
-  You don&rsquo;t have any conversations started, go message someone.
+  <p class="alert alert-info">You don&rsquo;t have any conversations started. <b>Go message someone!</b></p>
 <% else %>
   <ol class="conversations">
     <% @conversations.each do |conversation| %>
