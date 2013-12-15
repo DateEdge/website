@@ -11,7 +11,7 @@
     <%= render partial: "/shared/header" %>
   <% end %>
 
-  <section role="main">
+  <section role="main" class="container">
     <%= render partial: "/shared/browse_happy" %>
 
     <% unless logged_in? || controller_name == "welcome" %>
