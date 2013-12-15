@@ -71,48 +71,49 @@
   /* ...twitter and facebook buttons */
 
 
+  #some-people {
+    h2 {
+      font-size: 150%;
+      margin-bottom: .2em;
+    }
 
-  #some-people h2 {
-    font-size: 150%;
-    margin-bottom: .2em;
-  }
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+    }
 
-  #some-people ul,
-  #some-people li {
-    margin: 0;
-    padding: 0;
-  }
+    .h-card {
+      display: inline-block;
+      margin-bottom: 1em;
+      position: relative;
+    }
 
-  #some-people .h-card {
-    display: inline-block;
-    margin-bottom: 1em;
-    position: relative;
-  }
+    .u-photo {
+      display: block;
+    }
 
-  #some-people .u-photo {
-    display: block;
-  }
+    .h-card,
+    .u-photo {
+      width:   97px;
+      height:  97px;
+    }
 
-  #some-people .h-card,
-  #some-people .u-photo {
-    width:   97px;
-    height:  97px;
-  }
-
-  #some-people .p-name {
-    background: black;
-    background: rgba(0,0,0,.5);
-    color: white;
-    display: block;
-    font-weight: bold;
-    line-height: 1em;
-    font-size: 10px;
-    padding:   7.5px 5px;
-    position: absolute;
-    text-align: center;
-    text-decoration: none;
-    top: 0;
-    width: 87px; /*  #some-people .h-card's width - 10px */
+    .p-name {
+      background: black;
+      background: rgba(0,0,0,.5);
+      color: white;
+      display: block;
+      font-weight: bold;
+      line-height: 1em;
+      font-size: 10px;
+      padding:   7.5px 5px;
+      position: absolute;
+      text-align: center;
+      text-decoration: none;
+      top: 0;
+      width: 97px;
+    }
   }
 
 
