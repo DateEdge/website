@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 
 <html dir="ltr" lang="en" id="<%= @slug %>" class="no-js">
-<%= render :partial => '/shared/head' %>
+<%= render partial: "/shared/head" %>
 
 <body>
 
   <% if welcome? %>
-    <%= render :partial => '/shared/welcome_header' %>
+    <%= render partial: "/shared/welcome_header" %>
   <% else %>
-    <%= render :partial => '/shared/header' %>
+    <%= render partial: "/shared/header" %>
   <% end %>
 
   <section role="main">
-    <%= render :partial => "/shared/browse_happy" %>
+    <%= render partial: "/shared/browse_happy" %>
 
     <% unless logged_in? || controller_name == "welcome" %>
-      <%= render :partial => "/shared/social_posting_info" %>
+      <%= render partial: "/shared/social_posting_info" %>
     <% end %>
 
     <% if profile_incomplete? %>
@@ -33,6 +33,6 @@
     <% end %>
   </footer>
 
-  <%= render :partial => "/shared/foot" %>
+  <%= render partial: "/shared/foot" %>
 </body>
 </html>
