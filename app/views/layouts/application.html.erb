@@ -19,8 +19,8 @@
     <% end %>
 
     <% if profile_incomplete? %>
-      <p class="notice">
-        <b><%= link_to "Update your profile for great success &rarr;".html_safe, settings_path %></b>
+      <p class="alert alert-success">
+        <b><%= link_to "Update your profile for great success &rarr;".html_safe, settings_path, class: "alert-link" %></b>
       </p>
     <% end %>
 
@@ -29,7 +29,7 @@
 
   <footer role="contentinfo">
     <% if logged_in? %>
-      <%= link_to_unless_current "Sign Out", signout_path, class: "button white full" %>
+      <%= link_to_unless_current "Sign Out", signout_path, class: "btn btn-default btn-block" %>
     <% end %>
   </footer>
 
