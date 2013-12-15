@@ -27,48 +27,48 @@
 
 <%= form_for @user, url: update_settings_path do |f| %>
   <%= f.label      :name %>
-  <%= f.text_field :name, :autocapitalize => "words" %>
+  <%= f.text_field :name, autocapitalize: "words" %>
 
   <% if @user.username.blank? %>
     <%= f.label      :username %>
-    <%= f.text_field :username, :autocapitalize => "off", :autocorrect => "off" %>
+    <%= f.text_field :username, autocapitalize: "off", autocorrect: "off" %>
   <% end %>
 
   <%= f.label       :email %>
-  <%= f.email_field :email, :autocapitalize => "off", :autocorrect => "off" %>
+  <%= f.email_field :email, autocapitalize: "off", autocorrect: "off" %>
 
   <%= f.label :birthday %>
   <%= birthday_select_tag(f) %>
 
   <%= f.label      :city %>
-  <%= f.text_field :city, :autocapitalize => "words" %>
+  <%= f.text_field :city, autocapitalize: "words" %>
 
   <%= f.label  :state %>
-  <%= f.select :state_id, State.options_for_select, :include_blank => true %>
+  <%= f.select :state_id, State.options_for_select, include_blank: true %>
 
   <%= f.label      :zipcode %>
-  <%= f.text_field :zipcode, :autocapitalize => "characters" %>
+  <%= f.text_field :zipcode, autocapitalize: "characters" %>
 
   <%= f.label  :country %>
-  <%= f.select :country_id, Country.options_for_select, :include_blank => true %>
+  <%= f.select :country_id, Country.options_for_select, include_blank: true %>
 
   <%= f.label     :bio %>
-  <%= f.text_area :bio, :autocapitalize => "sentences" %>
+  <%= f.text_area :bio, autocapitalize: "sentences" %>
 
   <%= f.label  :diet %>
-  <%= f.select :diet_id, Diet.options_for_select, :include_blank => true %>
+  <%= f.select :diet_id, Diet.options_for_select, include_blank: true %>
 
   <%= f.label      :me_gender,  "My Gender" %>
-  <%= f.text_field :me_gender,  :autocapitalize => "words" %>
+  <%= f.text_field :me_gender,  autocapitalize: "words" %>
 
   <%= f.label      :you_gender, "Desired Gender" %>
-  <%= f.text_field :you_gender, :autocapitalize => "words" %>
+  <%= f.text_field :you_gender, autocapitalize: "words" %>
 
   <%= f.label :label_id, "My Straightedginess" %>
   <table id="my-label">
     <% Label.all.each do |label| %>
       <tr>
-        <td><%= f.radio_button :label_id,              label.id, :checked => @user.label == label %></td>
+        <td><%= f.radio_button :label_id,              label.id, checked: @user.label == label %></td>
         <th><%= f.label        "label_id_#{label.id}", label.name.titleize %></th>
       </tr>
     <% end %>
@@ -77,12 +77,12 @@
   <%= f.label :your_labels_attributes, "Desired Straightedginess" %>
   <table id="desired-labels">
     <% Label.all.each_with_index do |label, index| %>
-      <%= f.fields_for "your_labels_attributes[#{index}]", :child_index => index do |ff| %>
+      <%= f.fields_for "your_labels_attributes[#{index}]", child_index: index do |ff| %>
         <tr>
           <% if @user.desired_labels.include? label %>
             <%# TODO remove find from view, do it in the controller %>
-            <%= ff.hidden_field :id, :value => @user.your_labels.where(:label_id => label.id).first.id, :style => "display:none" %>
-            <td><%= ff.check_box :_destroy, { :checked => true }, 0, 1 %></td>
+            <%= ff.hidden_field :id, value: @user.your_labels.where(label_id: label.id).first.id, style: "display:none" %>
+            <td><%= ff.check_box :_destroy, { checked: true }, 0, 1 %></td>
             <th><%= ff.label     :_destroy, label.name.titleize %></th>
           <% else %>
             <td><%= ff.check_box :label_id, {}, label.id %></td>
@@ -93,7 +93,7 @@
     <% end %>
   </table>
 
-  <%= f.submit "Save Changes", :disable_with => "Saving&hellip;".html_safe, :class => "button black full" %>
+  <%= f.submit "Save Changes", disable_with: "Saving&hellip;".html_safe, class: "button black full" %>
 <% end %>
 
 
@@ -118,8 +118,8 @@
 
     <%= button_to "I Want to Delete My Profile",
                   user_path(@user),
-                  :method  => :delete,
-                  :confirm => "Uhhhh&hellip; Are you sure you want to delete your profile?".html_safe,
-                  :class   => "button red full" %>
+                  method:  :delete,
+                  confirm: "Uhhhh&hellip; Are you sure you want to delete your profile?".html_safe,
+                  class:   "button red full" %>
   </div>
 </div> <!-- #danger-zone -->

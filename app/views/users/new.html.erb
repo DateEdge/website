@@ -7,12 +7,12 @@
 
 <%= @user.errors.full_messages.to_sentence %>
 
-<%= form_for @user, :url => user_create_path, :method => :post do |f| %>
+<%= form_for @user, url: user_create_path, method: :post do |f| %>
   <%= f.label       :username %>
-  <%= f.text_field  :username, :autocapitalize => "off", :autocorrect => "off" %>
+  <%= f.text_field  :username, autocapitalize: "off", autocorrect: "off" %>
 
   <%= f.label       :email %>
-  <%= f.email_field :email,    :autocapitalize => "off", :autocorrect => "off" %>
+  <%= f.email_field :email,    autocapitalize: "off", autocorrect: "off" %>
 
   <%= f.label       :birthday %>
   <%= birthday_select_tag(f) %>
@@ -29,5 +29,5 @@
     <span>I agree to the <%= link_to "terms", terms_path, target: :blank %></span>
   </label>
 
-  <%= f.submit "Submit", :disable_with => "Submitting...", :class => "button black full" %>
+  <%= f.submit "Submit", disable_with: "Submitting...", class: "button black full" %>
 <% end %>

@@ -1,6 +1,6 @@
 <h1>Add a photo to your profile</h1>
 
-<%= form_for @photo, :html => { :multipart => true } do |f| %>
+<%= form_for @photo, html: { multipart: true } do |f| %>
   <% if getting_started? %>
     <div id="getting-started">
       
@@ -26,14 +26,14 @@
     <%= f.hidden_field :avatar, value: true %>
   <% end %>
 
-  <%= f.label     :remote_image_url, "Paste a URL", :id => "url" %>
-  <%= f.url_field :remote_image_url, :autocapitalize => "off", :autocorrect => "off" %>
+  <%= f.label     :remote_image_url, "Paste a URL", id: "url" %>
+  <%= f.url_field :remote_image_url, autocapitalize: "off", autocorrect: "off" %>
 
   <%= f.label      :image, "or Select an Image" %>
   <%= f.file_field :image %>
 
   <%= f.label     :caption, "Caption" %>
-  <%= f.text_area :caption, :autocapitalize => "sentences" %>
+  <%= f.text_area :caption, autocapitalize: "sentences" %>
 
-  <%= f.submit "Upload", :disable_with => 'Uploading...', :class => "button black full" %>
+  <%= f.submit "Upload", disable_with: 'Uploading...', class: "button black full" %>
 <% end %>

@@ -30,37 +30,37 @@ class User < ActiveRecord::Base
   belongs_to :state
   belongs_to :label
 
-  has_many :crushings, :foreign_key => "crusher_id", :class_name => "Crush", dependent: :destroy
-  has_many :secret_crushes, -> { where crushes: {:secret => true}}, :through => :crushings, :source => :crushee
-  has_many :crushes, -> { includes(:crushes).order("crushes.created_at desc")}, :through => :crushings, :source => :crushee
+  has_many :crushings, foreign_key: "crusher_id", class_name: "Crush", dependent: :destroy
+  has_many :secret_crushes, -> { where crushes: {secret: true}}, through: :crushings, source: :crushee
+  has_many :crushes, -> { includes(:crushes).order("crushes.created_at desc")}, through: :crushings, source: :crushee
 
-  has_many :crusheeings, -> { where secret: false }, :foreign_key => "crushee_id", :class_name => "Crush"
-  has_many :crushers, -> { includes(:crushes).order("crushes.created_at desc") }, :through => :crusheeings, :source => :crusher
+  has_many :crusheeings, -> { where secret: false }, foreign_key: "crushee_id", class_name: "Crush"
+  has_many :crushers, -> { includes(:crushes).order("crushes.created_at desc") }, through: :crusheeings, source: :crusher
 
-  has_many :outbound_conversations, :class_name => "Conversation", :foreign_key => :user_id, dependent: :destroy
-  has_many :inbound_conversations,  :class_name => "Conversation", :foreign_key => :recipient_id, dependent: :destroy
+  has_many :outbound_conversations, class_name: "Conversation", foreign_key: :user_id, dependent: :destroy
+  has_many :inbound_conversations,  class_name: "Conversation", foreign_key: :recipient_id, dependent: :destroy
   has_many :outbound_messages, class_name: "Message", foreign_key: :sender_id
   has_many :inbound_messages, class_name: "Message", foreign_key: :recipient_id
   
-  has_many :providers, :dependent => :destroy
-  has_many :photos, :dependent => :destroy
+  has_many :providers, dependent: :destroy
+  has_many :photos,    dependent: :destroy
   has_many :your_labels
-  has_many :desired_labels, :through => :your_labels, :source => :label, :uniq => true
+  has_many :desired_labels, through: :your_labels, source: :label, uniq: true
 
-  accepts_nested_attributes_for :your_labels, :allow_destroy => true, reject_if: proc { |obj| obj['label_id'] == "0" }
+  accepts_nested_attributes_for :your_labels, allow_destroy: true, reject_if: proc { |obj| obj['label_id'] == "0" }
 
-  scope :visible,       -> { where(:visible => true) }
-  scope :invisible,     -> { where(:visible => false) }
-  scope :with_provider, lambda { |name, uid| joins(:providers).where(:providers => {:name => name, :uid => uid}) }
+  scope :visible,       -> { where(visible: true) }
+  scope :invisible,     -> { where(visible: false) }
+  scope :with_provider, lambda { |name, uid| joins(:providers).where(providers: {name: name, uid: uid}) }
   scope :adults,        -> { where(['birthday >= ?', 18.years.ago]) }
   scope :kids,          -> { where(['birthday <  ?', 18.years.ago]) }
   scope :secret,        -> { joins(:crushes).where('crushes.secret = "true"') }
   scope :without,       lambda { |user| where('id != ?', user.id) }
 
-  validates :username, :presence => { :on => :update }, :length => { :minimum => 1, :maximum => 100 }, :format => /[\w]+/
-  validates :name, :presence => true
-  validates :email,    :presence => { :on => :update }, email: { on: :update }
-  validates :birthday, :birthday => { :on => :update }
+  validates :username, presence: { on: :update }, length: { minimum: 1, maximum: 100 }, format: /[\w]+/
+  validates :name,     presence: true
+  validates :email,    presence: { on: :update }, email: { on: :update }
+  validates :birthday, birthday: { on: :update }
   validates :agreed_to_terms_at, presence: { on: :update, message: "must be agreed upon"}
 
   before_save :downcase_genders
@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
 
       location = auth["info"]["location"]
 
-      provider = Provider.new(:name => auth["provider"], :uid => auth['uid'])
+      provider = Provider.new(name: auth["provider"], uid: auth['uid'])
 
       u = create! do |user|
         user.providers << provider
@@ -88,12 +88,12 @@ class User < ActiveRecord::Base
 
         unless location.blank?
           user.city             = location.split(",").first.strip
-          user.state            = State.where(:abbreviation => location.split(",").last.strip).first
+          user.state            = State.where(abbreviation: location.split(",").last.strip).first
         end
 
         user.username         = available_username(auth["info"]["nickname"])
         user.bio              = auth["info"]["description"]
-        user.country          = Country.where(:abbreviation => "US").first
+        user.country          = Country.where(abbreviation: "US").first
 
         # v2
         # user.url       = auth["info"]["urls"]["Website"]
@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
       end
       unless auth["info"]["image"].blank?
         begin
-          u.photos.create!(:remote_image_url => auth["info"]["image"].sub(/_normal\./, "."), :avatar => true)
+          u.photos.create!(remote_image_url: auth["info"]["image"].sub(/_normal\./, "."), avatar: true)
         rescue OpenURI::HTTPError
         end
       end
@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
 
       location = auth["info"]["location"]
 
-      provider = Provider.new(:name => auth["provider"], :uid => auth['uid'])
+      provider = Provider.new(name: auth["provider"], uid: auth['uid'])
 
       u = create! do |user|
         user.providers << provider
@@ -126,27 +126,27 @@ class User < ActiveRecord::Base
 
         unless location.blank?
           user.city       = location.split(",").first.strip
-          user.state      = State.where(:name => location.split(",").last.strip).first
+          user.state      = State.where(name: location.split(",").last.strip).first
         end
 
         user.username   = available_username(auth["info"]["nickname"])
         user.email      = auth["info"]["email"]
         user.bio        = auth["info"]["description"]
-        user.country    = Country.where(:abbreviation => "US").first
+        user.country    = Country.where(abbreviation: "US").first
         user.me_gender  = auth["extra"]["raw_info"]["gender"]
         # user.url       = auth["user_info"]["urls"]["Website"]
         # user.url       = auth["user_info"]["urls"]["Facebook"]
       end
 
       if auth.try(:[], "user_info").try(:[], "image")
-        u.photos.create!(:remote_image_url => auth["user_info"]["image"].sub(/type=square/, "type=large"), :avatar => true)
+        u.photos.create!(remote_image_url: auth["user_info"]["image"].sub(/type=square/, "type=large"), avatar: true)
       end
       u
     end
 
     # TODO refactor this and user#available_username
     def available_username(username)
-      User.where(:username => username).first || username.blank? ? "username-#{Time.now.strftime('%Y%m%d%H%M%S')}" : username
+      User.where(username: username).first || username.blank? ? "username-#{Time.now.strftime('%Y%m%d%H%M%S')}" : username
     end
 
     def in_my_age_group(user)
@@ -175,7 +175,7 @@ class User < ActiveRecord::Base
   def avatar(size=:avatar)
     size = :avatar if size.nil?
 
-    photo = photos.where(:avatar => true).first
+    photo = photos.where(avatar: true).first
     photo ? photo.image_url(size) : placeholder_avatar_url
   end
 
@@ -196,7 +196,7 @@ class User < ActiveRecord::Base
       if self.your_labels.map{ |l| l.label_id }.include?(your_label.label_id)
         your_label.destroy
       else
-        your_label.update_attributes!(:user_id => self.id)
+        your_label.update_attributes!(user_id: self.id)
       end
     end
 
@@ -204,13 +204,13 @@ class User < ActiveRecord::Base
   end
 
   def visiblize!
-    update_attributes(:visible => (email? && username?))
+    update_attributes(visible: (email? && username?))
   end
 
   def age
     unless birthday.nil?
       now = Time.now.utc.to_date
-      now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
+      now.year - birthday.year - (birthday.to_date.change(year: now.year) > now ? 1 : 0)
     end
   end
 
@@ -243,7 +243,7 @@ class User < ActiveRecord::Base
   end
 
   def crush_with(user)
-    crushings.where(:crushee_id => user.id).first
+    crushings.where(crushee_id: user.id).first
   end
 
   def age_group

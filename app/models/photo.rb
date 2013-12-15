@@ -2,7 +2,7 @@ class Photo < ActiveRecord::Base
   belongs_to :user
   mount_uploader :image, ImageUploader
   before_create :clean_url
-  after_save :check_avatar, :if => :avatar?
+  after_save :check_avatar, if: :avatar?
 
   private
   
@@ -12,8 +12,8 @@ class Photo < ActiveRecord::Base
   end
   
   def check_avatar
-    avatars = self.user.photos.where(:avatar => true).all
+    avatars = self.user.photos.where(avatar: true).all
     avatars.delete(self)
-    avatars.each { |avatar| avatar.update_attributes(:avatar => false)}
+    avatars.each { |avatar| avatar.update_attributes(avatar: false)}
   end
 end

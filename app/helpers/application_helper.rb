@@ -9,19 +9,19 @@ module ApplicationHelper
 
   def birthday_select_tag(f)
     f.date_select :birthday,
-                  :order         => [:month, :day, :year],
-                  :start_year    => 12.years.ago.year,
-                  :end_year      => 60.years.ago.year,
-                  :include_blank => true
+                  order:         [:month, :day, :year],
+                  start_year:    12.years.ago.year,
+                  end_year:      60.years.ago.year,
+                  include_blank: true
   end
 
   def link_to_avatar(user, avatar_size=nil)
-    link_to image_tag(user.avatar(avatar_size), :class => "u-photo img", :alt => user.username),
+    link_to image_tag(user.avatar(avatar_size), class: "u-photo img", alt: user.username),
             person_path(user.username)
   end
 
   def link_to_username(user)
-    link_to user.username, person_path(user.username), :class => "p-name u-url"
+    link_to user.username, person_path(user.username), class: "p-name u-url"
   end
 
   def page_title
@@ -30,9 +30,9 @@ module ApplicationHelper
 
   def button_to_sign_in_with(provider)
     if provider.to_s.downcase    == "twitter"
-      link_to "Twitter",   "/auth/twitter",  :class => "twitter-sign-in-button button black"
+      link_to "Twitter",   "/auth/twitter",  class: "twitter-sign-in-button button black"
     elsif provider.to_s.downcase == "facebook"
-      link_to "Facebook",  "/auth/facebook", :class => "facebook-sign-in-button button black"
+      link_to "Facebook",  "/auth/facebook", class: "facebook-sign-in-button button black"
     end
   end
 

@@ -19,28 +19,28 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :favicon do
-    process :thumbnail => [16, 16]
+    process thumbnail: [16, 16]
   end
 
   version :tiny do
-    process :thumbnail => [40, 40]
+    process thumbnail: [40, 40]
   end
 
   version :avatar do
-    # process :resize_to_limit => [130, 130]
-    process :thumbnail => [130, 130]
+    # process resize_to_limit: [130, 130]
+    process thumbnail: [130, 130]
   end
 
   version :small do
-    process :resize_to_limit => [300, 300]
+    process resize_to_limit: [300, 300]
   end
 
   version :medium do
-    process :resize_to_limit => [500, 500]
+    process resize_to_limit: [500, 500]
   end
 
   version :large do
-    process :resize_to_limit => [1000, 1000]
+    process resize_to_limit: [1000, 1000]
   end
 
   def extension_white_list

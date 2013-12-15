@@ -1,5 +1,5 @@
 Dxe::Application.routes.draw do
-  root :to => "welcome#index"
+  root to: "welcome#index"
 
   resources :users,   only:   [:destroy]
   resources :photos,  except: [:index, :show]
