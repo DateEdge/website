@@ -1,33 +1,8 @@
-/* Browse Happy message... */
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+/* browse-happy... */
+.browse-happy {
+  font-size: 150%;
 }
-/* ...Browse Happy message */
-
-
-/* base... */
-h1, h2, h3 {
-  font-weight: normal;
-}
-
-b { font-weight: bold; }
-i { font-style: italic; }
-
-.error, .alert, .notice, .success, .info { padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
-.error, .alert { background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
-.notice { background: #fff6bf; color: #514721; border-color: #ffd324; }
-.success { background: #e6efc2; color: #264409; border-color: #c6d880; }
-.info { background: #d5edf8; color: #205791; border-color: #92cae4; }
-.error a, .alert a { color: #8a1f11; }
-.notice a { color: #514721; }
-.success a { color: #264409; }
-.info a { color: #205791; }
-
-.notice a { text-decoration: none; }
-/* ...base */
+/* ...browse-happy */
 
 /* media block from oocss... */
 /* https://github.com/stubbornella/oocss/blob/master/core/media/media.css */
