@@ -95,8 +95,8 @@
 
     .h-card,
     .u-photo {
-      width:   97px;
-      height:  97px;
+      width:   94px;
+      height:  94px;
     }
 
     .p-name {
@@ -112,7 +112,8 @@
       text-align: center;
       text-decoration: none;
       top: 0;
-      width: 87px; /*  #some-people .h-card's width - 10px */
+      width: 100px;
+      overflow: hidden;
     }
   }
 
