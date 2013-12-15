@@ -4,7 +4,7 @@
 
 <%= form_for @photo do |f| %>
   <%= f.label :caption, "Caption" %>
-  <%= f.text_area :caption, :autocapitalize => "sentences" %>
+  <%= f.text_area :caption, autocapitalize: "sentences" %>
 
   <% unless @photo.avatar? %>
     <table id="avatar">
@@ -15,7 +15,7 @@
     </table>
   <% end %>
 
-  <%= f.submit "Save Photo", :disable_with => "Saving&hellip;".html_safe, :class => "button black full" %>
+  <%= f.submit "Save Photo", disable_with: "Saving&hellip;".html_safe, class: "button black full" %>
 <% end %>
 
 <section id="danger-zone">
@@ -43,8 +43,8 @@
 
     <%= button_to "I Want to Delete My Photo",
                   @photo,
-                  :method  => :delete,
-                  :confirm => "Are you SURE? Like for sure, for sure? There is NO UNDO.",
-                  :class   => "button red full" %>
+                  method:  :delete,
+                  confirm: "Are you SURE? Like for sure, for sure? There is NO UNDO.",
+                  class:   "button red full" %>
   </div>
 </section>

@@ -7,14 +7,13 @@ describe YourLabel do
     DatabaseCleaner.clean
 
     @user = User.create!(
-      :name     => "Shane Becker",
-      :username => "veganstraightedge",
-      :email    => "veganstraightedge@gmail.com"
+      name:     "Shane Becker",
+      username: "veganstraightedge",
+      email:    "veganstraightedge@gmail.com"
     )
 
-    provider = Provider.create!(:name => "twitter", :uid => "641013", :user_id => @user.id)
-
-    @label = Label.create!(:name => "straightedge")
+    provider = Provider.create!(name: "twitter", uid: "641013", user_id: @user.id)
+    @label   = Label.create!(name: "straightedge")
   end
 
   it "should belong to a user and a label" do

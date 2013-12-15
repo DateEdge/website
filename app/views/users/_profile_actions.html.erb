@@ -2,7 +2,7 @@
   <div class="profile-actions">
     <ul class="actions">
       <li class="button black" id="new_message">
-        <%= link_to "Message", new_message_path(:recipient => @user.username), :class => "message" %>
+        <%= link_to "Message", new_message_path(recipient: @user.username), class: "message" %>
       </li>
       
       <% if im.secret_crushing_on?(@user) %>
@@ -11,8 +11,8 @@
         </li>
       </ul>
 
-      <%= form_for current_user.crush_with(@user), :html => { :method => :delete, :id => "uncrush" } do |f| %>
-        <%= f.submit "Uncrush", :class => "uncrush secondary clicker" %>
+      <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "uncrush" } do |f| %>
+        <%= f.submit "Uncrush", class: "uncrush secondary clicker" %>
       <% end %>
 
       <% elsif im.crushing_on?(@user) %>
@@ -21,24 +21,24 @@
         </li>
       </ul>
 
-        <%= form_for current_user.crush_with(@user), :html => { :method => :delete, :id => "uncrush" } do |f| %>
-          <%= f.submit "Uncrush", :class => "uncrush secondary clicker" %>
+        <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "uncrush" } do |f| %>
+          <%= f.submit "Uncrush", class: "uncrush secondary clicker" %>
         <% end %>
 
       <% else %>
 
         <li class="crush button black">
           <%= form_for @crush do |f| %>
-            <%= f.hidden_field :crushee_id, :value => @user.id %>
+            <%= f.hidden_field :crushee_id, value: @user.id %>
             <%= f.submit "Crush" %>
           <% end %>
         </li>
       </ul>
 
-        <%= form_for @crush, :html => { :id => "new_secret_crush" } do |f| %>
-          <%= f.hidden_field :crushee_id, :value => @user.id %>
-          <%= f.hidden_field :secret,     :value => true %>
-          <%= f.submit "Secret Crush", :class => "secret-crush secondary clicker" %>
+        <%= form_for @crush, html: { id: "new_secret_crush" } do |f| %>
+          <%= f.hidden_field :crushee_id, value: @user.id %>
+          <%= f.hidden_field :secret,     value: true %>
+          <%= f.submit "Secret Crush", class: "secret-crush secondary clicker" %>
         <% end %>
 
       <% end %>

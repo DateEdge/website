@@ -4,8 +4,8 @@ class Country < ActiveRecord::Base
   class << self
     def options_for_select
       countries = [
-        Country.where(:name => "United States").first,
-        Country.where(:name => "Canada").first
+        Country.where(name: "United States").first,
+        Country.where(name: "Canada").first
       ]
       countries << Country.order(:name).all
 

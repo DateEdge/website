@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :restrict_non_visible_user, :only => [:new, :create]
+  skip_before_filter :restrict_non_visible_user, only: [:new, :create]
 
   def index
     if logged_in?
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     @user.attributes = params.require(:user).permit(:username, :email, "birthday(1i)", "birthday(2i)", "birthday(3i)", :agreed_to_terms_at)
     if @user.save
       @user.visiblize!
-      redirect_to new_photo_path(:getting => "started")
+      redirect_to new_photo_path(getting: "started")
     else
       render :new
     end
@@ -51,9 +51,9 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if current_user.update(user_params)
-      redirect_to(person_path(current_user.username), :notice => 'User was successfully updated.')
+      redirect_to(person_path(current_user.username), notice: 'User was successfully updated.')
     else
-      render :action => "edit"
+      render action: "edit"
     end
   end
 
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     @user = current_user
     @user.destroy
     session.delete(:user_id)
-    redirect_to root_path, :notice => "Profile Deleted. Come on back any time."
+    redirect_to root_path, notice: "Profile Deleted. Come on back any time."
   end
   
   private 

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe MessagesController do
-  let(:user) { User.create(:username => "Shane", :name => "SB", :email => "test@example.com", :birthday => 25.years.ago, visible: true) }
-  let(:user2) { User.create(:username => "Bookis", :name => "BS", :email => "bs@example.com", :birthday => 25.years.ago, visible: true) }
+  let(:user)  { User.create(username: "Shane",  name: "SB", email: "test@example.com", birthday: 25.years.ago, visible: true) }
+  let(:user2) { User.create(username: "Bookis", name: "BS", email: "bs@example.com",   birthday: 25.years.ago, visible: true) }
   let(:conversation) { Conversation.create }
   
   before do 
