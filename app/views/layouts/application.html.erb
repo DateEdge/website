@@ -4,6 +4,7 @@
 <%= render :partial => '/shared/head' %>
 
 <body>
+
   <% if welcome? %>
     <%= render :partial => '/shared/welcome_header' %>
   <% else %>
@@ -11,6 +12,8 @@
   <% end %>
 
   <section role="main">
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+
     <% unless logged_in? || controller_name == "welcome" %>
       <%= render :partial => "/shared/social_posting_info" %>
     <% end %>
