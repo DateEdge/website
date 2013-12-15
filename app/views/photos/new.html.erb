@@ -3,7 +3,7 @@
 <%= form_for @photo, html: { multipart: true } do |f| %>
   <% if getting_started? %>
     <div id="getting-started">
-      
+
       <% if current_user.photos.any? %>
         <p class="info">
           We got this photo from
@@ -11,10 +11,11 @@
           You can add more photos below.
         </p>
 
-        <ul class="actions">
-          <li class="button green"><%= link_to "Add Another", "#url" %></li>
-          <li class="button black"><%= link_to "No Thanks", root_path %></li>
-        </ul>
+        <div class="actions">
+          <%= link_to "Add Another", "#url", class: "btn btn-success" %>
+          <%= link_to "No Thanks", root_path, class: "btn btn-default" %>
+        </div>
+
         <%= image_tag current_user.photos.first.image_url(:small).to_s %>
       <% end %>
 
@@ -35,5 +36,5 @@
   <%= f.label     :caption, "Caption" %>
   <%= f.text_area :caption, autocapitalize: "sentences" %>
 
-  <%= f.submit "Upload", disable_with: 'Uploading...', class: "button black full" %>
+  <%= f.submit "Upload", disable_with: 'Uploading...', class: "btn btn-success btn-block" %>
 <% end %>

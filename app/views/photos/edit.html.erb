@@ -15,7 +15,7 @@
     </table>
   <% end %>
 
-  <%= f.submit "Save Photo", disable_with: "Saving&hellip;".html_safe, class: "button black full" %>
+  <%= f.submit "Save Photo", disable_with: "Saving&hellip;".html_safe, class: "btn btn-success btn-block" %>
 <% end %>
 
 <section id="danger-zone">
@@ -45,6 +45,6 @@
                   @photo,
                   method:  :delete,
                   confirm: "Are you SURE? Like for sure, for sure? There is NO UNDO.",
-                  class:   "button red full" %>
+                  class:   "btn btn-danger btn-block" %>
   </div>
 </section>
