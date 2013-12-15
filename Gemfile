@@ -3,11 +3,11 @@ source "https://rubygems.org"
 ruby "1.9.3"
 
 
-gem "rails",              "~> 4.0.0"
+gem "rails",              "~> 4.0.2"
 gem "pg"
 gem "json"
 gem "jquery-rails"
-gem "email_address_validator", "0.0.3", git: 'git://github.com/bookis/email_address_validator'
+gem "email_address_validator", "0.0.3", git: "git://github.com/bookis/email_address_validator"
 gem "rollbar" # Exception notifier
 
 # image uploads
@@ -38,7 +38,7 @@ end
 
 group :production do
   gem "puma"
-  gem 'rails_12factor'
+  gem "rails_12factor"
 end
 
 group :assets do
