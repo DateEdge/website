@@ -26,14 +26,8 @@
 }
 
 /* TODO HACK Button classes on <li> instead of <a> */
-/* /photos/new?getting=started            */
-.actions li a {
-  color: white;
-  text-decoration: none;
-}
-
+/* /photos/new?getting=started */
 .actions li form,
-.actions li .button,
 .actions li {
   display: inline-block;
 }
@@ -224,8 +218,7 @@ footer[role=contentinfo] {
 
 /* override native form styles... */
 input[type=upload],
-input[type=submit],
-button {
+input[type=submit] {
   -webkit-appearance: none;
   -webkit-border-radius: 0;
 }

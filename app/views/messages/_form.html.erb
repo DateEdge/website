@@ -1,4 +1,5 @@
 <%= form_for message do |f| %>
+
   <% if @conversation.new_record? %>
     <%= f.label :subject, "Subject" %>
     <%= f.text_field :subject, autocapitalize: "words" %>
@@ -11,5 +12,6 @@
   <%= f.label :body, "Body" %>
   <%= f.text_area :body, autocapitalize: "sentences", placeholder: "Say something nice and more than &lsquo;hey...&rsquo;".html_safe %>
 
-  <%= f.submit "Send", disable_with: 'Sending...', class: "button black full" %>
+  <%= f.submit "Send", disable_with: 'Sending...', class: "btn btn-success" %>
+
 <% end %>

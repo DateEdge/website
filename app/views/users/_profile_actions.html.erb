@@ -1,22 +1,22 @@
 <% if not_mine? %>
   <div class="profile-actions">
     <ul class="actions">
-      <li class="button black" id="new_message">
-        <%= link_to "Message", new_message_path(recipient: @user.username), class: "message" %>
+      <li id="new_message">
+        <%= link_to "Message", new_message_path(recipient: @user.username), class: "message btn btn-default" %>
       </li>
       
       <% if im.secret_crushing_on?(@user) %>
-        <li class="disabled crushed button white">
+        <li class="disabled crushed btn btn-default">
           <span>Secret Crushed!</span>
         </li>
       </ul>
 
-      <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "uncrush" } do |f| %>
-        <%= f.submit "Uncrush", class: "uncrush secondary clicker" %>
-      <% end %>
+        <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "uncrush" } do |f| %>
+          <%= f.submit "Uncrush", class: "uncrush secondary clicker" %>
+        <% end %>
 
       <% elsif im.crushing_on?(@user) %>
-        <li class="disabled crushed button white">
+        <li class="disabled crushed btn btn-default">
           <span>Crushed!</span>
         </li>
       </ul>
@@ -27,10 +27,10 @@
 
       <% else %>
 
-        <li class="crush button black">
+        <li class="crush">
           <%= form_for @crush do |f| %>
             <%= f.hidden_field :crushee_id, value: @user.id %>
-            <%= f.submit "Crush" %>
+            <%= f.submit "Crush", class: "btn btn-default" %>
           <% end %>
         </li>
       </ul>

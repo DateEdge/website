@@ -93,7 +93,7 @@
     <% end %>
   </table>
 
-  <%= f.submit "Save Changes", disable_with: "Saving&hellip;".html_safe, class: "button black full" %>
+  <%= f.submit "Save Changes", disable_with: "Saving&hellip;".html_safe, class: "btn btn-success btn-block" %>
 <% end %>
 
 
@@ -120,6 +120,6 @@
                   user_path(@user),
                   method:  :delete,
                   confirm: "Uhhhh&hellip; Are you sure you want to delete your profile?".html_safe,
-                  class:   "button red full" %>
+                  class:   "btn btn-danger btn-block" %>
   </div>
 </div> <!-- #danger-zone -->
