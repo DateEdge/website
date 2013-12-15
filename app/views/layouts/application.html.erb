@@ -27,7 +27,7 @@
     <%= yield %>
   </section>
 
-  <footer role="contentinfo">
+  <footer role="contentinfo" class="container">
     <% if logged_in? %>
       <%= link_to_unless_current "Sign Out", signout_path, class: "btn btn-default btn-block" %>
     <% end %>
