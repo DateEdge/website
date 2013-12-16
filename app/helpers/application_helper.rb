@@ -9,10 +9,13 @@ module ApplicationHelper
 
   def birthday_select_tag(f)
     f.date_select :birthday,
-                  order:         [:month, :day, :year],
-                  start_year:    12.years.ago.year,
-                  end_year:      60.years.ago.year,
-                  include_blank: true
+                  {
+                    order:         [:month, :day, :year],
+                    start_year:    12.years.ago.year,
+                    end_year:      60.years.ago.year,
+                    include_blank: true
+                  },
+                  {class:         "form-control"}
   end
 
   def link_to_avatar(user, avatar_size=nil)

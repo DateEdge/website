@@ -108,51 +108,14 @@ nav[role=navigation] {
 /* ...site header */
 
 /* forms... */
-/*
-label {
-  display: block;
-  font-weight: bold;
-  margin: 0;
-  margin-top: 1em;
-}
-
-label,
-input[type=text],
-input[type=email],
-input[type=password],
-textarea,
-select {
-  margin-bottom: .5em;
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
-  width: 100%;
-}
-
-textarea,
-input[type=text],
-input[type=email],
-input[type=password] {
-  background: #eee;
-  color: #666;
-  padding: 5px;
-  margin: 0;
-  border-radius: 0;
-}
-
-textarea:focus,
-input[type=text]:focus,
-input[type=email]:focus,
-input[type=password]:focus {
-  background: white;
-  color: black;
-}
+/* TODO clone bootstrap error styles */
 label .field_with_errors + span,
 label .field_with_errors + span a,
 .field_with_errors {
   color: #b94a48;
 }
 
+/* TODO clone bootstrap error styles */
 .field_with_errors input,
 .field_with_errors select {
   border-color: #b94a48;
@@ -162,11 +125,10 @@ label .field_with_errors + span a,
   
 }
 
+/* TODO clone bootstrap error styles */
 label .field_with_errors {
   display: inline-block;
 }
-*/
-
 /* ...forms */
 
 
