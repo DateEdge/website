@@ -71,40 +71,8 @@ header[role=banner] a {
 nav[role=navigation] {
   display: inline-block;
   float: right;
-  margin-top: 10px;
+  margin-top: 5px;
 }
-
-.twitter-sign-in-link,
-.facebook-sign-in-link,
-.settings-link,
-.inbox-link {
-  width:  16pt;
-  height: 16pt;
-  display: inline-block;
-}
-
-.twitter-sign-in-link,
-.facebook-sign-in-link {
-  border: 1px solid white;
-}
-
-
-/*
-.settings-link         { background: image-url("settings.png") no-repeat center center; }
-.inbox-link            { background: image-url("inbox.png")    no-repeat center center; }
-.twitter-sign-in-link  { background: image-url("twitter.png")  no-repeat center center; }
-.facebook-sign-in-link { background: image-url("facebook.png") no-repeat center center; }
-
-#unread-count {
-  background: white;
-  color: black;
-  padding: 0 2px;
-  line-height: 1.33em;
-  display: inline-block;
-  border-radius:         3px;
-  opacity: .75;
-}
-*/
 /* ...site header */
 
 /* forms... */
@@ -253,30 +221,3 @@ label.checkbox input[type=checkbox] {
   }
 }
 /* ...iphone landscape */
-
-/* retina display... */
-@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-  .twitter-sign-in-link,
-  .facebook-sign-in-link,
-  .settings-link,
-  .inbox-link {
-    background-size: 16pt 16pt;
-  }
-
-  .settings-link         { background-image: image-url("settings@2x.png"); }
-  .inbox-link            { background-image: image-url("inbox@2x.png")   ; }
-  .twitter-sign-in-link  { background-image: image-url("twitter@4x.png") ; }
-  .facebook-sign-in-link { background-image: image-url("facebook@4x.png"); }
-
-  .twitter-sign-in-link,
-  .facebook-sign-in-link {
-    border-right: none;
-  }
-}
-/* ...retina display */
-
-
-/* bigger screen... */
-@media screen and (min-width: 1000px) {
-}
-/* ...bigger screen */
