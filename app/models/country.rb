@@ -12,8 +12,4 @@ class Country < ActiveRecord::Base
       countries.flatten.map{ |c| [c.name.capitalize, c.id] }
     end
   end
-
-  def to_s
-    name.capitalize
-  end
 end

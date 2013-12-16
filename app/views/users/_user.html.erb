@@ -21,7 +21,7 @@
       <% unless user.state.blank? %>
         <span class="p-region region"><%= user.state %></span>,
       <% end %>
-      <span class="p-country country"><%= user.country %></span>
+      <span class="p-country country"><%= user.country.name %></span>
     <% end %>
   </h2>
 </div> <!-- .person -->
