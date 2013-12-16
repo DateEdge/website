@@ -78,11 +78,9 @@ nav[role=navigation] {
 .facebook-sign-in-link,
 .settings-link,
 .inbox-link {
-  text-indent: -999em;
   width:  16pt;
   height: 16pt;
   display: inline-block;
-  margin-left: .5em;
 }
 
 .twitter-sign-in-link,
@@ -91,6 +89,7 @@ nav[role=navigation] {
 }
 
 
+/*
 .settings-link         { background: image-url("settings.png") no-repeat center center; }
 .inbox-link            { background: image-url("inbox.png")    no-repeat center center; }
 .twitter-sign-in-link  { background: image-url("twitter.png")  no-repeat center center; }
@@ -105,6 +104,7 @@ nav[role=navigation] {
   border-radius:         3px;
   opacity: .75;
 }
+*/
 /* ...site header */
 
 /* forms... */

@@ -2,7 +2,7 @@
   <div class="profile-actions">
     <ul class="actions">
       <li id="new_message">
-        <%= link_to "Message", new_message_path(recipient: @user.username), class: "message btn btn-default" %>
+        <%= link_to "Message".html_safe, new_message_path(recipient: @user.username), class: "message btn btn-default" %>
       </li>
       
       <% if im.secret_crushing_on?(@user) %>
