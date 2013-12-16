@@ -1,4 +1,7 @@
-<% if not_mine? %>
+<% if mine? %>
+  <%= link_to "<i class='fa fa-picture-o'></i> Add a Photo".html_safe, new_photo_path, class: "btn btn-success" %>
+
+<% else %>
   <div class="actions">
 
     <span class="btn-group">
