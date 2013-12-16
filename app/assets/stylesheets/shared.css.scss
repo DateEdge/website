@@ -83,7 +83,12 @@ header[role=banner] a {
 nav[role=navigation] {
   display: inline-block;
   float: right;
-  margin-top: 5px;
+  margin-top: 8px;
+}
+
+nav[role=navigation] a {
+  padding: .5em;
+
 }
 /* ...site header */
 

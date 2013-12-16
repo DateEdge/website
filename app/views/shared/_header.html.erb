@@ -6,14 +6,13 @@
     <nav role="navigation">
       <% if logged_in? %>
 
-        <%= link_to conversations_path, class: "btn btn-sm btn-black" do %>
+        <%= link_to conversations_path do %>
           <i class='fa fa-lg fa-envelope'></i>
           <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
         <% end %>
 
-        <%= link_to "<i class='fa fa-lg fa-gear'></i>".html_safe, settings_path,       class: "btn btn-sm btn-black" %>
-
-        <%= link_to "<i class='fa fa-lg fa-user'></i>".html_safe, person_path(current_user.username), class: "profile-link"   %>
+        <%= link_to "<i class='fa fa-lg fa-gear'></i>".html_safe, settings_path %>
+        <%= link_to "<i class='fa fa-lg fa-user'></i>".html_safe, person_path(current_user.username) %>
 
       <% else %>
 
