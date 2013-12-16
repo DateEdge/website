@@ -165,13 +165,3 @@ label.checkbox input[type=checkbox] {
   vertical-align: baseline;
 }
 /* ...override native rounded form elements */
-
-
-/* iphone... */
-@media screen and (max-device-width: 480px) {
-  input[type=submit] {
-    width: 100%;
-    display: block;
-  }
-}
-/* ...iphone */
