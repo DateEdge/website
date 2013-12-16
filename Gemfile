@@ -9,6 +9,8 @@ gem "json"
 gem "jquery-rails"
 gem "email_address_validator", "0.0.3", git: "git://github.com/bookis/email_address_validator"
 gem "rollbar" # Exception notifier
+gem "sass-rails"
+gem "uglifier"
 
 # image uploads
 gem "rmagick",            "~> 2.13.2"
@@ -18,6 +20,7 @@ gem "carrierwave"
 # auth
 gem "omniauth-twitter",   "~> 0.0.16"
 gem "omniauth-facebook",  "~> 1.4.1"
+
 
 group :development do
   gem "gx"
@@ -39,10 +42,4 @@ end
 group :production do
   gem "puma"
   gem "rails_12factor"
-end
-
-group :assets do
-  gem "sass-rails"
-  gem "uglifier"
-  gem "modernizr-rails"
 end
