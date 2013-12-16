@@ -1,12 +1,6 @@
 /* welcome... */
 #welcome {
-  header[role=banner] {
-    background: none;
-    padding: 0;
-  }
-
   header[role=banner] h1 {
-    padding: 0 10px;
     font-size: 400%;
     letter-spacing: -.06em;
     font-weight: normal;
@@ -16,6 +10,7 @@
     line-height: 150%;
     display: block;
     float: none;
+    margin: 0;
   }
 
   header[role=banner] h1 a {
@@ -25,13 +20,7 @@
   }
 
   header[role=banner] h2 {
-    margin: .5em 10px 0 10px;
-    font-size: 200%;
-    font-weight: normal;
-    font-weight: 200;
-    line-height: 125%;
-    letter-spacing: -.03em;
-    color: black;
+    margin: 0;
   }
 
   /* twitter and facebook buttons container... */
