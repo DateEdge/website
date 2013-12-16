@@ -1,19 +1,38 @@
-<% if @conversations.blank? %>
-  <p class="alert alert-info">You don&rsquo;t have any conversations started. <b>Go message someone!</b></p>
-<% else %>
-  <ol class="conversations">
-    <% @conversations.each do |conversation| %>
-      <li class="media conversation <%= 'unread' if conversation.unread?(current_user) %>">
-        <%= link_to conversation, class: "img" do %>
-          <%= image_tag (conversation.counterpart(current_user).avatar(:tiny).to_s) %>
-        <% end %>
+<div class="row">
+  <% if @conversations.blank? %>
 
-        <%= link_to conversation, class: "bd" do %>
-          <span class="message-counterpart">Conversation with <b><%= conversation.counterpart(current_user).username %></b></span>
-          <span class="message-subject"><%= conversation.subject %></span>
-          <span class="message-body"><%= truncate conversation.messages.last.body, length: 40 %></span>
-        <% end %>
-      </li>
-    <% end %>
-  </ol>
-<% end %>
+    <p class="alert alert-info">You don&rsquo;t have any conversations started. <b>Go message someone!</b></p>
+
+  <% else %>
+
+    <ol class="conversations">
+      <% @conversations.each do |conversation| %>
+        <li class="row person conversation media h-card vcard <%= 'unread' if conversation.unread?(current_user) %>">
+
+          <div class="media col-xs-12">
+            <%= link_to conversation, class: "pull-left" do %>
+              <%= image_tag conversation.counterpart(current_user).avatar(:tiny).to_s, class: "u-photo img media-object" %>
+            <% end %>
+
+            <div class="media-body">
+              <h4 class="media-heading">
+                <span class="p-name fn n">
+                  <b><%= conversation.counterpart(current_user).username %></b>
+                </span>
+              </h4>
+
+              <p>
+                <%= link_to conversation do %>
+                  <span class="message-subject"><%= conversation.subject %></span>
+                  <span class="message-body"><%= truncate conversation.messages.last.body, length: 100 %></span>
+                <% end %>
+              </p>
+            </div>
+          </div>
+
+        </li> <!-- .person -->
+      <% end %>
+    </ol>
+
+  <% end %>
+</div>
