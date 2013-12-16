@@ -25,75 +25,114 @@
 
 <%= @user.errors.full_messages.to_sentence %>
 
-<%= form_for @user, url: update_settings_path do |f| %>
-  <%= f.label      :name %>
-  <%= f.text_field :name, autocapitalize: "words" %>
+<%= form_for @user, url: update_settings_path, html: { class: "form" } do |f| %>
+  <div class="form-group">
+    <%= f.label      :name %>
+    <%= f.text_field :name, autocapitalize: "words", class: "form-control" %>
+  </div>
 
   <% if @user.username.blank? %>
-    <%= f.label      :username %>
-    <%= f.text_field :username, autocapitalize: "off", autocorrect: "off" %>
+    <div class="form-group">
+      <%= f.label      :username %>
+      <%= f.text_field :username, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
+    </div>
   <% end %>
 
-  <%= f.label       :email %>
-  <%= f.email_field :email, autocapitalize: "off", autocorrect: "off" %>
+  <div class="form-group">
+    <%= f.label       :email %>
+    <%= f.email_field :email, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
+  </div>
 
-  <%= f.label :birthday %>
-  <%= birthday_select_tag(f) %>
+  <div class="form-group">
+    <%= f.label :birthday %>
+    <%= birthday_select_tag(f) %>
+  </div>
 
-  <%= f.label      :city %>
-  <%= f.text_field :city, autocapitalize: "words" %>
+  <div class="form-group">
+    <%= f.label      :city %>
+    <%= f.text_field :city, autocapitalize: "words", class: "form-control" %>
+  </div>
 
-  <%= f.label  :state %>
-  <%= f.select :state_id, State.options_for_select, include_blank: true %>
+  <div class="form-group">
+    <%= f.label  :state %>
+    <%= f.select :state_id, State.options_for_select, { include_blank: true }, { class: "form-control" } %>
+  </div>
 
-  <%= f.label      :zipcode %>
-  <%= f.text_field :zipcode, autocapitalize: "characters" %>
+  <div class="form-group">
+    <%= f.label      :zipcode %>
+    <%= f.text_field :zipcode, autocapitalize: "characters", class: "form-control" %>
+  </div>
 
-  <%= f.label  :country %>
-  <%= f.select :country_id, Country.options_for_select, include_blank: true %>
+  <div class="form-group">
+    <%= f.label  :country %>
+    <%= f.select :country_id, Country.options_for_select, { include_blank: true }, { class: "form-control" } %>
+  </div>
 
-  <%= f.label     :bio %>
-  <%= f.text_area :bio, autocapitalize: "sentences" %>
+  <div class="form-group">
+    <%= f.label     :bio %>
+    <%= f.text_area :bio, autocapitalize: "sentences", class: "form-control", rows: 8 %>
+  </div>
 
-  <%= f.label  :diet %>
-  <%= f.select :diet_id, Diet.options_for_select, include_blank: true %>
+  <div class="form-group">
+    <%= f.label  :diet %>
+    <%= f.select :diet_id, Diet.options_for_select, { include_blank: true }, { class: "form-control" } %>
 
-  <%= f.label      :me_gender,  "My Gender" %>
-  <%= f.text_field :me_gender,  autocapitalize: "words" %>
+    <%# f.select :object_field, ['Item 1', ...], {}, { :class => 'my_style_class' } %>
 
-  <%= f.label      :you_gender, "Desired Gender" %>
-  <%= f.text_field :you_gender, autocapitalize: "words" %>
+  </div>
 
-  <%= f.label :label_id, "My Straightedginess" %>
-  <table id="my-label">
+  <div class="form-group">
+    <%= f.label      :me_gender,  "My Gender" %>
+    <%= f.text_field :me_gender,  autocapitalize: "words", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label      :you_gender, "Desired Gender" %>
+    <%= f.text_field :you_gender, autocapitalize: "words", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :label_id, "My Straightedginess" %>
     <% Label.all.each do |label| %>
-      <tr>
-        <td><%= f.radio_button :label_id,              label.id, checked: @user.label == label %></td>
-        <th><%= f.label        "label_id_#{label.id}", label.name.titleize %></th>
-      </tr>
+      <div class="radio">
+        <label>
+          <%= f.radio_button :label_id,              label.id, checked: @user.label == label %>
+          <%= f.label        "label_id_#{label.id}", label.name.titleize %>
+        </label>
+      </div>
     <% end %>
-  </table>
+  </div>
 
-  <%= f.label :your_labels_attributes, "Desired Straightedginess" %>
-  <table id="desired-labels">
+  <div class="form-group">
+    <%= f.label :your_labels_attributes, "Desired Straightedginess" %>
+
     <% Label.all.each_with_index do |label, index| %>
       <%= f.fields_for "your_labels_attributes[#{index}]", child_index: index do |ff| %>
-        <tr>
-          <% if @user.desired_labels.include? label %>
-            <%# TODO remove find from view, do it in the controller %>
-            <%= ff.hidden_field :id, value: @user.your_labels.where(label_id: label.id).first.id, style: "display:none" %>
-            <td><%= ff.check_box :_destroy, { checked: true }, 0, 1 %></td>
-            <th><%= ff.label     :_destroy, label.name.titleize %></th>
-          <% else %>
-            <td><%= ff.check_box :label_id, {}, label.id %></td>
-            <th><%= ff.label     :label_id, label.name.titleize %></th>
-          <% end %>
-        </th>
+        <% if @user.desired_labels.include? label %>
+          <%# TODO remove find from view, do it in the controller %>
+          <%= ff.hidden_field :id, value: @user.your_labels.where(label_id: label.id).first.id, style: "display:none" %>
+
+          <div class="checkbox">
+            <label>
+              <%= ff.check_box :_destroy, { checked: true }, 0, 1 %>
+              <%= ff.label     :_destroy, label.name.titleize %>
+            </label>
+          </div>
+        <% else %>
+          <div class="checkbox">
+            <label>
+              <%= ff.check_box :label_id, {}, label.id %>
+              <%= ff.label     :label_id, label.name.titleize %>
+            </label>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
-  </table>
+  </div>
 
-  <%= f.submit "Save Changes", disable_with: "Saving&hellip;".html_safe, class: "btn btn-success btn-block" %>
+  <div class="form-group">
+    <%= f.submit "Save Changes", disable_with: "Saving&hellip;".html_safe, class: "btn btn-success btn-block btn-lg" %>
+  </div>
 <% end %>
 
 
@@ -120,6 +159,6 @@
                   user_path(@user),
                   method:  :delete,
                   confirm: "Uhhhh&hellip; Are you sure you want to delete your profile?".html_safe,
-                  class:   "btn btn-danger btn-block" %>
+                  class:   "btn btn-danger btn-block btn-lg" %>
   </div>
 </div> <!-- #danger-zone -->
