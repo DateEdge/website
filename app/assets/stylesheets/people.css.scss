@@ -1,130 +1,63 @@
 #people {
-#crushers {
-  margin-top: .5em;
-}
-
-#crushers,
-#crushes {
-  margin-bottom: 1em;
-}
-
-#crushers > h1,
-#crushes  > h1,
-#everyone > h1 {
-  font-size: 1.5em;
-  font-weight: bold;
-  text-transform: uppercase;
-  background: #444;
-  color: white;
-  padding: 5px;
-}
-
-#crushers .person:last-child,
-#crushes  .person:last-child,
-#everyone .person:last-child {
-  border-bottom: none;
-}
-
-.person {
-  clear: both;
-  padding: 1em 0;
-  border-bottom: 1px solid #eee;
-  min-height: 4em;
-}
-
-#photos {
-  margin-top: 1em;
-}
-
-#photos ul,
-#photos li {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-#photos li img {
-  max-width: 100%;
-  margin-top: 1em;
-}
-
-section[role=main] h3 {
-  clear: both;
-  margin-top: 1.5em;
-}
-
-.note {
-  margin-top: 1em;
-}
-
-.note p {
-  margin-bottom: .5em;
-}
-
-/* profile actions... */
-.profile-actions {
-  margin-bottom: 1em;
-}
-
-.profile-actions .actions {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.button.disabled {
-  /* for mobile? */
-  /*
-  padding-left:  0;
-  padding-right: 0;
-  display: inline-block;
-  */
-}
-
-/* crush button is a form with an input inside of it */
-.crush input {
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  border: none;
-  color: white;
-}
-
-input[type=submit].secondary.clicker {
-  -webkit-appearance: none;
-  background: none;
-  outline: none;
-  border: none;
-  padding: 0;
-  color: #999;
-  border-bottom: 1px solid #999;
-  -webkit-border-radius: 0;
-  -moz-border-radius:    0;
-  border-radius:         0;
-  margin-right: 5px;
-}
-/* ...profile actions */
-}
-/* #people */
-
-/* iphone... */
-@media screen and (max-device-width: 480px) {
-#people {
-    input[type=submit].crush.clicker {
-    display: inline-block;
+  #crushers {
+    margin-top: .5em;
   }
 
-  #uncrush,
-  #new_secret_crush {
-    text-align: right;
+  #crushers,
+  #crushes {
+    margin-bottom: 1em;
   }
 
-  input[type=submit].secondary.clicker {
-    display: inline;
-    width: auto;
+  #crushers > h1,
+  #crushes  > h1,
+  #everyone > h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: #444;
+    color: white;
+    padding: 5px;
   }
-}
-/* ...iphone */
+
+  #crushers .person:last-child,
+  #crushes  .person:last-child,
+  #everyone .person:last-child {
+    border-bottom: none;
+  }
+
+  .person {
+    clear: both;
+    padding: 1em 0;
+    min-height: 4em;
+  }
+
+  #photos {
+    margin-top: 1em;
+  }
+
+  #photos ul,
+  #photos li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #photos li img {
+    max-width: 100%;
+    margin-top: 1em;
+  }
+  
+  /* used on users#index sidebar Pro Tips */
+  table.table h3 {
+    margin-top: 0;
+  }
+
+  .note {
+    margin-top: 1em;
+  }
+
+  .note p {
+    margin-bottom: .5em;
+  }
 }
 /* #people */

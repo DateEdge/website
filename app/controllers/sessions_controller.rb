@@ -5,13 +5,13 @@ class SessionsController < ApplicationController
     auth = request.env["omniauth.auth"]
 
     if current_user
-      provider = Provider.where(:name => auth["provider"], :uid => auth["uid"]).first
+      provider = Provider.where(name: auth["provider"], uid: auth["uid"]).first
 
       if provider
         current_user.merge! provider.user
         current_user.providers << provider
       else
-        current_user.providers << Provider.create!(:name => auth["provider"], :uid => auth['uid'])
+        current_user.providers << Provider.create!(name: auth["provider"], uid: auth['uid'])
       end
 
     else
@@ -25,10 +25,10 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "Signed out!"
+    redirect_to root_url, notice: "Signed out!"
   end
   
   def failure
-    redirect_to root_url, :notice => params[:message]
+    redirect_to root_url, notice: params[:message]
   end
 end

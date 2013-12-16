@@ -1,18 +1,242 @@
-<% if @crushers && @crushers.any? %>
-  <div id="crushers">
-    <h1>Crushers</h1>
-    <%= render @crushers %>
-  </div>
-<% end %>
+<div class="row">
 
-<% if @crushes && @crushes.any? %>
-  <div id="crushes">
-    <h1>Crushes</h1>
-    <%= render @crushes %>
-  </div>
-<% end %>
+  <div class="col-sm-6">
+    <% if @crushers && @crushers.any? %>
+      <div class="page-header">
+        <h1>
+          Crushers
+          <small>they like you</small>
+        </h1>
+      </div>
 
-<div id="everyone">
-  <h1>Everyone</h1>
-  <%= render @users %>
-</div>
+      <%= render @crushers %>
+    <% end %>
+
+    <% if @crushes && @crushes.any? %>
+      <div class="page-header">
+        <h1>
+          Crushes
+          <small>you like them</small>
+        </h1>
+      </div>
+
+      <%= render @crushes %>
+    <% end %>
+
+    <div id="everyone">
+      <div class="page-header">
+        <h1>
+          Everyone
+          <small>this will go away as the site grows</small>
+        </h1>
+      </div>
+
+      <%= render @users %>
+    </div>
+  </div>
+
+
+  <div class="col-sm-6">
+    <div class="page-header">
+      <h1>
+        Pro Tips&trade;
+        <small>about the site</small>
+      </h1>
+    </div>
+
+    <p>
+      We've intentionally kept <b>Date Edge</b> very simple.
+      You can only a few things with other people on this site.
+      We believe that a dating site should stay out of the way.
+    </p>
+    <p>
+      Find people, look at the high-level labels, then message them.
+      Talk to other humans, find out if you're a good match, then go on a date.
+    </p>
+
+    <h2 class="h3">Actions</h2>
+    <table class="table">
+      <tr>
+        <th><span class="btn btn-lg btn-info"><i class="fa fa-lg fa-comment"></i></span></th>
+        <td>
+          <h3 class="h4">Message</h3>
+          <p>If you want to start talking with someone, this button will start a conversation. Keep it positive. Be friendly. Have fun.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span class="btn btn-lg btn-danger"><i class="fa fa-lg fa-heart"></i></span></th>
+        <td>
+          <h3 class="h4">Crush</h3>
+          <p>If you think you like someone, crush on them. This button will let them know that you have a crush on them. It'll also put them in your list of crushes for future visits.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span class="btn btn-lg btn-danger"><i class="fa fa-lg fa-ban"></i></span></th>
+        <td>
+          <h3 class="h4">Un-Crush</h3>
+          <p>If you change your mind later, that's okay. This button will remove your crush.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span class="btn btn-lg btn-warning"><i class="fa fa-lg fa-star"></i></span></th>
+        <td>
+          <h3 class="h4">Bookmark</h3>
+          <p>A bookmark is like a secret crush. They'll be saved to your list for future visits, but they won't know that you're crushing on them. (Don't be a creep, though.)</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span class="btn btn-lg btn-warning"><i class="fa fa-lg fa-ban"></i></span></th>
+        <td>
+          <h3 class="h4">Un-Bookmark</h3>
+          <p>Just like the un-crush button, this will remove your bookmark. No harm, no foul.</p>
+        </td>
+      </tr>
+    </table>
+
+    <h2 class="h3">Profiles</h2>
+    <table class="table">
+      <tr>
+        <th><span class="btn btn-lg btn-success"><i class="fa fa-lg fa-picture-o"></i></span></th>
+        <td>
+          <h3 class="h4">Photos</h3>
+          <p>Let's be honest. We use the web to look at photos of each other. We all hope to find someone who is attractive to us, and that finds us attractive. So, add lots of good photos of you to your profile.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span class="btn btn-lg btn-default"><i class="fa fa-lg fa-user"></i></span></th>
+        <td>
+          <h3 class="h4">Personal Details</h3>
+          <p>We ask very few questions about you for your profile. The best bios profiles are the most complete ones. You can you the free-form text bio to tell people more than the very high-level statistics. What's your story?</p>
+        </td>
+      </tr>
+    </table>
+
+    <h2 class="h3">About Us</h2>
+    <table class="table">
+      <tr>
+        <th>
+          <%= image_tag "shane-becker.jpg", alt: "Shane Becker's photobooth from a Pete and Pete reunion show in LA" %>
+        </th>
+        <td>
+          <h3 class="h4">
+            Shane Becker
+            <small><a href="/@veganstraightedge" title="Shane's Date Edge profile">@veganstraightedge</a></small>
+          </h3>
+          <p>Shane came up with the idea for <b>Date Edge</b> in <time datetime="2008-05-10">May of 2008</time> (originally called <i>Straightedge Date</i> until <a href="https://twitter.com/jbarnette">John Barnette</a> pointed the now obvious word play). He put up a "enter your email to be notified we launch" one-page website and then promptly put it on the back burner. Until...</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          <%= image_tag "bookis-smuin.jpg", alt: "Bookis Smuin's yearbook photo from freshman year of high school" %>
+        </th>
+        <td>
+          <h3 class="h4">
+            Bookis Smuin
+            <small><a href="/@bookis" title="Bookis' Date Edge profile">@bookis</a></small>
+          </h3>
+          <p>...years later Bookis was chatting with Shane wondering whatever happened to that idea. He learned that it had sat dormant mostly for lack of a partner in crime. He dove in to help see it through. Bookis programmed all of the bits. Shane designed all of the pixels.</p>
+        </td>
+      </tr>
+    </table>
+
+    <h2 class="h3">Contact Information</h2>
+    <table class="table">
+      <tr>
+        <th>
+          <a href="https://twitter.com/dateedge" class="btn btn-lg btn-default">
+            <i class="fa fa-lg fa-twitter"></i>
+          </a>
+        </th>
+        <td>
+          <h3 class="h4">
+            Twitter
+            <small><a href="/@dateedge" title="Date Edge on Twitter">@dateedge</a></small>
+          </h3>
+          <p><a href="https://twitter.com/intent/tweet?text=@dateedge%20">Tweet at us</a>. We're pretty friendly.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          <a href="mailto:dateedge@gmail.com" class="btn btn-lg btn-default">
+            <i class="fa fa-lg fa-inbox"></i>
+          </a>
+        </th>
+        <td>
+          <h3 class="h4">
+            Email
+            <small><a href="mailto:dateedge@gmail.com" title="dateedge@gmail.com">dateedge@gmail.com</a></small>
+          </h3>
+          <p>Want to go old school? That's fine. We still use and love the emails. Fire away.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          <a href="http://instagram.com/dateedge" class="btn btn-lg btn-default">
+            <i class="fa fa-lg fa-instagram"></i>
+          </a>
+        </th>
+        <td>
+          <h3 class="h4">
+            Instagram
+            <small><a href="/@dateedge" title="Date Edge on Instagram">@dateedge</a></small>
+          </h3>
+          <p>If you &lsquo;gram up anything about the site or your dating adventures, mention us so we see it.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          <a href="http://web.stagram.com/tag/dateedge" class="btn btn-lg btn-default">
+            <i><b>#</b></i>
+          </a>
+        </th>
+        <td>
+          <h3 class="h4">
+            #Hashtags
+            <small><a href="https://twitter.com/search?q=%23dateedge" title="#DateEdge on Twitter">#dateedge</a></small>
+          </h3>
+          <p>
+            #Hashtag all the things.
+            <a href="https://twitter.com/search?q=%23dateedge">#dateedge on Twitter</a>.
+            <a href="http://web.stagram.com/tag/dateedge" title="#dateedge Instagram photos | Webstagram">#dateedge on Instagram</a>.
+            <a href="https://www.facebook.com/hashtag/dateedge">#dateedge on Facebook</a>.
+            PS. Thanks, <a href="https://twitter.com/chrismessina">Chris Messina</a>!
+          </p>
+        </td>
+      </tr>
+
+    </table>
+
+    <h2 class="h3">Code of Conduct</h2>
+    <p>In short:</p>
+    <ol>
+      <li>Don't be a creep.</li>
+      <li>Keep it positive.</li>
+      <li>Have fun.</li>
+    </ol>
+
+    <p>Additionally,</p>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <p>
+      <i class="fa fa-heart"></i>
+      Shane + Bookis
+    </p>
+  </div>
+
+</div><!-- .row -->

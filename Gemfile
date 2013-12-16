@@ -1,15 +1,16 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
-ruby "2.0.0"
-#, :engine => "rbx", :engine_version => "2.0.0.rc1"
+ruby "1.9.3"
 
 
-gem "rails",              "~> 4.0.0"
+gem "rails",              "~> 4.0.2"
 gem "pg"
 gem "json"
 gem "jquery-rails"
-gem "email_address_validator", "0.0.3", git: 'git://github.com/bookis/email_address_validator'
+gem "email_address_validator", "0.0.3", git: "git://github.com/bookis/email_address_validator"
 gem "rollbar" # Exception notifier
+gem "sass-rails"
+gem "uglifier"
 
 # image uploads
 gem "rmagick",            "~> 2.13.2"
@@ -19,6 +20,7 @@ gem "carrierwave"
 # auth
 gem "omniauth-twitter",   "~> 0.0.16"
 gem "omniauth-facebook",  "~> 1.4.1"
+
 
 group :development do
   gem "gx"
@@ -39,11 +41,5 @@ end
 
 group :production do
   gem "puma"
-  gem 'rails_12factor'
-end
-
-group :assets do
-  gem "sass-rails"
-  gem "uglifier"
-  gem "modernizr-rails"
+  gem "rails_12factor"
 end

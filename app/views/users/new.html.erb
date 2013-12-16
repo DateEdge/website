@@ -7,26 +7,27 @@
 
 <%= @user.errors.full_messages.to_sentence %>
 
-<%= form_for @user, :url => user_create_path, :method => :post do |f| %>
+<%= form_for @user, url: user_create_path, method: :post do |f| %>
   <%= f.label       :username %>
-  <%= f.text_field  :username, :autocapitalize => "off", :autocorrect => "off" %>
+  <%= f.text_field  :username, autocapitalize: "off", autocorrect: "off" %>
 
   <%= f.label       :email %>
-  <%= f.email_field :email,    :autocapitalize => "off", :autocorrect => "off" %>
+  <%= f.email_field :email,    autocapitalize: "off", autocorrect: "off" %>
 
   <%= f.label       :birthday %>
   <%= birthday_select_tag(f) %>
-  
+
   <b>Pretty simple rules:</b>
   <ol>
     <li>Don't be a creep.</li>
     <li>Keep it positive.</li>
     <li>Have fun.</li>
   </ol>
-  <label for='users_agreed_to_terms_at' class='checkbox'>
-    <%= f.check_box :agreed_to_terms_at, {checked: @user.agreed_to_terms_at}, Time.now %> 
+
+  <label for='user_agreed_to_terms_at' class='checkbox'>
+    <%= f.check_box :agreed_to_terms_at, { checked: @user.agreed_to_terms_at }, Time.now %>
     <span>I agree to the <%= link_to "terms", terms_path, target: :blank %></span>
   </label>
 
-  <%= f.submit "Submit", :disable_with => "Submitting...", :class => "button black full" %>
+  <%= f.submit "Submit", disable_with: "Submitting...", class: "btn btn-success btn-block" %>
 <% end %>

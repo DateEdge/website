@@ -8,7 +8,7 @@ class CrushesController < ApplicationController
   end
 
   def destroy
-    crush  = Crush.where(:id => params[:id]).first
+    crush  = Crush.where(id: params[:id]).first
     person = crush.crushee.username
     crush.destroy
     redirect_to person_path(person)
