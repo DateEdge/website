@@ -24,11 +24,18 @@
 
 
 /* buttons... */
-.actions {
-  overflow: hidden;
-  margin: 1em 0;
-  list-style-type: none;
+/* makes these the last button in a group. */
+/* needed because they're inside of a form and the first button in the group isn't. */
+#unbookmark button,
+#new_secret_crush button {
+  -webkit-border-top-left-radius:    0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-topleft:        0;
+  -moz-border-radius-bottomleft:     0;
+  border-top-left-radius:            0;
+  border-bottom-left-radius:         0;
 }
+
 
 /* TODO HACK Button classes on <li> instead of <a> */
 /* /photos/new?getting=started */

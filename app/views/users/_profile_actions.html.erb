@@ -1,39 +1,46 @@
 <% if not_mine? %>
-  <div class="profile-actions">
+  <div class="actions">
 
-    <div class="actions">
-      <%= link_to "<i class='fa fa-lg fa-comment'></i>".html_safe, new_message_path(recipient: @user.username), class: "message btn btn-info" %>
+    <span class="btn-group">
+      <%# MESSAGE BUTTON %>
+      <%= link_to "<i class='fa fa-comment'></i>".html_safe, new_message_path(recipient: @user.username), class: "message btn btn-info" %>
 
+
+      <%# BOOKMARK BUTTON %>
       <% if im.secret_crushing_on?(@user) %>
+
+        <%# bookmarked %>
         <div class="btn-group">
-          <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "uncrush", class: "form-inline" } do |f| %>
-            <span class="disabled crushed btn btn-default"> Secret Crushed!</span>
-            <%= f.button "<i class='fa fa-lg fa-ban'></i> Uncrush".html_safe, class: "btn btn-danger" %>
+          <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "unbookmark", class: "form-inline" } do |f| %>
+            <%= f.button "<i class='fa fa-ban'></i>".html_safe, class: "btn btn-warning" %>
           <% end %>
         </div>
 
-
-      <% elsif im.crushing_on?(@user) %>
-        <span class="disabled crushed btn btn-default"><i class='fa fa-lg fa-heart'></i> Crushed!</span>
-
-        <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "uncrush", class: "form-inline" } do |f| %>
-          <%= f.button "<i class='fa fa-lg fa-ban'></i> Uncrush".html_safe, class: "btn btn-danger" %>
-        <% end %>
-
       <% else %>
 
-        <%= form_for @crush, html: { class: "form-inline" } do |f| %>
-          <%= f.hidden_field :crushee_id, value: @user.id %>
-          <%= f.button "<i class='fa fa-lg fa-heart-o'></i> Crush".html_safe, class: "btn btn-danger" %>
-        <% end %>
-
+        <%# NOT bookmarked %>
         <%= form_for @crush, html: { id: "new_secret_crush", class: "form-inline" } do |f| %>
           <%= f.hidden_field :crushee_id, value: @user.id %>
           <%= f.hidden_field :secret,     value: true %>
-          <%= f.button "<i class='fa fa-lg fa-heart-o'></i> Secret Crush".html_safe, class: "btn btn-danger" %>
+          <%= f.button "<i class='fa fa-star'></i>".html_safe, class: "btn btn-warning" %>
         <% end %>
 
       <% end %>
+    </span>
 
-  </div> <!-- .profile-actions -->
+    <%# CRUSH BUTTON %>
+    <% if im.crushing_on?(@user) %>
+      <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "uncrush", class: "form-inline" } do |f| %>
+        <%= f.button "<i class='fa fa-ban'></i> Uncrush".html_safe, class: "btn btn-danger" %>
+      <% end %>
+
+    <% else %>
+
+      <%= form_for @crush, html: { class: "form-inline" } do |f| %>
+        <%= f.hidden_field :crushee_id, value: @user.id %>
+        <%= f.button "<i class='fa fa-heart'></i> Crush".html_safe, class: "btn btn-danger" %>
+      <% end %>
+    <% end %>
+
+  </div><!-- .actions -->
 <% end %>

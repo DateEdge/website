@@ -59,38 +59,5 @@
   .note p {
     margin-bottom: .5em;
   }
-
-  /* profile actions... */
-  .profile-actions {
-    margin-bottom: 1em;
-  }
-
-  .profile-actions .actions {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  /* ...profile actions */
-}
-/* #people */
-
-/* iphone... */
-@media screen and (max-device-width: 480px) {
-#people {
-    input[type=submit].crush.clicker {
-    display: inline-block;
-  }
-
-  #uncrush,
-  #new_secret_crush {
-    text-align: right;
-  }
-
-  input[type=submit].secondary.clicker {
-    display: inline;
-    width: auto;
-  }
-}
-/* ...iphone */
 }
 /* #people */
