@@ -1,4 +1,4 @@
-<%= form_for message do |f| %>
+<%= form_for message, html: { class: "form" } do |f| %>
 
   <% if @conversation.new_record? %>
     <%= f.label :subject, "Subject" %>
@@ -6,12 +6,14 @@
   <% else %>
     <%= f.hidden_field :conversation_id %>
   <% end %>
-  
-  <%= f.hidden_field :recipient_id %>
-  
-  <%= f.label :body, "Body" %>
-  <%= f.text_area :body, autocapitalize: "sentences", placeholder: "Say something nice and more than &lsquo;hey...&rsquo;".html_safe %>
 
-  <%= f.submit "Send", disable_with: 'Sending...', class: "btn btn-success" %>
+  <%= f.hidden_field :recipient_id %>
+
+  <div class="form-group">
+    <%= f.label :body, "Body", class: "sr-only" %>
+    <%= f.text_area :body, autocapitalize: "sentences", placeholder: "Say something nice and more than &lsquo;hey...&rsquo;".html_safe, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Send", disable_with: 'Sending...', class: "btn btn-success btn-block btn-lg" %>
 
 <% end %>
