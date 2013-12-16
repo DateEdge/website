@@ -7,7 +7,7 @@
 
     <ol class="conversations">
       <% @conversations.each do |conversation| %>
-        <li class="row person conversation h-card vcard <%= 'unread' if conversation.unread?(current_user) %>">
+        <li class="row person conversation h-entry <%= 'unread' if conversation.unread?(current_user) %>">
 
           <div class="media col-xs-12">
             <%= link_to conversation, class: "pull-left" do %>
