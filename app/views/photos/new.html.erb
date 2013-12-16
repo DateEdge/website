@@ -1,6 +1,6 @@
 <h1>Add a photo to your profile</h1>
 
-<%= form_for @photo, html: { multipart: true } do |f| %>
+<%= form_for @photo, html: { multipart: true, class: "form" } do |f| %>
   <% if getting_started? %>
     <div id="getting-started">
 
@@ -27,14 +27,23 @@
     <%= f.hidden_field :avatar, value: true %>
   <% end %>
 
-  <%= f.label     :remote_image_url, "Paste a URL", id: "url" %>
-  <%= f.url_field :remote_image_url, autocapitalize: "off", autocorrect: "off" %>
+  <div class="form-group">
+    <%= f.label     :remote_image_url, "Paste a URL", id: "url" %>
+    <%= f.url_field :remote_image_url, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
+  </div>
 
-  <%= f.label      :image, "or Select an Image" %>
-  <%= f.file_field :image %>
+  <div class="form-group">
+    <%= f.label      :image, "or Select an Image" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
 
-  <%= f.label     :caption, "Caption" %>
-  <%= f.text_area :caption, autocapitalize: "sentences" %>
+  <div class="form-group">
+    <%= f.label     :caption, "Caption" %>
+    <%= f.text_area :caption, autocapitalize: "sentences", class: "form-control", rows: 3 %>
+  </div>
 
-  <%= f.submit "Upload", disable_with: 'Uploading...', class: "btn btn-success btn-block" %>
+  <div class="form-group">
+    <%= f.submit "Upload", disable_with: 'Uploading...', class: "btn btn-success btn-block btn-lg" %>
+  </div>
+
 <% end %>

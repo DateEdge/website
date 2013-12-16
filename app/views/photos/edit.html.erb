@@ -2,21 +2,25 @@
 
 <div id="preview"><%= image_tag @photo.image_url(:medium).to_s %></div>
 
-<%= form_for @photo do |f| %>
-  <%= f.label :caption, "Caption" %>
-  <%= f.text_area :caption, autocapitalize: "sentences" %>
+<%= form_for @photo, html: { class: "form" } do |f| %>
+  <div class="form-group">
+    <%= f.label     :caption, "Caption" %>
+    <%= f.text_area :caption, autocapitalize: "sentences", class: "form-control" %>
+  </div>
 
   <% unless @photo.avatar? %>
-    <table id="avatar">
-      <tr>
-        <td><%= f.check_box :avatar %></td>
-        <th><%= f.label     :avatar, "Want to use this as your avatar?" %></th>
-      </tr>
-    </table>
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :avatar %>
+        Want to use this as your avatar?
+      </label>
+    </div>
   <% end %>
 
-  <%= f.submit "Save Photo", disable_with: "Saving&hellip;".html_safe, class: "btn btn-success btn-block" %>
+  <%= f.submit "Save Photo", disable_with: "Saving&hellip;".html_safe, class: "btn btn-success btn-block btn-lg" %>
 <% end %>
+
+
 
 <section id="danger-zone">
   <h2>DANGER ZONE</h2>
@@ -45,6 +49,6 @@
                   @photo,
                   method:  :delete,
                   confirm: "Are you SURE? Like for sure, for sure? There is NO UNDO.",
-                  class:   "btn btn-danger btn-block" %>
+                  class:   "btn btn-danger btn-block btn-lg" %>
   </div>
 </section>
