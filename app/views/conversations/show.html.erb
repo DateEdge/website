@@ -1,11 +1,5 @@
-<div id="conversation">
-  <hgroup>
-    <h1 class="subject"><%= @conversation.subject %></h1>
-    <h2 class="with">
-      <i class="small-word">with</i>
-      <%= link_to_username(@conversation.counterpart(current_user)) %>
-    </h2>
-  </hgroup>
+<div id="conversation" class="h-feed">
+  <h1 class="subject"><%= @conversation.subject %></h1>
 
   <ol class="messages">
     <% @conversation.messages.each do |message| %>
