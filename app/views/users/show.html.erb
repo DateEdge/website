@@ -45,6 +45,10 @@
 <% end %>
 
 <div id="photos">
+  <% if mine? %>
+    <%= link_to "Upload a New Photo", new_photo_path, class: "btn btn-success btn-block btn-lg" %>
+  <% end %>
+
   <ul>
     <% @user.photos.each do |photo| %>
       <li>
@@ -67,8 +71,4 @@
       </li>
     <% end %>
   </ul>
-
-  <% if mine? %>
-    <%= link_to "Upload a New Photo", new_photo_path, class: "btn btn-success btn-block" %>
-  <% end %>
 </div>
