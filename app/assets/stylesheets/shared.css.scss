@@ -4,18 +4,13 @@
 }
 /* ...browse-happy */
 
-/* media block from oocss... */
-/* https://github.com/stubbornella/oocss/blob/master/core/media/media.css */
-.conversation img,
-.h-card img {
-  width:  100px;
-  height: 100px;
+/* person in media block... */
+.h-card img,
+.conversation img {
+  max-width:  100px;
+  max-height: 100px;
 }
-
-.media          { overflow: hidden; *overflow: visible; zoom: 1; }
-.media .img     { float: left; margin: 0 10px 0 0; }
-.media .img img { display: block; }
-/* ...media block from oocss */
+/* ...person in media block */
 
 
 /* buttons... */
