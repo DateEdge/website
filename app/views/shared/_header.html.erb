@@ -17,9 +17,8 @@
 
       <% else %>
 
-        Sign in with
-        <%= link_to "Twitter",  "/auth/twitter" , class: "twitter-sign-in-link"  %>
-        <%= link_to "Facebook", "/auth/facebook", class: "facebook-sign-in-link" %>
+        <%= link_to "<i class='fa fa-lg fa-twitter'></i>".html_safe,  "/auth/twitter",    class: "btn btn-sm btn-info"    %>
+        <%= link_to "<i class='fa fa-lg fa-facebook'></i>".html_safe, "/auth/twitter",    class: "btn btn-sm btn-primary" %>
 
       <% end %>
     </nav>
