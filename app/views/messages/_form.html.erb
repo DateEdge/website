@@ -1,8 +1,10 @@
 <%= form_for message, html: { class: "form" } do |f| %>
 
   <% if @conversation.new_record? %>
-    <%= f.label :subject, "Subject" %>
-    <%= f.text_field :subject, autocapitalize: "words" %>
+    <div class="form-group">
+      <%= f.label :subject, "Subject" %>
+      <%= f.text_field :subject, autocapitalize: "words", class: "form-control" %>
+    </div>
   <% else %>
     <%= f.hidden_field :conversation_id %>
   <% end %>
