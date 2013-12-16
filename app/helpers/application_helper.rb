@@ -33,9 +33,9 @@ module ApplicationHelper
 
   def button_to_sign_in_with(provider)
     if provider.to_s.downcase    == "twitter"
-      link_to "Twitter",   "/auth/twitter",  class: "twitter-sign-in-button button black"
+      link_to "Sign in with Twitter",   "/auth/twitter",  class: "twitter-sign-in-button btn btn-default"
     elsif provider.to_s.downcase == "facebook"
-      link_to "Facebook",  "/auth/facebook", class: "facebook-sign-in-button button black"
+      link_to "Sign in with Facebook",  "/auth/facebook", class: "facebook-sign-in-button btn btn-default"
     end
   end
 
