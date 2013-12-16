@@ -15,7 +15,11 @@ module ApplicationHelper
                     end_year:      60.years.ago.year,
                     include_blank: true
                   },
-                  {class:         "form-control"}
+                  { class:         "form-control" }
+  end
+
+  def icon_tag(icon)
+    tag("i", class: "fa fa-#{icon}")
   end
 
   def link_to_avatar(user, avatar_size=nil)
@@ -33,9 +37,9 @@ module ApplicationHelper
 
   def button_to_sign_in_with(provider)
     if provider.to_s.downcase    == "twitter"
-      link_to "<i class='fa fa-twitter'></i>  Sign in with Twitter".html_safe,   "/auth/twitter",  class: "twitter-sign-in-button btn btn-info"
+      link_to "#{icon_tag twitter}  Sign in with Twitter".html_safe,   "/auth/twitter",  class: "twitter-sign-in-button btn btn-info"
     elsif provider.to_s.downcase == "facebook"
-      link_to "<i class='fa fa-facebook'></i> Sign in with Facebook".html_safe,  "/auth/facebook", class: "facebook-sign-in-button btn btn-primary"
+      link_to "#{icon_tag facebook} Sign in with Facebook".html_safe,  "/auth/facebook", class: "facebook-sign-in-button btn btn-primary"
     end
   end
 
