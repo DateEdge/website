@@ -70,54 +70,19 @@
   .facebook-sign-in-button { background-image: image-url("facebook@2x.png"); }
   /* ...twitter and facebook buttons */
 
-
-  #some-people {
-    h2 {
-      font-size: 150%;
-      margin-bottom: .2em;
-      letter-spacing: -0.04em;
-    }
-
-    ul,
-    li {
-      margin: 0;
-      padding: 0;
-    }
-
-    .h-card {
-      display: inline-block;
-      margin-bottom: 1em;
-      position: relative;
-    }
-
-    .u-photo {
-      display: block;
-    }
-
-    .h-card,
-    .u-photo {
-      width:   94px;
-      height:  94px;
-    }
-
-    .p-name {
-      background: black;
-      background: rgba(0,0,0,.5);
-      color: white;
-      display: block;
-      font-weight: bold;
-      line-height: 1em;
-      font-size: 10px;
-      padding:   7.5px 5px;
-      position: absolute;
-      text-align: center;
-      text-decoration: none;
-      top: 0;
-      width: 94px;
-      overflow: hidden;
-    }
+  .thumbnail {
+    border: none;
+    padding: none;
   }
 
+  .thumbnail img {
+    width: 100%;
+  }
+
+  .thumbnail .caption {
+    padding: 0;
+    overflow: hidden;
+  }
 
   #about {
     border-top: 1px solid #ddd;
@@ -133,16 +98,6 @@
     header[role=banner] h2 {
       font-size: 160%;
       line-height: 125%;
-    }
-
-    #some-people .h-card,
-    #some-people .u-photo {
-      width:   134px;
-      height:  134px;
-    }
-
-    #some-people .p-name {
-      width: 124px; /*  #some-people .h-card's width - 10px */
     }
   }
   /* #welcome */
@@ -167,23 +122,6 @@
 /* ipad... */
 @media screen and (min-width: 768px) {
   #welcome {
-    #some-people .h-card,
-    #some-people .u-photo {
-      width:  184px;
-      height: 184px;
-    }
-
-    #some-people .p-name {
-      font-size: 12px;
-      padding:   10px;
-      width:     164px;
-    }
-
-    #some-people .more-people {
-      font-size: 2em;
-      font-weight: bold;
-    }
-
     #about {
       font-size: 200%;
     }
@@ -223,20 +161,6 @@
 
 /* ipad landscape... */
 @media screen and (min-width: 1024px) {
-  #welcome {
-    #some-people .h-card,
-    #some-people .u-photo {
-      width:  164px;
-      height: 164px;
-    }
-
-    #some-people .p-name {
-      font-size: 12px;
-      padding:   10px;
-      width:     144px;
-    }
-  }
-  /* #welcome */
 }
 /* ...ipad landscape */
 /* ...ipad */
