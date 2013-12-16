@@ -2,7 +2,7 @@
 
 <%= render partial: @user %>
 
-<h3>
+<p class="well lead">
   <% if @user.me_gender || @user.you_gender %>
     I am a
     <% if @user.label %>
@@ -26,7 +26,7 @@
       <b><%= @user.you_gender %></b>.
     <% end %>
   <% end %>
-</h3>
+</p>
 
 <% if @user.bio %>
   <div id="bio" class="note">

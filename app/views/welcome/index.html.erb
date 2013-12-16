@@ -1,7 +1,7 @@
 <%= render partial: "sign_in_buttons" %>
 
 <div id="some-people">
-  <h3>Some people on <b>Date Edge</b></h3>
+  <h3 class="h4">Some people on <b>Date Edge</b></h3>
 
   <div class="row">
     <% @users.each do |user| %>
@@ -17,7 +17,7 @@
     <% end %>
   </div>
 
-  <%= link_to "See everyone on Date Edge", people_path, class: "more-people" %>
+  <h4><%= link_to "See everyone on Date Edge", people_path %></h4>
 </div>
 
 <div id="about">
