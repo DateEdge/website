@@ -63,25 +63,25 @@ class UsersController < ApplicationController
     session.delete(:user_id)
     redirect_to root_path, notice: "Profile Deleted. Come on back any time."
   end
-  
-  private 
-  
+
+  private
+
   def user_params
     params.require(:user).permit(
-      :name, 
-      :email, 
-      "birthday(1i)", 
-      "birthday(2i)", 
-      "birthday(3i)", 
-      :city, 
-      :state_id, 
-      :zipcode, 
-      :country_id, 
-      :bio, 
-      :diet_id, 
-      :me_gender, 
-      :you_gender, 
-      :label_id, 
+      :name,
+      :email,
+      "birthday(1i)",
+      "birthday(2i)",
+      "birthday(3i)",
+      :city,
+      :state_id,
+      :zipcode,
+      :country_id,
+      :bio,
+      :diet_id,
+      :me_gender,
+      :you_gender,
+      :label_id,
       your_labels_attributes: [:label_id, :id, :_destroy]
     )
   end
