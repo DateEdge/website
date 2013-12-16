@@ -2,14 +2,21 @@
 
 <div id="some-people">
   <h2>Some people on <b>Date Edge</b></h2>
-  <ul>
+
+  <div class="row">
     <% @users.each do |user| %>
-      <li class="h-card">
-        <%= link_to_avatar(user) %>
-        <%= link_to_username(user) %>
-      </li>
+      <div class="col-xs-4 col-sm-3 col-md-2">
+        <div class="thumbnail h-card">
+          <%= link_to_avatar(user) %>
+
+          <div class="caption">
+            <p><%= link_to_username(user) %></p>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
+
 
   <%= link_to "See everyone on Date Edge", people_path, class: "more-people" %>
 </div>
