@@ -6,43 +6,53 @@
 
     <span class="btn-group">
       <%# MESSAGE BUTTON %>
-      <%= link_to "<i class='fa fa-comment'></i>".html_safe, new_message_path(recipient: @user.username), class: "message btn btn-info" %>
+      <%= link_to "<i class='fa fa-comment'></i>".html_safe, new_message_path(recipient: user.username), class: "message btn btn-info" %>
 
 
       <%# BOOKMARK BUTTON %>
-      <% if im.secret_crushing_on?(@user) %>
+      <% if im.secret_crushing_on?(user) %>
 
         <%# bookmarked %>
         <div class="btn-group">
-          <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "unbookmark", class: "form-inline" } do |f| %>
+          <%= form_for current_user.crush_with(user), html: { method: :delete, id: "unbookmark", class: "form-inline" } do |f| %>
             <%= f.button "<i class='fa fa-ban'></i>".html_safe, class: "btn btn-warning" %>
           <% end %>
         </div>
 
       <% else %>
 
-        <%# NOT bookmarked %>
-        <%= form_for @crush, html: { id: "new_secret_crush", class: "form-inline" } do |f| %>
-          <%= f.hidden_field :crushee_id, value: @user.id %>
-          <%= f.hidden_field :secret,     value: true %>
-          <%= f.button "<i class='fa fa-star'></i>".html_safe, class: "btn btn-warning" %>
+        <%# TODO FIXME TMP HACK %>
+        <% if controller_name == "users" %>
+
+          <%# NOT bookmarked %>
+          <%= form_for @crush, html: { id: "new_secret_crush", class: "form-inline" } do |f| %>
+            <%= f.hidden_field :crushee_id, value: user.id %>
+            <%= f.hidden_field :secret,     value: true %>
+            <%= f.button "<i class='fa fa-star'></i>".html_safe, class: "btn btn-warning" %>
+          <% end %>
+
         <% end %>
 
       <% end %>
     </span>
 
     <%# CRUSH BUTTON %>
-    <% if im.crushing_on?(@user) %>
-      <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "uncrush", class: "form-inline" } do |f| %>
+    <% if im.crushing_on?(user) %>
+      <%= form_for current_user.crush_with(user), html: { method: :delete, id: "uncrush", class: "form-inline" } do |f| %>
         <%= f.button "<i class='fa fa-ban'></i> Uncrush".html_safe, class: "btn btn-danger" %>
       <% end %>
 
     <% else %>
 
-      <%= form_for @crush, html: { class: "form-inline" } do |f| %>
-        <%= f.hidden_field :crushee_id, value: @user.id %>
-        <%= f.button "<i class='fa fa-heart'></i> Crush".html_safe, class: "btn btn-danger" %>
+      <%# TODO FIXME TMP HACK %>
+      <% if controller_name == "users" %>
+
+        <%= form_for @crush, html: { class: "form-inline" } do |f| %>
+          <%= f.hidden_field :crushee_id, value: user.id %>
+          <%= f.button "<i class='fa fa-heart'></i> Crush".html_safe, class: "btn btn-danger" %>
+        <% end %>
       <% end %>
+
     <% end %>
 
   </div><!-- .actions -->
