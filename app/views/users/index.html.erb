@@ -1,18 +1,107 @@
-<% if @crushers && @crushers.any? %>
-  <div id="crushers">
-    <h1>Crushers</h1>
-    <%= render @crushers %>
-  </div>
-<% end %>
+<div class="row">
 
-<% if @crushes && @crushes.any? %>
-  <div id="crushes">
-    <h1>Crushes</h1>
-    <%= render @crushes %>
-  </div>
-<% end %>
+  <div class="col-sm-6">
+    <% if @crushers && @crushers.any? %>
+      <div class="page-header">
+        <h1>
+          Crushers
+          <small>they like you</small>
+        </h1>
+      </div>
 
-<div id="everyone">
-  <h1>Everyone</h1>
-  <%= render @users %>
-</div>
+      <%= render @crushers %>
+    <% end %>
+
+    <% if @crushes && @crushes.any? %>
+      <div class="page-header">
+        <h1>
+          Crushes
+          <small>you like them</small>
+        </h1>
+      </div>
+
+      <%= render @crushes %>
+    <% end %>
+
+    <div id="everyone">
+      <div class="page-header">
+        <h1>
+          Everyone
+          <small>this will go away as the site grows</small>
+        </h1>
+      </div>
+
+      <%= render @users %>
+    </div>
+  </div>
+
+
+  <div class="col-sm-6">
+    <div class="page-header">
+      <h1>
+        Pro Tips&trade;
+        <small>about the site</small>
+      </h1>
+    </div>
+
+    <p>
+      We've intentionally kept <b>Date Edge</b> very simple.
+      You can only a few things with other people on this site.
+      We believe that a dating site should stay out of the way.
+    </p>
+    <p>
+      Find people, look at the high-level labels, then message them.
+      Talk to other humans, find out if you're a good match, then go on a date.
+    </p>
+
+    <h2 class="h3">Actions</h2>
+    <table class="table">
+      <tr>
+        <th><span class="btn btn-lg btn-info"><i class="fa fa-lg fa-comment"></i></span></th>
+        <td>
+          <h3 class="h4">Message</h3>
+          <p>If you want to start talking with someone, this button will start a conversation. Keep it positive. Be friendly. Have fun.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span class="btn btn-lg btn-danger"><i class="fa fa-lg fa-heart"></i></span></th>
+        <td>
+          <h3 class="h4">Crush</h3>
+          <p>If you think you like someone, crush on them. This button will let them know that you have a crush on them. It'll also put them in your list of crushes for future visits.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span class="btn btn-lg btn-danger"><i class="fa fa-lg fa-ban"></i></span></th>
+        <td>
+          <h3 class="h4">Un-Crush</h3>
+          <p>If you change your mind later, that's okay. This button will remove your crush.</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span class="btn btn-lg btn-warning"><i class="fa fa-lg fa-star"></i></span></th>
+        <td>
+          <h3 class="h4">Bookmark</h3>
+          <p>A bookmark is like a secret crush. They'll be saved to your list for future visits, but they won't know that you're crushing on them. (Don't be a creep, though.)</p>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span class="btn btn-lg btn-warning"><i class="fa fa-lg fa-ban"></i></span></th>
+        <td>
+          <h3 class="h4">Un-Bookmark</h3>
+          <p>Just like the un-crush button, this will remove your bookmark. No harm, no foul.</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div><!-- .row -->
+
+<style>
+table.table h3 {
+  margin-top: 0;
+}
+</style>
