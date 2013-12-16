@@ -1,4 +1,6 @@
-<h1>Add a photo to your profile</h1>
+<div class="page-header">
+  <h1>Add a photo to your profile</h1>
+</div>
 
 <%= form_for @photo, html: { multipart: true, class: "form" } do |f| %>
   <% if getting_started? %>
