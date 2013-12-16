@@ -3,7 +3,7 @@ class CreateCrushes < ActiveRecord::Migration
     create_table :crushes do |t|
       t.integer :crusher_id
       t.integer :crushee_id
-      t.boolean :secret, :default => false
+      t.boolean :secret, default: false
 
       t.timestamps
     end

@@ -1,20 +1,16 @@
 /* welcome... */
 #welcome {
-  header[role=banner] {
-    background: none;
-    padding: 0;
-  }
-
   header[role=banner] h1 {
-    padding: 0 10px;
     font-size: 400%;
     letter-spacing: -.06em;
-    font-weight: bold;
+    font-weight: normal;
+    font-weight: 100;
     background: black;
     color: white;
     line-height: 150%;
     display: block;
     float: none;
+    margin: 0;
   }
 
   header[role=banner] h1 a {
@@ -24,220 +20,44 @@
   }
 
   header[role=banner] h2 {
-    margin: .5em 10px 0 10px;
-    font-size: 200%;
-    font-weight: normal;
-    line-height: 150%;
-    letter-spacing: -.02em;
-    color: black;
+    margin: 0;
   }
 
   /* twitter and facebook buttons container... */
-  /* container... */
-  .buttons {
-    margin: 2em 0;
-    padding: 0;
+  .social-posting-message {
+    margin: 1em 0;
+  }
+  /* ...twitter and facebook buttons */
+
+  .thumbnail {
+    border: none;
+    padding: none;
+  }
+
+  .thumbnail img {
     width: 100%;
   }
 
-  .sign-in.buttons h3 {
-    font-size: 1.25em;
-    margin-bottom: .5em;
-    font-weight: bold;
-  }
-
-  .sign-in.buttons a {
-    margin-bottom: .5em;
-    display: block;
-    text-align: left;
-    background-repeat: no-repeat;
-    background-position: left center;
-  }
-  /* ...container */
-
-  .twitter-sign-in-button,
-  .facebook-sign-in-button {
-    padding-left: 42px;
-    height: 32px;
-    -moz-box-sizing:    border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing:         border-box;
-  }
-
-  .twitter-sign-in-button  { background-image: image-url("twitter@2x.png");  }
-  .facebook-sign-in-button { background-image: image-url("facebook@2x.png"); }
-  /* ...twitter and facebook buttons */
-
-
-
-  #some-people h2 {
-    font-size: 150%;
-    margin-bottom: .2em;
-  }
-
-  #some-people ul,
-  #some-people li {
-    margin: 0;
+  .thumbnail .caption {
     padding: 0;
+    overflow: hidden;
+    clear:both
   }
-
-  #some-people .h-card {
-    display: inline-block;
-    margin-bottom: 1em;
-    position: relative;
-  }
-
-  #some-people .u-photo {
-    display: block;
-  }
-
-  #some-people .h-card,
-  #some-people .u-photo {
-    width:   97px;
-    height:  97px;
-  }
-
-  #some-people .p-name {
-    background: black;
-    background: rgba(0,0,0,.5);
-    color: white;
-    display: block;
-    font-weight: bold;
-    line-height: 1em;
-    font-size: 10px;
-    padding:   7.5px 5px;
-    position: absolute;
-    text-align: center;
-    text-decoration: none;
-    top: 0;
-    width: 87px; /*  #some-people .h-card's width - 10px */
-  }
-
 
   #about {
     border-top: 1px solid #ddd;
     padding-top: 2em;
     margin: 2em 0;
   }
-
-  #about p {
-    margin-bottom: 1em;
-  }
 }
-/* #welcome */
-
-/* iphone landscape... */
-@media screen and (max-device-width: 480px) and (orientation:landscape) {
-  #welcome {
-    header[role=banner] h2 {
-      font-size: 160%;
-      line-height: 125%;
-    }
-
-    #some-people .h-card,
-    #some-people .u-photo {
-      width:   134px;
-      height:  134px;
-    }
-
-    #some-people .p-name {
-      width: 124px; /*  #some-people .h-card's width - 10px */
-    }
-  }
-  /* #welcome */
-}
-/* ...iphone landscape */
-
-/* retina phone display... */
-@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-  #welcome {
-    .twitter-sign-in-button,
-    .facebook-sign-in-button {
-      background-size: 33px 32px;
-    }
-
-    .twitter-sign-in-button  { background-image: image-url("twitter@4x.png");  }
-    .facebook-sign-in-button { background-image: image-url("facebook@4x.png"); }
-  }
-  /* #welcome */
-}
-/* ...retina phone display */
+/* ...#welcome */
 
 /* ipad... */
 @media screen and (min-width: 768px) {
   #welcome {
-    #some-people .h-card,
-    #some-people .u-photo {
-      width:  184px;
-      height: 184px;
-    }
-
-    #some-people .p-name {
-      font-size: 12px;
-      padding:   10px;
-      width:     164px;
-    }
-
-    #some-people .more-people {
-      font-size: 2em;
-      font-weight: bold;
-    }
-
     #about {
       font-size: 200%;
     }
-
-    .sign-in.buttons a {
-      margin-bottom: 1em;
-      display: inline-block;
-      font-size: 2em;
-      height: 64px;
-    }
-
-    .twitter-sign-in-button,
-    .facebook-sign-in-button {
-      padding-left: 82px;
-    }
-
-    .twitter-sign-in-button  { background-image: image-url("twitter@4x.png");  }
-    .facebook-sign-in-button { background-image: image-url("facebook@4x.png"); }
   }
-  /* #welcome */
 }
-
-/* ipad retina display... */
-@media screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
-  #welcome {
-    .twitter-sign-in-button,
-    .facebook-sign-in-button {
-      background-size: 66px 64px;
-    }
-
-    .twitter-sign-in-button  { background-image: image-url("twitter@8x.png");  }
-    .facebook-sign-in-button { background-image: image-url("facebook@8x.png"); }
-  }
-  /* #welcome */
-}
-/* ...ipad retina display */
-
-/* ipad landscape... */
-@media screen and (min-width: 1024px) {
-  #welcome {
-    #some-people .h-card,
-    #some-people .u-photo {
-      width:  164px;
-      height: 164px;
-    }
-
-    #some-people .p-name {
-      font-size: 12px;
-      padding:   10px;
-      width:     144px;
-    }
-  }
-  /* #welcome */
-}
-/* ...ipad landscape */
-/* ...ipad */
-
 /* ...welcome */

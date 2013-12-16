@@ -1,27 +1,27 @@
-<div class="person media h-card vcard">
-  <%= link_to_avatar(user, @avatar_size) %>
+<div class="row person media h-card vcard">
 
-  <h1>
-    <b class="p-name fn n">
-      <%= link_to user.username, person_path(user.username) %>
-    </b>
+  <div class="media col-xs-12">
+    <%= link_to_avatar(user, @avatar_size) %>
 
-    <span>
-      <% if user.age %>
-        (<span class="p-x-age"><%= user.age %></span>)
-      <% end %>
-    </span>
-  </h1>
+    <div class="media-body">
+      <h4 class="media-heading">
+        <span class="p-name fn n"><%= link_to user.username, person_path(user.username) %></span>&nbsp;<% if user.age %><small class="p-x-age"><%= user.age %></small><% end %>
+      </h4>
 
-  <h2>
-    <%= link_to google_map_url(user) do %>
-      <% unless user.city.blank? %>
-        <span class="p-locality locality"><%= user.city %></span>,
-      <% end %>
-      <% unless user.state.blank? %>
-        <span class="p-region region"><%= user.state %></span>,
-      <% end %>
-      <span class="p-country country"><%= user.country %></span>
-    <% end %>
-  </h2>
+      <p>
+        <%= link_to google_map_url(user) do %>
+          <% unless user.city.blank? %>
+            <span class="p-locality locality"><%= user.city %></span>,
+          <% end %>
+          <% unless user.state.blank? %>
+            <span class="p-region region"><%= user.state %></span>,
+          <% end %>
+          <span class="p-country country"><%= user.country.name %></span>
+        <% end %>
+      </p>
+
+      <%= render partial: "/users/profile_actions", locals: { user: user } %>
+    </div>
+  </div>
+
 </div> <!-- .person -->

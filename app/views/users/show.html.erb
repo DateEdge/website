@@ -1,8 +1,6 @@
-<%= render :partial => 'profile_actions' %>
+<%= render partial: @user %>
 
-<%= render :partial => @user %>
-
-<h3>
+<p class="well lead">
   <% if @user.me_gender || @user.you_gender %>
     I am a
     <% if @user.label %>
@@ -26,20 +24,20 @@
       <b><%= @user.you_gender %></b>.
     <% end %>
   <% end %>
-</h3>
+</p>
 
 <% if @user.bio %>
   <div id="bio" class="note">
     <div class="short" style="display:none">
-      <%= simple_format "<b>BIO</b>: ".html_safe + truncate(@user.bio, :length => 150) %>
+      <%= simple_format "<b>BIO</b>: ".html_safe + truncate(@user.bio, length: 150) %>
       <% if @user.bio.length > 150 %>
-        <%= link_to "More", person_path(@user.username, :anchor => "bio"), :class => "truncate" %>
+        <%= link_to "More", person_path(@user.username, anchor: "bio"), class: "truncate" %>
       <% end %>
     </div> <!-- /div.short -->
 
     <div class="long">
       <%= simple_format "<b>BIO</b>: " + @user.bio %>
-      <%= link_to "Less", person_path(@user.username, :anchor => "bio"), :class => "truncate", :style => "display:none" %>
+      <%= link_to "Less", person_path(@user.username, anchor: "bio"), class: "truncate", style: "display:none" %>
     </div> <!-- /div.long -->
   </div>
 <% end %>
@@ -53,22 +51,15 @@
 
         <% if mine? %>
           <div class="actions">
-            <ul>
-              <li><%= link_to "Edit Photo or Caption", edit_photo_path(photo), :class => "button white" %></li>
-              <li>
-                <%= form_for photo do |f| %>
-                  <%= f.hidden_field :avatar, :value => true %>
-                  <%= f.submit "Use as Avatar", :class => "button white" %>
-                <% end %>
-              </li>
-            </ul>
+            <%= link_to "<i class='fa fa-edit'></i>&nbsp;&nbsp;Edit Details".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
+
+            <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
+              <%= f.hidden_field :avatar, value: true %>
+              <%= f.button "<i class='fa fa-circle-o'></i>&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
+            <% end %>
           </div> <!-- .actions -->
         <% end %>
       </li>
     <% end %>
   </ul>
-
-  <% if mine? %>
-    <%= link_to "Upload a New Photo", new_photo_path, :class => "button green full" %>
-  <% end %>
 </div>

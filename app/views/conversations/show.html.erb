@@ -1,18 +1,14 @@
-<div id="conversation">
-  <hgroup>
-    <h1 class="subject"><%= @conversation.subject %></h1>
-    <h2 class="with">
-      <i class="small-word">with</i>
-      <%= link_to_username(@conversation.counterpart(current_user)) %>
-    </h2>
-  </hgroup>
+<div id="conversation" class="h-feed">
+  <div class="page-header">
+    <h1><%= @conversation.subject %></h1>
+  </div>
 
   <ol class="messages">
     <% @conversation.messages.each do |message| %>
-      <li class="message <%= "from-me" if message.sender == current_user %>">
+      <li class="h-entry message <%= "from-me" if message.sender == current_user %>">
         <%= render message.sender %>
 
-        <div class="message-body">
+        <div class="e-content message-body">
           <%= simple_format message.body %>
         </div>
       </li>
@@ -21,6 +17,6 @@
 
   <div id="reply">
     <h1>Reply</h1>
-    <%= render '/messages/form', :message => @message %>
+    <%= render '/messages/form', message: @message %>
   </div>
 </div>

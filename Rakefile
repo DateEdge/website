@@ -13,7 +13,7 @@ task recreate_photos: :environment do
     begin
       photo.image.recreate_versions! 
     rescue NoMethodError => e
-      puts "IMAGE DOES NOTE EXIST"
+      puts "IMAGE DOES NOT EXIST"
     end
   end
 end

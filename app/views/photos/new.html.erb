@@ -1,9 +1,11 @@
-<h1>Add a photo to your profile</h1>
+<div class="page-header">
+  <h1>Add a photo to your profile</h1>
+</div>
 
-<%= form_for @photo, :html => { :multipart => true } do |f| %>
+<%= form_for @photo, html: { multipart: true, class: "form" } do |f| %>
   <% if getting_started? %>
     <div id="getting-started">
-      
+
       <% if current_user.photos.any? %>
         <p class="info">
           We got this photo from
@@ -11,29 +13,33 @@
           You can add more photos below.
         </p>
 
-        <ul class="actions">
-          <li class="button green"><%= link_to "Add Another", "#url" %></li>
-          <li class="button black"><%= link_to "No Thanks", root_path %></li>
-        </ul>
+        <div class="actions">
+          <%= link_to "Add Another", "#url", class: "btn btn-success" %>
+          <%= link_to "No Thanks", root_path, class: "btn btn-default" %>
+        </div>
+
         <%= image_tag current_user.photos.first.image_url(:small).to_s %>
       <% end %>
-
-      <p class="instructions notice" style="display: none;">
-        <b>From your phone or tablet, paste in a URL.</b><br />
-        Use your desktop to upload a file.
-      </p>
     </div>
+
     <%= f.hidden_field :avatar, value: true %>
   <% end %>
 
-  <%= f.label     :remote_image_url, "Paste a URL", :id => "url" %>
-  <%= f.url_field :remote_image_url, :autocapitalize => "off", :autocorrect => "off" %>
+  <div class="form-group">
+    <%= f.label     :remote_image_url, "Paste a URL", id: "url" %>
+    <%= f.url_field :remote_image_url, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
+  </div>
 
-  <%= f.label      :image, "or Select an Image" %>
-  <%= f.file_field :image %>
+  <div class="form-group">
+    <%= f.label      :image, "or Select an Image" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
 
-  <%= f.label     :caption, "Caption" %>
-  <%= f.text_area :caption, :autocapitalize => "sentences" %>
+  <div class="form-group">
+    <%= f.label     :caption, "Caption" %>
+    <%= f.text_area :caption, autocapitalize: "sentences", class: "form-control", rows: 3 %>
+  </div>
 
-  <%= f.submit "Upload", :disable_with => 'Uploading...', :class => "button black full" %>
+  <%= f.submit "Upload", disable_with: 'Uploading...', class: "btn btn-success btn-block btn-lg" %>
+
 <% end %>

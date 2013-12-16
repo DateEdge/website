@@ -15,8 +15,8 @@ describe Label do
   end
 
   # it "should build options for select correctly" do
-  #   @l1 = Label.create!(:name => "straightedge")
-  #   @l2 = Label.create!(:name => "drunk")
+  #   @l1 = Label.create!(name: "straightedge")
+  #   @l2 = Label.create!(name: "drunk")
   #
   #   labels = [
   #     ["straightedge", @l1.id],

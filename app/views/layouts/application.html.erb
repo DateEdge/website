@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 
 <html dir="ltr" lang="en" id="<%= @slug %>" class="no-js">
-<%= render :partial => '/shared/head' %>
+<%= render partial: "/shared/head" %>
 
 <body>
+
   <% if welcome? %>
-    <%= render :partial => '/shared/welcome_header' %>
+    <%= render partial: "/shared/welcome_header" %>
   <% else %>
-    <%= render :partial => '/shared/header' %>
+    <%= render partial: "/shared/header" %>
   <% end %>
 
-  <section role="main">
+  <section role="main" class="container">
+    <%= render partial: "/shared/browse_happy" %>
+
     <% unless logged_in? || controller_name == "welcome" %>
-      <%= render :partial => "/shared/social_posting_info" %>
+      <%= render partial: "/shared/social_posting_info" %>
     <% end %>
 
     <% if profile_incomplete? %>
-      <p class="notice">
-        <b><%= link_to "Update your profile for great success &rarr;".html_safe, settings_path %></b>
+      <p class="alert alert-success">
+        Completed profiles have the best success.
+        <b><%= link_to "Go update yours now! &rarr;".html_safe, settings_path, class: "alert-link" %></b>
       </p>
     <% end %>
 
     <%= yield %>
   </section>
 
-  <footer role="contentinfo">
+  <footer role="contentinfo" class="container">
     <% if logged_in? %>
-      <%= link_to_unless_current "Sign Out", signout_path, :class => "button white full" %>
+      <%= link_to_unless_current "Sign Out", signout_path, class: "btn btn-default btn-block" %>
     <% end %>
   </footer>
 
-  <%= render :partial => '/shared/print_css' %>
-
-  <%= javascript_include_tag "application" %>
-
-  <%= render :partial => '/shared/google_analytics' %>
+  <%= render partial: "/shared/foot" %>
 </body>
 </html>
