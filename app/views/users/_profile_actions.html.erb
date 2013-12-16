@@ -1,47 +1,39 @@
 <% if not_mine? %>
   <div class="profile-actions">
-    <ul class="actions">
-      <li id="new_message">
-        <%= link_to "Message".html_safe, new_message_path(recipient: @user.username), class: "message btn btn-default" %>
-      </li>
-      
-      <% if im.secret_crushing_on?(@user) %>
-        <li class="disabled crushed btn btn-default">
-          <span>Secret Crushed!</span>
-        </li>
-      </ul>
 
-        <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "uncrush" } do |f| %>
-          <%= f.submit "Uncrush", class: "uncrush secondary clicker" %>
-        <% end %>
+    <div class="actions">
+      <%= link_to "<i class='fa fa-lg fa-comment'></i>".html_safe, new_message_path(recipient: @user.username), class: "message btn btn-info" %>
+
+      <% if im.secret_crushing_on?(@user) %>
+        <div class="btn-group">
+          <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "uncrush", class: "form-inline" } do |f| %>
+            <span class="disabled crushed btn btn-default"> Secret Crushed!</span>
+            <%= f.button "<i class='fa fa-lg fa-ban'></i> Uncrush".html_safe, class: "btn btn-danger" %>
+          <% end %>
+        </div>
+
 
       <% elsif im.crushing_on?(@user) %>
-        <li class="disabled crushed btn btn-default">
-          <span>Crushed!</span>
-        </li>
-      </ul>
+        <span class="disabled crushed btn btn-default"><i class='fa fa-lg fa-heart'></i> Crushed!</span>
 
-        <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "uncrush" } do |f| %>
-          <%= f.submit "Uncrush", class: "uncrush secondary clicker" %>
+        <%= form_for current_user.crush_with(@user), html: { method: :delete, id: "uncrush", class: "form-inline" } do |f| %>
+          <%= f.button "<i class='fa fa-lg fa-ban'></i> Uncrush".html_safe, class: "btn btn-danger" %>
         <% end %>
 
       <% else %>
 
-        <li class="crush">
-          <%= form_for @crush do |f| %>
-            <%= f.hidden_field :crushee_id, value: @user.id %>
-            <%= f.submit "Crush", class: "btn btn-default" %>
-          <% end %>
-        </li>
-      </ul>
+        <%= form_for @crush, html: { class: "form-inline" } do |f| %>
+          <%= f.hidden_field :crushee_id, value: @user.id %>
+          <%= f.button "<i class='fa fa-lg fa-heart-o'></i> Crush".html_safe, class: "btn btn-danger" %>
+        <% end %>
 
-        <%= form_for @crush, html: { id: "new_secret_crush" } do |f| %>
+        <%= form_for @crush, html: { id: "new_secret_crush", class: "form-inline" } do |f| %>
           <%= f.hidden_field :crushee_id, value: @user.id %>
           <%= f.hidden_field :secret,     value: true %>
-          <%= f.submit "Secret Crush", class: "secret-crush secondary clicker" %>
+          <%= f.button "<i class='fa fa-lg fa-heart-o'></i> Secret Crush".html_safe, class: "btn btn-danger" %>
         <% end %>
 
       <% end %>
-  
+
   </div> <!-- .profile-actions -->
 <% end %>

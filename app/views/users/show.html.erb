@@ -46,7 +46,7 @@
 
 <div id="photos">
   <% if mine? %>
-    <%= link_to "Upload a New Photo", new_photo_path, class: "btn btn-success btn-block btn-lg" %>
+    <%= link_to "<i class='fa fa-lg fa-picture-o'></i>&nbsp;&nbsp;Upload a New Photo".html_safe, new_photo_path, class: "btn btn-success btn-block btn-lg" %>
   <% end %>
 
   <ul>
@@ -57,11 +57,11 @@
 
         <% if mine? %>
           <div class="actions">
-            <%= link_to "Edit Photo or Caption", edit_photo_path(photo), class: "btn btn-default" %>
+            <%= link_to "<i class='fa fa-lg fa-edit'></i>&nbsp;&nbsp;Edit Photo or Caption".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
 
             <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
               <%= f.hidden_field :avatar, value: true %>
-              <%= f.button "Use as Avatar", class: "btn btn-default" %>
+              <%= f.button "<i class='fa fa-circle-o'></i>&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
             <% end %>
           </div> <!-- .actions -->
         <% end %>
