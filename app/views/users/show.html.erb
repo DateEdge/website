@@ -43,10 +43,6 @@
 <% end %>
 
 <div id="photos">
-  <% if mine? %>
-    <%= link_to "<i class='fa fa-lg fa-picture-o'></i>&nbsp;&nbsp;Upload a New Photo".html_safe, new_photo_path, class: "btn btn-success btn-block btn-lg" %>
-  <% end %>
-
   <ul>
     <% @user.photos.each do |photo| %>
       <li>
