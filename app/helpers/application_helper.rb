@@ -18,10 +18,6 @@ module ApplicationHelper
                   { class:         "form-control" }
   end
 
-  def icon_tag(icon)
-    tag("i", class: "fa fa-#{icon}")
-  end
-
   def link_to_avatar(user, avatar_size=nil)
     link_to image_tag(user.avatar(avatar_size), class: "u-photo img", alt: user.username),
             person_path(user.username)
@@ -37,9 +33,9 @@ module ApplicationHelper
 
   def button_to_sign_in_with(provider)
     if provider.to_s.downcase    == "twitter"
-      link_to "#{icon_tag twitter}  Sign in with Twitter".html_safe,   "/auth/twitter",  class: "twitter-sign-in-button btn btn-info"
+      link_to "<i class='fa fa-lg fa-twitter'></i>  Sign in with Twitter".html_safe,   "/auth/twitter",  class: "twitter-sign-in-button btn btn-info"
     elsif provider.to_s.downcase == "facebook"
-      link_to "#{icon_tag facebook} Sign in with Facebook".html_safe,  "/auth/facebook", class: "facebook-sign-in-button btn btn-primary"
+      link_to "<i class='fa fa-lg fa-facebook'></i> Sign in with Facebook".html_safe,  "/auth/facebook", class: "facebook-sign-in-button btn btn-primary"
     end
   end
 

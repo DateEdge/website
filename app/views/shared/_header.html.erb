@@ -5,14 +5,22 @@
 
     <nav role="navigation">
       <% if logged_in? %>
-        <%= link_to current_user.name, person_path(current_user.username), class: "profile-link"  %>
-        <%= link_to "Inbox",           conversations_path,                 class: "inbox-link"    %>
-        <% if unread_count %><b id="unread-count"><%= unread_count %></b><% end %>
-        <%= link_to "Settings",        settings_path,                      class: "settings-link" %>
+
+        <%= link_to current_user.name, person_path(current_user.username),                class: "profile-link"   %>
+
+        <%= link_to conversations_path, class: "btn btn-sm btn-black" do %>
+          <i class='fa fa-lg fa-envelope'></i>
+          <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
+        <% end %>
+
+        <%= link_to "<i class='fa fa-lg fa-gear'></i>".html_safe, conversations_path,     class: "btn btn-sm btn-black" %>
+
       <% else %>
+
         Sign in with
         <%= link_to "Twitter",  "/auth/twitter" , class: "twitter-sign-in-link"  %>
         <%= link_to "Facebook", "/auth/facebook", class: "facebook-sign-in-link" %>
+
       <% end %>
     </nav>
   </div>
