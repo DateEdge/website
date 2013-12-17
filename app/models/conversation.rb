@@ -1,12 +1,12 @@
 class Conversation < ActiveRecord::Base
 
-  # TODO was causing a 500 on heroku but not locally, commented out for now
-  # default_scope joins(:messages).order('messages.updated_at asc')
+  default_scope { order 'updated_at desc'}
   has_many :messages, dependent: :destroy
 
   belongs_to :sender,    foreign_key: :user_id,      class_name: "User"
   belongs_to :recipient, foreign_key: :recipient_id, class_name: "User"
   validates_with AgeAppropriateValidator
+
   def participants
     [sender, recipient]
   end

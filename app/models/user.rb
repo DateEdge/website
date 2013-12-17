@@ -160,9 +160,7 @@ class User < ActiveRecord::Base
   end
 
   def conversations
-    # TODO do we need this commented out line still?
-    # (inbound_conversations + outbound_conversations).sort_by { |c| c.updated_at }.uniq
-    Conversation.where(['conversations.user_id = ? OR conversations.recipient_id = ?', self.id, self.id])
+    Conversation.where(['conversations.user_id = :id OR conversations.recipient_id = :id', id: self.id]).order("updated_at desc")
   end
 
   def avatar(size=:avatar)

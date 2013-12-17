@@ -1,7 +1,7 @@
 class Message < ActiveRecord::Base
   attr_accessor :subject
 
-  belongs_to :conversation
+  belongs_to :conversation, touch: true
   belongs_to :sender,    class_name: "User"
   belongs_to :recipient, class_name: "User"
   validates_with AgeAppropriateValidator
