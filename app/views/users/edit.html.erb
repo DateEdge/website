@@ -96,8 +96,8 @@
     <% Label.all.each do |label| %>
       <div class="radio">
         <label>
-          <%= f.radio_button :label_id,              label.id, checked: @user.label == label %>
-          <%= f.label        "label_id_#{label.id}", label.name.titleize %>
+          <%= f.radio_button :label_id, label.id %>
+          <%= label.name.titleize %>
         </label>
       </div>
     <% end %>
@@ -108,14 +108,13 @@
 
     <% Label.all.each_with_index do |label, index| %>
       <%= f.fields_for "your_labels_attributes[#{index}]", child_index: index do |ff| %>
-        <% if @user.desired_labels.include? label %>
-          <%# TODO remove find from view, do it in the controller %>
-          <%= ff.hidden_field :id, value: @user.your_labels.where(label_id: label.id).first.id, style: "display:none" %>
+        <% if @label_assignements.has_key? label.id %>
+          <%= ff.hidden_field :id, value: @label_assignements[label.id], style: "display:none" %>
 
           <div class="checkbox">
             <label>
               <%= ff.check_box :_destroy, { checked: true }, 0, 1 %>
-              <%= ff.label     :_destroy, label.name.titleize %>
+              <%= label.name.titleize %>
             </label>
           </div>
         <% else %>
