@@ -36,6 +36,13 @@ describe MessagesController do
       expect(response).to redirect_to people_path
     end
     
+    it "redirects to people if it's not their convo" do
+      conversation.update(sender: user2)
+      get :new, conversation_id: conversation.id
+      expect(response).to redirect_to conversations_path
+    end
+    
+    
   end
 
   describe "POST 'create'" do
@@ -47,9 +54,8 @@ describe MessagesController do
     it "is not success if age inappropriate" do
       user.update(birthday: 17.years.ago)
       post 'create', message: {body: "Body", subject: "Subject", recipient_id: user2.id, conversation_id: conversation.id}
-      # expect(response).to redirect_to people_path
+      expect(response).to redirect_to people_path
     end
-    
   end
 
 end
