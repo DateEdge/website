@@ -37,6 +37,17 @@ describe User do
 
     @user.desired_labels.map(&:id).sort.should eq Label.all.map(&:id).sort
   end
+  
+  describe "age group" do
+    it "is adult if 18 or older" do
+      @user.birthday = 18.years.ago.to_date
+      expect(@user.age_group).to eq :adult
+    end
+    it "is kid if 17 or younger" do
+      @user.birthday = (18.years.ago.end_of_day + 1.second).to_date
+      expect(@user.age_group).to eq :kid
+    end
+  end
 
   describe "merge!" do
     before(:each) do

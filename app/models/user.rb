@@ -247,9 +247,7 @@ class User < ActiveRecord::Base
   end
 
   def age_group
-    # birthday > 18.years.ago.to_date ? :adult : :kid
-    # TODO FIXME
-    :adult
+    age >= 18 ? :adult : :kid
   end
 
   private
