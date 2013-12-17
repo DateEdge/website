@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
       end
       unless auth["info"]["image"].blank?
         begin
-          u.photos.create!(remote_image_url: auth["info"]["image"].sub(/_normal\./, "."), avatar: true)
+          u.photos.create(remote_image_url: auth["info"]["image"].sub(/_normal\./, "."), avatar: true)
         rescue OpenURI::HTTPError
         end
       end
@@ -110,12 +110,6 @@ class User < ActiveRecord::Base
     end
 
     def create_for_facebook(auth)
-      puts "*" * 80
-      puts "this is here for debugging mysterious signup bugs"
-      require "pp"; pp auth
-      puts "*" * 80
-
-
       location = auth["info"]["location"]
 
       provider = Provider.new(name: auth["provider"], uid: auth['uid'])
@@ -137,9 +131,8 @@ class User < ActiveRecord::Base
         # user.url       = auth["user_info"]["urls"]["Website"]
         # user.url       = auth["user_info"]["urls"]["Facebook"]
       end
-
-      if auth.try(:[], "user_info").try(:[], "image")
-        u.photos.create!(remote_image_url: auth["user_info"]["image"].sub(/type=square/, "type=large"), avatar: true)
+      if auth["info"].try(:[], "image")
+        u.photos.create(remote_image_url: auth["info"]["image"].sub(/type=square/, "type=large"), avatar: true)
       end
       u
     end

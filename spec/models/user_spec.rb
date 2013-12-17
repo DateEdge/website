@@ -72,4 +72,21 @@ describe User do
       @user.desired_labels.should include @crunk
     end
   end
+  
+  describe "auth from FB" do
+    before { ImageUploader.any_instance.stub(:download!) }
+    let(:user) { User.create_for_facebook(facebook_auth_response) }
+    
+    it "is valid" do
+      expect(user.new_record?).to be_false
+    end
+    
+    it "assigns a remote photo" do
+      mock_user = mock_model("User")
+      User.should_receive(:create!).and_return(mock_user)
+      mock_user.stub(:photos).and_return([])
+      mock_user.photos.should_receive(:create).with(remote_image_url: "http://placekitten.com/10/10?type=large", avatar: true)
+      user
+    end
+  end
 end
