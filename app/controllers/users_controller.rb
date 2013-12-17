@@ -46,6 +46,7 @@ class UsersController < ApplicationController
     @title = "Your Settings on Date Edge"
     @slug  = "settings"
     @user  = current_user
+    @label_assignements = @user.your_labels.label_assignments
   end
 
   def update
@@ -53,6 +54,7 @@ class UsersController < ApplicationController
       redirect_to(person_path(current_user.username), notice: 'User was successfully updated.')
     else
       @user = current_user
+      @label_assignements = @user.your_labels.label_assignments
       render action: "edit"
     end
   end
