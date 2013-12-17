@@ -1,6 +1,7 @@
 class Photo < ActiveRecord::Base
   belongs_to :user
   mount_uploader :image, ImageUploader
+  validates :image, presence: true
   before_create :clean_url
   after_save :check_avatar, if: :avatar?
 
