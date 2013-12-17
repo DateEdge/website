@@ -6,7 +6,7 @@ class Conversation < ActiveRecord::Base
 
   belongs_to :sender,    foreign_key: :user_id,      class_name: "User"
   belongs_to :recipient, foreign_key: :recipient_id, class_name: "User"
-
+  validates_with AgeAppropriateValidator
   def participants
     [sender, recipient]
   end

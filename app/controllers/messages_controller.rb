@@ -4,12 +4,11 @@ class MessagesController < ApplicationController
     @title = "Messenger on Date Edge"
 
     if params["recipient"].present?
-      # TODO make sure the user is age appropiate
       @conversation = Conversation.new
-      @user = User.where(username: params["recipient"]).first
+      @user = User.find_by(username: params["recipient"])
     else
       # TODO make sure the user is authorized to see this conversation
-      @conversation = Conversation.find(params[:conversation_id])
+      @conversation = current_user.outbound_conversations.find(params[:conversation_id])
       @user = @conversation.counterpart(current_user)
     end
     redirect_if_age_inappropriate(@user)
@@ -17,10 +16,14 @@ class MessagesController < ApplicationController
   end
 
   def create
-    message = current_user.outbound_messages.create!(messages_params)
-    # TODO why is this commented out?
-    # redirect_if_age_inappropriate(@user)
-    redirect_to conversation_path(message.conversation)
+    message = current_user.outbound_messages.build(messages_params)
+    if message.save
+      redirect_to conversation_path(message.conversation)
+    elsif message.errors.has_key? :restricted
+      redirect_to root_path, notice: message.errors[:restricted]
+    else
+      render :new
+    end
   end
   
   private
