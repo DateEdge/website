@@ -10,19 +10,18 @@
 
 
       <%# BOOKMARK BUTTON %>
-      <% if im.secret_crushing_on?(user) %>
+      <% if im.bookmarking?(user) %>
 
         <%# bookmarked %>
         <div class="btn-group">
-          <%= form_for current_user.crush_with(user), html: { method: :delete, id: "unbookmark", class: "form-inline" } do |f| %>
+          <%= form_for current_user.bookmark_with(user), html: { method: :delete, id: "unbookmark", class: "form-inline" } do |f| %>
             <%= f.button "<i class='fa fa-ban'></i>".html_safe, class: "btn btn-warning" %>
           <% end %>
         </div>
 
       <% else %>
-        <%= form_for Crush.new, html: { id: "new_secret_crush", class: "form-inline" } do |f| %>
-          <%= f.hidden_field :crushee_id, value: user.id %>
-          <%= f.hidden_field :secret,     value: true %>
+        <%= form_for Bookmark.new, html: { id: "new_secret_crush", class: "form-inline" } do |f| %>
+          <%= f.hidden_field :bookmarkee_id, value: user.id %>
           <%= f.button "<i class='fa fa-star'></i>".html_safe, class: "btn btn-warning" %>
         <% end %>
       <% end %>

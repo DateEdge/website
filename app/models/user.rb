@@ -231,11 +231,19 @@ class User < ActiveRecord::Base
   end
 
   def crushing_on?(user)
-    crushes.include? user
+    crush_with(user).present?
+  end
+  
+  def bookmarking?(user)
+    bookmark_with(user).present?
   end
 
   def crush_with(user)
-    crushings.where(crushee_id: user.id).first
+    crushings.find_by(crushee_id: user.id)
+  end
+  
+  def bookmark_with(user)
+    bookmarks.find_by(bookmarkee_id: user.id)
   end
 
   def age_group
