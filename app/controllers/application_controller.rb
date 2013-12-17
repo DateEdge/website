@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def back_or(path=nil)
+    request.referer || path ||= root_path
+  end
+  
   def getting_started?
     params[:getting] == "started"
   end
