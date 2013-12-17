@@ -84,7 +84,7 @@ class UsersController < ApplicationController
       :me_gender,
       :you_gender,
       :label_id,
-      your_labels_attributes: [:label_id, :id, :_destroy]
+      your_labels_attributes: [:label_id, :id, :_destroy, :label_type]
     )
   end
 end
