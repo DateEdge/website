@@ -6,9 +6,10 @@ class WelcomeController < ApplicationController
       @title = "People Using Date Edge"
       @users = User.visible.in_my_age_group(current_user).without(current_user).order('created_at desc')
 
-      @crushers = current_user.crushers
-      @crushes  = current_user.crushes
-
+      @crushers         = current_user.crushers
+      @crushes          = current_user.crushes
+      @bookmarked_users = current_user.bookmarked_users
+      
       @slug     = "people"
       return render("/users/index")
     end
