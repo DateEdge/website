@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
   before do
     DatabaseCleaner.clean
-    @user = User.create(username: "Shane", name: "SB", email: "test@example.com", birthday: 15.years.ago)
+    @user = User.create(username: "Shane", name: "SB", email: "test@example.com", birthday: 15.years.ago, agreed_to_terms_at: Time.now)
   end
   
   it "should calculate the age correctly" do
@@ -18,7 +18,7 @@ describe User do
   it "should not update the user" do
     @user.username = nil
     @user.save
-    @user.should have(1).error
+    expect(@user.errors[:username]).to include "can't be blank"
   end
 
   it "should be able to a have label" do
@@ -35,7 +35,7 @@ describe User do
       @user.desired_labels.create!(name: label)
     end
 
-    @user.desired_labels.should == Label.all
+    @user.desired_labels.map(&:id).sort.should eq Label.all.map(&:id).sort
   end
 
   describe "merge!" do
