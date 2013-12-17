@@ -4,7 +4,8 @@ class Message < ActiveRecord::Base
   belongs_to :conversation
   belongs_to :sender,    class_name: "User"
   belongs_to :recipient, class_name: "User"
-
+  validates_with AgeAppropriateValidator
+  validates :recipient_id, :sender_id, presence: true
   before_save :create_conversation, unless: :conversation_id?
 
   scope :unread, -> { where(unread: true)  }
