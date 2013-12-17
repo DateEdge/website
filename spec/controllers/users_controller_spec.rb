@@ -11,6 +11,10 @@ describe UsersController do
   end
 
   describe "GET 'edit'" do
+    before { 
+      user.stub(:visible) { true }
+      session[:user_id] = user.id 
+    }
     it "should be successful" do
       get 'edit'
       response.should be_success

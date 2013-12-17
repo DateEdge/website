@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
 
   has_many :crushings, foreign_key: "crusher_id", class_name: "Crush", dependent: :destroy
   has_many :secret_crushes, -> { where crushes: {secret: true}}, through: :crushings, source: :crushee
+  
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmarked_users, foreign_key: "bookmarkee_id", through: :bookmarks, source: :bookmarkee
+  
   has_many :crushes, -> { includes(:crushes).order("crushes.created_at desc")}, through: :crushings, source: :crushee
 
   has_many :crusheeings, -> { where secret: false }, foreign_key: "crushee_id", class_name: "Crush"
