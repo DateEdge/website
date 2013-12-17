@@ -33,10 +33,7 @@
       <%= form_for current_user.crush_with(user), html: { method: :delete, id: "uncrush", class: "form-inline" } do |f| %>
         <%= f.button "<i class='fa fa-ban'></i> Uncrush".html_safe, class: "btn btn-danger" %>
       <% end %>
-
     <% else %>
-
-      <%# TODO FIXME TMP HACK %>
       <%= form_for Crush.new, html: { class: "form-inline" } do |f| %>
         <%= f.hidden_field :crushee_id, value: user.id %>
         <%= f.button "<i class='fa fa-heart'></i> Crush".html_safe, class: "btn btn-danger" %>
