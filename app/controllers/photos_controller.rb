@@ -1,5 +1,8 @@
 class PhotosController < ApplicationController
 
+  before_action :set_photo,                     only: [:edit, :update, :destroy]
+  before_action :confirm_photo_belongs_to_user, only: [:edit, :update, :destroy]
+  
   def new
     @slug  = "settings"
     @title = "Photo Uploader on Date Edge"
@@ -20,31 +23,29 @@ class PhotosController < ApplicationController
   def edit
     @slug  = "settings"
     @title = "Photo Editor on Date Edge"
-    @photo = Photo.find(params[:id])
-
-    unless @photo.user == current_user
-      redirect_to root_path
-    end
   end
 
   def update
-    @photo = Photo.find(params[:id])
     @photo.update(photos_params)
     redirect_to person_path(current_user.username)
   end
 
   def destroy
-    photo = Photo.find(params[:id])
-
-    if photo.user == current_user
-      photo.destroy
-      redirect_to person_path(current_user.username)
-    else
-      redirect_to root_path
-    end
+   @photo.destroy
+   redirect_to person_path(current_user.username)
   end
   
   private
+  
+  def set_photo
+    @photo = Photo.find(params[:id])
+  end
+  
+  def confirm_photo_belongs_to_user
+    unless @photo.user == current_user
+      redirect_to root_path, notice: "Oops, not your photo :("
+    end
+  end
   
   def photos_params
     params.require(:photo).permit(:remote_image_url, :caption, :image, :avatar)
