@@ -23,8 +23,6 @@ class BirthdayValidator < ActiveModel::EachValidator
 end
 
 class User < ActiveRecord::Base
-  # TODO preventing saving "/settings" form
-  # attr_protected :username, :email
   belongs_to :country
   belongs_to :diet
   belongs_to :state
