@@ -49,10 +49,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
     if current_user.update(user_params)
       redirect_to(person_path(current_user.username), notice: 'User was successfully updated.')
     else
+      @user = current_user
       render action: "edit"
     end
   end
