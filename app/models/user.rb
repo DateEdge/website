@@ -50,6 +50,7 @@ class User < ActiveRecord::Base
   scope :visible,       -> { where(visible: true) }
   scope :invisible,     -> { where(visible: false) }
   scope :with_provider, lambda { |name, uid| joins(:providers).where(providers: {name: name, uid: uid}) }
+  scope :with_username, lambda { |username| where("lower(username) = ?", username.downcase) }
   scope :adults,        -> { where(['birthday >= ?', 18.years.ago]) }
   scope :kids,          -> { where(['birthday <  ?', 18.years.ago]) }
   scope :secret,        -> { joins(:crushes).where('crushes.secret = "true"') }
@@ -135,9 +136,8 @@ class User < ActiveRecord::Base
       u
     end
 
-    # TODO refactor this and user#available_username
     def available_username(username)
-      User.where(username: username).first || username.blank? ? "username-#{Time.now.strftime('%Y%m%d%H%M%S')}" : username
+      User.with_username(username).any? ? generate_username : username
     end
 
     def in_my_age_group(user)
@@ -152,9 +152,8 @@ class User < ActiveRecord::Base
 
   end
 
-  # TODO refactor this and User.available_username
   def available_username(new_name)
-    User.where(['lower(username) = ? AND id != ?', new_name.to_s.downcase, id]).first || new_name.blank? ? nil : new_name
+    (User.with_username(new_name) - [self]).any? ? nil : new_name
   end
 
   def conversations
@@ -240,6 +239,10 @@ class User < ActiveRecord::Base
   end
 
   private
+  
+  def self.generate_username
+    "username-#{Time.now.strftime('%Y%m%d%H%M%S')}"
+  end
   
   def placeholder_avatar_url
     "placeholder.png"

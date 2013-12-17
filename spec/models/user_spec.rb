@@ -89,4 +89,37 @@ describe User do
       user
     end
   end
+  
+  describe "#available_username" do
+    
+    it "it returns the username it it's available" do
+      expect(User.available_username("username")).to eq "username"
+    end
+    
+    it "a match return a temp user name" do
+      expect(User.available_username("Shane")).to match /username.\d+/
+    end
+
+    it "a downcase match return a temp user name" do
+      expect(User.available_username("shane")).to match /username.\d+/
+    end
+    
+    it "a user can change usernames" do
+      expect(@user.available_username('username')).to eq "username"
+    end
+
+    it "a user can have the same user name" do
+      expect(@user.available_username('Shane')).to eq "Shane"
+    end
+
+    it "a user can have the same user name by downcase" do
+      expect(@user.available_username('shane')).to eq "shane"
+    end
+
+    it "a user can't have a taken username" do
+      @user2 = User.create(username: "bookis", name: "BS", email: "testbks@example.com", birthday: 15.years.ago, agreed_to_terms_at: Time.now)
+      expect(@user2.available_username('shane')).to be_nil
+    end
+    
+  end
 end
