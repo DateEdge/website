@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   has_many :providers, dependent: :destroy
   has_many :photos,    dependent: :destroy
   has_many :your_labels
-  has_many :desired_labels, through: :your_labels, source: :label, uniq: true
+  has_many :desired_labels, -> { uniq }, through: :your_labels, source: :label
 
   accepts_nested_attributes_for :your_labels, allow_destroy: true, reject_if: proc { |obj| obj['label_id'] == "0" }
 
