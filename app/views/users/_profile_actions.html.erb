@@ -20,19 +20,11 @@
         </div>
 
       <% else %>
-
-        <%# TODO FIXME TMP HACK %>
-        <% if controller_name == "users" %>
-
-          <%# NOT bookmarked %>
-          <%= form_for @crush, html: { id: "new_secret_crush", class: "form-inline" } do |f| %>
-            <%= f.hidden_field :crushee_id, value: user.id %>
-            <%= f.hidden_field :secret,     value: true %>
-            <%= f.button "<i class='fa fa-star'></i>".html_safe, class: "btn btn-warning" %>
-          <% end %>
-
+        <%= form_for Crush.new, html: { id: "new_secret_crush", class: "form-inline" } do |f| %>
+          <%= f.hidden_field :crushee_id, value: user.id %>
+          <%= f.hidden_field :secret,     value: true %>
+          <%= f.button "<i class='fa fa-star'></i>".html_safe, class: "btn btn-warning" %>
         <% end %>
-
       <% end %>
     </span>
 
@@ -45,14 +37,10 @@
     <% else %>
 
       <%# TODO FIXME TMP HACK %>
-      <% if controller_name == "users" %>
-
-        <%= form_for @crush, html: { class: "form-inline" } do |f| %>
-          <%= f.hidden_field :crushee_id, value: user.id %>
-          <%= f.button "<i class='fa fa-heart'></i> Crush".html_safe, class: "btn btn-danger" %>
-        <% end %>
+      <%= form_for Crush.new, html: { class: "form-inline" } do |f| %>
+        <%= f.hidden_field :crushee_id, value: user.id %>
+        <%= f.button "<i class='fa fa-heart'></i> Crush".html_safe, class: "btn btn-danger" %>
       <% end %>
-
     <% end %>
 
   </div><!-- .actions -->
