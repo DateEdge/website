@@ -1,12 +1,7 @@
 @bookis:
 - use require HTTPS on the whole site
-- extract all config files / vars to env vars(or .gitignored files?), so we can open source this
 - fix bug on /start when you submit without a username
-- remove keys from git history
-- TODO.txt had twitter keys in it. blow away that from git history too.
 - hide all of conversations and messages behind logged_in?
-- move these to .env (config.fog_directory config.asset_host)
-- make a sample-dotenv file with all the env vars that one would need to spin up the app with notes for values
 - setup mailchimp
 - seed profile with great bios and photos
 - investigate using fastly.com

@@ -60,7 +60,7 @@ Create a .env file
 touch .env
 ```
 
-Add all required variables to `.env` using `sample-dotenv` as a guide.
+Add all required variables to `.env` using `doc/sample-dotenv` as a guide.
 
 ## Usage
 

@@ -1,0 +1,26 @@
+# Application
+
+SECRET_KEY_BASE: # App base for config/initializers/secret_token.rb. Use `rake secret` to generate good strings.
+SECRET_TOKEN:    # App secrets for config/initializers/secret_token.rb. Use `rake secret` to generate good strings.
+
+# Login services
+
+DXE_FACEBOOK_CONSUMER_KEY:    # Facebook Consumer key.
+DXE_FACEBOOK_CONSUMER_SECRET: # Facebook Consumer Secret.
+DXE_TWITTER_CONSUMER_KEY:     # Twitter Consumer key.
+DXE_TWITTER_CONSUMER_SECRET:  # Twitter Consumer Secret.
+
+#Rollbar 
+
+ROLLBAR_ACCESS_TOKEN:         # Rollbar Access Token http://rollbar.com
+ROLLBAR_ENDPOINT:             # Rollbar Endpoint     http://rollbar.com
+
+# Fog
+
+DXE_AWS_ACCESS_KEY:  # AWS Access Key
+DXE_AWS_SECRET_KEY:  # AWS Secret Key
+FOG_DIRECTORY:       # AWS S3 Bucket name
+FOG_ASSET_HOST:      # AWS custom host *optional
+
+
+
