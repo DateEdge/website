@@ -12,7 +12,7 @@ else
       aws_secret_access_key: ENV["DXE_AWS_SECRET_KEY"],
       region:                'us-west-1'  # optional, defaults to 'us-east-1'
     }
-    config.fog_directory  = "dxe-development"
+    config.fog_directory  = "dxe-#{Rails.env}"
     # config.asset_host       = 'http://assets.dateedge.com'
     # config.fog_public     = false
     # config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
