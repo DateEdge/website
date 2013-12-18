@@ -4,11 +4,11 @@
   </div>
 
   <ol class="messages">
-    <% @conversation.messages.each do |message| %>
+    <% @conversation.messages.each_with_index do |message, index| %>
       <li class="h-entry message <%= "from-me" if message.sender == current_user %>">
         <%= render message.sender %>
 
-        <div class="e-content message-body">
+        <div class="e-content message-body <%= "well lead" if index == (@conversation.messages.length - 1) %>">
           <%= simple_format message.body %>
         </div>
       </li>

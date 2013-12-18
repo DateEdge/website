@@ -8,7 +8,7 @@
         <span class="p-name fn n"><%= link_to user.username, person_path(user.username) %></span>&nbsp;<% if user.age %><small class="p-x-age"><%= user.age %></small><% end %>
       </h4>
 
-      <p>
+      <p class="p-adr h-adr">
         <%= link_to google_map_url(user) do %>
           <% unless user.city.blank? %>
             <span class="p-locality locality"><%= user.city %></span>,
