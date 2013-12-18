@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :restrict_non_visible_user, only: [:new, :create]
-
+  before_action :require_login, only: [:show, :edit, :update, :destroy]
   def index
     if logged_in?
       return redirect_to(root_path)
