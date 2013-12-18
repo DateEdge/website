@@ -3,7 +3,7 @@ class Photo < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   validates :image, presence: true
   before_create :clean_url
-  after_save :check_avatar, if: :avatar?
+  before_save :check_avatar
 
   private
   
@@ -12,8 +12,12 @@ class Photo < ActiveRecord::Base
   end
   
   def check_avatar
-    avatars = self.user.photos.where(avatar: true).to_a
-    avatars.delete(self)
-    avatars.each { |avatar| avatar.update_attributes(avatar: false)}
+    avatars = self.user.photos.where(avatar: true)
+    avatars.to_a.delete(self)
+    if avatars.empty?
+      self.avatar = true
+    elsif avatar
+      avatars.each { |avatar| avatar.update_attributes(avatar: false)}
+    end
   end
 end
