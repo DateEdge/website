@@ -12,7 +12,7 @@ else
       aws_secret_access_key: ENV["DXE_AWS_SECRET_KEY"],
       endpoint:              "https://assets.dateedge.com:8080"
     }
-    unless Rails.env.production?
+    if Rails.env.production?
       config.fog_directory  = "assets.dateedge.com"
       config.asset_host     = 'https://assets.dateedge.com'
     else
