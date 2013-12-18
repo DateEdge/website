@@ -37,5 +37,3 @@ Rollbar.configure do |config|
   #  Thread.new { Rollbar.process_payload(payload) }
   # }
 end
- }
-end
