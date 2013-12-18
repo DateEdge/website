@@ -1,10 +1,10 @@
 @bookis:
 - use require HTTPS on the whole site
-- hide all of conversations and messages behind logged_in?
 - setup mailchimp
 - seed profile with great bios and photos
 - messages seem to be out of order in a conversation
 - make message.subject a text not a string
+- flash messages are appearing after the intended request.
 
 @shane:
 - style /start errors and page
