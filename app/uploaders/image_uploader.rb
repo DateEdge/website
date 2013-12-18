@@ -1,7 +1,6 @@
 class ImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
-  storage :fog
 
   def store_dir
     "uploads/photos/users/#{model.user.id}/#{model.id}"

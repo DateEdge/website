@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env["omniauth.auth"]
-
     if current_user
       provider = Provider.where(name: auth["provider"], uid: auth["uid"]).first
 

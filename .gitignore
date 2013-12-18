@@ -7,3 +7,6 @@ tmp/
 *.tmproj
 config/database.yml
 .env
+
+# This is where carrierwave stores files created in tests
+public/uploads
