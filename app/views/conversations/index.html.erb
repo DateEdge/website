@@ -17,7 +17,7 @@
 
           <div class="media col-xs-12">
             <%= link_to conversation, class: "pull-left" do %>
-              <%= image_tag conversation.counterpart(current_user).avatar(:tiny).to_s, class: "u-photo img media-object" %>
+              <%= image_tag conversation.counterpart(current_user).avatar(:tiny).to_s, class: "u-photo img media-object", alt: current_user.username %>
             <% end %>
 
             <div class="media-body">
