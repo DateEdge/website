@@ -47,7 +47,7 @@
     <% @user.photos.each do |photo| %>
       <li>
         <%= image_tag photo.image_url(:large).to_s %>
-        <p class="caption"><%= simple_format photo.caption %></p>
+        <p class="caption lead"><%= simple_format photo.caption %></p>
 
         <% if mine? %>
           <div class="actions">
