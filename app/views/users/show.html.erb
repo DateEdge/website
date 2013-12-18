@@ -24,10 +24,8 @@
       <b><%= @user.you_gender %></b>
     <% end %>
 
-    <% if @user.you_diet %>
-      <% unless @user.desired_diets.blank? %>
-        <%= @user.desired_diets.map{ |dd| "<b>#{dd.name}</b>" }.join(" / ").html_safe %>
-      <% end %>
+    <% unless @user.desired_diets.blank? %>
+      <%= @user.desired_diets.map{ |dd| "<b>#{dd.name}</b>" }.join(" / ").html_safe %>
     <% end %>
     .
   <% end %>
