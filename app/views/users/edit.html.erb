@@ -1,9 +1,4 @@
-<% if flash[:error] or flash[:notice] %>
-  <div>
-    <%= flash[:error] %>
-    <%= flash[:notice] %>
-  </div>
-<% end %>
+<%= render partial: "/shared/flashes" %>
 
 <% unless @user.twitter? && @user.facebook? %>
   <div class="buttons">
@@ -81,7 +76,7 @@
       <%= f.label :your_labels_attributes, "Desired Diet" %>
       <%= render "/labels/form", f: f, collection: Diet.all %>
     </div>
-    
+
   </div>
 
   <div class="form-group">
