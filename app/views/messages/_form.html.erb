@@ -3,7 +3,7 @@
   <% if @conversation.new_record? %>
     <div class="form-group">
       <%= f.label :subject, "Subject" %>
-      <%= f.text_field :subject, autocapitalize: "words", class: "form-control" %>
+      <%= f.text_field :subject, autocapitalize: "words", class: "form-control", required: true %>
     </div>
   <% else %>
     <%= f.hidden_field :conversation_id %>
@@ -13,7 +13,11 @@
 
   <div class="form-group">
     <%= f.label :body, "Body", class: "sr-only" %>
-    <%= f.text_area :body, autocapitalize: "sentences", placeholder: "Say something nice and more than &lsquo;hey...&rsquo;".html_safe, class: "form-control" %>
+    <%= f.text_area :body,
+                    autocapitalize: "sentences",
+                    class:          "form-control",
+                    required:       true,
+                    placeholder:    "Say something nice and more than &lsquo;hey...&rsquo;".html_safe %>
   </div>
 
   <%= f.submit "Send", disable_with: 'Sending...', class: "btn btn-success btn-block btn-lg" %>
