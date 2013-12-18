@@ -1,10 +1,16 @@
-<div class="row">
-  <% if @conversations.blank? %>
+<div class="page-header">
+  <h1>Conversations</h1>
+</div>
 
+<% if @conversations.blank? %>
+
+  <div class="col-12">
     <p class="alert alert-info">You don&rsquo;t have any conversations started. <b>Go message someone!</b></p>
+  </div>
 
-  <% else %>
+<% else %>
 
+  <div class="row">
     <ol class="conversations">
       <% @conversations.each do |conversation| %>
         <li class="row person conversation h-entry <%= 'unread' if conversation.unread?(current_user) %>">
@@ -20,7 +26,7 @@
               <p>
                 <%= link_to conversation do %>
                   <span class="p-name"><%= conversation.subject %></span>
-                  <span class="e-content"><%= truncate conversation.messages.last.body, length: 100 %></span>
+                  <span class="e-content"><%= conversation.messages.last.body %></span>
                 <% end %>
               </p>
             </div>
@@ -29,6 +35,6 @@
         </li> <!-- .person -->
       <% end %>
     </ol>
+  </div>
 
-  <% end %>
-</div>
+<% end %>
