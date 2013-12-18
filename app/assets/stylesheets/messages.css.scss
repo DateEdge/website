@@ -1,9 +1,8 @@
 #messages {
 
   /* TEMP */
-  #new_message textarea {
-    height: 6em;
-    margin-bottom: 1em;
+  #new_message {
+    margin-top: 1em;
   }
 
   .conversations {
@@ -22,6 +21,16 @@
   .conversation a {
     color: black;
     text-decoration: none;
+  }
+
+  .h-entry .p-x-age,
+  .h-entry .h-adr,
+  .h-entry .actions {
+    display: none;
+  }
+
+  .well p:last-child {
+    margin-bottom: 0;
   }
 
   .message-counterpart {
@@ -77,10 +86,6 @@
     margin-bottom:  2em;
     padding-bottom: 2em;
     border-bottom: 1px solid #efefef;
-  }
-
-  #conversation .message-body p {
-    margin-top: 1em;
   }
 
   #reply h1 {
