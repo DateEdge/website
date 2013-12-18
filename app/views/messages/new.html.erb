@@ -1,9 +1,9 @@
-<h1 id="message">
-  <span>New Conversation</span>
-  <i class="small-word">with</i>
-  <%= link_to_avatar(@message.recipient, :tiny) %>
+<div class="page-header">
+  <h1>New Conversation</h1>
+</div>
 
-  <%= link_to_username(@message.recipient) %>
-</h1>
+<div class="col-12">
+  <%= render @message.recipient %>
 
-<%= render 'form', message: @message %>
+  <%= render 'form', message: @message %>
+</div>
