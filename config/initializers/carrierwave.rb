@@ -13,7 +13,7 @@ else
     }
     if Rails.env.production?
       config.fog_directory  = "assets.dateedge.com"
-      config.asset_host     = 'https://assets.dateedge.com'
+      config.asset_host     = 'http://assets.dateedge.com'
     else
       config.fog_directory  = "dxe-#{Rails.env}"
     end
