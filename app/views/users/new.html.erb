@@ -6,10 +6,10 @@
 
 <%= form_for @user, url: user_create_path, method: :post do |f| %>
   <%= f.label       :username %>
-  <%= f.text_field  :username, autocapitalize: "off", autocorrect: "off" %>
+  <%= f.text_field  :username, autocapitalize: "off", autocorrect: "off", required: true %>
 
   <%= f.label       :email %>
-  <%= f.email_field :email,    autocapitalize: "off", autocorrect: "off" %>
+  <%= f.email_field :email,    autocapitalize: "off", autocorrect: "off", required: true %>
 
   <%= f.label       :birthday %>
   <%= birthday_select_tag(f) %>

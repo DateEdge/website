@@ -15,7 +15,7 @@ module ApplicationHelper
                     end_year:      60.years.ago.year,
                     include_blank: true
                   },
-                  { class:         "form-control" }
+                  { class:         "form-control", required: true }
   end
 
   def link_to_avatar(user, avatar_size=nil)
