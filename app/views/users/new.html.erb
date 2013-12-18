@@ -1,9 +1,6 @@
 <h1>Before we start we just need 3 things from you.</h1>
 
-<div>
-  <%= flash[:error] %>
-  <%= flash[:notice] %>
-</div>
+<%= render partial: "/shared/flashes" %>
 
 <%= @user.errors.full_messages.to_sentence %>
 
