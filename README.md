@@ -45,6 +45,16 @@ cd dateedge-www
 bundle
 ```
 
+#### Setup Database
+
+```bash
+cp config/database.yml.example config/database.yml
+```
+
+Update values to reflect your local environment.
+
+
+
 ## Usage
 
 ```bash
