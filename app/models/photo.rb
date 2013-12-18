@@ -12,7 +12,7 @@ class Photo < ActiveRecord::Base
   end
   
   def check_avatar
-    avatars = self.user.photos.where(avatar: true).all
+    avatars = self.user.photos.where(avatar: true).to_a
     avatars.delete(self)
     avatars.each { |avatar| avatar.update_attributes(avatar: false)}
   end
