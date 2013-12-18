@@ -18,7 +18,7 @@
       <%= render partial: "/shared/social_posting_info" %>
     <% end %>
 
-    <% if profile_incomplete? %>
+    <% if profile_incomplete? && !getting_started? %>
       <p class="alert alert-success">
         Completed profiles have the best success.
         <b><%= link_to "Go update yours now! &rarr;".html_safe, settings_path, class: "alert-link" %></b>

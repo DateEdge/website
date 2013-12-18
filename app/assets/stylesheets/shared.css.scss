@@ -143,22 +143,3 @@ footer[role=contentinfo] {
   padding-bottom: 4em;
 }
 /* ...site footer */
-
-/* override native form styles... */
-input[type=upload],
-input[type=submit] {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-}
-
-input[type=email] {
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
-  width: 100%;
-}
-
-label.checkbox input[type=checkbox] {
-  vertical-align: baseline;
-}
-/* ...override native rounded form elements */
