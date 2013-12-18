@@ -9,8 +9,7 @@ else
     config.fog_credentials = {
       provider:              'AWS',
       aws_access_key_id:     ENV["DXE_AWS_ACCESS_KEY"],
-      aws_secret_access_key: ENV["DXE_AWS_SECRET_KEY"],
-      endpoint:              "https://assets.dateedge.com:8080"
+      aws_secret_access_key: ENV["DXE_AWS_SECRET_KEY"]
     }
     if Rails.env.production?
       config.fog_directory  = "assets.dateedge.com"
