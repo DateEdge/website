@@ -21,13 +21,14 @@
         <%= @user.desired_labels.map{ |dl| "<b>#{dl.name}</b>" }.join(" / ").html_safe %>
       <% end %>
 
-      <b><%= @user.you_gender %></b>
+      <b><%= @user.you_gender %></b><%= "." if @user.desired_diets.blank? %>
     <% end %>
 
     <% unless @user.desired_diets.blank? %>
+      who eats a
       <%= @user.desired_diets.map{ |dd| "<b>#{dd.name}</b>" }.join(" / ").html_safe %>
+      diet.
     <% end %>
-    .
   <% end %>
 </p>
 
