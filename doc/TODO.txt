@@ -1,10 +1,8 @@
 @bookis:
 - use require HTTPS on the whole site
-- fix bug on /start when you submit without a username
 - hide all of conversations and messages behind logged_in?
 - setup mailchimp
 - seed profile with great bios and photos
-- investigate using fastly.com
 - messages seem to be out of order in a conversation
 - make message.subject a text not a string
 

@@ -244,12 +244,12 @@ class User < ActiveRecord::Base
   def age_group
     age >= 18 ? :adult : :kid
   end
-
-  private
   
   def self.generate_username
     "username-#{Time.now.strftime('%Y%m%d%H%M%S')}"
   end
+
+  private
   
   def placeholder_avatar_url
     "placeholder.png"

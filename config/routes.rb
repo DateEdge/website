@@ -16,7 +16,7 @@ Dxe::Application.routes.draw do
   get "/auth/failure",            to: "sessions#failure"
 
   get   "/start",                 to: "users#new",    as: :start
-  post  "/oops",                  to: 'users#create', as: :user_create
+  patch  "/oops",                 to: 'users#create', as: :user_create
   get   "/settings",              to: "users#edit",   as: :settings
   patch "/settings",              to: "users#update", as: :update_settings
   get   "/people",                to: "users#index",  as: :people
