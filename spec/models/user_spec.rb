@@ -73,6 +73,13 @@ describe User do
     end
   end
   
+  describe "avatars" do
+    it "assigns the photo as avatar" do
+      @user.photos.create(remote_image_url: "http://placehold.it/1/1.png")
+      expect(@user.photos.first.avatar).to  be_true
+    end
+  end
+  
   describe "auth from FB" do
     before { ImageUploader.any_instance.stub(:download!) }
     let(:user) { User.create_for_facebook(facebook_auth_response) }
