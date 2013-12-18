@@ -53,10 +53,19 @@ cp config/database.yml.example config/database.yml
 
 Update values to reflect your local environment.
 
+#### Setup ENV vars
+
+Create a .env file
+```bash
+touch .env
+```
+
+Add all required variables to `.env` using `sample-dotenv` as a guide.
+
 ## Usage
 
 ```bash
-puma -p 3000
+foreman start -p 3000
 ```
 
 ## Authors
