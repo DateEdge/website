@@ -8,7 +8,6 @@
 - write my bio
 - write first email blast
 - hardware testing
-- better logic around show "update yours message"
 - groom failed email for fixes
 
 
