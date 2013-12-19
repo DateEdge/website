@@ -11,6 +11,7 @@
 - get / write code-of-conduct
 - write first email blast
 - hardware testing
+- fix pagingkeys.js asset pipeline shit
 
 
 
