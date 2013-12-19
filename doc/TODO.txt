@@ -3,7 +3,6 @@
 - setup mailchimp
 - seed profile with great bios and photos
 - flash messages are appearing after the intended request
-- some uploaded images are being rotated 90 or 180 degrees
 
 @shane:
 - write my bio
