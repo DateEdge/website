@@ -10,3 +10,6 @@ config/database.yml
 
 # This is where carrierwave stores files created in tests
 public/uploads
+
+# Ignore SSL files
+ssl-cert
