@@ -10,7 +10,7 @@ else
       provider:              'AWS',
       aws_access_key_id:     ENV["DXE_AWS_ACCESS_KEY"],
       aws_secret_access_key: ENV["DXE_AWS_SECRET_KEY"],
-      region:                'us-west-1'
+      region:                ENV["DXE_AWS_REGION"]
     }
     config.fog_directory  = ENV["FOG_DIRECTORY"]
     config.asset_host     = ENV["FOG_ASSET_HOST"]
