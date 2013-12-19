@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
   
   def getting_started?
-    params[:getting] == "started" || request.path == "/start"
+    params[:getting] == "started" || request.path == "/start" || request.path == "/oops"
   end
 
   def logged_in?
