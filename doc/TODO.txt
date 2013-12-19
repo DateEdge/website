@@ -8,8 +8,9 @@
 - write my bio
 - write first email blast
 - hardware testing
-- add edit link on my profile
-
+- better logic around show "update yours message"
+- fix col-12 on connecting more accounts on /settings
+- groom failed email for fixes
 
 
 
