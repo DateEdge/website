@@ -6,7 +6,11 @@
 
 <%= render partial: "/shared/flashes" %>
 
-<%= @user.errors.full_messages.to_sentence %>
+<% if @user.errors %>
+  <div class="errors">
+    <%= @user.errors.full_messages.to_sentence %>
+  </div>
+<% end %>
 
 <%= form_for @user, url: user_create_path, html: { class: "form" } do |f| %>
   <div class="form-group">

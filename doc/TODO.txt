@@ -7,7 +7,6 @@
 @shane:
 - style /start errors and page
 - write my bio
-- get / write /terms
 - get / write code-of-conduct
 - write first email blast
 - hardware testing
