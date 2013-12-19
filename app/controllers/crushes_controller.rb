@@ -1,4 +1,5 @@
 class CrushesController < ApplicationController
+  before_action :require_login
 
   def create
     crush = current_user.crushings.new(params.require(:crush).permit(:crushee_id, :secret))

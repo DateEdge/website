@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe PhotosController do
   before {
+    sign_in
     controller.stub(:confirm_photo_belongs_to_user) { true }
   }
   

@@ -1,4 +1,6 @@
 class ConversationsController < ApplicationController
+  before_action :require_login
+  
   def index
     @title = "Inbox on Date Edge"
     @slug  = "messages"

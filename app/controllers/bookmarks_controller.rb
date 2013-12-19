@@ -1,4 +1,5 @@
 class BookmarksController < ApplicationController
+  before_action :require_login
   
   def create
     bookmark = current_user.bookmarks.build(params.require(:bookmark).permit(:bookmarkee_id))

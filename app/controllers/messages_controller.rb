@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  before_action :require_login
+
   def new
     @slug  = "messages"
     @title = "Messenger on Date Edge"
