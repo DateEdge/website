@@ -5,23 +5,23 @@
   </div>
 
 <% unless @user.twitter? && @user.facebook? %>
-  <div class="row">
-    <div class="buttons">
-      <% if @user.twitter? %>
-        <%= button_to_sign_in_with(:facebook) %>
-      <% elsif @user.facebook? %>
-        <%= button_to_sign_in_with(:twitter) %>
-      <% end %>
+    <div class="col-12">
+      <div class="buttons">
+        <% if @user.twitter? %>
+          <%= button_to_sign_in_with(:facebook) %>
+        <% elsif @user.facebook? %>
+          <%= button_to_sign_in_with(:twitter) %>
+        <% end %>
+      </div>
+
+      <p class="note">
+        Connecting both your Twitter and Facebook accounts makes it easier to fill out your Date Edge profile, which helps you find people.
+      </p>
+
+      <p class="note">
+        And if Twitter or Facebook ever has downtime, you can use the other to sign in to Date Edge.
+      </p>
     </div>
-
-    <p class="note">
-      Connecting both your Twitter and Facebook accounts makes it easier to fill out your Date Edge profile, which helps you find people.
-    </p>
-
-    <p class="note">
-      And if Twitter or Facebook ever has downtime, you can use the other to sign in to Date Edge.
-    </p>
-  </div>
 <% end %>
 
 <div class="row">

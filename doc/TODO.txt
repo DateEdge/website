@@ -9,7 +9,6 @@
 - write first email blast
 - hardware testing
 - better logic around show "update yours message"
-- fix col-12 on connecting more accounts on /settings
 - groom failed email for fixes
 
 
