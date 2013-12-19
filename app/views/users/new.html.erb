@@ -11,7 +11,7 @@
   <div class="panel panel-danger">
     <div class="panel-heading">
       <h3 class="panel-title">
-        There are <%= pluralize(@user.errors.length, "error") %>.
+        There are <%= pluralize(@user.errors.count, "error") %>.
       </h3>
     </div>
 
