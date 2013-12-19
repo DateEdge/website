@@ -7,7 +7,6 @@
 
 @shane:
 - write my bio
-- get / write code-of-conduct
 - write first email blast
 - hardware testing
 
