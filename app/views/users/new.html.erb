@@ -11,7 +11,8 @@
   <div class="panel panel-danger">
     <div class="panel-heading">
       <h3 class="panel-title">
-        There are <%= pluralize(@user.errors.count, "error") %>.
+        <%= pluralize(@user.errors.count, "error") %>
+        prevented your signup. Try again!
       </h3>
     </div>
 
