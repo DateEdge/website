@@ -1,5 +1,6 @@
 <% if mine? %>
-  <%= link_to "<i class='fa fa-picture-o'></i> Add a Photo".html_safe, new_photo_path, class: "btn btn-success" %>
+  <%= link_to "<i class='fa fa-picture-o'></i>&nbsp;&nbsp;Add a Photo".html_safe, new_photo_path, class: "btn btn-success" %>
+  <%= link_to "<i class='fa fa-pencil'></i>&nbsp;&nbsp;Edit Profile".html_safe, settings_path, class: "btn btn-default" %>
 
 <% elsif not_mine? %>
   <div class="actions">

@@ -1,4 +1,10 @@
 module ApplicationHelper
+  def show_update_profile?
+    profile_incomplete? &&
+    !getting_started?   &&
+    !(controller_name == "users" && action_name == "edit")
+  end
+
   def profile_incomplete?
     current_user &&
     current_user.me_gender  == "person" &&

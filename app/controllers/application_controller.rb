@@ -13,9 +13,11 @@ class ApplicationController < ActionController::Base
   def back_or(path=nil)
     request.referer || path ||= root_path
   end
-  
+
   def getting_started?
-    params[:getting] == "started" || request.path == "/start" || request.path == "/oops"
+    params[:getting] == "started" ||
+    request.path     =~ /start/ ||
+    request.path     =~ /oops/
   end
 
   def logged_in?
@@ -32,7 +34,7 @@ class ApplicationController < ActionController::Base
       redirect_to start_path
     end
   end
-  
+
   def require_login
     redirect_to root_path unless logged_in?
   end
