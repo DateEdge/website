@@ -10,6 +10,7 @@ gem "email_address_validator", "0.0.3", git: "git://github.com/bookis/email_addr
 gem "rollbar" # Exception notifier
 gem "sass-rails"
 gem "uglifier"
+gem "indefinite_article"
 
 # image uploads
 gem "rmagick",            "~> 2.13.2"

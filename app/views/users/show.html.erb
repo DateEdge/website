@@ -12,7 +12,9 @@
     <% end %>
 
     <% if @user.diet %>
-      I eat a <b><%= @user.diet.name.downcase %></b> diet.
+      I eat
+      <%= @user.diet.name.indefinite_article %>
+      <b><%= @user.diet.name.downcase %></b> diet.
     <% end %>
 
     <% if @user.you_gender %>
@@ -25,7 +27,8 @@
     <% end %>
 
     <% unless @user.desired_diets.blank? %>
-      who eats a
+      who eats
+      <%= @user.desired_diets.map(&:name).join.indefinite_article %>
       <%= @user.desired_diets.map{ |dd| "<b>#{dd.name}</b>" }.join(" / ").html_safe %>
       diet.
     <% end %>
@@ -55,7 +58,7 @@
         <%= image_tag photo.image_url(:large).to_s %>
         <div class="caption lead">
           <%= simple_format photo.caption %>
-        </p>
+        </div>
 
         <% if mine? %>
           <div class="actions">

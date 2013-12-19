@@ -2,13 +2,11 @@
 - use require HTTPS on the whole site
 - setup mailchimp
 - seed profile with great bios and photos
-- flash messages are appearing after the intended request.
+- flash messages are appearing after the intended request
+- some uploaded images are being rotated 90 or 180 degrees
 
 @shane:
-- style /start errors and page
 - write my bio
-- get / write /terms
-- get / write code-of-conduct
 - write first email blast
 - hardware testing
 
