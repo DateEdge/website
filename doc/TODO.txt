@@ -2,8 +2,6 @@
 - use require HTTPS on the whole site
 - setup mailchimp
 - seed profile with great bios and photos
-- messages seem to be out of order in a conversation
-- make message.subject a text not a string
 - flash messages are appearing after the intended request.
 
 @shane:
