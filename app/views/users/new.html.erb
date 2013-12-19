@@ -7,8 +7,12 @@
 <%= render partial: "/shared/flashes" %>
 
 <% if @user.errors %>
-  <div class="errors">
-    <%= @user.errors.full_messages.to_sentence %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @user.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
 
