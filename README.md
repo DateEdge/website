@@ -12,7 +12,7 @@ is a Rails powered dating site with a very simple set of features.
 - Photos
 - Person to person messages
 - Crushes
-- Private crushes
+- Bookmarks
 
 That's it. For now.
 
@@ -35,7 +35,7 @@ Profiles also has two lists of three properties.
 ## Requirements
 
 - [Ruby,  ~> 1.9.3](http://www.ruby-lang.org/)
-- [Rails, ~> 3.2.11](https://github.com/rails/rails/)
+- [Rails, ~> 4.0.2](https://github.com/rails/rails/)
 
 ## Installation
 
