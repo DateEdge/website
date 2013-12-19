@@ -58,6 +58,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   def fix_exif_rotation
     manipulate! do |img|
       img.auto_orient!
+      yield(img) if block_given?
+      img
     end
   end
 
