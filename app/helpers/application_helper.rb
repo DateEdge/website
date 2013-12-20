@@ -1,4 +1,8 @@
 module ApplicationHelper
+  
+  def user_inputed_text(text)
+    h(text).gsub(/\n/, '<br>')
+  end
   def show_update_profile?
     profile_incomplete? &&
     !getting_started?   &&

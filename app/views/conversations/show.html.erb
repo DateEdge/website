@@ -9,7 +9,7 @@
         <%= render message.sender %>
 
         <div class="e-content message-body <%= "well lead" if index == (@conversation.messages.length - 1) %>">
-          <%= h(message.body).gsub(/\n/, '<br>').html_safe %>
+          <%= user_inputed_text(message.body).html_safe %>
         </div>
       </li>
     <% end %>
