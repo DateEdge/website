@@ -10,6 +10,7 @@ class ConversationsController < ApplicationController
   def show
     @slug         = "messages"
     @conversation = current_user.conversations.where(id: params[:id]).first
+    @messages     = @conversation.messages.order('created_at asc')
     @avatar_size  = "tiny"
     @message      = Message.new(recipient_id:    @conversation.counterpart(current_user).id,
                                 conversation_id: @conversation.id)

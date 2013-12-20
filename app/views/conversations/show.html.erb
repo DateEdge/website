@@ -4,7 +4,7 @@
   </div>
 
   <ol class="messages">
-    <% @conversation.messages.each_with_index do |message, index| %>
+    <% @messages.each_with_index do |message, index| %>
       <li class="h-entry message <%= "from-me" if message.sender == current_user %>">
         <%= render message.sender %>
 
