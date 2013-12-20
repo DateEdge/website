@@ -18,7 +18,7 @@ That's it. For now.
 
 Profiles are simple free form text "bios" and unlimited photos with optional captions.
 
-Profiles also has two lists of three properties.
+Profiles also have two lists of three properties.
 
 **What I Am**:
 
