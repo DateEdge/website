@@ -24,7 +24,8 @@
         <b><%= link_to "Go update yours now! &rarr;".html_safe, settings_path, class: "alert-link" %></b>
       </p>
     <% end %>
-
+    <%= render partial: "/shared/flashes" %>
+    
     <%= yield %>
   </section>
 

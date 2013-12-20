@@ -1,6 +1,5 @@
 @bookis:
 - use require HTTPS on the whole site
-- setup mailchimp
 - seed profile with great bios and photos
 - flash messages are appearing after the intended request
 
