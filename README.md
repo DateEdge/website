@@ -40,8 +40,8 @@ Profiles also has two lists of three properties.
 ## Installation
 
 ```bash
-git clone git@github.com:veganstraightedge/dateedge-www.git
-cd dateedge-www
+git clone git@github.com:DateEdge/website.git
+cd website
 bundle
 ```
 
@@ -84,8 +84,17 @@ foreman start -p 3000
 7. Create new Pull Request
 
 If you find bugs, have feature requests or questions, please
-[file an issue](https://github.com/veganstraightedge/dateedge-www).
+[file an issue](https://github.com/DateEdge/website).
+
 
 ## License
 
-Private business. Not for sharing. Yet.
+**PUBLIC DOMAIN**
+
+Your heart is as free as the air you breathe. <br>
+The ground you stand on is liberated territory.
+
+In legal text, Homesteading Bookmark is dedicated to the public domain
+using Creative Commons -- CC0 1.0 Universal.
+
+[http://creativecommons.org/publicdomain/zero/1.0](http://creativecommons.org/publicdomain/zero/1.0 "Creative Commons &mdash; CC0 1.0 Universal")
