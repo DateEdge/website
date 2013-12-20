@@ -22,7 +22,6 @@ module ApplicationHelper
                     include_blank: true
                   },
                   { class:         "form-control" }
-                  # , required: true
   end
 
   def link_to_avatar(user, avatar_size=nil)
