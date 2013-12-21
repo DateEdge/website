@@ -1,8 +1,8 @@
 module ApplicationHelper
-  
   def user_inputed_text(text)
     h(text).gsub(/\n/, '<br>')
   end
+
   def show_update_profile?
     profile_incomplete? &&
     !getting_started?   &&
@@ -31,7 +31,7 @@ module ApplicationHelper
   def link_to_avatar(user, avatar_size=nil)
     link_to image_tag(user.avatar(avatar_size), class: "u-photo img media-object", alt: user.username),
             person_path(user.username),
-            class: "pull-left"
+            class: "pull-left u-url"
   end
 
   def link_to_username(user)
