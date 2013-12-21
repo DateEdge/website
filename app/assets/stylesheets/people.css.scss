@@ -1,4 +1,9 @@
 #people {
+  /* bootstrap override... */
+  @media (max-width: 480px) { .hidden-xs { display: none   !important; } }
+  @media (min-width: 481px) { .hidden-xs { display: inline !important; } }
+  /* ...bootstrap override */
+
   #crushers {
     margin-top: .5em;
   }
@@ -50,7 +55,7 @@
     max-width: 100%;
     margin-top: 1em;
   }
-  
+
   /* Pro Tips... */
   table.table h3 {
     margin-top: 0;

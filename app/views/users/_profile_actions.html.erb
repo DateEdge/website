@@ -1,6 +1,11 @@
 <% if mine? %>
-  <%= link_to "<i class='fa fa-picture-o'></i>&nbsp;&nbsp;Add Photo".html_safe, new_photo_path, class: "btn btn-success" %>
-  <%= link_to "<i class='fa fa-pencil'></i>&nbsp;&nbsp;Edit Profile".html_safe,   settings_path,  class: "btn btn-default" %>
+  <%= link_to new_photo_path, class: "btn btn-success" do %>
+    <i class='fa fa-picture-o'></i>&nbsp;&nbsp;Add Photo
+  <% end %>
+
+  <%= link_to settings_path,  class: "btn btn-default" do %>
+    <i class='fa fa-pencil'></i><span class="hidden-xs">&nbsp;&nbsp;Edit Profile</span>
+  <% end %>
 
 <% elsif not_mine? %>
   <div class="actions">
