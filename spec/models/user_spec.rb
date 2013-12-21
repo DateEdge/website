@@ -129,4 +129,13 @@ describe User do
     end
     
   end
+  
+  describe "merging" do
+    it "can merge" do
+      @user2 = User.create(username: "bookis", name: "BS", email: "testbks@example.com", birthday: 15.years.ago)
+      @user.merge! @user2
+      @user.reload
+      expect(@user.agreed_to_terms_at).to_not be_blank
+    end
+  end
 end

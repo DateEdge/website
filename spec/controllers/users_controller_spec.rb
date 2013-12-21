@@ -21,6 +21,27 @@ describe UsersController do
     end
   end
   
+  describe "POST 'create'" do
+    let(:user) { User.create(name: "Bookis", username: "Bookis") }
+    before { sign_in(user) }
+    
+    it "redirects to people path" do
+      post :create, user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}
+      expect(response).to redirect_to new_photo_path(getting: "started")
+    end
+    
+    it "changes user visibility" do
+      post :create, user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}
+      user.reload
+      expect(user.visible).to be_true
+    end
+    
+    it "renders the edit form if there are errors" do
+      post :create, user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1}
+      expect(response).to render_template :new
+    end
+  end
+  
   describe "PATCH 'update'" do
     before { 
       user.stub(:visible) { true }
@@ -39,6 +60,10 @@ describe UsersController do
     it "doesn't update email" do
       expect { patch :update, user: {email: "b@example.com"} }.to_not change(user, :email)
     end
+    
+  end
+  
+  describe "subject" do
     
   end
 
