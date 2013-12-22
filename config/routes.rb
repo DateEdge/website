@@ -1,4 +1,11 @@
 Dxe::Application.routes.draw do
+  
+  constraints(subdomain: "www") do
+    get '(*any)' => redirect { |params, request|
+      URI.parse(request.url).tap { |uri| uri.host.sub!(/^www\./i, '') }.to_s
+    }
+  end
+  
   root to: "welcome#index"
 
   resources :users,     only:   [:destroy]
