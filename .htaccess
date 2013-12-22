@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www\.dateedge\.com$ [NC]
+RewriteRule ^(.*)$ https://dateedge.com/$1 [R=301,L]
