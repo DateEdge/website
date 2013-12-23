@@ -25,11 +25,16 @@
       </p>
     <% end %>
     <%= render partial: "/shared/flashes" %>
-    
+
     <%= yield %>
   </section>
 
   <footer role="contentinfo" class="container">
+    <% if @user && not_mine? %>
+      <%# TODO make blocking work %>
+      <%#= link_to "Block @#{@user.username}", "/@#{@user.username}/block", class: "btn btn-danger btn-block" %>
+    <% end %>
+
     <% if logged_in? %>
       <%= link_to_unless_current "Sign Out", signout_path, class: "btn btn-default btn-block" %>
     <% end %>
