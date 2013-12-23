@@ -8,36 +8,14 @@
     margin-bottom: 3em;
   }
 
-  /* form... */
-  textarea {
-    height: 8em;
+  #drug-use th,
+  #drug-use td {
+    text-align: center;
   }
 
-  .edit_user input[type=submit] {
-    margin-top: 1em;
-  }
-
-  /* my/desired labels... */
-  table {
-    width: 100%;
-  }
-
-  th label,
-  td label {
-    margin: 0;
+  #drug-use tr th:first-child {
     text-align: left;
-    font-weight: normal;
   }
-
-  td {
-    width: 1.75em;
-  }
-
-  th, td {
-    padding: 0 0 .5em 0;
-  }
-  /* ...my/desired labels */
-  /* ...form */
 
   /* photo settings... */
   section[role=main] h1 {

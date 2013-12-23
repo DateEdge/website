@@ -37,4 +37,5 @@ Dxe::Application.routes.draw do
   # get   "/@:username/unbookmark", to: "bookmarks#destroy", as: :action_unbookmark, username: /[^\/]+/
   # get   "/@:username/message",    to: "messages#new",      as: :action_message,    username: /[^\/]+/
   # get   "/@:username/block",      to: "blocks#new",        as: :action_block,      username: /[^\/]+/
+
 end
