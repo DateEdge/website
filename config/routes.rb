@@ -6,6 +6,10 @@ Dxe::Application.routes.draw do
     }
   end
   
+  namespace :admin do
+    get "/" => "dashboard#index"
+  end
+  
   root to: "welcome#index"
 
   resources :users,     only:   [:destroy]

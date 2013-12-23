@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
   end
   alias :im :logged_in?
 
+  def logged_in_as_admin?
+    logged_in? && current_user.admin?
+  end
+  
   def redirect_if_age_inappropriate(user)
     redirect_to people_path if user.nil? || user.age_inappropiate?(current_user)
   end
@@ -37,6 +41,10 @@ class ApplicationController < ActionController::Base
 
   def require_login
     redirect_to root_path unless logged_in?
+  end
+  
+  def require_admin
+    redirect_to root_path unless logged_in_as_admin?
   end
 
   def current_user
