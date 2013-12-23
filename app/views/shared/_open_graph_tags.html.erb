@@ -1,0 +1,13 @@
+<% if @user %>
+  <meta property="og:image"     content="<%= @user.avatar %>" />
+  <meta property="og:title"     content="@<%= @user.username %>'s profile on Date Edge : The Straightedge Dating Site" />
+  <meta property="og:url"       content="https://dateedge.com/@<%= @user.username %>" />
+  <meta property="og:site_name" content="Date Edge" />
+  <meta property="og:type"      content="website" />
+<% else %>
+  <meta property="og:image"     content="https://dateedge.com/apple-touch-icon-144x144-precomposed.png" />
+  <meta property="og:title"     content="Date Edge : The Straightedge Dating Site" />
+  <meta property="og:url"       content="https://dateedge.com" />
+  <meta property="og:site_name" content="Date Edge" />
+  <meta property="og:type"      content="website" />
+<% end %>
