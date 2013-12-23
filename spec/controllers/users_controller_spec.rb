@@ -61,6 +61,12 @@ describe UsersController do
       expect { patch :update, user: {email: "b@example.com"} }.to_not change(user, :email)
     end
     
+    it "updates settings" do
+      patch :update, user: {birthday_public: true, admin: true }
+      expect(assigns(:user).birthday_public?).to be_true
+      expect(assigns(:user).admin?).to be_nil
+    end
+    
   end
   
   describe "subject" do

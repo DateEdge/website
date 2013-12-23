@@ -138,4 +138,25 @@ describe User do
       expect(@user.agreed_to_terms_at).to_not be_blank
     end
   end
+  
+  describe "settings" do
+    before { @user.update(settings: {admin: true, birthday_public: true}) }
+    it "has settings" do
+      expect(@user.settings).to_not be_blank
+    end
+    
+    it "has admin?" do
+      expect(@user.admin?).to be_true
+    end
+    
+    it "has featured" do
+      expect(@user.featured?).to be_nil
+    end
+    
+    it "has public settings" do
+      expect(@user.birthday_public?).to  be_true
+      expect(@user.email_public?).to     be_nil
+      expect(@user.real_name_public?).to be_nil
+    end
+  end
 end

@@ -49,10 +49,10 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = current_user
     if current_user.update(user_params)
       redirect_to(person_path(current_user.username), notice: 'User was successfully updated.')
     else
-      @user = current_user
       @label_assignements = @user.your_labels.label_assignments
       render action: "edit"
     end
@@ -71,6 +71,9 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :name,
       :email,
+      :birthday_public,
+      :real_name_public,
+      :email_public,
       "birthday(1i)",
       "birthday(2i)",
       "birthday(3i)",

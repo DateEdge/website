@@ -23,6 +23,13 @@ class BirthdayValidator < ActiveModel::EachValidator
 end
 
 class User < ActiveRecord::Base
+  store_accessor :settings, :admin, :featured, :birthday_public, :real_name_public, :email_public
+  alias_attribute :email_public?,     :email_public
+  alias_attribute :real_name_public?, :real_name_public
+  alias_attribute :birthday_public?,  :birthday_public
+  alias_attribute :admin?,            :admin
+  alias_attribute :featured?,         :featured
+  
   belongs_to :country
   belongs_to :diet
   belongs_to :state
