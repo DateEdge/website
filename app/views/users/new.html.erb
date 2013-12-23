@@ -2,27 +2,7 @@
   <h1>Before we start we just need 3 things from you.</h1>
 </div>
 
-
-
-<% unless @user.errors.count.zero? %>
-  <div class="panel panel-danger">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <%= pluralize(@user.errors.count, "error") %>
-        prevented your signup. Try again!
-      </h3>
-    </div>
-
-    <div class="panel-body">
-      <ul>
-        <% @user.errors.full_messages.each do |error| %>
-          <li><%= error %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-<% end %>
-
+<%= render "errors" %>
 
 <%= form_for @user, url: user_create_path, html: { class: "form" } do |f| %>
   <div class="form-group">

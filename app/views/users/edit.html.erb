@@ -22,9 +22,7 @@
     </div>
 <% end %>
 
-<div class="row">
-  <%= @user.errors.full_messages.to_sentence %>
-</div>
+<%= render "errors" %>
 
 <%= form_for @user, url: update_settings_path, html: { class: "form" } do |f| %>
   <div class="row">
