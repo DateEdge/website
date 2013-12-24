@@ -22,9 +22,7 @@
     </div>
 <% end %>
 
-<div class="row">
-  <%= @user.errors.full_messages.to_sentence %>
-</div>
+<%= render "errors" %>
 
 <%= form_for @user, url: update_settings_path, html: { class: "form" } do |f| %>
   <div class="row">
@@ -32,6 +30,16 @@
       <div class="form-group">
         <%= f.label      :name %>
         <%= f.text_field :name, autocapitalize: "words", class: "form-control" %>
+
+        <!--
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :pref_show_name, { checked: true }, 0, 1 %>
+            Show publicly?
+          </label>
+          <hr>
+        </div>
+        -->
       </div>
 
       <% if @user.username.blank? %>
@@ -44,11 +52,31 @@
       <div class="form-group">
         <%= f.label       :email %>
         <%= f.email_field :email, autocapitalize: "off", autocorrect: "off", class: "form-control", required: true %>
+
+        <!--
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :pref_show_email, { checked: true }, 0, 1 %>
+            Show publicly?
+          </label>
+          <hr>
+        </div>
+        -->
       </div>
 
       <div class="form-group">
         <%= f.label :birthday %>
         <%= birthday_select_tag(f) %>
+
+        <!--
+        <div class="checkbox">
+          <label>
+            <%= f.check_box :pref_show_birthday, { checked: true }, 0, 1 %>
+            Show publicly?
+          </label>
+          <hr>
+        </div>
+        -->
       </div>
 
       <div class="form-group">
@@ -133,17 +161,82 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-xs-12">
-      <%= f.submit "Save Changes", disable_with: "Saving&hellip;".html_safe, class: "btn btn-success btn-block btn-lg" %>
+      <% if false %>
+        <%# TODO show this when a person clicks on  "drug-friendly" on my straightedginess %>
+        <%# TODO hide this when a person clicks off "drug-friendly" on my straightedginess %>
+        <div class="col-12" id="drug-use">
+          <h5>My Drug-Friendliness</h5>
+          <div class="alert alert-warning">
+            <strong>Note:</strong>
+            We are not cops. We won't give you up to cops.
+            But anything you put into this table is publicly visible.
+            Act accordingly.
+          </div>
+
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>&nbsp;</th>
+                <th scope="col">Never</th>
+                <th scope="col">Light</th>
+                <th scope="col">Socially</th>
+                <th scope="col">Some</th>
+                <th scope="col">Lots</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <th scope="row">Alcohol</th>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+              </tr>
+              <tr>
+                <th scope="row">Cigarettes</th>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+              </tr>
+              <tr>
+                <th scope="row">Marijuana</th>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+              </tr>
+              <tr>
+                <th scope="row">&ldquo;Drugs&rdquo;</th>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      <% end %>
+
     </div>
+  </div>
+
+  <div class="col-12">
+    <%= f.submit "Save Changes", disable_with: "Saving&hellip;".html_safe, class: "btn btn-success btn-block btn-lg" %>
   </div>
 <% end %>
 
 
 
-<div id="danger-zone">
+<div class="col-12" id="danger-zone">
   <h2>DANGER ZONE</h2>
 
   <div>

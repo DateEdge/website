@@ -1,7 +1,5 @@
 Dxe::Application.routes.draw do
   
-  get "users/edit"
-  get "users/index"
   constraints(subdomain: "www") do
     get '(*any)' => redirect { |params, request|
       URI.parse(request.url).tap { |uri| uri.host.sub!(/^www\./i, '') }.to_s
@@ -36,4 +34,13 @@ Dxe::Application.routes.draw do
   patch "/settings",              to: "users#update", as: :update_settings
   get   "/people",                to: "users#index",  as: :people
   get   "/@:username",            to: "users#show",   as: :person, username: /[^\/]+/
+
+  # TODO implement these routes
+  # get   "/@:username/crush",      to: "crushes#new",       as: :action_crush,      username: /[^\/]+/
+  # get   "/@:username/uncrush",    to: "crushes#destroy",   as: :action_uncrush,    username: /[^\/]+/
+  # get   "/@:username/bookmark",   to: "bookmarks#new",     as: :action_bookmark,   username: /[^\/]+/
+  # get   "/@:username/unbookmark", to: "bookmarks#destroy", as: :action_unbookmark, username: /[^\/]+/
+  # get   "/@:username/message",    to: "messages#new",      as: :action_message,    username: /[^\/]+/
+  # get   "/@:username/block",      to: "blocks#new",        as: :action_block,      username: /[^\/]+/
+
 end
