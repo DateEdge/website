@@ -8,6 +8,11 @@ describe UsersController do
       get 'show', username: "Shane"
       response.should be_success
     end
+    
+    it "redirect to home if the user doesn't exit" do
+      get :show, username: "imnotreal"
+      expect(response).to redirect_to root_path
+    end
   end
 
   describe "GET 'edit'" do

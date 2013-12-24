@@ -14,10 +14,14 @@ class UsersController < ApplicationController
   def show
     @slug  = "people"
     @user  = User.visible.where(['lower(username) = ?', params[:username].downcase]).first
-    @title = "#{@user.username}&rsquo;s Profile on Date Edge"
-    @crush = Crush.new
+    if @user
+      @title = "#{@user.username}&rsquo;s Profile on Date Edge"
+      @crush = Crush.new
 
-    redirect_if_age_inappropriate(@user)
+      redirect_if_age_inappropriate(@user)
+    else
+      redirect_to root_path, notice: "That user doesn't exist"
+    end
   end
 
   def new
