@@ -20,12 +20,14 @@
   <thead>
     <tr>
       <th>Username</th>
+      <th width='50'>Featured</th>
     </tr>
   </thead>
   <tbody>
     <% User.order("created_at desc").each do |user| %>
       <tr>
-        <td><%= user.username %></td>
+        <td><%= link_to user.username, edit_admin_user_path(user) %></td>
+        <td class='text-center'><%= content_tag "i", "", class: "text-warning glyphicon glyphicon-star" if user.featured? %></td>
       </tr>
     <% end %>
   </tbody>

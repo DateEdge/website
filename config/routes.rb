@@ -1,5 +1,7 @@
 Dxe::Application.routes.draw do
   
+  get "users/edit"
+  get "users/index"
   constraints(subdomain: "www") do
     get '(*any)' => redirect { |params, request|
       URI.parse(request.url).tap { |uri| uri.host.sub!(/^www\./i, '') }.to_s
@@ -7,7 +9,8 @@ Dxe::Application.routes.draw do
   end
   
   namespace :admin do
-    get "/" => "dashboard#index"
+    get "/" => "dashboard#index", as: :dashboard
+    resources :users, only: [:edit, :index, :update, :destroy]
   end
   
   root to: "welcome#index"

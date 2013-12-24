@@ -24,11 +24,29 @@ end
 
 class User < ActiveRecord::Base
   store_accessor :settings, :admin, :featured, :birthday_public, :real_name_public, :email_public
+  
   alias_attribute :email_public?,     :email_public
   alias_attribute :real_name_public?, :real_name_public
   alias_attribute :birthday_public?,  :birthday_public
   alias_attribute :admin?,            :admin
   alias_attribute :featured?,         :featured
+  scope :with_setting, lambda { |key, value| where("settings -> ? = ?", key, value.to_s) }
+  scope :featured, -> { with_setting(:featured, true) }
+  def admin
+    if %w(true false).include? super
+      super.to_s == "true"
+    else
+      super
+    end
+  end
+  
+  def featured
+    if %w(true false).include? super
+      super.to_s == "true"
+    else
+      super
+    end
+  end
   
   belongs_to :country
   belongs_to :diet
