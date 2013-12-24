@@ -1,5 +1,40 @@
 <div class="row">
-  <div class='col-sm-6'>
+
+  <div class="col-sm-6">
+    <% if @crushers && @crushers.any? %>
+      <div class="page-header">
+        <h1>
+          Crushers
+          <small>they like you</small>
+        </h1>
+      </div>
+
+      <%= render @crushers %>
+    <% end %>
+
+    <% if @crushes && @crushes.any? %>
+      <div class="page-header">
+        <h1>
+          Crushes
+          <small>you like them</small>
+        </h1>
+      </div>
+
+      <%= render @crushes %>
+    <% end %>
+
+    <% if @bookmarked_users && @bookmarked_users.any? %>
+      <div class="page-header">
+        <h1>
+          Bookmarks
+          <small>you bookmarked them</small>
+        </h1>
+      </div>
+
+      <%= render @bookmarked_users %>
+    <% end %>
+
+
     <div id="everyone">
       <div class="page-header">
         <h1>
@@ -7,6 +42,7 @@
           <small>this will go away as the site grows</small>
         </h1>
       </div>
+
       <%= render @users %>
     </div>
   </div>
