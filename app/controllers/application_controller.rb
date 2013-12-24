@@ -26,8 +26,6 @@ class ApplicationController < ActionController::Base
   alias :im :logged_in?
 
   def logged_in_as_admin?
-    puts logged_in?.inspect
-    puts current_user.admin?.inspect
     logged_in? && current_user.admin?
   end
   
