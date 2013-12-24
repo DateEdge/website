@@ -15,6 +15,6 @@ class WelcomeController < ApplicationController
     end
 
     @slug  = "welcome"
-    @users = User.visible.featured.order('created_at desc').limit(12)
+    @users = User.visible.featured.shuffle.first(12)
   end
 end
