@@ -15,7 +15,7 @@ Dxe::Application.routes.draw do
 
   resources :photos,                       except: [:index, :show]
   resources :users,                        only:   [:destroy]
-  resources :crushes, :bookmarks, :blocks, only:   [:create, :destroy]
+  resources :crushes, :bookmarks, only:   [:create, :destroy]
   
   resources :conversations, only: [:index, :show]
   resources :messages,      only: [:create, :new]
@@ -34,6 +34,9 @@ Dxe::Application.routes.draw do
   get   "/people",                to: "users#index",  as: :people
   get   "/@:username",            to: "users#show",   as: :person, username: /[^\/]+/
 
+  post   "/@:username/block",   to: "blocks#create",  as: :block
+  delete "/@:username/unblock", to: "blocks#destroy", as: :unblock
+  
   # TODO implement these routes
   # get   "/@:username/crush",      to: "crushes#new",       as: :action_crush,      username: /[^\/]+/
   # get   "/@:username/uncrush",    to: "crushes#destroy",   as: :action_uncrush,    username: /[^\/]+/
