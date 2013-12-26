@@ -6,4 +6,12 @@ class BlocksController < ApplicationController
       redirect_to people_path, notice: "Blocked! #{@user.username} will no longer show in your feed."
     end
   end
+  
+  def destroy
+    @block = current_user.blocks.find(params[:id])
+    @user  = @block.blocked_user
+    if @block.destroy
+      redirect_to people_path, notice: "Un-blocked! #{@user.username} will now show in your feed."
+    end
+  end
 end

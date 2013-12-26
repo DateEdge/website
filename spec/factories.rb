@@ -19,4 +19,9 @@ FactoryGirl.define do
       birthday { 27.years.ago }
     end
   end
+  
+  factory :block do
+    user
+    association :blocked_user, factory: :bookis
+  end
 end
