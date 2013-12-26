@@ -10,7 +10,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
   DatabaseCleaner.strategy = :truncation
-
+  config.include FactoryGirl::Syntax::Methods
   config.after(:each) do
     if Rails.env.test? || Rails.env.cucumber?
       FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])

@@ -1,11 +1,19 @@
 require 'spec_helper'
 
 describe UsersController do
-  let!(:user) { User.create(username: "Shane", name: "SB", email: "test@example.com", birthday: 15.years.ago, agreed_to_terms_at: Time.now, visible: true) }
+  let!(:user) { create(:shane) }
 
+  describe "GET 'index'" do
+    before { session[:user_id] = user.id }
+    
+    it "redirects to root" do
+      get :index
+      expect(response).to redirect_to root_path
+    end
+  end
   describe "GET 'show'" do
     it "should be successful" do
-      get 'show', username: "Shane"
+      get 'show', username: "veganstraightedge"
       response.should be_success
     end
     
@@ -13,6 +21,7 @@ describe UsersController do
       get :show, username: "imnotreal"
       expect(response).to redirect_to root_path
     end
+    
   end
 
   describe "GET 'edit'" do

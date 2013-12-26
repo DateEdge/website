@@ -32,21 +32,6 @@ class User < ActiveRecord::Base
   alias_attribute :featured?,         :featured
   scope :with_setting, lambda { |key, value| where("settings -> ? = ?", key, value.to_s) }
   scope :featured, -> { with_setting(:featured, true) }
-  def admin
-    if %w(true false).include? super
-      super.to_s == "true"
-    else
-      super
-    end
-  end
-  
-  def featured
-    if %w(true false).include? super
-      super.to_s == "true"
-    else
-      super
-    end
-  end
   
   belongs_to :country
   belongs_to :diet
@@ -63,6 +48,11 @@ class User < ActiveRecord::Base
 
   has_many :crusheeings, -> { where secret: false }, foreign_key: "crushee_id", class_name: "Crush"
   has_many :crushers, -> { includes(:crushes).order("crushes.created_at desc") }, through: :crusheeings, source: :crusher
+
+  has_many :blocks, foreign_key: :blocker_id
+  has_many :blockings, foreign_key: :blocked_id, class_name: "Block"
+  
+  has_many :blocked_users, through: :blocks
 
   has_many :outbound_conversations, class_name: "Conversation", foreign_key: :user_id, dependent: :destroy
   has_many :inbound_conversations,  class_name: "Conversation", foreign_key: :recipient_id, dependent: :destroy
@@ -84,7 +74,6 @@ class User < ActiveRecord::Base
   scope :adults,        -> { where(['birthday >= ?', 18.years.ago]) }
   scope :kids,          -> { where(['birthday <  ?', 18.years.ago]) }
   scope :secret,        -> { joins(:crushes).where('crushes.secret = "true"') }
-  scope :without,       lambda { |user| where('id != ?', user.id) }
 
   validates :username, presence: { on: :update }, length: { minimum: 1, maximum: 100 }, format: /[\w]+/
   validates :name,     presence: true
@@ -174,6 +163,15 @@ class User < ActiveRecord::Base
       end
     end
 
+  end
+  
+  def viewable_users
+    User.
+      visible.
+      where.not(id: id).
+      in_my_age_group(self).
+      where.not(id: blocks.pluck(:blocked_id)).
+      where.not(id: blockings.pluck(:blocker_id))
   end
 
   def available_username(new_name)
@@ -273,6 +271,22 @@ class User < ActiveRecord::Base
   def self.generate_username
     "username-#{Time.now.strftime('%Y%m%d%H%M%S')}"
   end
+  
+  def admin
+    if %w(true false).include? super
+      super.to_s == "true"
+    else
+      super
+    end
+  end
+  
+  def featured
+    if %w(true false).include? super
+      super.to_s == "true"
+    else
+      super
+    end
+  end
 
   private
   
@@ -288,4 +302,5 @@ class User < ActiveRecord::Base
     you_gender.downcase! if you_gender?
     me_gender.downcase!  if me_gender?
   end
+  
 end
