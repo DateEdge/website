@@ -13,11 +13,10 @@ Dxe::Application.routes.draw do
   
   root to: "welcome#index"
 
-  resources :users,     only:   [:destroy]
-  resources :photos,    except: [:index, :show]
-  resources :crushes,   only:   [:create, :destroy]
-  resources :bookmarks, only:   [:create, :destroy]
-
+  resources :photos,                       except: [:index, :show]
+  resources :users,                        only:   [:destroy]
+  resources :crushes, :bookmarks, :blocks, only:   [:create, :destroy]
+  
   resources :conversations, only: [:index, :show]
   resources :messages,      only: [:create, :new]
 
