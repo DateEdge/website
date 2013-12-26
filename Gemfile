@@ -11,6 +11,7 @@ gem "rollbar" # Exception notifier
 gem "sass-rails"
 gem "uglifier"
 gem "indefinite_article"
+gem "redcarpet" # Markdown parser
 
 # image uploads
 gem "rmagick",            "~> 2.13.2"

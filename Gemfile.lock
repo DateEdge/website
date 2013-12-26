@@ -169,6 +169,7 @@ GEM
     rb-fsevent (0.9.3)
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
+    redcarpet (3.0.0)
     rmagick (2.13.2)
     rollbar (0.12.1)
       multi_json (~> 1.5)
@@ -238,6 +239,7 @@ DEPENDENCIES
   puma
   rails (~> 4.0.2)
   rails_12factor
+  redcarpet
   rmagick (~> 2.13.2)
   rollbar
   rspec
