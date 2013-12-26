@@ -65,6 +65,12 @@ describe MessagesController do
         expect(response).to redirect_to conversations_path
         expect(flash[:notice]).to include "@#{user2.username} is not available to message"
       end
+      it "should redirect back to the convo regardless of who did the blocking" do
+        create(:block, blocker_id: user2.id, blocked_id: user.id)
+        post 'create', message: {body: "Body", subject: "Subject", recipient_id: user2.id, conversation_id: conversation.id}
+        expect(response).to redirect_to conversations_path
+        expect(flash[:notice]).to include "@#{user2.username} is not available to message"
+      end
     end
   end
 
