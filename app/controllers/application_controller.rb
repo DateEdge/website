@@ -38,6 +38,11 @@ class ApplicationController < ActionController::Base
       redirect_to start_path
     end
   end
+  
+  def restrict_blocked_user(user, path=nil)
+    path ||= root_path
+    redirect_to path, notice: "@#{user.username} is not available to message" if current_user.block_with_user?(user)
+  end
 
   def require_login
     redirect_to root_path unless logged_in?

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe MessagesController do
-  let(:user)  { User.create(username: "Shane",  name: "SB", email: "test@example.com", birthday: 25.years.ago, visible: true, agreed_to_terms_at: Time.now) }
-  let(:user2) { User.create(username: "Bookis", name: "BS", email: "bs@example.com",   birthday: 25.years.ago, visible: true, agreed_to_terms_at: Time.now) }
+  let(:user)  { create(:shane) }
+  let(:user2) { create(:bookis) }
   let(:conversation) { user.outbound_conversations.create(recipient: user2) }
   
   before do 
@@ -54,7 +54,17 @@ describe MessagesController do
     it "is not success if age inappropriate" do
       user.update(birthday: 17.years.ago)
       post 'create', message: {body: "Body", subject: "Subject", recipient_id: user2.id, conversation_id: conversation.id}
-      expect(response).to redirect_to people_path
+      expect(response).to redirect_to conversations_path
+      expect(flash[:notice]).to include 'You can\'t send a message to that user'
+    end
+    
+    describe "blocked" do
+      it "should redirect back to the convo" do
+        create(:block, blocker_id: user.id, blocked_id: user2.id)
+        post 'create', message: {body: "Body", subject: "Subject", recipient_id: user2.id, conversation_id: conversation.id}
+        expect(response).to redirect_to conversations_path
+        expect(flash[:notice]).to include "@#{user2.username} is not available to message"
+      end
     end
   end
 

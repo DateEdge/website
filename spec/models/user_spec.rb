@@ -194,4 +194,15 @@ describe User do
       expect(user.viewable_users).to_not include shane
     end
   end
+  
+  describe "blocks" do
+    let(:bookis) { create(:bookis) }
+    let(:shane)  { create(:shane) }
+    
+    it "with_user for blocked" do
+      create(:block, blocked_id: bookis.id, blocker_id: shane.id)
+      expect(bookis.block_with_user?(shane)).to be_true
+    end
+  end
+  
 end

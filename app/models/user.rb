@@ -173,6 +173,18 @@ class User < ActiveRecord::Base
       where.not(id: blocks.pluck(:blocked_id)).
       where.not(id: blockings.pluck(:blocker_id))
   end
+  
+  def block_with_user?(user)
+    block_from_user?(user) || block_to_user?(user)
+  end
+  
+  def block_from_user?(user)
+    user.blocks.where(blocked_id: self.id).any?
+  end
+  
+  def block_to_user?(user)
+    blocks.where(blocked_id: user.id).any?
+  end
 
   def available_username(new_name)
     (User.with_username(new_name) - [self]).any? ? nil : new_name

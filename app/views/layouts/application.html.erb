@@ -31,8 +31,11 @@
 
   <footer role="contentinfo" class="container">
     <% if @user && not_mine? %>
-      <%# TODO make blocking work %>
-      <%#= link_to "Block @#{@user.username}", "/@#{@user.username}/block", class: "btn btn-danger btn-block" %>
+      <% if blocked? %>
+        <%= link_to "Unblock @#{@user.username}", action_unblock_path(@user.username), method: :delete, class: "btn btn-danger btn-block" %>
+      <% else %>
+        <%= link_to "Block @#{@user.username}", action_block_path(@user.username), method: :post, class: "btn btn-danger btn-block" %>
+      <% end %>
     <% end %>
 
     <% if logged_in? %>

@@ -74,11 +74,3 @@
     <% end %>
   </ul>
 </div>
-
-<% if not_mine? %>
-  <% if blocked? %>
-    <%= link_to "Unblock User", unblock_path(@user.username), method: :delete, class: "btn btn-success" %>
-  <% else %>
-    <%= link_to "Block User", block_path(@user.username), method: :post, class: 'btn btn-danger' %>
-  <% end %>
-<% end %>

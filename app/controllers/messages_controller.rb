@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
     if message.save
       redirect_to conversation_path(message.conversation)
     elsif message.errors.has_key? :restricted
-      redirect_to people_path, notice: message.errors[:restricted]
+      redirect_to conversations_path, notice: message.errors[:restricted]
     else
       render :new
     end
