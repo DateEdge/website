@@ -23,7 +23,7 @@ class BirthdayValidator < ActiveModel::EachValidator
 end
 
 class User < ActiveRecord::Base
-  self.per_page = 50
+  self.per_page = 30
   store_accessor :settings, :admin, :featured, :birthday_public, :real_name_public, :email_public
   
   alias_attribute :email_public?,     :email_public

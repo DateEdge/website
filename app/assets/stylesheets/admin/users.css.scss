@@ -1,3 +1,20 @@
 // Place all the styles related to the admin/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pagination {
+  em {
+    color: white;
+    font-weight: bold;
+    background: #666;
+    border: 1px solid #666;
+    padding: 3px;
+  }
+  
+  a {
+    padding: 3px;
+    color: #666;
+    background: white;
+    border: 1px solid #666;
+  }
+}
