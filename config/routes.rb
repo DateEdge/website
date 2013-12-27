@@ -15,7 +15,7 @@ Dxe::Application.routes.draw do
 
   resources :photos,                       except: [:index, :show]
   resources :users,                        only:   [:destroy]
-  resources :crushes, :bookmarks, only:   [:create, :destroy]
+  resources :bookmarks, only:   [:create, :destroy]
   
   resources :conversations, only: [:index, :show]
   resources :messages,      only: [:create, :new]
@@ -36,12 +36,12 @@ Dxe::Application.routes.draw do
 
   
   # TODO implement these routes
-  # get   "/@:username/crush",      to: "crushes#new",       as: :action_crush,      username: /[^\/]+/
-  # get   "/@:username/uncrush",    to: "crushes#destroy",   as: :action_uncrush,    username: /[^\/]+/
+  post   "/@:username/crush",    to: "crushes#create", as: :crush,          username: /[^\/]+/
+  delete "/@:username/uncrush",  to: "crushes#destroy",as: :uncrush,        username: /[^\/]+/
+  post   "/@:username/block",    to: "blocks#create",  as: :action_block,   username: /[^\/]+/
+  delete "/@:username/unblock",  to: "blocks#destroy", as: :action_unblock, username: /[^\/]+/
   # get   "/@:username/bookmark",   to: "bookmarks#new",     as: :action_bookmark,   username: /[^\/]+/
   # get   "/@:username/unbookmark", to: "bookmarks#destroy", as: :action_unbookmark, username: /[^\/]+/
   # get   "/@:username/message",    to: "messages#new",      as: :action_message,    username: /[^\/]+/
-  post   "/@:username/block",    to: "blocks#create",  as: :action_block,   username: /[^\/]+/
-  delete "/@:username/unblock",  to: "blocks#destroy", as: :action_unblock, username: /[^\/]+/
 
 end

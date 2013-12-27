@@ -35,14 +35,9 @@
 
     <%# CRUSH BUTTON %>
     <% if im.crushing_on?(user) %>
-      <%= form_for current_user.crush_with(user), html: { method: :delete, id: "uncrush", class: "form-inline" } do |f| %>
-        <%= f.button "<i class='fa fa-ban'></i> Uncrush".html_safe, class: "btn btn-danger" %>
-      <% end %>
+    <%= link_to "<i class='fa fa-ban'></i> Uncrush".html_safe, uncrush_path(user.username), class: "btn btn-danger", method: :delete %>
     <% else %>
-      <%= form_for Crush.new, html: { class: "form-inline" } do |f| %>
-        <%= f.hidden_field :crushee_id, value: user.id %>
-        <%= f.button "<i class='fa fa-heart'></i> Crush".html_safe, class: "btn btn-danger" %>
-      <% end %>
+      <%= link_to "<i class='fa fa-heart'></i> Crush".html_safe, crush_path(user.username), class: "btn btn-danger", method: :post %>
     <% end %>
 
   </div><!-- .actions -->
