@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
   helper_method :getting_started?
 
   private
+  
+  def find_user_by_username
+    @user = User.visible.find_by(canonical_username: params[:username].downcase)
+  end
 
   def back_or(path=nil)
     request.referer || path ||= root_path

@@ -15,7 +15,7 @@ FactoryGirl.define do
     
     factory :bookis do
       name     "Bookis Smuin"
-      username "bookis"
+      username "Bookis"
       birthday { 27.years.ago }
     end
   end

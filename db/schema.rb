@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131226015734) do
+ActiveRecord::Schema.define(version: 20131227024048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20131226015734) do
     t.datetime "updated_at",                         null: false
     t.datetime "agreed_to_terms_at"
     t.hstore   "settings"
+    t.string   "canonical_username"
   end
 
   create_table "your_labels", force: true do |t|

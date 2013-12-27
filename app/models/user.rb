@@ -71,19 +71,19 @@ class User < ActiveRecord::Base
   scope :visible,       -> { where(visible: true) }
   scope :invisible,     -> { where(visible: false) }
   scope :with_provider, lambda { |name, uid| joins(:providers).where(providers: {name: name, uid: uid}) }
-  scope :with_username, lambda { |username| where("lower(username) = ?", username.downcase) }
+  scope :with_username, lambda { |username| where(canonical_username: username.downcase) }
   scope :adults,        -> { where(['birthday >= ?', 18.years.ago]) }
   scope :kids,          -> { where(['birthday <  ?', 18.years.ago]) }
   scope :secret,        -> { joins(:crushes).where('crushes.secret = "true"') }
 
-  validates :username, presence: { on: :update }, length: { minimum: 1, maximum: 100 }, format: /[\w]+/
+  validates :username, :canonical_username, presence: { on: :update }, length: { minimum: 1, maximum: 100 }, format: /[\w]+/
   validates :name,     presence: true
   validates :email,    presence: { on: :update }, email: { on: :update }
   validates :birthday, birthday: { on: :update }
   validates :agreed_to_terms_at, presence: { on: :update, message: "must be agreed upon"}
 
   before_save :downcase_genders
-
+  before_validation :create_canonical_username
   class << self
     def create_with_omniauth(auth)
       user = send("create_for_#{auth["provider"]}", auth)
@@ -314,6 +314,10 @@ class User < ActiveRecord::Base
   def downcase_genders
     you_gender.downcase! if you_gender?
     me_gender.downcase!  if me_gender?
+  end
+  
+  def create_canonical_username
+    self.canonical_username = username.downcase if username
   end
   
 end

@@ -8,7 +8,11 @@ describe User do
   it "should calculate the age correctly" do
     user.age.should == 22
   end
-
+  
+  it "sets the canonical username" do
+    expect(bookis.canonical_username).to eq "bookis"
+  end
+  
   it "should know if your birthday happened yet" do
     user.birthday = 728.days.ago
     user.age.should == 1

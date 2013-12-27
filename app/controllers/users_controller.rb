@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def show
     @slug  = "people"
-    @user  = User.visible.where(['lower(username) = ?', params[:username].downcase]).first
+    find_user_by_username
     if @user
       @title = "#{@user.username}&rsquo;s Profile on Date Edge"
       @crush = Crush.new
