@@ -31,7 +31,8 @@ Dxe::Application.routes.draw do
   get   "/start",                 to: "users#new",    as: :start
   get   "/settings",              to: "users#edit",   as: :settings
   patch "/settings",              to: "users#update", as: :update_settings
-  get   "/people",                to: "users#index",  as: :people
+  get   "/page/:page",            to: "welcome#index"
+  get   "/people/(page/:page)",   to: "users#index",  as: :people
   get   "/@:username",            to: "users#show",   as: :person, username: /[^\/]+/
 
   

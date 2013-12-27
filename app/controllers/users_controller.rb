@@ -2,13 +2,14 @@ class UsersController < ApplicationController
   skip_before_filter :restrict_non_visible_user, only: [:new, :create]
   before_action :require_login, only: [:edit, :update, :destroy]
   def index
-    if logged_in?
-      return redirect_to(root_path)
-    end
-
     @title = "People Using Date Edge"
     @slug  = "people"
-    @users = User.visible.in_my_age_group(current_user)
+    @users = if logged_in?
+      current_user.viewable_users
+    else
+      User.visible
+    end
+    @users = @users.order('created_at desc').paginate(page: params[:page] ||= 1)
   end
 
   def show

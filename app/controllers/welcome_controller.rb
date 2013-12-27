@@ -4,8 +4,7 @@ class WelcomeController < ApplicationController
   def index
     if logged_in?
       @title = "People Using Date Edge"
-      @users = current_user.viewable_users.order('created_at desc')
-
+      @users = current_user.viewable_users.order('created_at desc').paginate(page: params[:page] ||= 1)
       @crushers         = current_user.crushers
       @crushes          = current_user.crushes
       @bookmarked_users = current_user.bookmarked_users
