@@ -223,7 +223,7 @@ class User < ActiveRecord::Base
       end
     end
 
-    save!
+    save!(validate: false)
   end
 
   def visiblize!

@@ -144,6 +144,14 @@ describe User do
       user.reload
       expect(user.agreed_to_terms_at).to_not be_blank
     end
+    
+    it "doesn't error if the terms aren't agreed to" do
+      user = create(:user, agreed_to_terms_at: nil)
+      user2 = create(:bookis, agreed_to_terms_at: nil)
+      user.merge! user2
+      user.reload
+      expect(user.agreed_to_terms_at).to be_nil
+    end
   end
   
   describe "settings" do
