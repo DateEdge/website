@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   scope :visible,       -> { where(visible: true) }
   scope :invisible,     -> { where(visible: false) }
   scope :with_provider, lambda { |name, uid| joins(:providers).where(providers: {name: name, uid: uid}) }
-  scope :with_username, lambda { |username| where(canonical_username: username.downcase) }
+  scope :with_username, lambda { |username| where(canonical_username: (username || "").downcase) }
   scope :adults,        -> { where(['birthday >= ?', 18.years.ago]) }
   scope :kids,          -> { where(['birthday <  ?', 18.years.ago]) }
   scope :secret,        -> { joins(:crushes).where('crushes.secret = "true"') }
@@ -151,7 +151,7 @@ class User < ActiveRecord::Base
     end
 
     def available_username(username)
-      User.with_username(username).any? ? generate_username : username
+      username.blank? || User.with_username(username).any? ? generate_username : username
     end
 
     def in_my_age_group(user)

@@ -106,6 +106,11 @@ describe User do
       expect(User.available_username("username")).to eq "username"
     end
     
+    it "doesn't error when a nil username is given" do
+      expect {User.available_username(nil)}.to_not raise_error
+      expect(User.available_username(nil)).to match /username.\d+/
+    end
+    
     it "a match return a temp user name" do
       expect(User.available_username("Veganstraightedge")).to match /username.\d+/
     end

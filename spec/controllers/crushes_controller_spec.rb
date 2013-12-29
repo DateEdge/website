@@ -8,6 +8,12 @@ describe CrushesController do
     it "creates a crush" do
       expect { post :create, username: shane.username }.to change(Crush, :count).by(1)
     end
+    
+    it "redirects if the user is age inappropriate" do
+      bookis.update(birthday: 17.years.ago)
+      post :create, username: shane.username
+      expect(response).to redirect_to people_path
+    end
   end
   
   describe "DELETE 'destroy'" do
