@@ -44,5 +44,5 @@ Dxe::Application.routes.draw do
   # get   "/@:username/bookmark",   to: "bookmarks#new",     as: :action_bookmark,   username: /[^\/]+/
   # get   "/@:username/unbookmark", to: "bookmarks#destroy", as: :action_unbookmark, username: /[^\/]+/
   # get   "/@:username/message",    to: "messages#new",      as: :action_message,    username: /[^\/]+/
-
+  get "/:username", to: redirect { |params, request| "/@#{params[:username]}"}
 end
