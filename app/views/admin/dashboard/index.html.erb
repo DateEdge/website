@@ -3,12 +3,14 @@
   <div class='col-lg-12'>
     <div class='well'>
       <dl class="dl-horizontal">
-        <dt>Visible Users</dt>
-        <dd><%= User.visible.count %></dd>
+        <dt>Users</dt>
+        <dd><%= User.visible.count %> / <%= User.count %></dd>
         <dt>Conversations Started</dt>
         <dd><%= Conversation.count %></dd>
         <dt>Messages Sent</dt>
         <dd><%= Message.count %></dd>
+        <dt>Crushes Crushed</dt>
+        <dd><%= Crush.count %></dd>
         <dt>Crushes Crushed</dt>
         <dd><%= Crush.count %></dd>
       </dl>
