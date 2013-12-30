@@ -26,11 +26,6 @@ class User < ActiveRecord::Base
   self.per_page = 30
   store_accessor :settings, :admin, :featured, :birthday_public, :real_name_public, :email_public
   
-  alias_attribute :email_public?,     :email_public
-  alias_attribute :real_name_public?, :real_name_public
-  alias_attribute :birthday_public?,  :birthday_public
-  alias_attribute :admin?,            :admin
-  alias_attribute :featured?,         :featured
   scope :with_setting, lambda { |key, value| where("settings -> ? = ?", key, value.to_s) }
   scope :featured, -> { with_setting(:featured, true) }
   
@@ -285,19 +280,15 @@ class User < ActiveRecord::Base
     "username-#{Time.now.strftime('%Y%m%d%H%M%S')}"
   end
   
-  def admin
-    if %w(true false).include? super
-      super.to_s == "true"
-    else
-      super
+  def self.attribute(name)
+      superclass.send :define_method, name do
+        self
+      end
     end
-  end
   
-  def featured
-    if %w(true false).include? super
-      super.to_s == "true"
-    else
-      super
+  %w(admin featured birthday_public real_name_public email_public).each do |method_name|
+    define_method("#{method_name}?") do
+      %w(true false 0 1).include?(send(method_name)) ? %w(true 1).include?(send(method_name)) : send(method_name)
     end
   end
 
