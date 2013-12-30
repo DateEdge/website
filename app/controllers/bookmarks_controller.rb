@@ -1,18 +1,18 @@
 class BookmarksController < ApplicationController
   before_action :require_login
-  
+  before_action :find_user_by_username
   def create
-    bookmark = current_user.bookmarks.build(params.require(:bookmark).permit(:bookmarkee_id))
+    bookmark = current_user.bookmarks.build(bookmarkee_id: @user.id)
     if bookmark.save
-      redirect_to back_or(person_path(bookmark.bookmarkee.username)), notice: "Added bookmark"
+      redirect_to back_or(person_path(@user.username)), notice: "Added bookmark"
     else
       redirect_to back_or(root_path), notice: "There was a problem bookmarking this user"
     end
   end
   
   def destroy
-    @bookmark = current_user.bookmarks.find(params[:id])
-    @bookmark.destroy
+    @bookmarks = current_user.bookmarks.where(bookmarkee_id: @user.id)
+    @bookmarks.destroy_all
     redirect_to back_or(root_path)
   end
 end

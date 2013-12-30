@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe BookmarksController do
-  let(:user) { User.create(username: "Shane", name: "SB", email: "test@example.com", birthday: 15.years.ago, agreed_to_terms_at: Time.now, visible: true) }
+  let(:user)  { create(:bookis) }
+  let(:shane) { create(:shane) }
   
   before { 
     user.stub(:visible) { true }
@@ -9,13 +10,13 @@ describe BookmarksController do
   }
   
   describe "POST 'create'" do
-    let(:request) { post :create, bookmark: {bookmarkee_id: 1} }
+    let(:request) { post :create, username: shane.username }
     before do
-      Bookmark.any_instance.stub_chain(:bookmarkee, :username) { "Bookis" }
+      Bookmark.any_instance.stub_chain(:bookmarkee, :username) { shane.username }
     end
     it "redirects" do
       request
-      expect(response).to redirect_to person_path("Bookis")
+      expect(response).to redirect_to person_path(shane.username)
     end
     
     it "creates a bookmark" do
@@ -42,11 +43,8 @@ describe BookmarksController do
   
   describe "DELETE 'destroy'" do
     it "destroy the bookmark" do
-      bookmark = mock_model(Bookmark)
-      controller.stub(:current_user) { user }
-      user.bookmarks.should_receive(:find).with("1").and_return(bookmark)
-      bookmark.should_receive(:destroy)
-      delete :destroy, id: 1
+      user.bookmarks.create(bookmarkee_id: shane.id)
+      delete :destroy, username: shane.username
       expect(response).to redirect_to root_path
     end
   end

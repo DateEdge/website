@@ -20,16 +20,11 @@
 
         <%# bookmarked %>
         <div class="btn-group">
-          <%= form_for current_user.bookmark_with(user), html: { method: :delete, id: "unbookmark", class: "form-inline" } do |f| %>
-            <%= f.button "<i class='fa fa-ban'></i>".html_safe, class: "btn btn-warning" %>
-          <% end %>
+          <%= link_to "<i class='fa fa-ban'></i>".html_safe, action_unbookmark_path(user.username), method: :delete, id: "unbookmark", class: "form-inline" %>
         </div>
 
       <% else %>
-        <%= form_for Bookmark.new, html: { id: "new_secret_crush", class: "form-inline" } do |f| %>
-          <%= f.hidden_field :bookmarkee_id, value: user.id %>
-          <%= f.button "<i class='fa fa-star'></i>".html_safe, class: "btn btn-warning" %>
-        <% end %>
+        <%= link_to "<i class='fa fa-star'></i>".html_safe, action_unbookmark_path(user.username), method: :post, id: "new_secret_crush", class: "form-inline" %>
       <% end %>
     </span>
 
