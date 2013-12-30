@@ -16,8 +16,7 @@ Dxe::Application.routes.draw do
   resources :photos,                       except: [:index, :show]
   resources :users,                        only:   [:destroy]
   
-  resources :conversations, only: [:index, :show]
-  resources :messages,      only: [:create, :new]
+  resources :conversations, only: [:index]
 
   get "/terms",                   to: "about#terms",      as: :terms
 
@@ -35,15 +34,15 @@ Dxe::Application.routes.draw do
   get   "/@:username",            to: "users#show",   as: :person, username: /[^\/]+/
 
   
-  # TODO implement these routes
-  post   "/@:username/crush",     to: "crushes#create",       as: :crush,             username: /[^\/]+/
-  delete "/@:username/uncrush",   to: "crushes#destroy",      as: :uncrush,           username: /[^\/]+/
-  post   "/@:username/block",     to: "blocks#create",        as: :action_block,      username: /[^\/]+/
-  delete "/@:username/unblock",   to: "blocks#destroy",       as: :action_unblock,    username: /[^\/]+/
-  post   "/@:username/bookmark",  to: "bookmarks#create",     as: :action_bookmark,   username: /[^\/]+/
-  delete   "/@:username/unbookmark", to: "bookmarks#destroy", as: :action_unbookmark, username: /[^\/]+/
-  
-  # get   "/@:username/message",    to: "messages#new",      as: :action_message,    username: /[^\/]+/
+  post   "/@:username/crush",        to: "crushes#create",       as: :crush,             username: /[^\/]+/
+  delete "/@:username/uncrush",      to: "crushes#destroy",      as: :uncrush,           username: /[^\/]+/
+  post   "/@:username/block",        to: "blocks#create",        as: :action_block,      username: /[^\/]+/
+  delete "/@:username/unblock",      to: "blocks#destroy",       as: :action_unblock,    username: /[^\/]+/
+  post   "/@:username/bookmark",     to: "bookmarks#create",     as: :action_bookmark,   username: /[^\/]+/
+  delete "/@:username/unbookmark",   to: "bookmarks#destroy",    as: :action_unbookmark, username: /[^\/]+/
+  get    "/@:username/message",      to: "messages#new",         as: :new_message,       username: /[^\/]+/
+  post   "/@:username/message",      to: "messages#create",      as: :messages,          username: /[^\/]+/
+  get    "/@:username/conversation", to: "conversations#show",   as: :conversation,      username: /[^\/]+/
   
   get "/:username", to: redirect { |params, request| "/@#{params[:username]}"}
 end

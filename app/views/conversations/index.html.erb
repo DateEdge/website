@@ -12,28 +12,7 @@
 
   <div class="row">
     <ol class="conversations">
-      <% @conversations.each do |conversation| %>
-        <li class="row person conversation h-entry <%= 'unread' if conversation.unread?(current_user) %>">
-
-          <div class="media col-xs-12">
-            <%= link_to conversation, class: "pull-left" do %>
-              <%= image_tag conversation.counterpart(current_user).avatar(:tiny).to_s, class: "u-photo img media-object", alt: current_user.username %>
-            <% end %>
-
-            <div class="media-body">
-              <h4 class="media-heading p-author"><%= conversation.counterpart(current_user).username %></h4>
-
-              <p>
-                <%= link_to conversation do %>
-                  <span class="p-name"><%= conversation.subject %></span>
-                  <span class="e-content"><%= conversation.messages.last.body %></span>
-                <% end %>
-              </p>
-            </div>
-          </div>
-
-        </li> <!-- .person -->
-      <% end %>
+      <%= render @conversations %>
     </ol>
   </div>
 

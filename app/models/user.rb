@@ -187,7 +187,7 @@ class User < ActiveRecord::Base
   end
 
   def conversations
-    Conversation.where(['conversations.user_id = :id OR conversations.recipient_id = :id', id: self.id]).order("updated_at desc")
+    Conversation.with_user(self)
   end
 
   def avatar(size=:avatar)

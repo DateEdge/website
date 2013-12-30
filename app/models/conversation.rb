@@ -7,6 +7,8 @@ class Conversation < ActiveRecord::Base
   belongs_to :recipient, foreign_key: :recipient_id, class_name: "User"
   validates_with AgeAppropriateValidator
 
+  scope :with_user, lambda { |user| where(['conversations.user_id = :id OR conversations.recipient_id = :id', id: user.id]).order("updated_at desc") }
+  
   def participants
     [sender, recipient]
   end
