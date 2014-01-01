@@ -19,6 +19,7 @@ Dxe::Application.routes.draw do
   resources :conversations, only: [:index]
 
   get "/terms",                   to: "about#terms",      as: :terms
+  get "/about",                   to: "about#us",         as: :about
 
   get "/signout",                 to: "sessions#destroy", as: :signout
   get "/auth/:provider/callback", to: "sessions#create"
