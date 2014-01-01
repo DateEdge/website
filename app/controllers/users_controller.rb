@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_filter :restrict_non_visible_user, only: [:new, :create]
   before_action :require_login, only: [:edit, :update, :destroy]
+
   def index
     @title = "People Using Date Edge"
     @slug  = "people"
@@ -9,6 +10,7 @@ class UsersController < ApplicationController
     else
       User.visible
     end
+
     @users = @users.order('created_at desc').paginate(page: params[:page] ||= 1)
   end
 
