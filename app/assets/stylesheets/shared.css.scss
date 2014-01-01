@@ -70,10 +70,15 @@ header[role=banner] a {
   color: white;
 }
 
+nav[role=navigation]:first-of-type {
+  float: left;
+  margin-left: 10px;
+}
+
 nav[role=navigation] {
-  display: inline-block;
   float: right;
-  margin-top: 8px;
+  display: inline-block;
+  margin-top:  10px;
 }
 
 nav[role=navigation] a {
