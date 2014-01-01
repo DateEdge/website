@@ -13,6 +13,7 @@ gem "uglifier"
 gem "indefinite_article"
 gem "redcarpet" # Markdown parser
 gem "will_paginate", "~> 3.0"
+gem "will_paginate-bootstrap"
 
 # image uploads
 gem "rmagick",            "~> 2.13.2"
