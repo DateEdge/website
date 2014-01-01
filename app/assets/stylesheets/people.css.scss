@@ -4,32 +4,6 @@
   @media (min-width: 481px) { .hidden-xs { display: inline !important; } }
   /* ...bootstrap override */
 
-  #crushers {
-    margin-top: .5em;
-  }
-
-  #crushers,
-  #crushes {
-    margin-bottom: 1em;
-  }
-
-  #crushers > h1,
-  #crushes  > h1,
-  #everyone > h1 {
-    font-size: 1.5em;
-    font-weight: bold;
-    text-transform: uppercase;
-    background: #444;
-    color: white;
-    padding: 5px;
-  }
-
-  #crushers .person:last-child,
-  #crushes  .person:last-child,
-  #everyone .person:last-child {
-    border-bottom: none;
-  }
-
   .person {
     clear: both;
     padding: 1em 0;
@@ -55,16 +29,6 @@
     max-width: 100%;
     margin-top: 1em;
   }
-
-  /* Pro Tips... */
-  table.table h3 {
-    margin-top: 0;
-  }
-
-  #about-us img {
-    width: 130px;
-  }
-  /* ...Pro Tips */
 
   .note {
     margin-top: 1em;

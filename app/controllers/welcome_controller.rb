@@ -10,7 +10,7 @@ class WelcomeController < ApplicationController
       @bookmarked_users = current_user.bookmarked_users
       
       @slug     = "people"
-      return render("/users/index")
+      return render("/welcome/dashboard")
     end
 
     @slug  = "welcome"
