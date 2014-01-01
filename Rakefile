@@ -3,6 +3,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
+require 'fileutils'
 
 Dxe::Application.load_tasks
 
@@ -15,5 +16,19 @@ task recreate_photos: :environment do
     rescue NoMethodError => e
       puts "IMAGE DOES NOT EXIST"
     end
+  end
+end
+
+namespace :db do
+  task import: :environment do
+    puts "Backing Up Production Database..."
+    `heroku pgbackups:capture --expire`
+    puts "Downloading Database Dump..."
+    `curl -o db/dxe-production.dump \`heroku pgbackups:url\``
+    puts "Importing Production Data..."
+    `pg_restore --verbose --clean --no-acl --no-owner -h localhost -U $USER -d dxe_development db/dxe-production.dump`
+    puts "Deleting Dump File..."
+    FileUtils.rm("db/dxe-production.dump")
+    puts "Finished Import"
   end
 end
