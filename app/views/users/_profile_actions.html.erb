@@ -26,14 +26,14 @@
       <% else %>
         <%= link_to "<i class='fa fa-star'></i>".html_safe, action_bookmark_path(user.username), method: :post, id: "new_secret_crush", class: "form-inline btn btn-warning" %>
       <% end %>
+
+      <%# CRUSH BUTTON %>
+      <% if im.crushing_on?(user) %>
+      <%= link_to "<i class='fa fa-ban'></i> <b>Uncrush</b>".html_safe, uncrush_path(user.username), class: "btn btn-danger", method: :delete %>
+      <% else %>
+        <%= link_to "<i class='fa fa-heart'></i> <b>Crush</b>".html_safe, crush_path(user.username), class: "btn btn-danger", method: :post %>
+      <% end %>
+
     </span>
-
-    <%# CRUSH BUTTON %>
-    <% if im.crushing_on?(user) %>
-    <%= link_to "<i class='fa fa-ban'></i> Uncrush".html_safe, uncrush_path(user.username), class: "btn btn-danger", method: :delete %>
-    <% else %>
-      <%= link_to "<i class='fa fa-heart'></i> Crush".html_safe, crush_path(user.username), class: "btn btn-danger", method: :post %>
-    <% end %>
-
   </div><!-- .actions -->
 <% end %>
