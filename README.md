@@ -62,6 +62,13 @@ touch .env
 
 Add all required variables to `.env` using `doc/sample-dotenv` as a guide.
 
+#### Import Production data
+
+```bash
+rake db:migrate
+rake db:import
+```
+
 ## Usage
 
 ```bash
