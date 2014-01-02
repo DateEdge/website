@@ -187,7 +187,7 @@ class User < ActiveRecord::Base
   end
 
   def conversations
-    Conversation.with_user(self)
+    Conversation.with_user(self).not_deleted(self)
   end
 
   def avatar(size=:avatar)
