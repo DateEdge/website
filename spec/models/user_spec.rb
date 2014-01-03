@@ -9,6 +9,10 @@ describe User do
     user.age.should == 22
   end
   
+  it "has an auth token" do
+    expect(user.auth_token).to be_present
+  end
+  
   it "sets the canonical username" do
     expect(bookis.canonical_username).to eq "bookis"
   end

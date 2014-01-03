@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe BlocksController do
   let(:user) { create(:user) }
-  before { sign_in }
+  let(:shane) { create(:shane) }
+  before { sign_in(shane) }
   describe "POST 'create'" do
     let(:request) { post :create, username: user.username }
     it "creates a post" do
@@ -11,7 +12,7 @@ describe BlocksController do
   end
   
   describe "DELETE 'destroy" do
-    let(:block) { create(:block, blocker_id: session[:user_id], blocked_id: user.id) }
+    let(:block) { create(:block, blocker_id: shane.id, blocked_id: user.id) }
     let(:request) { delete :destroy, username: user.username }
     
     it "redirect to people path" do

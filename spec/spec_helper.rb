@@ -38,5 +38,5 @@ end
 
 def sign_in(user=nil)
   user ||= User.create(username: "Shane", name: "SB", email: "test@example.com", birthday: 15.years.ago, agreed_to_terms_at: Time.now, visible: true)
-  session[:user_id] = user.id
+  cookies.signed[:auth_token] = user.auth_token
 end

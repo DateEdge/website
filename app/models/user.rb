@@ -72,13 +72,14 @@ class User < ActiveRecord::Base
   scope :secret,        -> { joins(:crushes).where('crushes.secret = "true"') }
 
   validates :username, :canonical_username, presence: { on: :update }, length: { minimum: 1, maximum: 100 }, format: {with: /\A[\.a-zA-Z0-9_-]+\z/, message: "can only contain standard characters"}
-  validates :name,     presence: true
+  validates :name, :auth_token,     presence: true
   validates :email,    presence: { on: :update }, email: { on: :update }
   validates :birthday, birthday: { on: :update }
   validates :agreed_to_terms_at, presence: { on: :update, message: "must be agreed upon"}
 
   before_save :downcase_genders
   before_validation :create_canonical_username
+  before_validation :generate_auth_token, on: :create
   
   def to_param
     "@#{username}"
@@ -313,6 +314,12 @@ class User < ActiveRecord::Base
   
   def create_canonical_username
     self.canonical_username = username.downcase if username
+  end
+  
+  def generate_auth_token
+    begin
+      self.auth_token = SecureRandom.urlsafe_base64
+    end while User.exists?(auth_token: self[:auth_token])
   end
   
 end

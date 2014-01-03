@@ -7,7 +7,7 @@ describe SessionsController do
       controller.request.env.should_receive(:[]).with("omniauth.auth").once.and_return(auth)
       controller.request.env.should_receive(:[]).at_least(:once).and_call_original
       expect { get :create, provider: "facebook" }.to change(User, :count).by(1)
-      expect(session[:user_id]).to_not be_blank
+      expect(cookies[:auth_token]).to_not be_blank
     end
     
     it "signs in the user" do
@@ -16,7 +16,7 @@ describe SessionsController do
       user = User.create(username: "Shane", name: "SB", email: "test@example.com", birthday: 15.years.ago, agreed_to_terms_at: Time.now)
       user.providers << Provider.create(name: auth["provider"], uid: auth["uid"])
       expect { get :create, provider: "facebook" }.to change(User, :count).by(0)
-      expect(session[:user_id]).to_not be_blank
+      expect(cookies[:auth_token]).to_not be_blank
     end
   end
   

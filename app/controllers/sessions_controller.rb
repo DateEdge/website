@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     else
       user = User.with_provider(auth["provider"], auth["uid"]).first ||
              User.create_with_omniauth(auth)
-      session[:user_id] = user.id
+      cookies.signed.permanent[:auth_token] = user.auth_token
     end
 
     redirect_to people_path
@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    cookies.delete :auth_token
     redirect_to root_url, notice: "Signed out!"
   end
   
