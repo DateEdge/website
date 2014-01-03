@@ -1,6 +1,4 @@
 $ ->
-  $('img').error ->
-    $(this).prop('src', "/assets/placeholder.png")
   $.each ($ ".crush"), (index, element)    -> new Crush $(element)
   $.each ($ ".bookmark"), (index, element) -> new Bookmark $(element)
   
