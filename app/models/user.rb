@@ -79,6 +79,10 @@ class User < ActiveRecord::Base
 
   before_save :downcase_genders
   before_validation :create_canonical_username
+  
+  def to_param
+    "@#{username}"
+  end
   class << self
     def create_with_omniauth(auth)
       user = send("create_for_#{auth["provider"]}", auth)

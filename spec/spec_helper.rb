@@ -2,7 +2,8 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-
+require 'capybara/rails'
+require 'capybara/poltergeist'
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -10,6 +11,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
   DatabaseCleaner.strategy = :truncation
+  Capybara.javascript_driver = :poltergeist
   config.include FactoryGirl::Syntax::Methods
   config.after(:each) do
     if Rails.env.test? || Rails.env.cucumber?

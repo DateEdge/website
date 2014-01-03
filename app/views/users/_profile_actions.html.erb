@@ -20,18 +20,18 @@
 
         <%# bookmarked %>
         <div class="btn-group">
-          <%= link_to "<i class='fa fa-ban'></i>".html_safe, action_unbookmark_path(user.username), method: :delete, id: "unbookmark", class: "form-inline btn btn-warning" %>
+          <%= link_to "<i class='fa fa-ban'></i>".html_safe, action_unbookmark_path(user.username), method: :delete, id: "unbookmark", class: "bookmark form-inline btn btn-warning", "data-username" => user.username %>
         </div>
 
       <% else %>
-        <%= link_to "<i class='fa fa-star'></i>".html_safe, action_bookmark_path(user.username), method: :post, id: "new_secret_crush", class: "form-inline btn btn-warning" %>
+        <%= link_to "<i class='fa fa-star'></i>".html_safe, action_bookmark_path(user.username), method: :post, id: "new_secret_crush", class: "bookmark form-inline btn btn-warning", "data-username" => user.username %>
       <% end %>
 
       <%# CRUSH BUTTON %>
       <% if im.crushing_on?(user) %>
-      <%= link_to "<i class='fa fa-ban'></i> <b>Uncrush</b>".html_safe, uncrush_path(user.username), class: "btn btn-danger", method: :delete %>
+      <%= link_to "<i class='fa fa-ban'></i> <b>Uncrush</b>".html_safe, uncrush_path(user.username), class: "crush btn btn-danger", "data-username" => user.username, method: :delete %>
       <% else %>
-        <%= link_to "<i class='fa fa-heart'></i> <b>Crush</b>".html_safe, crush_path(user.username), class: "btn btn-danger", method: :post %>
+        <%= link_to "<i class='fa fa-heart'></i> <b>Crush</b>".html_safe, crush_path(user.username), class: "crush btn btn-danger", "data-username" => user.username, method: :post %>
       <% end %>
 
     </span>
