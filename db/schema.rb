@@ -35,8 +35,9 @@ ActiveRecord::Schema.define(version: 20140103073658) do
     t.integer  "user_id"
     t.integer  "recipient_id"
     t.text     "subject"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "hidden_from_user_id"
   end
 
   create_table "countries", force: true do |t|

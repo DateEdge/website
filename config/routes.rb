@@ -35,7 +35,6 @@ Dxe::Application.routes.draw do
   get   "/@:username",            to: "users#show",   as: :person, username: /[^\/]+/
   get   "/@:username",            to: "users#show",   as: :user, username: /[^\/]+/
 
-  
   post   "/@:username/crush(.:format)",        to: "crushes#create",       as: :crush,             username: /[^\/]+/
   delete "/@:username/uncrush(.:format)",      to: "crushes#destroy",      as: :uncrush,           username: /[^\/]+/
   post   "/@:username/block(.:format)",        to: "blocks#create",        as: :action_block,      username: /[^\/]+/
@@ -45,6 +44,7 @@ Dxe::Application.routes.draw do
   get    "/@:username/message",                to: "messages#new",         as: :new_message,       username: /[^\/]+/
   post   "/@:username/message(.:format)",      to: "messages#create",      as: :messages,          username: /[^\/]+/
   get    "/@:username/conversation",           to: "conversations#show",   as: :conversation,      username: /[^\/]+/
+  delete "/@:username/conversation", to: "conversations#destroy", as: :delete_conversation, username: /[^\/]+/
   
   get "/:username", to: redirect { |params, request| "/@#{params[:username]}"}
 end

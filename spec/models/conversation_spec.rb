@@ -9,11 +9,36 @@ describe Conversation do
   it "is valid" do
     expect(conversation).to be_valid
   end
+  
+  it "finds by another user" do
+    expect(sender.conversations).to include conversation
+  end
 
   describe "age validation" do
     it "has an error message if age inappropriate" do
       sender.update(birthday: 17.years.ago)
       expect(conversation.errors[:restricted]).to include "You can't send a message to that user"
+    end
+  end
+  
+  describe "deletes from a user" do
+    it "removes it from the deleting users" do
+      conversation.update(hidden_from_user_id: recipient.id)
+      expect(recipient.conversations).to_not               include conversation
+      expect(sender.conversations).to                      include conversation
+      expect(sender.conversations.with_user(recipient)).to include conversation
+    end
+    
+    it "updates hidden_from_user_id on the first attempt" do
+      expect {conversation.delete_from_user(sender)}.to change(conversation, :hidden_from_user_id).to(sender.id)
+      expect(sender.conversations).to_not include conversation
+      expect(recipient.conversations.with_user(sender)).to include conversation
+    end
+    
+    it "actually deletes the record on the second delete" do
+      conversation.delete_from_user(sender)
+      conversation.delete_from_user(recipient)
+      expect { conversation.reload }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 end
