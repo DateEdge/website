@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   scope :kids,          -> { where(['birthday <  ?', 18.years.ago]) }
   scope :secret,        -> { joins(:crushes).where('crushes.secret = "true"') }
 
-  validates :username, :canonical_username, presence: { on: :update }, length: { minimum: 1, maximum: 100 }, format: /[\w]+/
+  validates :username, :canonical_username, presence: { on: :update }, length: { minimum: 1, maximum: 100 }, format: {with: /\A[\.a-zA-Z0-9_-]+\z/, message: "can only contain standard characters"}
   validates :name,     presence: true
   validates :email,    presence: { on: :update }, email: { on: :update }
   validates :birthday, birthday: { on: :update }

@@ -19,6 +19,22 @@ task recreate_photos: :environment do
   end
 end
 
+namespace :deploy do
+  task parameterize_invalid_usernames: :environment do
+    puts "Updating invalid usernames"
+    users = User.where(visible: true)
+    users.each {|user| 
+      if !user.valid?
+        success = user.update(username: user.username.parameterize)
+        if !success
+          puts "#{user.username} failed to update"
+        end
+      end
+    }
+  end
+  
+end
+
 namespace :db do
   task import: :environment do
     puts "Backing Up Production Database..."

@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
     name "User T. Duncan"
-    sequence :username do |n| "User #{n}" end
+    sequence :username do |n| "User#{n}" end
     email              "test@example.com"
     birthday           { 22.years.ago }
     agreed_to_terms_at { Time.now }

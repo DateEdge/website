@@ -23,6 +23,12 @@ describe User do
     user.save
     expect(user.errors[:username]).to include "can't be blank"
   end
+  
+  it "username can't have spaces" do
+    user.username = "Bookis with spaces"
+    user.valid?
+    expect(user.errors[:username]).to include "can only contain standard characters"
+  end
 
   it "should be able to a have label" do
     Label.create!(name: "straightedge")
