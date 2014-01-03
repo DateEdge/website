@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     else
       user = User.with_provider(auth["provider"], auth["uid"]).first ||
              User.create_with_omniauth(auth)
-      cookies.signed.permanent[:auth_token] = user.auth_token
+      cookies.signed[:auth_token] = {value: user.auth_token, expires: 2.weeks.from_now, secure: Rails.env.production?}
     end
 
     redirect_to people_path
