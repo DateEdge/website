@@ -8,13 +8,14 @@ Dxe::Application.routes.draw do
   
   namespace :admin do
     get "/" => "dashboard#index", as: :dashboard
-    resources :users, only: [:edit, :index, :update, :destroy]
+    get    "/@:username/edit", to: "users#edit",    as: :edit_user,   username: /[^\/]+/
+    patch  "/@:username",      to: "users#update",  as: :update_user, username: /[^\/]+/
+    delete "/@:username",      to: "users#destroy", as: :user,        username: /[^\/]+/
   end
   
   root to: "welcome#index"
 
   resources :photos,                       except: [:index, :show]
-  # resources :users,                        only:   [:destroy]
   
   resources :conversations, only: [:index]
 

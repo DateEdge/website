@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   before_validation :generate_auth_token, on: :create
   
   def to_param
-    "@#{username}"
+    username
   end
   class << self
     def create_with_omniauth(auth)
