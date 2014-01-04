@@ -1,38 +1,36 @@
 <%= render partial: @user %>
 
 <p class="well lead">
-  <% if @user.me_gender || @user.you_gender %>
-    I am a
-    <% if @user.label %>
-      <b><%= @user.label.name %></b>
-    <% end %>
+  I am
 
-    <% if @user.me_gender %>
-      <b><%= @user.me_gender %></b>.
-    <% end %>
+  <%= @user.diet ? @user.diet.name.indefinite_article : "a" %>
 
-    <% if @user.diet %>
-      I eat
-      <%= @user.diet.name.indefinite_article %>
-      <b><%= @user.diet.name.downcase %></b> diet.
-    <% end %>
-
-    <% if @user.you_gender %>
-      I&rsquo;m looking for a
-      <% unless @user.desired_labels.blank? %>
-        <%= @user.desired_labels.map{ |dl| "<b>#{dl.name}</b>" }.join(" / ").html_safe %>
-      <% end %>
-
-      <b><%= @user.you_gender %></b><%= "." if @user.desired_diets.blank? %>
-    <% end %>
-
-    <% unless @user.desired_diets.blank? %>
-      who eats
-      <%= @user.desired_diets.map(&:name).join.indefinite_article %>
-      <%= @user.desired_diets.map{ |dd| "<b>#{dd.name}</b>" }.join(" / ").html_safe %>
-      diet.
-    <% end %>
+  <% if @user.diet %>
+    <b><%= @user.diet.name.downcase %></b>
   <% end %>
+
+  <% if @user.label %>
+    <b><%= @user.label.name %></b>
+  <% end %>
+
+  <b><%= @user.me_gender %></b>.
+
+  <br class="xs-hidden" />
+
+  I&rsquo;m looking for
+
+  <% if @user.desired_diets.blank? %>
+    a
+  <% else %>
+    <%= @user.desired_diets.map(&:name).join.indefinite_article %>
+    <%= @user.desired_diets.map{ |dd| "<b>#{dd.name}</b>" }.join("<span style='color:#999'>/</span>").html_safe %>
+  <% end %>
+
+  <% unless @user.desired_labels.blank? %>
+    <%= @user.desired_labels.map{ |dl| "<b>#{dl.name}</b>" }.join("<span style='color:#999'>/</span>").html_safe %>
+  <% end %>
+
+  <b><%= @user.you_gender %></b>.
 </p>
 
 
