@@ -21,7 +21,7 @@ class ConversationsController < ApplicationController
 
   def destroy
     @conversation.delete_from_user(current_user)
-    redirect_to conversations_path, notice: "Conversation Deleted."
+    redirect_to conversations_path, notice: "Conversation deleted."
   end
 
   private

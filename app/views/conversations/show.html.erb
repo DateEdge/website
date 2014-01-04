@@ -46,15 +46,6 @@
           <%= f.submit "Send", disable_with: 'Sending...', class: "btn btn-success btn-block btn-lg" %>
         </div>
       </div>
-
-      <div class="row">
-        <% button_to "Delete Conversation".html_safe,
-                      delete_conversation_path(@user.username),
-                      method:  :delete,
-                      confirm: "Uhhhh&hellip; Are you sure you want to delete this conversation?".html_safe,
-                      class:   "btn btn-danger btn-btn-lg" %>
-      </div>
-
     <% end %>
   </div>
 </div>

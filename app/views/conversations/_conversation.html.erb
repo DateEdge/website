@@ -8,15 +8,26 @@
     <% end %>
 
     <div class="media-body">
+
+      <div class="pull-right">
+        <%= button_to delete_conversation_path(user.username),
+                      method:  :delete,
+                      confirm: "Uhhh&hellip; Are you sure you want to delete this conversation? There is NO undo.".html_safe,
+                      class:   "btn btn-default btn-lg media-object" do %>
+          <i class="fa fa-lg fa-times"></i>
+        <% end %>
+      </div>
+
       <h4 class="media-heading p-author"><%= user.username %></h4>
 
       <p>
         <%= link_to conversation_path(user.username) do %>
-          <span class="p-name"></span>
-          <span class="e-content"><%= conversation.messages.last.body %></span>
+        <span class="p-name"></span>
+        <span class="e-content"><%= conversation.messages.last.body %></span>
         <% end %>
       </p>
-    </div>
-  </div>
+
+    </div> <!-- .media-body -->
+  </div> <!-- .media -->
 
 </li> <!-- .person -->
