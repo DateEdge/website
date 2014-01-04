@@ -3,6 +3,7 @@ class ConversationsController < ApplicationController
   before_action :find_conversation, only: [:show, :destroy]
   def index
     @title = "Inbox on Date Edge"
+    @slug  = "inbox"
     @slug  = "messages"
     @conversations = current_user.conversations.not_deleted(current_user).uniq
   end
@@ -18,14 +19,14 @@ class ConversationsController < ApplicationController
     @avatar_size  = "tiny"
     @message      = current_user.outbound_messages.build(recipient_id: @user.id, conversation_id: @conversation.id)
   end
-  
+
   def destroy
     @conversation.delete_from_user(current_user)
     redirect_to conversations_path, notice: "Conversation Deleted."
   end
-  
+
   private
-  
+
   def find_conversation
     find_user_by_username
     @conversation = current_user.conversations.with_user(@user).first

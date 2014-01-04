@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_action :require_login
   before_action :find_user_by_username
   before_action :find_conversation
+
   def new
     @slug  = "messages"
     @title = "Messenger on Date Edge"
@@ -28,13 +29,13 @@ class MessagesController < ApplicationController
       render :new
     end
   end
-  
+
   private
-  
+
   def find_conversation
     @conversation = current_user.conversations.with_user(@user).first || Conversation.new()
   end
-  
+
   def messages_params
     params.require(:message).permit(:body, :subject)
   end
