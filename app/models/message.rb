@@ -1,6 +1,4 @@
 class Message < ActiveRecord::Base
-  attr_accessor :subject
-
   belongs_to :conversation, touch: true
   belongs_to :sender,    class_name: "User"
   belongs_to :recipient, class_name: "User"
@@ -16,7 +14,7 @@ class Message < ActiveRecord::Base
   private
 
   def create_conversation
-    self.conversation = Conversation.create(subject: self.subject, recipient_id: self.recipient_id, user_id: self.sender_id)
+    self.conversation = Conversation.create(recipient_id: self.recipient_id, user_id: self.sender_id)
   end
   
   def unhide_conversation

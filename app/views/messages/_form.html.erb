@@ -1,12 +1,5 @@
 <%= form_for message, url: messages_path(@user.username), html: { class: "form" } do |f| %>
 
-  <% if @conversation.new_record? %>
-    <div class="form-group">
-      <%= f.label :subject, "Subject" %>
-      <%= f.text_field :subject, autocapitalize: "words", class: "form-control", required: true %>
-    </div>
-  <% end %>
-
   <div class="form-group">
     <%= f.label :body, "Body", class: "sr-only" %>
     <%= f.text_area :body,

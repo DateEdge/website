@@ -83,8 +83,4 @@ describe UsersController do
     
   end
   
-  describe "subject" do
-    
-  end
-
 end

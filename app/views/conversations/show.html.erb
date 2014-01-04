@@ -1,7 +1,13 @@
 <div id="conversation" class="h-feed">
   <div class="page-header">
     <h1>
-      <%= @conversation.subject %>
+      Coversation with
+      <% if @user.real_name_public? %>
+        <%= link_to @user.name, person_path(@user.username) %>
+        (<%= link_to @user.username, person_path(@user.username) %>)
+      <% else %>
+        <%= link_to @user.username, person_path(@user.username) %>
+      <% end %>
     </h1>
   </div>
 
@@ -22,6 +28,7 @@
     <%= render '/messages/form', message: @message %>
   </div>
 </div>
+
 <%#= button_to "Delete Conversation",
   delete_conversation_path(@user.username),
   method:  :delete,

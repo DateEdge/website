@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140103073658) do
+ActiveRecord::Schema.define(version: 20140104075035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20140103073658) do
   create_table "conversations", force: true do |t|
     t.integer  "user_id"
     t.integer  "recipient_id"
-    t.text     "subject"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.integer  "hidden_from_user_id"

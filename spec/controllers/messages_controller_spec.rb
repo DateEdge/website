@@ -51,13 +51,13 @@ describe MessagesController do
 
   describe "POST 'create'" do
     it "should be successful" do
-      post 'create', username: user2.username, message: {body: "Body", subject: "Subject"}
+      post 'create', username: user2.username, message: {body: "Body"}
       response.should redirect_to conversation_path(user2.username)
     end
     
     it "is not success if age inappropriate" do
       user.update(birthday: 17.years.ago)
-      post 'create', username: user2.username, message: {body: "Body", subject: "Subject"}
+      post 'create', username: user2.username, message: {body: "Body"}
       expect(response).to redirect_to conversations_path
       expect(flash[:notice]).to include 'You can\'t send a message to that user'
     end
@@ -65,13 +65,13 @@ describe MessagesController do
     describe "blocked" do
       it "should redirect back to the convo" do
         create(:block, blocker_id: user.id, blocked_id: user2.id)
-        post 'create', username: user2.username, message: {body: "Body", subject: "Subject"}
+        post 'create', username: user2.username, message: {body: "Body"}
         expect(response).to redirect_to conversations_path
         expect(flash[:notice]).to include "@#{user2.username} is not available to message"
       end
       it "should redirect back to the convo regardless of who did the blocking" do
         create(:block, blocker_id: user2.id, blocked_id: user.id)
-        post 'create', username: user2.username, message: {body: "Body", subject: "Subject"}
+        post 'create', username: user2.username, message: {body: "Body"}
         expect(response).to redirect_to conversations_path
         expect(flash[:notice]).to include "@#{user2.username} is not available to message"
       end
