@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
       redirect_if_age_inappropriate(@user)
     else
-      redirect_to root_path, notice: "That user doesn't exist"
+      redirect_to root_path, notice: "That user doesn't exist."
     end
   end
 
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if current_user.update(user_params)
-      redirect_to(person_path(current_user.username), notice: 'User was successfully updated.')
+      redirect_to(person_path(current_user.username), notice: "Your settings were successfully updated.")
     else
       @label_assignements = @user.your_labels.label_assignments
       render action: "edit"
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
     @user = current_user
     @user.destroy
     session.delete(:user_id)
-    redirect_to root_path, notice: "Profile Deleted. Come on back any time."
+    redirect_to root_path, notice: "Profile deleted. We'll miss you. Come on back any time."
   end
 
   private

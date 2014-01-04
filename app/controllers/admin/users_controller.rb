@@ -14,7 +14,7 @@ class Admin::UsersController < AdminController
   
   def destroy
     @user.destroy
-    redirect_to admin_dashboard_path, notice: "Destroyed @#{@user.username}"
+    redirect_to admin_dashboard_path, notice: "@#{@user.username} deleted!"
   end
 
   def index
