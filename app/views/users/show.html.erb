@@ -34,11 +34,8 @@
 </p>
 
 <div class="row">
-  <%# sidebar %>
-  <div class="col-sm-4 col-xs-12 pull-right">
-  </div>
 
-  <main class="col-sm-8">
+  <main class="col-md-7 col-sm-12">
     <% if @user.bio %>
       <div id="bio" class="e-note note">
         <%= user_inputed_text(@user.bio) %>
@@ -69,4 +66,7 @@
       </ul>
     </div> <!-- #photos -->
   </main>
+
+  <%= render "sidebar" %>
+
 </div> <!-- .row -->
