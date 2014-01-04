@@ -18,6 +18,11 @@
     border-bottom: 1px solid #eee;
   }
 
+  .conversation .media img {
+    width:  40px;
+    height: 40px;
+  }
+
   .conversation a {
     color: black;
     text-decoration: none;
@@ -46,24 +51,6 @@
     background: #eee;
     opacity: 1;
   }
-
-  /* new message... */
-  #message {
-    font-size: 1.5em;
-  }
-
-  #message span {
-    display: block;
-    font-weight: bold;
-  }
-
-  #message img {
-    width:  16px;
-    height: 16px;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-  /* ...new message */
 
   /* inbox... */
   #conversation hgroup {
