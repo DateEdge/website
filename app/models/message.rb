@@ -8,7 +8,7 @@ class Message < ActiveRecord::Base
   validates_with BlockValidator
   validates :recipient_id, :sender_id, presence: true
   before_save :create_conversation, unless: :conversation_id?
-
+  after_save :unhide_conversation
   scope :unread, -> { where(unread: true)  }
   scope :read,   -> { where(unread: false) }
   scope :received, lambda { |user| where(recipient_id: user.id) }
@@ -17,6 +17,10 @@ class Message < ActiveRecord::Base
 
   def create_conversation
     self.conversation = Conversation.create(subject: self.subject, recipient_id: self.recipient_id, user_id: self.sender_id)
+  end
+  
+  def unhide_conversation
+    self.conversation.unhide
   end
 
 end

@@ -14,7 +14,7 @@ class Conversation < ActiveRecord::Base
   end
   
   def delete_from_user(user)
-    if hidden_from_user_id? && participants.include?(user)
+    if hidden_from_user_id? && hidden_from_user_id != user.id && participants.include?(user)
       self.destroy
     else
       update(hidden_from_user_id: user.id)
@@ -39,4 +39,8 @@ class Conversation < ActiveRecord::Base
     user.conversations.all.uniq.map { |convo| convo.messages.received(user).unread.count }.sum
   end
 
+  def unhide
+    self.update(hidden_from_user_id: nil)
+  end
+  
 end

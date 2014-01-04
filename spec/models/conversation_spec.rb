@@ -24,14 +24,14 @@ describe Conversation do
   describe "deletes from a user" do
     it "removes it from the deleting users" do
       conversation.update(hidden_from_user_id: recipient.id)
-      expect(recipient.conversations).to_not               include conversation
-      expect(sender.conversations).to                      include conversation
-      expect(sender.conversations.with_user(recipient)).to include conversation
+      expect(recipient.conversations.not_deleted(recipient)).to_not            include conversation
+      expect(sender.conversations.not_deleted(sender)).to                      include conversation
+      expect(sender.conversations.with_user(recipient).not_deleted(sender)).to include conversation
     end
     
     it "updates hidden_from_user_id on the first attempt" do
       expect {conversation.delete_from_user(sender)}.to change(conversation, :hidden_from_user_id).to(sender.id)
-      expect(sender.conversations).to_not include conversation
+      expect(sender.conversations.not_deleted(sender)).to_not include conversation
       expect(recipient.conversations.with_user(sender)).to include conversation
     end
     
@@ -39,6 +39,12 @@ describe Conversation do
       conversation.delete_from_user(sender)
       conversation.delete_from_user(recipient)
       expect { conversation.reload }.to raise_error ActiveRecord::RecordNotFound
+    end
+    
+    it "remove the hidden_from_user_id when a new message is added" do
+      conversation.update(hidden_from_user_id: recipient.id)
+      conversation.messages.create(sender: sender, recipient: recipient, body: "Hello")
+      expect(conversation.reload.hidden_from_user_id).to be_nil
     end
   end
 end

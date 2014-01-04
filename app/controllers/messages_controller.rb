@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
     if !@conversation.new_record?
       redirect_to conversation_path(@user.username)
     elsif !redirect_if_age_inappropriate(@user)
-      @message = @conversation.messages.build(recipient: @user)
+      @message = @conversation.messages.build(sender: current_user, recipient: @user)
     end
   rescue ActiveRecord::RecordNotFound
     redirect_to conversations_path
