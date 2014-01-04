@@ -10,7 +10,6 @@ gem "email_address_validator", "0.0.3", git: "git://github.com/bookis/email_addr
 gem "rollbar" # Exception notifier
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
 gem "sass-rails"
 gem "indefinite_article"
 gem "redcarpet" # Markdown parser
