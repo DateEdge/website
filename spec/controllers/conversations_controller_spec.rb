@@ -11,6 +11,12 @@ describe ConversationsController do
       get 'index'
       response.should be_success
     end
+    
+    it "doesn't show it if they have deleted it" do
+      conversation.delete_from_user(user)
+      get :index
+      expect(assigns(:conversations)).to_not include conversation
+    end
   end
 
   describe "GET 'show'" do
@@ -30,10 +36,10 @@ describe ConversationsController do
       expect(conversation.hidden_from_user_id).to eq user.id
     end
     
-    it "deletes the convo for one persone" do
+    it "deletes the convo for one person" do
       request
       get 'show', username: shane.username
-      expect(response).to redirect_to root_path
+      expect(response).to be_successful
     end
     
     it "loads show for other user" do
