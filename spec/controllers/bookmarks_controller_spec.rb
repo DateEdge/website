@@ -25,7 +25,7 @@ describe BookmarksController do
 
     it "creates a bookmark" do
       request
-      expect(flash[:notice]).to include "Added bookmark"
+      expect(flash[:notice]).to include "Bookmark added."
     end
     
     it "flashes a notice if the bookmark doesn't save" do

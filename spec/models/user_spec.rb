@@ -232,4 +232,13 @@ describe User do
     end
   end
   
+  describe "#search" do
+    let!(:bookis) { create(:bookis) }
+    let!(:shane)  { create(:shane) }
+    
+    it "searches by name" do
+      expect(User.search("BOOKIS")).to include bookis
+    end
+  end
+  
 end
