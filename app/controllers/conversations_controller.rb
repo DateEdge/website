@@ -5,7 +5,6 @@ class ConversationsController < ApplicationController
   def index
     @title = "Inbox on Date Edge"
     @slug  = "inbox"
-    @slug  = "messages"
     @conversations = current_user.conversations.not_deleted(current_user).uniq
   end
 
@@ -14,11 +13,10 @@ class ConversationsController < ApplicationController
       @conversation.messages.where(recipient_id: current_user.id).update_all(unread: false)
     end
 
-    @slug        = "messages"
-    @title       = "Conversation with #{@conversation.counterpart(current_user).username} on Date Edge"
-    @messages    = @conversation.messages.order('created_at asc')
-    @avatar_size = "tiny"
-    @message     = current_user.outbound_messages.build(recipient_id: @user.id, conversation_id: @conversation.id)
+    @slug     = "messages"
+    @title    = "Conversation with #{@conversation.counterpart(current_user).username} on Date Edge"
+    @messages = @conversation.messages.order('created_at asc')
+    @message  = current_user.outbound_messages.build(recipient_id: @user.id, conversation_id: @conversation.id)
   end
 
   def destroy
