@@ -27,6 +27,18 @@
   display: none;
 }
 
+/* profile actions... */
+.actions .btn-group a b {
+  font-weight: normal;
+}
+
+@media (max-device-width: 480px) {
+  .actions .btn-group a b {
+    display: none !important;
+  }
+}
+/* ...profile actions */
+
 #people {
   #photos {
     margin-top: 1em;
@@ -55,19 +67,6 @@
   .note p {
     margin-bottom: .5em;
   }
-
-
-  /* profile actions... */
-  .actions .btn-group a b {
-    font-weight: normal;
-  }
-
-  @media (max-device-width: 480px) {
-    .actions .btn-group a b {
-      display: none !important;
-    }
-  }
-  /* ...profile actions */
 
 }
 /* #people */
