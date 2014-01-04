@@ -7,7 +7,7 @@ end
 
 puts
 puts "Adding diets"
-%w(raw vegan vegetarian pescatarian kosher freegan omnivore).each do |diet|
+%w(raw vegan vegetarian pescatarian kosher freegan omnivorous).each do |diet|
   Diet.create!(name: diet)
   puts "diet:  #{diet}"
 end
