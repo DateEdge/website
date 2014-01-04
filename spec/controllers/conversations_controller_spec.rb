@@ -36,6 +36,17 @@ describe ConversationsController do
       expect(conversation.hidden_from_user_id).to eq user.id
     end
     
+    it "actually deletes the convo" do
+      request
+      controller.stub(:current_user) { shane }
+      expect { delete :destroy, username: user.username }.to change(Conversation, :count).by(-1)
+    end
+    
+    it "doesn't actually delete a convo if the same person delete it twice" do
+      request
+      expect { delete :destroy, username: shane.username }.to_not change(Conversation, :count).by(-1)
+    end
+    
     it "deletes the convo for one person" do
       request
       get 'show', username: shane.username

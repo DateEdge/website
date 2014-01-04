@@ -1,7 +1,7 @@
 class Conversation < ActiveRecord::Base
 
   default_scope { order 'updated_at desc'}
-  has_many :messages, dependent: :destroy, after_add: :unhide
+  has_many :messages, dependent: :destroy
 
   belongs_to :sender,    foreign_key: :user_id,      class_name: "User"
   belongs_to :recipient, foreign_key: :recipient_id, class_name: "User"
@@ -14,7 +14,7 @@ class Conversation < ActiveRecord::Base
   end
   
   def delete_from_user(user)
-    if hidden_from_user_id? && participants.include?(user)
+    if hidden_from_user_id? && hidden_from_user_id != user.id && participants.include?(user)
       self.destroy
     else
       update(hidden_from_user_id: user.id)
@@ -39,9 +39,8 @@ class Conversation < ActiveRecord::Base
     user.conversations.all.uniq.map { |convo| convo.messages.received(user).unread.count }.sum
   end
 
-  private
-  
-  def unhide(message)
-    self.update(hidden_from_user_id: nil) if hidden_from_user_id?
+  def unhide
+    self.update(hidden_from_user_id: nil)
   end
+  
 end
