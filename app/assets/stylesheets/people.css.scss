@@ -1,15 +1,33 @@
+/* bootstrap override... */
+@media (max-width: 480px) { body .hidden-xs { display: none   !important; } }
+@media (min-width: 481px) { body .hidden-xs { display: inline !important; } }
+/* ...bootstrap override */
+
+.person {
+  clear: both;
+  padding: 1em 0;
+  min-height: 4em;
+}
+
+.person .media-heading {
+  color: #ccc;
+  font-weight: normal;
+}
+
+.person .u-photo {
+  width:  100px;
+  height: 100px;
+}
+
+.person .p-name {
+  font-weight: bold;
+}
+
+.person .u-email {
+  display: none;
+}
+
 #people {
-  /* bootstrap override... */
-  @media (max-width: 480px) { .hidden-xs { display: none   !important; } }
-  @media (min-width: 481px) { .hidden-xs { display: inline !important; } }
-  /* ...bootstrap override */
-
-  .person {
-    clear: both;
-    padding: 1em 0;
-    min-height: 4em;
-  }
-
   #photos {
     margin-top: 1em;
   }

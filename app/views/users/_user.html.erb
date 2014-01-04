@@ -5,8 +5,17 @@
 
     <div class="media-body">
       <h4 class="media-heading">
-        <span class="p-name fn n"><%= link_to user.username, person_path(user.username) %></span>&nbsp;<% if user.age %><small class="p-x-age"><%= user.age %></small><% end %>
+        <% if user.real_name_public? %>
+          <span class="p-name fn n"><%= link_to user.name, person_path(user.username) %></span>
+          (<span class="p-nickname nickname"><%= link_to user.username, person_path(user.username) %></span>)<%= render partial: "/users/age", locals: { user: user } %>
+        <% else %>
+          <span class="p-name fn n"><%= link_to user.username, person_path(user.username) %></span><%= render partial: "/users/age", locals: { user: user } %>
+        <% end %>
       </h4>
+
+      <% if user.email_public? %>
+        <%= mail_to user.email, user.email, class: "u-email email" %>
+      <% end %>
 
       <p class="p-adr h-adr">
         <%= link_to google_map_url(user) do %>

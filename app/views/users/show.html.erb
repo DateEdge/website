@@ -36,18 +36,6 @@
 </p>
 
 
-<% if @user.real_name_public? %>
- <%#= @user.name %>
-<% end %>
-
-<% if @user.birthday_public? %>
-  <%#= @user.birthday.strftime("%m/%d/%y") %>
-<% end %>
-
-<% if @user.email_public? %>
-  <%#= @user.email %>
-<% end %>
-
 <% if @user.bio %>
   <div id="bio" class="note">
     <div class="short" style="display:none">

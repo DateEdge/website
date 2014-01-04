@@ -1,6 +1,11 @@
+#inbox,
 #messages {
+  .person .u-email {
+    display: block;
+    margin-bottom: 1em;
+  }
 
-  /* TEMP */
+  /* TODO TEMP */
   #new_message {
     margin-top: 1em;
   }
@@ -28,12 +33,6 @@
     text-decoration: none;
   }
 
-  .h-entry .p-x-age,
-  .h-entry .h-adr,
-  .h-entry .actions {
-    display: none;
-  }
-
   .well p:last-child {
     margin-bottom: 0;
   }
@@ -52,29 +51,6 @@
     opacity: 1;
   }
 
-  /* inbox... */
-  #conversation hgroup {
-    margin-bottom: 1em;
-  }
-
-  #conversation .message,
-  #conversation .messages {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  #conversation .message .person {
-    margin-bottom: 1em;
-    overflow: hidden;
-  }
-
-  #conversation .message {
-    margin-bottom:  2em;
-    padding-bottom: 2em;
-    border-bottom: 1px solid #efefef;
-  }
-
   #reply h1 {
     font-weight: bold;
     font-size: 1.5em;
@@ -85,6 +61,42 @@
     height: 6em;
     margin-bottom: 1em;
   }
+
+  /* inbox... */
+  #conversation {
+    hgroup {
+      margin-bottom: 1em;
+    }
+
+    .message,
+    .messages {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .message .person {
+      margin-bottom: 1em;
+      overflow: hidden;
+    }
+
+    .message {
+      margin-bottom:  2em;
+      padding-bottom: 2em;
+      border-bottom: 1px solid #efefef;
+    }
+  }
   /* ...inbox */
+
 }
 /* #messages */
+
+/* inbox only... */
+#inbox {
+  .h-entry .p-x-age,
+  .h-entry .h-adr,
+  .h-entry .actions {
+    display: none;
+  }
+}
+/* ...inbox only */
