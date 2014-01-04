@@ -33,43 +33,40 @@
   <b><%= @user.you_gender %></b>.
 </p>
 
-
-<% if @user.bio %>
-  <div id="bio" class="note">
-    <div class="short" style="display:none">
-      <%= simple_format "<b>BIO</b>: ".html_safe + truncate(@user.bio, length: 150) %>
-      <% if @user.bio.length > 150 %>
-        <%= link_to "More", person_path(@user.username, anchor: "bio"), class: "truncate" %>
-      <% end %>
-    </div> <!-- /div.short -->
-
-    <div class="long">
-      <b>BIO</b>: <%= user_inputed_text(@user.bio) %>
-      <%= link_to "Less", person_path(@user.username, anchor: "bio"), class: "truncate", style: "display:none" %>
-    </div> <!-- /div.long -->
+<div class="row">
+  <%# sidebar %>
+  <div class="col-sm-4 pull-right">
   </div>
-<% end %>
 
-<div id="photos">
-  <ul class="h-feed">
-    <% @user.photos.each do |photo| %>
-      <li class="h-entry">
-        <%= image_tag photo.image_url(:large).to_s %>
-        <div class="caption lead">
-          <%= simple_format photo.caption %>
-        </div>
-
-        <% if mine? %>
-          <div class="actions">
-            <%= link_to "<i class='fa fa-edit'></i>&nbsp;&nbsp;Edit Details".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
-
-            <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
-              <%= f.hidden_field :avatar, value: true %>
-              <%= f.button "<i class='fa fa-circle-o'></i>&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
-            <% end %>
-          </div> <!-- .actions -->
-        <% end %>
-      </li>
+  <main class="col-sm-8">
+    <% if @user.bio %>
+      <div id="bio" class="e-note note">
+        <%= user_inputed_text(@user.bio) %>
+      </div>
     <% end %>
-  </ul>
-</div>
+
+    <div id="photos">
+      <ul class="h-feed">
+        <% @user.photos.each do |photo| %>
+          <li class="h-entry">
+            <%= image_tag photo.image_url(:large).to_s %>
+            <div class="caption lead">
+              <%= simple_format photo.caption %>
+            </div>
+
+            <% if mine? %>
+              <div class="actions">
+                <%= link_to "<i class='fa fa-edit'></i>&nbsp;&nbsp;Edit Details".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
+
+                <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
+                  <%= f.hidden_field :avatar, value: true %>
+                  <%= f.button "<i class='fa fa-circle-o'></i>&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
+                <% end %>
+              </div> <!-- .actions -->
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div> <!-- #photos -->
+  </main>
+</div> <!-- .row -->
