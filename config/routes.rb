@@ -1,4 +1,6 @@
 Dxe::Application.routes.draw do
+  get "diets/index"
+  get "diets/show"
   # No WWW
   constraints(subdomain: "www") do
     get '(*any)' => redirect { |params, request|
@@ -51,6 +53,10 @@ Dxe::Application.routes.draw do
   post   "/@:username/message(.:format)",      to: "messages#create",       as: :messages,            username: /[^\/]+/
   get    "/@:username/conversation",           to: "conversations#show",    as: :conversation,        username: /[^\/]+/
   delete "/@:username/conversation",           to: "conversations#destroy", as: :delete_conversation, username: /[^\/]+/
+
+  # filters
+  get "/diets",       to: "diets#index", as: :diets
+  get "/diets/:diet", to: "diets#show",  as: :diet
 
   # Last ditch effort to catch mistyped @username paths
   get "/:username", to: redirect { |params, request| "/@#{params[:username]}"}
