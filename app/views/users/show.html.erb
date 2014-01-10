@@ -32,7 +32,6 @@
   <% end %>
 
   <% unless @user.desired_labels.blank? %>
-    <%= @user.desired_labels.map{ |dl| "<b>#{dl.name}</b>" }.join("<span style='color:#999'>/</span>").html_safe %>
     <%=
       # TODO refactor into a helper method
       @user.desired_labels.map{ |dd|
