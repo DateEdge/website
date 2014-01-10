@@ -1,6 +1,5 @@
 Dxe::Application.routes.draw do
-  get "diets/index"
-  get "diets/show"
+
   # No WWW
   constraints(subdomain: "www") do
     get '(*any)' => redirect { |params, request|
@@ -10,7 +9,7 @@ Dxe::Application.routes.draw do
 
   # Admin
   namespace :admin do
-    get "/" => "dashboard#index", as: :dashboard
+    get    "/" => "dashboard#index",                as: :dashboard
     get    "/@:username/edit", to: "users#edit",    as: :edit_user,   username: /[^\/]+/
     patch  "/@:username",      to: "users#update",  as: :update_user, username: /[^\/]+/
     delete "/@:username",      to: "users#destroy", as: :user,        username: /[^\/]+/
@@ -43,20 +42,20 @@ Dxe::Application.routes.draw do
   get   "/@:username",            to: "users#show",   as: :user,   username: /[^\/]+/
 
   # Action paths
-  post   "/@:username/crush(.:format)",        to: "crushes#create",        as: :crush,               username: /[^\/]+/
-  delete "/@:username/uncrush(.:format)",      to: "crushes#destroy",       as: :uncrush,             username: /[^\/]+/
-  post   "/@:username/block(.:format)",        to: "blocks#create",         as: :action_block,        username: /[^\/]+/
-  delete "/@:username/unblock(.:format)",      to: "blocks#destroy",        as: :action_unblock,      username: /[^\/]+/
-  post   "/@:username/bookmark(.:format)",     to: "bookmarks#create",      as: :action_bookmark,     username: /[^\/]+/
-  delete "/@:username/unbookmark(.:format)",   to: "bookmarks#destroy",     as: :action_unbookmark,   username: /[^\/]+/
-  get    "/@:username/message",                to: "messages#new",          as: :new_message,         username: /[^\/]+/
-  post   "/@:username/message(.:format)",      to: "messages#create",       as: :messages,            username: /[^\/]+/
-  get    "/@:username/conversation",           to: "conversations#show",    as: :conversation,        username: /[^\/]+/
-  delete "/@:username/conversation",           to: "conversations#destroy", as: :delete_conversation, username: /[^\/]+/
+  post   "/@:username/crush(.:format)",      to: "crushes#create",        as: :crush,               username: /[^\/]+/
+  delete "/@:username/uncrush(.:format)",    to: "crushes#destroy",       as: :uncrush,             username: /[^\/]+/
+  post   "/@:username/block(.:format)",      to: "blocks#create",         as: :action_block,        username: /[^\/]+/
+  delete "/@:username/unblock(.:format)",    to: "blocks#destroy",        as: :action_unblock,      username: /[^\/]+/
+  post   "/@:username/bookmark(.:format)",   to: "bookmarks#create",      as: :action_bookmark,     username: /[^\/]+/
+  delete "/@:username/unbookmark(.:format)", to: "bookmarks#destroy",     as: :action_unbookmark,   username: /[^\/]+/
+  get    "/@:username/message",              to: "messages#new",          as: :new_message,         username: /[^\/]+/
+  post   "/@:username/message(.:format)",    to: "messages#create",       as: :messages,            username: /[^\/]+/
+  get    "/@:username/conversation",         to: "conversations#show",    as: :conversation,        username: /[^\/]+/
+  delete "/@:username/conversation",         to: "conversations#destroy", as: :delete_conversation, username: /[^\/]+/
 
   # filters
-  get "/diets",       to: "diets#index", as: :diets
-  get "/diets/:diet", to: "diets#show",  as: :diet
+  get "/diets",                    to: "diets#index", as: :diets
+  get "/diets/:diet/(page/:page)", to: "diets#show",  as: :diet
 
   # Last ditch effort to catch mistyped @username paths
   get "/:username", to: redirect { |params, request| "/@#{params[:username]}"}

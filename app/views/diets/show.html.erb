@@ -1,2 +1,27 @@
-<h1>Diets#show</h1>
-<p>Find me in app/views/diets/show.html.erb</p>
+<div class="col-sm-12">
+  <div class="page-header">
+    <h1>
+      <%= link_to "Diets", diets_path %> :
+      <%= @diet.name.capitalize %>
+      <small>
+        (<%= @total %>)
+      </small>
+    </h1>
+  </div>
+
+  <% @users.in_groups_of(2) do |group| %>
+    <div class="row">
+      <% group.each do |user| %>
+        <% unless user.nil? %>
+          <div class="col-sm-6">
+            <%= render user %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="col-sm-12" id="pagination">
+  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+</div>
