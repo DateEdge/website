@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'spec_helper'
 
 describe User do
@@ -233,12 +234,55 @@ describe User do
   end
   
   describe "#search" do
-    let!(:bookis) { create(:bookis) }
-    let!(:shane)  { create(:shane) }
+    let!(:bookis) { create(:bookis, city: "seattle", state: create(:state), country: create(:country)) }
+    let!(:shane)  { create(:shane, city: "Los Angeles", state: create(:california), country: create(:russia)) }
+    
+    it "searches by usernname" do
+      expect(User.search("BOOKIS")).to include bookis
+      expect(User.search("bookis")).to include bookis
+      expect(User.search("bookis smuin")).to include bookis
+    end
     
     it "searches by name" do
-      expect(User.search("BOOKIS")).to include bookis
+      expect(User.search("Smuin")).to include bookis
+      expect(User.search("smuin")).to include bookis
+      expect(User.search("bookis smuin")).to include bookis
     end
+    
+    it "searches by state" do
+      expect(User.search("washington")).to include bookis
+      expect(User.search("washington")).to_not include shane
+    end
+
+    it "searches by country" do
+      expect(User.search("RUSSIA")).to_not include bookis
+      expect(User.search("RUSSIA")).to include shane
+    end
+    
+    it "finds even with accents" do
+      expect(User.search("boökis")).to include bookis
+    end
+    
+    it "finds by age" do
+      expect(User.search(age: 27)).to include bookis
+      expect(User.search(age: 27)).to_not include shane
+      expect(User.search(age: (26..28))).to have(1).things
+      expect(User.search(age: (26..32))).to have(2).things
+    end
+    
+    it "finds by a field" do
+      expect(User.search(username: "Bookis")).to include bookis
+      expect(User.search(city: "bookis")).to_not include bookis
+      expect(User.search(city: "seattle")).to    include bookis
+    end
+    
+    it "does a field search" do
+      puts User.field_search(city: "seattle").to_sql.inspect
+      
+      expect(User.field_search(city: "seattle")).to    include bookis
+      expect(User.field_search(username: "Bookis")).to include bookis
+    end
+    
   end
   
 end

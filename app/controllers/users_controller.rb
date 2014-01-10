@@ -6,7 +6,8 @@ class UsersController < ApplicationController
     @title = "People Using Date Edge"
     @slug  = "people"
     @users = if logged_in?
-      current_user.viewable_users
+      puts current_user.viewable_users.search(params[:search]).to_sql.inspect
+      current_user.viewable_users.search(params[:search])
     else
       User.visible
     end

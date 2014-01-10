@@ -16,6 +16,9 @@ gem "redcarpet" # Markdown parser
 gem "will_paginate", "~> 3.0"
 gem "will_paginate-bootstrap"
 
+# search
+gem 'pg_search'
+
 # image uploads
 gem "rmagick",            "~> 2.13.2"
 gem "fog",                "~> 1.12.1"

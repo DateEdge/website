@@ -6,8 +6,16 @@
       <%= link_to "<i class='fa fa-lg fa-users'></i>".html_safe, people_path %>
     </nav>
 
+    
     <nav role="navigation">
       <% if logged_in? %>
+      
+        <%= form_tag "/people", method: :get, class: "form-inline" do %>
+          <div class="form-group">
+            <%= search_field_tag :search, params[:search], class: 'form-control input-sm input-inverse' %>
+            <button type="submit" class="btn btn-success btn-sm"><i class='fa fa-search'></i></button>
+          </div>
+        <% end %>
 
         <%= link_to conversations_path do %>
           <i class='fa fa-lg fa-envelope'></i>

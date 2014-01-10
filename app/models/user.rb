@@ -23,6 +23,21 @@ class BirthdayValidator < ActiveModel::EachValidator
 end
 
 class User < ActiveRecord::Base
+  include PgSearch
+  pg_search_scope :text_search, 
+    against: {name: "B", username: "A", city: "C", bio: "D"}, 
+    using: {tsearch: {dictionary: "english", prefix: true, suffix: true}},
+    ignoring: :accents, 
+    associated_against: {
+      state:   [:name, :abbreviation],
+      label:   [:name],
+      country: [:name, :abbreviation]
+    }
+    
+  pg_search_scope :field_search, lambda { |query|
+     { against: query.keys.first, query: query.values.first }
+  }
+  
   self.per_page = 30
   store_accessor :settings, :admin, :featured, :birthday_public, :real_name_public, :email_public
   
@@ -85,6 +100,25 @@ class User < ActiveRecord::Base
     username
   end
   class << self
+    
+    def search(search)
+      age = search.delete(:age) if search.is_a? Hash
+      query = if search.is_a?(Hash) && !search.blank?
+        field_search(search) 
+      elsif !search.blank?
+        text_search(search)       
+      else
+        all
+      end
+      query = query.age(age) if age.present?
+      query
+    end
+    
+    def age(args)
+      beginning, end_year = args.respond_to?(:each) ? [args.last.to_i, args.first.to_i] : [args.to_i, args.to_i]
+      where(birthday: ((beginning.years.ago - 1.year)..end_year.years.ago))
+    end
+    
     def create_with_omniauth(auth)
       user = send("create_for_#{auth["provider"]}", auth)
       user

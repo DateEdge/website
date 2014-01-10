@@ -90,6 +90,25 @@ nav[role=navigation] {
   float: right;
   display: inline-block;
   margin-top:  10px;
+  
+}
+
+nav[role=navigation] input {
+  background-color: #222;
+  color: gray;
+  border-color: gray;
+  display: inline-block;
+  width: 70%;
+  &:focus {
+    color: #eee;
+    background-color: #333;
+    & + button {
+      opacity: 1;
+    }
+  }
+}
+nav[role=navigation] input + button {
+  opacity: 0.9;
 }
 
 nav[role=navigation] a {
