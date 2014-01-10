@@ -6,7 +6,7 @@
   <%= @user.diet ? @user.diet.name.indefinite_article : "a" %>
 
   <% if @user.diet %>
-    <b><%= @user.diet.name.downcase %></b>
+    <b><%= link_to @user.diet.name.downcase, diet_path(@user.diet.name) %></b>
   <% end %>
 
   <% if @user.label %>
@@ -23,7 +23,12 @@
     a
   <% else %>
     <%= @user.desired_diets.map(&:name).join.indefinite_article %>
-    <%= @user.desired_diets.map{ |dd| "<b>#{dd.name}</b>" }.join("<span style='color:#999'>/</span>").html_safe %>
+    <%=
+      # TODO refactor into a helper method
+      @user.desired_diets.map{ |dd|
+        "<b>#{ link_to dd.name.downcase, diet_path(dd.name) }</b>"
+      }.join("<span style='color:#999'>/</span>").html_safe
+    %>
   <% end %>
 
   <% unless @user.desired_labels.blank? %>
