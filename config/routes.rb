@@ -54,8 +54,10 @@ Dxe::Application.routes.draw do
   delete "/@:username/conversation",         to: "conversations#destroy", as: :delete_conversation, username: /[^\/]+/
 
   # filters
-  get "/diets",                    to: "diets#index", as: :diets
-  get "/diets/:diet/(page/:page)", to: "diets#show",  as: :diet
+  get "/diets",                      to: "diets#index",  as: :diets
+  get "/diets/:diet/(page/:page)",   to: "diets#show",   as: :diet
+  get "/labels",                     to: "labels#index", as: :labels
+  get "/labels/:label/(page/:page)", to: "labels#show",  as: :label
 
   # Last ditch effort to catch mistyped @username paths
   get "/:username", to: redirect { |params, request| "/@#{params[:username]}"}

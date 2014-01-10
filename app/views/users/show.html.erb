@@ -10,7 +10,7 @@
   <% end %>
 
   <% if @user.label %>
-    <b><%= @user.label.name %></b>
+    <b><%= link_to @user.label.name.downcase, label_path(@user.label.name) %></b>
   <% end %>
 
   <b><%= @user.me_gender %></b>.
@@ -33,6 +33,12 @@
 
   <% unless @user.desired_labels.blank? %>
     <%= @user.desired_labels.map{ |dl| "<b>#{dl.name}</b>" }.join("<span style='color:#999'>/</span>").html_safe %>
+    <%=
+      # TODO refactor into a helper method
+      @user.desired_labels.map{ |dd|
+        "<b>#{ link_to dd.name.downcase, label_path(dd.name) }</b>"
+      }.join("<span style='color:#999'>/</span>").html_safe
+    %>
   <% end %>
 
   <b><%= @user.you_gender %></b>.

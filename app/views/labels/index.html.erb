@@ -1,0 +1,14 @@
+<div class="page-header">
+  <h1>Straightedginess</h1>
+</div>
+
+<ul class="list-unstyled">
+  <% @labels.each do |name, count| %>
+    <li>
+      <h1 class="h3">
+        <%= link_to name.capitalize, label_path(name) %>
+        <small>(<%= count %>)</small>
+      </h1>
+    </li>
+  <% end %>
+</ul>
