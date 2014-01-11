@@ -6,13 +6,24 @@ class UsersController < ApplicationController
     @title = "People Using Date Edge"
     @slug  = "people"
     @users = if logged_in?
-      puts current_user.viewable_users.search(params[:search]).to_sql.inspect
-      current_user.viewable_users.search(params[:search])
+      search_term
+      current_user.viewable_users.search(@search)
     else
       User.visible
     end
 
     @users = @users.order('created_at desc').paginate(page: params[:page] ||= 1)
+    @total = @users.count
+  end
+  
+  def search_term
+    return unless params[:search]
+    search = params[:search].split("/", 2)
+    @search, @query, @column = if search.count.even?
+      [Hash[*search], search.last, search.first]
+    else
+      [search.first, search.first, nil]
+    end
   end
 
   def show

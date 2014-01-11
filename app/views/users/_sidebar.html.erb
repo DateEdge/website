@@ -1,0 +1,26 @@
+<%# social sidebar %>
+<aside class="col-md-5 col-sm-12">
+
+  <!-- <h1 class="h3">Elsewhere</h1> -->
+  <table class="table">
+    <%# TODO pull this out into either the user model settings or a URL model %>
+    <% {
+      twitter:     "http://twitter.com",
+      facebook:    "http://facebook.com",
+      instagram:   "http://instagram.com",
+      kik:         "http://kik.com",
+      thisismyjam: "http://thisismyjam.com",
+      vine:        "http://vine.co"
+    }.each do |site, url| %>
+      <% unless @user.send("#{site}_username").blank? %>
+        <tr>
+          <th><i class="fa fa-<%= site %> fa-lg"></i></th>
+          <td>
+            <%= link_to @user.send("#{site}_username"), "#{url}/#{@user.send("#{site}_username")}", rel: "me" %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+
+</aside>

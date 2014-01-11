@@ -10,6 +10,13 @@ describe UsersController do
       get :index
       expect(response).to be_successful
     end
+    
+    context "#search" do
+      it "by username field" do
+        User.should_receive(:search).with("username" => "veganstraightedge").once.and_return User.visible
+        get :index, search: "username/veganstraightedge"
+      end
+    end
   end
   describe "GET 'show'" do
     it "should be successful" do
@@ -80,7 +87,6 @@ describe UsersController do
       expect(assigns(:user).birthday_public?).to be_true
       expect(assigns(:user).admin?).to be_nil
     end
-    
   end
   
 end

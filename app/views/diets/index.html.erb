@@ -1,0 +1,14 @@
+<div class="page-header">
+  <h1>Diets</h1>
+</div>
+
+<ul class="list-unstyled">
+  <% @diets.each do |name, count| %>
+    <li>
+      <h1 class="h3">
+        <%= link_to name.capitalize, search_path(search: [:diets, name]) %>
+        <small>(<%= count %>)</small>
+      </h1>
+    </li>
+  <% end %>
+</ul>

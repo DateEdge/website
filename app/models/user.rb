@@ -25,25 +25,64 @@ end
 class User < ActiveRecord::Base
   include PgSearch
   pg_search_scope :text_search, 
-    against: {name: "B", username: "A", city: "C", bio: "D"}, 
+    against: {username: "A", city: "B", me_gender: "C"}, 
     using: {tsearch: {dictionary: "english", prefix: true, suffix: true}},
     ignoring: :accents, 
     associated_against: {
       state:   [:name, :abbreviation],
       label:   [:name],
+      diet:    [:name],
       country: [:name, :abbreviation]
     }
     
   pg_search_scope :field_search, lambda { |query|
-     { against: query.keys.first, query: query.values.first }
+    field   = COLUMN_MAPPING[query.keys.first.to_sym]
+    field ||= query.keys.first.to_sym
+    if ASSOCIATED_MAPPING.has_key?(field)
+      { associated_against: {field => ASSOCIATED_MAPPING[field]}, query: query.values.first.gsub("/", " or ") }
+    else
+      field = :username if DISALLOWED_COLUMNS.include? field
+      { against: field, query: query.values.first }
+    end
+  }
+  
+  DISALLOWED_COLUMNS = [
+    :id, 
+    :me_gender_map, 
+    :you_gender_map, 
+    :visible, 
+    :bio, 
+    :canonical_username, 
+    :name, 
+    :email, 
+    :created_at, 
+    :updated_at, 
+    :agreed_to_terms_at, 
+    :birthday, 
+    :settings, 
+    :auth_token
+  ]
+  
+  COLUMN_MAPPING = {
+    gender: :me_gender,
+    straightedgeness: :label,
+    diets: :diet
+  }
+  
+  ASSOCIATED_MAPPING = {
+    diet:    :name,
+    diet:    :name,
+    label:   :name,
+    state:   [:name, :abbreviation],
+    country: [:name, :abbreviation]
   }
   
   self.per_page = 30
   store_accessor :settings, :admin, :featured, :birthday_public, :real_name_public, :email_public
-  
+
   scope :with_setting, lambda { |key, value| where("settings -> ? = ?", key, value.to_s) }
   scope :featured, -> { with_setting(:featured, true) }
-  
+
   belongs_to :country
   belongs_to :diet
   belongs_to :state
@@ -51,10 +90,10 @@ class User < ActiveRecord::Base
 
   has_many :crushings, foreign_key: "crusher_id", class_name: "Crush", dependent: :destroy
   has_many :secret_crushes, -> { where crushes: {secret: true}}, through: :crushings, source: :crushee
-  
+
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_users, foreign_key: "bookmarkee_id", through: :bookmarks, source: :bookmarkee
-  
+
   has_many :crushes, -> { includes(:crushes).order("crushes.created_at desc")}, through: :crushings, source: :crushee
 
   has_many :crusheeings, -> { where secret: false }, foreign_key: "crushee_id", class_name: "Crush"
@@ -62,14 +101,14 @@ class User < ActiveRecord::Base
 
   has_many :blocks, foreign_key: :blocker_id
   has_many :blockings, foreign_key: :blocked_id, class_name: "Block"
-  
+
   has_many :blocked_users, through: :blocks
 
   has_many :outbound_conversations, class_name: "Conversation", foreign_key: :user_id, dependent: :destroy
   has_many :inbound_conversations,  class_name: "Conversation", foreign_key: :recipient_id, dependent: :destroy
   has_many :outbound_messages, class_name: "Message", foreign_key: :sender_id
   has_many :inbound_messages, class_name: "Message", foreign_key: :recipient_id
-  
+
   has_many :providers, dependent: :destroy
   has_many :photos, -> { order "created_at desc" }, dependent: :destroy
   has_many :your_labels
@@ -92,10 +131,11 @@ class User < ActiveRecord::Base
   validates :birthday, birthday: { on: :update }
   validates :agreed_to_terms_at, presence: { on: :update, message: "must be agreed upon"}
 
-  before_save :downcase_genders
+  before_save :groom_string_fields
+  
   before_validation :create_canonical_username
   before_validation :generate_auth_token, on: :create
-  
+
   def to_param
     username
   end
@@ -199,7 +239,7 @@ class User < ActiveRecord::Base
     end
 
   end
-  
+
   def viewable_users
     User.
       visible.
@@ -208,15 +248,15 @@ class User < ActiveRecord::Base
       where.not(id: blocks.pluck(:blocked_id)).
       where.not(id: blockings.pluck(:blocker_id))
   end
-  
+
   def block_with_user?(user)
     block_from_user?(user) || block_to_user?(user)
   end
-  
+
   def block_from_user?(user)
     user.blocks.where(blocked_id: self.id).any?
   end
-  
+
   def block_to_user?(user)
     blocks.where(blocked_id: user.id).any?
   end
@@ -298,7 +338,7 @@ class User < ActiveRecord::Base
   def crushing_on?(user)
     crush_with(user).present?
   end
-  
+
   def bookmarking?(user)
     bookmark_with(user).present?
   end
@@ -306,7 +346,7 @@ class User < ActiveRecord::Base
   def crush_with(user)
     crushings.find_by(crushee_id: user.id)
   end
-  
+
   def bookmark_with(user)
     bookmarks.find_by(bookmarkee_id: user.id)
   end
@@ -314,25 +354,33 @@ class User < ActiveRecord::Base
   def age_group
     age >= 18 ? :adult : :kid
   end
-  
+
   def self.generate_username
     "username-#{Time.now.strftime('%Y%m%d%H%M%S')}"
   end
-  
+
   def self.attribute(name)
       superclass.send :define_method, name do
         self
       end
     end
-  
+
   %w(admin featured birthday_public real_name_public email_public).each do |method_name|
     define_method("#{method_name}?") do
       %w(true false 0 1).include?(send(method_name)) ? %w(true 1).include?(send(method_name)) : send(method_name)
     end
   end
 
+  # TODO put this into settings
+  def twitter_username;     false; end
+  def facebook_username;    false; end
+  def vine_username;        false; end
+  def kik_username;         false; end
+  def thisismyjam_username; false; end
+  def instagram_username;   false; end
+
   private
-  
+
   def placeholder_avatar_url
     "placeholder.png"
   end
@@ -341,19 +389,23 @@ class User < ActiveRecord::Base
     providers.any? {|p| p.name == name }
   end
 
-  def downcase_genders
-    you_gender.downcase! if you_gender?
-    me_gender.downcase!  if me_gender?
+  def groom_string_fields
+    %w(you_gender me_gender).each do |field|
+      if field
+        send(field).downcase!
+        send(field).strip!
+      end
+    end
   end
-  
+
   def create_canonical_username
     self.canonical_username = username.downcase if username
   end
-  
+
   def generate_auth_token
     begin
       self.auth_token = SecureRandom.urlsafe_base64
     end while User.exists?(auth_token: self[:auth_token])
   end
-  
+
 end

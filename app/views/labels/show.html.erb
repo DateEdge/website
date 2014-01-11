@@ -1,24 +1,13 @@
 <div class="col-sm-12">
   <div class="page-header">
-    <% if params[:search] %>
-      <h1>
-        <% if @column %>
-          <%= link_to @column.capitalize, send("#{@column}_path") %> :
-        <% else %>
-        Search:
-        <% end %>
-        <%= @query.capitalize %>
-        <small>
-          (<%= @total %>)
-        </small>
-      </h1>
-    </div>
-    <% else %>
-      <h1>Everyone <small>search is coming soon</small></h1>
-    <% end %>
+    <h1>
+      <%= link_to "Straightedginess", straightedgeness_path %> :
+      <%= @label.name.capitalize %>
+      <small>
+        (<%= @total %>)
+      </small>
+    </h1>
   </div>
-  
-  
 
   <% @users.in_groups_of(2) do |group| %>
     <div class="row">

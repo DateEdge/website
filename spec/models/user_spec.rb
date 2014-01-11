@@ -10,6 +10,11 @@ describe User do
     user.age.should == 22
   end
   
+  it "trims whitespace on save" do
+    user.update(me_gender: " with whitespace  ")
+    expect(user.reload.me_gender).to eq "with whitespace"
+  end
+  
   it "has an auth token" do
     expect(user.auth_token).to be_present
   end
@@ -237,16 +242,22 @@ describe User do
     let!(:bookis) { create(:bookis, city: "seattle", state: create(:state), country: create(:country)) }
     let!(:shane)  { create(:shane, city: "Los Angeles", state: create(:california), country: create(:russia)) }
     
+    
+    it "returns an empty array" do
+      expect(User.search("humbug")).to eq []
+    end
+    
     it "searches by usernname" do
       expect(User.search("BOOKIS")).to include bookis
       expect(User.search("bookis")).to include bookis
-      expect(User.search("bookis smuin")).to include bookis
+      expect(User.search("bookis smuin")).to_not include bookis
+      
+      expect(User.search("username" => "bookis")).to include bookis
     end
-    
-    it "searches by name" do
-      expect(User.search("Smuin")).to include bookis
-      expect(User.search("smuin")).to include bookis
-      expect(User.search("bookis smuin")).to include bookis
+    it "can't search by name" do
+      expect(User.search("Smuin")).to_not include bookis
+      expect(User.search("smuin")).to_not include bookis
+      expect(User.search("bookis smuin")).to_not include bookis
     end
     
     it "searches by state" do
@@ -277,10 +288,53 @@ describe User do
     end
     
     it "does a field search" do
-      puts User.field_search(city: "seattle").to_sql.inspect
-      
       expect(User.field_search(city: "seattle")).to    include bookis
       expect(User.field_search(username: "Bookis")).to include bookis
+    end
+    
+    it "searches by gender" do
+      bookis.update(me_gender: "boy")
+      expect(User.search("boy")).to include bookis
+      expect(User.search("boy")).to_not include shane
+    end
+
+    it "searches by gender by field" do
+      bookis.update(me_gender: "boy")
+      expect(User.search(gender: "boy")).to include bookis
+      expect(User.search(gender: "boy")).to_not include shane
+    end
+    
+    it "searches by diet" do
+      bookis.update(diet: create(:diet, name: "Diet"))
+      expect(User.search("diet")).to eq [bookis]
+    end
+
+    it "searches by diet by field" do
+      bookis.update(diet: create(:diet, name: "Diet"))
+      expect(User.search(diet: "diet")).to eq [bookis]
+    end
+
+    it "searches by label by field" do
+      bookis.update(label: create(:label, name: "Label"))
+      expect(User.search(label: "label")).to eq [bookis]
+      expect(User.search("label")).to eq [bookis]
+    end
+
+    it "searches by state by field" do
+      bookis.update(state: create(:state, name: "Washington", abbreviation: "WA"))
+      expect(User.search(state: "WA")).to eq [bookis]
+      expect(User.search(state: "Washington")).to eq [bookis]
+      expect(User.search("Washington")).to eq [bookis]
+    end
+
+    it "searches by country by field" do
+      expect(User.search(country: "RU")).to eq [shane]
+      expect(User.search(country: "Russia")).to eq [shane]
+      expect(User.search("Russia")).to eq [shane]
+    end
+    
+    it "can't search on email" do
+      expect(User.search(email: shane.email)).to_not include shane
     end
     
   end

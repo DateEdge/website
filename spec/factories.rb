@@ -42,4 +42,13 @@ FactoryGirl.define do
       abbreviation "RU"
     end
   end
+  factory :label do
+    name "sXe"
+  end
+  
+  factory :diet do
+    name "Vegan"
+  end
+  
+  
 end

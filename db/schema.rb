@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(version: 20140105032041) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "unaccent"
   enable_extension "plpgsql"
   enable_extension "hstore"
-  enable_extension "unaccent"
 
   create_table "blocks", force: true do |t|
     t.integer  "blocker_id"
@@ -132,8 +132,6 @@ ActiveRecord::Schema.define(version: 20140105032041) do
     t.string   "canonical_username"
     t.string   "auth_token"
   end
-
-  add_index "users", ["state_id"], name: "index_users_on_state_id", using: :btree
 
   create_table "your_labels", force: true do |t|
     t.integer  "user_id"
