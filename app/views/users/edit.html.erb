@@ -140,15 +140,8 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <%= f.label :label_id, "My Straightedginess" %>
-            <% Label.all.each do |label| %>
-            <div class="radio">
-              <label>
-                <%= f.radio_button :label_id, label.id %>
-                <%= label.name.titleize %>
-              </label>
-            </div>
-            <% end %>
+            <%= f.label  :label_id, "My Straightedginess" %>
+            <%= f.select :label_id, Label.options_for_select, { include_blank: true }, { class: "form-control" } %>
           </div>
         </div>
 
