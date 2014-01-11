@@ -9,7 +9,7 @@
         <% unless count == 1 %>
           <li>
             <h1 class="h3">
-              <%= link_to name.capitalize, search_path(:genders, name) %>
+              <%= link_to name.capitalize, search_path(search: [:genders, name]) %>
               <small>(<%= count %>)</small>
             </h1>
           </li>
@@ -23,7 +23,7 @@
       <% @genders.each do |name, count| %>
         <% if count == 1 %>
           <li>
-            <%= link_to name.capitalize, search_path(:genders, name) %>
+            <%= link_to name.capitalize, search_path(search: [:genders, name]) %>
           </li>
         <% end %>
       <% end %>

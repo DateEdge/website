@@ -57,7 +57,8 @@ Dxe::Application.routes.draw do
   get "/diets",                    to: "diets#index",   as: :diets
   get "/genders",                  to: "genders#index", as: :genders
   get "/straightedgeness",         to: "labels#index",  as: :straightedgeness
-  get "/*search/(page/:page)",     to: "users#index",    as: :search
+  get "/*search/page/:page",     to: "users#index"
+  get "/*search",     to: "users#index",    as: :search
   # Last ditch effort to catch mistyped @username paths
   get "/:username", to: redirect { |params, request| "/@#{params[:username]}"}
 
