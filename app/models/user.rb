@@ -65,6 +65,7 @@ class User < ActiveRecord::Base
   
   COLUMN_MAPPING = {
     gender: :me_gender,
+    genders: :me_gender,
     straightedgeness: :label,
     diets: :diet
   }
