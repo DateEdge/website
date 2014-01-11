@@ -23,10 +23,7 @@
       <% @genders.each do |name, count| %>
         <% if count == 1 %>
           <li>
-            <h1 class="h3">
-              <%= link_to name.capitalize, gender_path(name) %>
-              <small>(<%= count %>)</small>
-            </h1>
+            <%= link_to name.capitalize, gender_path(name) %>
           </li>
         <% end %>
       <% end %>
