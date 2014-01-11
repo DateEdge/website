@@ -77,7 +77,8 @@ class User < ActiveRecord::Base
   validates :birthday, birthday: { on: :update }
   validates :agreed_to_terms_at, presence: { on: :update, message: "must be agreed upon"}
 
-  before_save :downcase_genders
+  before_save :groom_string_fields
+  
   before_validation :create_canonical_username
   before_validation :generate_auth_token, on: :create
 
@@ -315,9 +316,13 @@ class User < ActiveRecord::Base
     providers.any? {|p| p.name == name }
   end
 
-  def downcase_genders
-    you_gender.downcase! if you_gender?
-    me_gender.downcase!  if me_gender?
+  def groom_string_fields
+    %w(you_gender me_gender).each do |field|
+      if field
+        send(field).downcase!
+        send(field).strip!
+      end
+    end
   end
 
   def create_canonical_username

@@ -24,4 +24,14 @@ FactoryGirl.define do
     user
     association :blocked_user, factory: :bookis
   end
+  
+  factory :label do
+    name "sXe"
+  end
+  
+  factory :diet do
+    name "Vegan"
+  end
+  
+  
 end

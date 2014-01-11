@@ -9,6 +9,11 @@ describe User do
     user.age.should == 22
   end
   
+  it "trims whitespace on save" do
+    user.update(me_gender: " with whitespace  ")
+    expect(user.reload.me_gender).to eq "with whitespace"
+  end
+  
   it "has an auth token" do
     expect(user.auth_token).to be_present
   end
@@ -229,15 +234,6 @@ describe User do
     it "with_user for blocked" do
       create(:block, blocked_id: bookis.id, blocker_id: shane.id)
       expect(bookis.block_with_user?(shane)).to be_true
-    end
-  end
-  
-  describe "#search" do
-    let!(:bookis) { create(:bookis) }
-    let!(:shane)  { create(:shane) }
-    
-    it "searches by name" do
-      expect(User.search("BOOKIS")).to include bookis
     end
   end
   
