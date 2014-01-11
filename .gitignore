@@ -13,3 +13,4 @@ public/uploads
 
 # Ignore SSL files
 ssl-cert
+*.dump

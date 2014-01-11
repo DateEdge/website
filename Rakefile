@@ -36,6 +36,13 @@ namespace :deploy do
 end
 
 namespace :db do
+  
+  task reset_genders: :environment do
+    yaml = YAML.load(File.read("#{Rails.root}/lib/tasks/user_genders.yml"))
+    puts "Resetting #{yaml.keys.count} user's gender"
+    yaml.each { |id, gender| User.find(id).update(me_gender: gender) }
+  end
+  
   task import: :environment do
     puts "Backing Up Production Database..."
     `heroku pgbackups:capture --expire`
