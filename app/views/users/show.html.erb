@@ -1,77 +1,83 @@
 <%= render partial: @user %>
 
 <p class="well lead">
-  <% if @user.me_gender || @user.you_gender %>
-    I am a
-    <% if @user.label %>
-      <b><%= @user.label.name %></b>
-    <% end %>
+  I am
 
-    <% if @user.me_gender %>
-      <b><%= @user.me_gender %></b>.
-    <% end %>
+  <%= @user.diet ? @user.diet.name.indefinite_article : "a" %>
 
-    <% if @user.diet %>
-      I eat
-      <%= @user.diet.name.indefinite_article %>
-      <b><%= @user.diet.name.downcase %></b> diet.
-    <% end %>
-
-    <% if @user.you_gender %>
-      I&rsquo;m looking for a
-      <% unless @user.desired_labels.blank? %>
-        <%= @user.desired_labels.map{ |dl| "<b>#{dl.name}</b>" }.join(" / ").html_safe %>
-      <% end %>
-
-      <b><%= @user.you_gender %></b><%= "." if @user.desired_diets.blank? %>
-    <% end %>
-
-    <% unless @user.desired_diets.blank? %>
-      who eats
-      <%= @user.desired_diets.map(&:name).join.indefinite_article %>
-      <%= @user.desired_diets.map{ |dd| "<b>#{dd.name}</b>" }.join(" / ").html_safe %>
-      diet.
-    <% end %>
+  <% if @user.diet %>
+    <b><%= link_to @user.diet.name.downcase, diet_path(@user.diet.name) %></b>
   <% end %>
+
+  <% if @user.label %>
+    <b><%= link_to @user.label.name.downcase, label_path(@user.label.name) %></b>
+  <% end %>
+
+  <b><%= link_to @user.me_gender, gender_path(@user.me_gender) %></b>.
+  
+
+  <br class="xs-hidden" />
+
+  I&rsquo;m looking for
+
+  <% if @user.desired_diets.blank? %>
+    a
+  <% else %>
+    <%= @user.desired_diets.map(&:name).join.indefinite_article %>
+    <%=
+      # TODO refactor into a helper method
+      @user.desired_diets.map{ |dd|
+        "<b>#{ link_to dd.name.downcase, diet_path(dd.name) }</b>"
+      }.join("<span style='color:#999'>/</span>").html_safe
+    %>
+  <% end %>
+
+  <% unless @user.desired_labels.blank? %>
+    <%=
+      # TODO refactor into a helper method
+      @user.desired_labels.map{ |dd|
+        "<b>#{ link_to dd.name.downcase, label_path(dd.name) }</b>"
+      }.join("<span style='color:#999'>/</span>").html_safe
+    %>
+  <% end %>
+
+  <b><%= link_to @user.you_gender, gender_path(@user.you_gender) %></b>.
 </p>
 
+<div class="row">
 
-<% if @user.bio %>
-  <div id="bio" class="note">
-    <div class="short" style="display:none">
-      <%= simple_format "<b>BIO</b>: ".html_safe + truncate(@user.bio, length: 150) %>
-      <% if @user.bio.length > 150 %>
-        <%= link_to "More", person_path(@user.username, anchor: "bio"), class: "truncate" %>
-      <% end %>
-    </div> <!-- /div.short -->
-
-    <div class="long">
-      <b>BIO</b>: <%= user_inputed_text(@user.bio) %>
-      <%= link_to "Less", person_path(@user.username, anchor: "bio"), class: "truncate", style: "display:none" %>
-    </div> <!-- /div.long -->
-  </div>
-<% end %>
-
-<div id="photos">
-  <ul class="h-feed">
-    <% @user.photos.each do |photo| %>
-      <li class="h-entry">
-        <%= image_tag photo.image_url(:large).to_s %>
-        <div class="caption lead">
-          <%= simple_format photo.caption %>
-        </div>
-
-        <% if mine? %>
-          <div class="actions">
-            <%= link_to "<i class='fa fa-edit'></i>&nbsp;&nbsp;Edit Details".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
-
-            <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
-              <%= f.hidden_field :avatar, value: true %>
-              <%= f.button "<i class='fa fa-circle-o'></i>&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
-            <% end %>
-          </div> <!-- .actions -->
-        <% end %>
-      </li>
+  <main class="col-md-7 col-sm-12">
+    <% if @user.bio %>
+      <div id="bio" class="e-note note">
+        <%= user_inputed_text(@user.bio) %>
+      </div>
     <% end %>
-  </ul>
-</div>
+
+    <div id="photos">
+      <ul class="h-feed">
+        <% @user.photos.each do |photo| %>
+          <li class="h-entry">
+            <%= image_tag photo.image_url(:large).to_s %>
+            <div class="caption lead">
+              <%= simple_format photo.caption %>
+            </div>
+
+            <% if mine? %>
+              <div class="actions">
+                <%= link_to "<i class='fa fa-edit'></i>&nbsp;&nbsp;Edit Details".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
+
+                <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
+                  <%= f.hidden_field :avatar, value: true %>
+                  <%= f.button "<i class='fa fa-circle-o'></i>&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
+                <% end %>
+              </div> <!-- .actions -->
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div> <!-- #photos -->
+  </main>
+
+  <%= render "sidebar" %>
+
+</div> <!-- .row -->
