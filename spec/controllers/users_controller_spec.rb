@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe UsersController do
-  let!(:user) { create(:shane) }
-
+  let!(:shane) { create(:shane) }
   describe "GET 'index'" do
-    before { session[:user_id] = user.id }
+    let!(:bookis) { create(:bookis, visible: true) }
+    before { session[:user_id] = shane.id }
     
     it "redirects to root" do
       get :index
@@ -16,8 +16,30 @@ describe UsersController do
         User.should_receive(:search).with("username" => "veganstraightedge").once.and_return User.visible
         get :index, search: "username/veganstraightedge"
       end
+      it "shows everyone" do
+        get :index
+        expect(assigns(:users)).to include bookis
+      end
+    
+      it "doesn't show blocked people" do
+        shane.blocks << Block.create(blocked_id: bookis.id)
+        get :index
+        expect(assigns(:users)).to_not include bookis
+      end
+    
+      it "shows everyone" do
+        get :index, search: "bookis"
+        expect(assigns(:users)).to include bookis
+      end
+  
+      it "doesn't show blocked people" do
+        shane.blocks << Block.create(blocked_id: bookis.id)
+        get :index, search: "bookis"
+        expect(assigns(:users)).to_not include bookis
+      end
     end
   end
+  
   describe "GET 'show'" do
     it "should be successful" do
       get 'show', username: "veganstraightedge"
@@ -33,8 +55,8 @@ describe UsersController do
 
   describe "GET 'edit'" do
     before { 
-      user.stub(:visible) { true }
-      session[:user_id] = user.id 
+      shane.stub(:visible) { true }
+      session[:user_id] = shane.id 
     }
     it "should be successful" do
       get 'edit'
@@ -42,9 +64,22 @@ describe UsersController do
     end
   end
   
+  describe "DELETE 'destroy" do
+    let(:bookis) { create(:bookis, visible: true, agreed_to_terms_at: Time.now) }
+    before { sign_in(bookis) }
+    it "destroys a user" do
+      expect { delete :destroy, username: "@bookis" }.to change(User, :count).by(-1)
+    end
+    
+    it "redirects to home" do
+      delete :destroy, username: "@bookis"
+      expect(response).to redirect_to root_path
+    end
+  end
+  
   describe "POST 'create'" do
-    let(:user) { User.create(name: "Bookis", username: "Bookis") }
-    before { sign_in(user) }
+    let(:bookis) { create(:bookis, visible: false, agreed_to_terms_at: nil, email: nil, birthday: nil) }
+    before { sign_in(bookis) }
     
     it "redirects to people path" do
       post :create, user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}
@@ -53,8 +88,8 @@ describe UsersController do
     
     it "changes user visibility" do
       post :create, user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}
-      user.reload
-      expect(user.visible).to be_true
+      bookis.reload
+      expect(bookis.visible).to be_true
     end
     
     it "renders the edit form if there are errors" do
@@ -65,21 +100,21 @@ describe UsersController do
   
   describe "PATCH 'update'" do
     before { 
-      user.stub(:visible) { true }
-      session[:user_id] = user.id 
+      shane.stub(:visible) { true }
+      session[:user_id] = shane.id 
     }
     
     it "updates name" do
       patch :update, user: {name: "BKS"}
-      expect(response).to redirect_to person_path(user.username)
+      expect(response).to redirect_to person_path(shane.username)
     end
     
     it "doesn't update username" do
-      expect { patch :update, user: {username: "BKS"} }.to_not change(user, :username)
+      expect { patch :update, user: {username: "BKS"} }.to_not change(shane, :username)
     end
     
     it "doesn't update email" do
-      expect { patch :update, user: {email: "b@example.com"} }.to_not change(user, :email)
+      expect { patch :update, user: {email: "b@example.com"} }.to_not change(shane, :email)
     end
     
     it "updates settings" do
