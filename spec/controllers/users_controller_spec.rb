@@ -1,14 +1,38 @@
 require 'spec_helper'
 
 describe UsersController do
-  let!(:user) { create(:shane) }
-
+  let!(:shane) { create(:shane) }
   describe "GET 'index'" do
-    before { session[:user_id] = user.id }
+    let!(:bookis) { create(:bookis, visible: true) }
+    before { session[:user_id] = shane.id }
     
     it "redirects to root" do
       get :index
       expect(response).to be_successful
+    end
+    
+    it "shows everyone" do
+      get :index
+      expect(assigns(:users)).to include bookis
+    end
+    
+    it "doesn't show blocked people" do
+      shane.blocks << Block.create(blocked_id: bookis.id)
+      get :index
+      expect(assigns(:users)).to_not include bookis
+    end
+    
+    context "with search params" do
+      it "shows everyone" do
+        get :index
+        expect(assigns(:users)).to include bookis
+      end
+      
+      it "doesn't show blocked people" do
+        shane.blocks << Block.create(blocked_id: bookis.id)
+        get :index
+        expect(assigns(:users)).to_not include bookis
+      end
     end
   end
   describe "GET 'show'" do
@@ -26,8 +50,8 @@ describe UsersController do
 
   describe "GET 'edit'" do
     before { 
-      user.stub(:visible) { true }
-      session[:user_id] = user.id 
+      shane.stub(:visible) { true }
+      session[:user_id] = shane.id 
     }
     it "should be successful" do
       get 'edit'
@@ -36,8 +60,8 @@ describe UsersController do
   end
   
   describe "DELETE 'destroy" do
-    let(:user) { User.create(name: "Bookis", username: "Bookis", visible: true, agreed_to_terms_at: Time.now) }
-    before { sign_in(user) }
+    let(:bookis) { create(:bookis, visible: true, agreed_to_terms_at: Time.now) }
+    before { sign_in(bookis) }
     it "destroys a user" do
       expect { delete :destroy, username: "@bookis" }.to change(User, :count).by(-1)
     end
@@ -49,7 +73,7 @@ describe UsersController do
   end
   
   describe "POST 'create'" do
-    let(:user) { User.create(name: "Bookis", username: "Bookis") }
+    let(:bookis) { create(:bookis) }
     before { sign_in(user) }
     
     it "redirects to people path" do
@@ -59,7 +83,7 @@ describe UsersController do
     
     it "changes user visibility" do
       post :create, user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}
-      user.reload
+      bookis.reload
       expect(user.visible).to be_true
     end
     
@@ -93,7 +117,6 @@ describe UsersController do
       expect(assigns(:user).birthday_public?).to be_true
       expect(assigns(:user).admin?).to be_nil
     end
-    
   end
   
 end
