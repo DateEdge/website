@@ -4,8 +4,7 @@ class SessionsController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
     if current_user
-      provider = Provider.where(name: auth["provider"], uid: auth["uid"]).first
-
+      provider = Provider.from_auth(auth, ip_address: request.remote_ip)
       if provider
         current_user.merge! provider.user
         current_user.providers << provider
@@ -14,8 +13,8 @@ class SessionsController < ApplicationController
       end
 
     else
-      user = User.with_provider(auth["provider"], auth["uid"]).first ||
-             User.create_with_omniauth(auth)
+      provider = Provider.from_auth(auth, ip_address: request.remote_ip)
+      user = provider ? provider.user : User.create_with_omniauth(auth)
       cookies.signed[:auth_token] = {value: user.auth_token, expires: 2.weeks.from_now, secure: Rails.env.production?}
     end
 

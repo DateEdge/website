@@ -162,7 +162,7 @@ class User < ActiveRecord::Base
     end
     
     def create_with_omniauth(auth)
-      user = send("create_for_#{auth["provider"]}", auth)
+      user = send("create_for_#{auth.provider}", auth)
       user
     end
 
@@ -173,7 +173,9 @@ class User < ActiveRecord::Base
 
       u = create! do |user|
         user.providers << provider
-        user.name             = auth["info"]["name"]
+        provider.handle        = auth.info.nickname || auth.info.name
+        provider.last_login_at = Time.now
+        user.name              = auth["info"]["name"]
 
         unless location.blank?
           user.city             = location.split(",").first.strip
@@ -205,7 +207,9 @@ class User < ActiveRecord::Base
 
       u = create! do |user|
         user.providers << provider
-        user.name       = auth["info"]["name"]
+        provider.handle        = auth.info.nickname || auth.info.name
+        provider.last_login_at = Time.now
+        user.name              = auth["info"]["name"]
 
         unless location.blank?
           user.city       = location.split(",").first.strip

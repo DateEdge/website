@@ -8,7 +8,7 @@ require 'capybara/poltergeist'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-
+OmniAuth.config.test_mode = true
 RSpec.configure do |config|
   DatabaseCleaner.strategy = :truncation
   Capybara.javascript_driver = :poltergeist
@@ -36,7 +36,10 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 end
 
+OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new(twitter_auth_response)
+OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(facebook_auth_response)
 def sign_in(user=nil)
   user ||= User.create(username: "Shane", name: "SB", email: "test@example.com", birthday: 15.years.ago, agreed_to_terms_at: Time.now, visible: true)
   cookies.signed[:auth_token] = user.auth_token
 end
+

@@ -106,7 +106,7 @@ describe User do
   
   describe "auth from FB" do
     before { ImageUploader.any_instance.stub(:download!) }
-    let(:user) { User.create_for_facebook(facebook_auth_response) }
+    let(:user) { User.create_for_facebook(OmniAuth.mock_auth_for(:facebook)) }
     
     it "is valid" do
       expect(user.new_record?).to be_false

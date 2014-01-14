@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SessionsController do
   describe "with facebook" do
-    let(:auth) { facebook_auth_response }
+    let(:auth) { OmniAuth.mock_auth_for(:facebook) }
     it "sign up creates a user" do
       controller.request.env.should_receive(:[]).with("omniauth.auth").once.and_return(auth)
       controller.request.env.should_receive(:[]).at_least(:once).and_call_original
@@ -22,7 +22,7 @@ describe SessionsController do
   
   describe "sign up with twitter" do
     it "is successful" do
-      controller.request.env.should_receive(:[]).with("omniauth.auth").once.and_return(twitter_auth_response)
+      controller.request.env.should_receive(:[]).with("omniauth.auth").once.and_return(OmniAuth.mock_auth_for(:twitter))
       controller.request.env.should_receive(:[]).at_least(:once).and_call_original
       expect { get :create, provider: "twitter" }.to change(User, :count).by(1)
     end

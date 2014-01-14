@@ -1,4 +1,13 @@
 FactoryGirl.define do
+  
+  factory :provider do
+    name "default"
+    uid "1234"
+    factory :twitter do
+      name "twitter"
+    end
+  end
+  
   factory :user do
     name "User T. Duncan"
     sequence :username do |n| "User#{n}" end

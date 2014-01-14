@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105032041) do
+ActiveRecord::Schema.define(version: 20140114061114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "unaccent"
@@ -97,8 +97,11 @@ ActiveRecord::Schema.define(version: 20140105032041) do
     t.string   "name"
     t.string   "uid"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "handle"
+    t.datetime "last_login_at"
+    t.string   "ip_address"
   end
 
   create_table "states", force: true do |t|
