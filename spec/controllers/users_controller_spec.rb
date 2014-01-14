@@ -35,6 +35,19 @@ describe UsersController do
     end
   end
   
+  describe "DELETE 'destroy" do
+    let(:user) { User.create(name: "Bookis", username: "Bookis", visible: true, agreed_to_terms_at: Time.now) }
+    before { sign_in(user) }
+    it "destroys a user" do
+      expect { delete :destroy, username: "@bookis" }.to change(User, :count).by(-1)
+    end
+    
+    it "redirects to home" do
+      delete :destroy, username: "@bookis"
+      expect(response).to redirect_to root_path
+    end
+  end
+  
   describe "POST 'create'" do
     let(:user) { User.create(name: "Bookis", username: "Bookis") }
     before { sign_in(user) }
