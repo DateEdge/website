@@ -24,13 +24,13 @@ describe UsersController do
     
     context "with search params" do
       it "shows everyone" do
-        get :index
+        get :index, search: "bookis"
         expect(assigns(:users)).to include bookis
       end
       
       it "doesn't show blocked people" do
         shane.blocks << Block.create(blocked_id: bookis.id)
-        get :index
+        get :index, search: "bookis"
         expect(assigns(:users)).to_not include bookis
       end
     end
@@ -73,8 +73,8 @@ describe UsersController do
   end
   
   describe "POST 'create'" do
-    let(:bookis) { create(:bookis) }
-    before { sign_in(user) }
+    let(:bookis) { create(:bookis, visible: false, agreed_to_terms_at: nil, email: nil, birthday: nil) }
+    before { sign_in(bookis) }
     
     it "redirects to people path" do
       post :create, user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}
@@ -84,7 +84,7 @@ describe UsersController do
     it "changes user visibility" do
       post :create, user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}
       bookis.reload
-      expect(user.visible).to be_true
+      expect(bookis.visible).to be_true
     end
     
     it "renders the edit form if there are errors" do
@@ -95,21 +95,21 @@ describe UsersController do
   
   describe "PATCH 'update'" do
     before { 
-      user.stub(:visible) { true }
-      session[:user_id] = user.id 
+      shane.stub(:visible) { true }
+      session[:user_id] = shane.id 
     }
     
     it "updates name" do
       patch :update, user: {name: "BKS"}
-      expect(response).to redirect_to person_path(user.username)
+      expect(response).to redirect_to person_path(shane.username)
     end
     
     it "doesn't update username" do
-      expect { patch :update, user: {username: "BKS"} }.to_not change(user, :username)
+      expect { patch :update, user: {username: "BKS"} }.to_not change(shane, :username)
     end
     
     it "doesn't update email" do
-      expect { patch :update, user: {email: "b@example.com"} }.to_not change(user, :email)
+      expect { patch :update, user: {email: "b@example.com"} }.to_not change(shane, :email)
     end
     
     it "updates settings" do
