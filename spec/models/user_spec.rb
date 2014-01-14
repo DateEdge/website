@@ -27,6 +27,11 @@ describe User do
     user.birthday = 728.days.ago
     user.age.should == 1
   end
+  
+  it "doesn't allow duplicate names" do
+    bookis
+    expect(create(:bookis, username: "booKis")).to be_invalid
+  end
 
   it "should not update the user" do
     user.username = nil
