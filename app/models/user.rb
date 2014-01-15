@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
       column_name = UserRule::SQL_GROUP[column]
       
       group(column_name).
-      where("#{column_name} IS NOT NULL").
+      where("#{column_name} IS NOT NULL AND #{column_name} != ?", "").
       includes(association).
       references(association).
       count(:id).sort_by(&:last).reverse
