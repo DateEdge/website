@@ -32,14 +32,14 @@ module UserRule
   }
 
   SQL_GROUP = {
-    diet:  "diets.name",
+    diets:  "diets.name",
     straightedgeness: "labels.name",
-    gender: "me_gender"
+    genders: "me_gender"
   }
   
   ASSOCIATION_NAME = {
-    diet: :diet,
-    gender: nil,
+    diets: :diet,
+    genders: nil,
     straightedgeness: :label
   }
   

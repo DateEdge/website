@@ -1,14 +1,37 @@
-<div class="page-header">
-  <h1><%= params[:column].titleize %></h1>
-</div>
+<div class="col-sm-12">
 
-<ul class="list-unstyled">
-  <% @groups.each do |name, users| %>
-    <li>
-      <h1 class="h3">
-        <%= link_to name.capitalize, search_path(search: [:diets, name]) %>
-        <small>(<%= users.count %>)</small>
-      </h1>
-    </li>
-  <% end %>
-</ul>
+  <div class="page-header">
+    <h1>
+      <%= @title_text %>
+    </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <ul class="list-unstyled">
+        <% @groups.each do |name, count| %>
+          <% unless count == 1 %>
+            <li>
+              <h1 class="h3">
+                <%= link_to name.capitalize, search_path(search: [params[:column].to_sym, name]) %>
+                <small>(<%= count %>)</small>
+              </h1>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="col-sm-6">
+      <ul class="list-unstyled">
+        <% @groups.each do |name, count| %>
+          <% if count == 1 %>
+            <li>
+              <%= link_to name.capitalize, search_path(search: [:genders, name]) %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

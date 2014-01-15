@@ -10,9 +10,8 @@ class UsersController < ApplicationController
     else
       User.visible
     end
-
-    @users = @users.order('created_at desc').paginate(page: params[:page] ||= 1)
     @total = @users.count
+    @users = @users.order('created_at desc').paginate(page: params[:page] ||= 1)
   end
   
   def show

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe SearchesController do
-  let(:all) { User.all }
 
   describe "GET 'index'" do
     it "returns http success" do
@@ -9,17 +8,12 @@ describe SearchesController do
       response.should be_success
     end
     
-    it "assigns" do
-      get 'index', column: :diet
-      expect(assigns(:groups)).to_not be_blank
-    end
-    
     context "diet" do
       let(:request) { get 'index', column: :diet }
       it "calls Diet" do
-        User.should_receive(:preload).with(:diet).and_return(User)
-        User.should_receive(:select).with("users.id, diet_id").once.and_return(all)
-        all.should_receive(:group_by)
+        User.should_receive(:includes).with(:diet).and_return(User)
+        User.should_receive(:group).with("diets.name").once.and_return(User)
+        User.should_receive(:count).with(:id)
         request
       end
       
@@ -28,9 +22,9 @@ describe SearchesController do
     context "gender" do
       let(:request) { get 'index', column: :gender }
       it "calls gender" do
-        User.should_receive(:preload).with(nil).and_return(User)
-        User.should_receive(:select).with("users.id, me_gender").once.and_return(all)
-        all.should_receive(:group_by)
+        User.should_receive(:includes).with(nil).and_return(User)
+        User.should_receive(:group).with("me_gender").once.and_return(User)
+        User.should_receive(:count).with(:id)
         request
       end
       
@@ -39,9 +33,9 @@ describe SearchesController do
     context "label" do
       let(:request) { get 'index', column: :straightedgeness }
       it "calls Label" do
-        User.should_receive(:preload).with(:label).and_return(User)
-        User.should_receive(:select).with("users.id, label_id").once.and_return(all)
-        all.should_receive(:group_by)
+        User.should_receive(:includes).with(:label).and_return(User)
+        User.should_receive(:group).with("labels.name").once.and_return(User)
+        User.should_receive(:count).with(:id)
         request
       end
     end
