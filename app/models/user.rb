@@ -125,6 +125,17 @@ class User < ActiveRecord::Base
       query
     end
     
+    def group_by_column(column)
+      association = UserRule::ASSOCIATION_NAME[column]
+      column_name = UserRule::SQL_GROUP[column]
+      
+      group(column_name).
+      where("#{column_name} IS NOT NULL").
+      includes(association).
+      references(association).
+      count(:id).sort_by(&:last).reverse
+    end
+    
     def age(args)
       beginning, end_year = args.respond_to?(:each) ? [args.last.to_i, args.first.to_i] : [args.to_i, args.to_i]
       where(birthday: ((beginning.years.ago - 1.year)..end_year.years.ago))

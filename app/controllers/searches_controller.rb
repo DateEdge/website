@@ -1,14 +1,9 @@
 class SearchesController < ApplicationController
+  before_action :require_login, only: [:index]
+  
   def index
     @title_text = params[:column].titleize
-    
-    column_name = UserRule::SQL_GROUP[params[:column].to_sym]
-    @groups = current_user.viewable_users.
-      includes(UserRule::ASSOCIATION_NAME[params[:column].to_sym]).
-      group(column_name).
-      where("#{column_name} IS NOT NULL").
-      count(:id).sort_by(&:last).reverse
-      
+    @groups = current_user.viewable_users.group_by_column(params[:column].to_sym)
     @total = @groups.sum(&:last)
   end
 end
