@@ -55,10 +55,9 @@ Dxe::Application.routes.draw do
   delete "/@:username/conversation",         to: "conversations#destroy", as: :delete_conversation, username: /[^\/]+/
 
   # filters
-  get "/:column/(page/:page)", to: "searches#index", as: :column_search
-  get "/diets",                to: "diets#index",   as: :diets
-  get "/genders",              to: "genders#index", as: :genders
-  get "/straightedgeness",     to: "labels#index",  as: :straightedgeness
+  get "/diets",                to: "searches#index",  as: :diets            , column: "diets"
+  get "/genders",              to: "searches#index",  as: :genders          , column: "genders"
+  get "/straightedgeness",     to: "searches#index",  as: :straightedgeness , column: "straightedgeness"
   get "/*search/page/:page",   to: "users#index"
   get "/*search",              to: "users#index",   as: :search
   
