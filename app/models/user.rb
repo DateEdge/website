@@ -23,6 +23,7 @@ class BirthdayValidator < ActiveModel::EachValidator
 end
 
 class User < ActiveRecord::Base
+  include UserRule
   include PgSearch
   pg_search_scope :text_search, 
     against: {username: "A", city: "B", me_gender: "C"}, 
@@ -44,38 +45,6 @@ class User < ActiveRecord::Base
       field = :username if DISALLOWED_COLUMNS.include? field
       { against: field, query: query.values.first }
     end
-  }
-  
-  DISALLOWED_COLUMNS = [
-    :id, 
-    :me_gender_map, 
-    :you_gender_map, 
-    :visible, 
-    :bio, 
-    :canonical_username, 
-    :name, 
-    :email, 
-    :created_at, 
-    :updated_at, 
-    :agreed_to_terms_at, 
-    :birthday, 
-    :settings, 
-    :auth_token
-  ]
-  
-  COLUMN_MAPPING = {
-    gender: :me_gender,
-    genders: :me_gender,
-    straightedgeness: :label,
-    diets: :diet
-  }
-  
-  ASSOCIATED_MAPPING = {
-    diet:    :name,
-    diet:    :name,
-    label:   :name,
-    state:   [:name, :abbreviation],
-    country: [:name, :abbreviation]
   }
   
   self.per_page = 30
