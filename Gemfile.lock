@@ -117,6 +117,7 @@ GEM
     json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
+    kgio (2.8.1)
     listen (2.4.0)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -274,6 +275,7 @@ DEPENDENCIES
   indefinite_article
   jquery-rails
   json
+  kgio
   memcachier
   newrelic_rpm
   omniauth-facebook (~> 1.4.1)

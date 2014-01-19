@@ -19,7 +19,7 @@ gem "will_paginate-bootstrap"
 # caching
 gem 'memcachier'
 gem 'dalli'
-
+gem "kgio"
 # search
 gem 'pg_search'
 
