@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :restrict_non_visible_user, only: [:new, :create]
   before_action :require_login, only: [:edit, :update, :destroy]
-  before_action :search_term, only: :index
   def index
     @title = "People Using Date Edge"
     @slug  = "people"
@@ -74,16 +73,6 @@ class UsersController < ApplicationController
 
   private
   
-  def search_term
-    return unless params[:search]
-    search = params[:search].split("/", 2)
-    @search, @query, @column = if search.count.even?
-      [Hash[*search], search.last, search.first]
-    else
-      [search.first, search.first, nil]
-    end
-  end
-
   def user_params
     params.require(:user).permit(
       :name,
