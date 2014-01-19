@@ -53,7 +53,7 @@ group :test do
   gem "database_cleaner"
 end
 
-group :production do
+group :production, :staging do
   gem 'newrelic_rpm'
   gem "puma"
   gem "rails_12factor"
