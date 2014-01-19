@@ -1,4 +1,11 @@
 module ApplicationHelper
+  
+  def cache_key_for_users
+    count          = User.count
+    max_updated_at = User.maximum(:updated_at).try(:utc).try(:to_s, :number)
+    "users/all-#{count}-#{max_updated_at}"
+  end
+    
   def user_inputed_text(text)
     options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
     renderer = Redcarpet::Render::HTML.new(filter_html: true, no_images: true, no_styles: true, safe_links_only: true)
