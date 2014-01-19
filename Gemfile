@@ -16,6 +16,10 @@ gem "redcarpet" # Markdown parser
 gem "will_paginate", "~> 3.0"
 gem "will_paginate-bootstrap"
 
+# caching
+gem 'memcachier'
+gem 'dalli'
+
 # search
 gem 'pg_search'
 
