@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  http_basic_authenticate_with name: ENV["STAGING_USERNAME"], password: ENV["STAGING_PASSWORD"] if Rails.env.staging?
+  
   protect_from_forgery
   before_filter :restrict_non_visible_user
   helper_method :current_user
