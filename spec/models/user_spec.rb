@@ -348,6 +348,20 @@ describe User do
     it "can't search on email" do
       expect(User.search(email: shane.email)).to_not include shane
     end
+  end
+  
+  describe "#inbound_messages" do
+    let!(:conversation) { Conversation.create(sender: bookis, recipient: shane) }
+    let!(:message) { conversation.messages.create(sender: bookis, recipient: shane) }
+    
+    it "is an inbound message for shane" do
+      expect(shane.inbound_messages.unread).to include message
+    end
+    
+    it "isn't if the convo has been deleted" do
+      conversation.delete_from_user(shane)
+      expect(shane.inbound_messages.unread).to_not include message
+    end
     
   end
   

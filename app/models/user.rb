@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   has_many :outbound_conversations, class_name: "Conversation", foreign_key: :user_id, dependent: :destroy
   has_many :inbound_conversations,  class_name: "Conversation", foreign_key: :recipient_id, dependent: :destroy
   has_many :outbound_messages, class_name: "Message", foreign_key: :sender_id
-  has_many :inbound_messages, class_name: "Message", foreign_key: :recipient_id
+  has_many :inbound_messages ,class_name: "Message", foreign_key: :recipient_id
 
   has_many :providers, dependent: :destroy
   has_many :photos, -> { order "created_at desc" }, dependent: :destroy

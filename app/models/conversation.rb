@@ -17,6 +17,7 @@ class Conversation < ActiveRecord::Base
     if hidden_from_user_id? && hidden_from_user_id != user.id && participants.include?(user)
       self.destroy
     else
+      messages.unread.each {|message| message.update(unread: false) }
       update(hidden_from_user_id: user.id)
     end
   end

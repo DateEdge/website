@@ -23,6 +23,7 @@ describe Conversation do
   
   describe "deletes from a user" do
     it "removes it from the deleting users" do
+      message = conversation.messages.create(recipient_id: recipient.id, sender_id: sender.id, body: "blah", unread: true)
       conversation.update(hidden_from_user_id: recipient.id)
       expect(recipient.conversations.not_deleted(recipient)).to_not            include conversation
       expect(sender.conversations.not_deleted(sender)).to                      include conversation
