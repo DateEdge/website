@@ -22,7 +22,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
     cookies.delete :auth_token
     redirect_to root_url, notice: "Signed out. Bye, for now!"
   end
