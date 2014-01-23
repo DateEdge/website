@@ -6,8 +6,7 @@ describe MessagesController do
   let(:conversation) { user.outbound_conversations.create(recipient: user2) }
   let(:request) { get 'new', username: user2.username }
   before do 
-    DatabaseCleaner.clean
-    session[:user_id] = user.id 
+    sign_in(user)
   end
   
   describe "GET 'new'" do

@@ -1,13 +1,10 @@
 require 'spec_helper'
 
 describe BookmarksController do
-  let(:user)  { create(:bookis) }
+  let(:user)  { create(:bookis, visible: true) }
   let(:shane) { create(:shane) }
   
-  before { 
-    user.stub(:visible) { true }
-    session[:user_id] = user.id 
-  }
+  before { sign_in(user) }
   
   describe "POST 'create'" do
     let(:request) { post :create, username: shane.username }

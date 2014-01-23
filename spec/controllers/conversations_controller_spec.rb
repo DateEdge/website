@@ -4,7 +4,7 @@ describe ConversationsController do
   let(:shane)  { User.create(username: "Shane",  name: "SB", email: "test@example.com", birthday: 25.years.ago, visible: true, agreed_to_terms_at: Time.now) }
   let(:user) { User.create(username: "Bookis", name: "BS", email: "bs@example.com",   birthday: 25.years.ago, visible: true, agreed_to_terms_at: Time.now) }
   let!(:conversation) { user.conversations.create(user_id: user.id, recipient_id: shane.id) }
-  before { session[:user_id] = user.id }
+  before { sign_in(user) }
   
   describe "GET 'index'" do
     it "should be successful" do

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe WelcomeController do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, visible: true) }
   
   describe "GET 'index'" do
     it "should be successful" do
@@ -10,9 +10,8 @@ describe WelcomeController do
     end
     
     describe "logged in" do
-      before { session[:user_id] = user.id }
+      before { controller.stub(:current_user) { user } }
       it "calls viewable users on current user" do
-        controller.stub(:current_user) { user }
         user.should_receive(:viewable_users).once.and_return(User.all)
         get :index
       end
@@ -32,16 +31,16 @@ describe WelcomeController do
         end
 
         it "does not show shane if bookis is logged in" do
-          session[:user_id] = bookis.id
+          sign_in(bookis)
           create(:block, blocker_id: user.id, blocked_id: bookis.id)
           get :index
           expect(assigns(:users)).to_not include user
         end
       
         it "includes user by default" do
-          session[:user_id] = bookis.id
           get :index
-          expect(assigns(:users)).to include user
+          expect(assigns(:users)).to_not include user
+          expect(assigns(:users)).to include bookis
         end
       end
     end

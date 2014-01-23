@@ -4,7 +4,7 @@ describe UsersController do
   let!(:shane) { create(:shane) }
   describe "GET 'index'" do
     let!(:bookis) { create(:bookis, visible: true) }
-    before { session[:user_id] = shane.id }
+    before { sign_in(shane) }
     
     it "redirects to root" do
       get :index
@@ -29,7 +29,7 @@ describe UsersController do
   describe "GET 'edit'" do
     before { 
       shane.stub(:visible) { true }
-      session[:user_id] = shane.id 
+      sign_in shane
     }
     it "should be successful" do
       get 'edit'
@@ -74,7 +74,7 @@ describe UsersController do
   describe "PATCH 'update'" do
     before { 
       shane.stub(:visible) { true }
-      session[:user_id] = shane.id 
+      sign_in(shane)
     }
     
     it "updates name" do

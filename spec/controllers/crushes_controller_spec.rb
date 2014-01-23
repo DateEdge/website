@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CrushesController do
   let!(:bookis) { create(:bookis) }
   let!(:shane)  { create(:shane)  }
-  before { session[:user_id] = bookis.id }
+  before { sign_in(bookis) }
   describe "POST 'create'" do
     it "creates a crush" do
       expect { post :create, username: shane.username }.to change(Crush, :count).by(1)
