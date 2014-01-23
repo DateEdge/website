@@ -241,6 +241,13 @@ describe User do
       create(:block, blocked_id: bookis.id, blocker_id: shane.id)
       expect(bookis.block_with_user?(shane)).to be_true
     end
+    
+    it "with_user for blockee" do
+      create(:block, blocked_id: shane.id, blocker_id: bookis.id)
+      expect(bookis.block_with_user?(shane)).to be_true
+      expect(shane.block_with_user?(bookis)).to be_true
+    end
+    
   end
   
   describe "#search" do

@@ -11,9 +11,7 @@ describe BookmarksController do
   
   describe "POST 'create'" do
     let(:request) { post :create, username: shane.username }
-    before do
-      Bookmark.any_instance.stub_chain(:bookmarkee, :username) { shane.username }
-    end
+
     it "redirects" do
       request
       expect(response).to redirect_to person_path(shane.username)

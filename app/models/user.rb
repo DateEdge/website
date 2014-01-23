@@ -236,7 +236,7 @@ class User < ActiveRecord::Base
   end
 
   def block_with_user?(user)
-    block_from_user?(user) || block_to_user?(user)
+    Block.where("(blocker_id = :user_id AND blocked_id = :other_user_id) OR (blocker_id = :other_user_id AND blocked_id = :user_id)", user_id: self.id, other_user_id: user.id ).any?
   end
 
   def block_from_user?(user)

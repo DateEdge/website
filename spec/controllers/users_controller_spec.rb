@@ -11,33 +11,6 @@ describe UsersController do
       expect(response).to be_successful
     end
     
-    context "#search" do
-      it "by username field" do
-        User.should_receive(:search).with("username" => "veganstraightedge").once.and_return User.visible
-        get :index, search: "username/veganstraightedge"
-      end
-      it "shows everyone" do
-        get :index
-        expect(assigns(:users)).to include bookis
-      end
-    
-      it "doesn't show blocked people" do
-        shane.blocks << Block.create(blocked_id: bookis.id)
-        get :index
-        expect(assigns(:users)).to_not include bookis
-      end
-    
-      it "shows everyone" do
-        get :index, search: "bookis"
-        expect(assigns(:users)).to include bookis
-      end
-  
-      it "doesn't show blocked people" do
-        shane.blocks << Block.create(blocked_id: bookis.id)
-        get :index, search: "bookis"
-        expect(assigns(:users)).to_not include bookis
-      end
-    end
   end
   
   describe "GET 'show'" do

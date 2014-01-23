@@ -56,7 +56,8 @@ describe MessagesController do
     end
     
     it "is not success if age inappropriate" do
-      user.update(birthday: 17.years.ago)
+      user.update(birthday: 21.years.ago)
+      user2.update(birthday: 10.years.ago)
       post 'create', username: user2.username, message: {body: "Body"}
       expect(response).to redirect_to conversations_path
       expect(flash[:notice]).to include 'You can\'t send a message to that user'
@@ -64,13 +65,7 @@ describe MessagesController do
     
     describe "blocked" do
       it "should redirect back to the convo" do
-        create(:block, blocker_id: user.id, blocked_id: user2.id)
-        post 'create', username: user2.username, message: {body: "Body"}
-        expect(response).to redirect_to conversations_path
-        expect(flash[:notice]).to include "@#{user2.username} is not available to message"
-      end
-      it "should redirect back to the convo regardless of who did the blocking" do
-        create(:block, blocker_id: user2.id, blocked_id: user.id)
+        User.any_instance.stub(:block_with_user?) { true }
         post 'create', username: user2.username, message: {body: "Body"}
         expect(response).to redirect_to conversations_path
         expect(flash[:notice]).to include "@#{user2.username} is not available to message"
