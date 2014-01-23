@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by(auth_token: cookies.signed[:auth_token]) if cookies[:auth_token]
+    @current_user ||= User.find_by(auth_token: cookies.signed[:auth_token]) unless cookies[:auth_token].blank?
   end
 
   def unread_count
