@@ -29,8 +29,8 @@ gem "fog",                "~> 1.12.1"
 gem "carrierwave"
 
 # auth
-gem "omniauth-twitter",   "~> 0.0.16"
-gem "omniauth-facebook",  "~> 1.4.1"
+gem "omniauth-twitter",   "~> 1.0.1"
+gem "omniauth-facebook",  "~> 1.6.0"
 
 
 group :development do
