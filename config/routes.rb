@@ -18,6 +18,7 @@ Dxe::Application.routes.draw do
   # Static-y pages
   root to: "welcome#index"
   get "/terms",                   to: "about#terms",      as: :terms
+  get "/privacy-policy",          to: "about#privacy",    as: :privacy
   get "/about",                   to: "about#us",         as: :about
   get "/goodbye",                 to: "about#goodbye",    as: :goodbye
   get "/page/:page",              to: "welcome#index"

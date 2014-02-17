@@ -46,6 +46,7 @@ group :test, :development do
   gem "factory_girl_rails"
   gem "capybara"
   gem "poltergeist"
+  gem "terminal-notifier-guard"
 end
 
 group :test do
