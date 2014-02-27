@@ -39,15 +39,16 @@
     <% end %>
 
 
-    <ul class="nav nav-pills pull-left">
-      <li><%= link_to "About Date Edge", about_path %></li>
-      <li><%= link_to "Terms",           terms_path %></li>
-      <li><%= link_to "Privacy Policy",  privacy_path %></li>
+    <ul class="nav nav-pills pull-left row">
+      <li class="col-xs-12"><%= link_to "About Date Edge", about_path %></li>
+      <li class="col-xs-12"><%= link_to "Blog",            "http://blog.dateedge.com", rel: "external" %></li>
+      <li class="col-xs-12"><%= link_to "Terms",           terms_path %></li>
+      <li class="col-xs-12"><%= link_to "Privacy Policy",  privacy_path %></li>
     </ul>
 
     <ul class="nav nav-pills pull-right">
       <% if logged_in? %>
-        <li><%= link_to_unless_current "Sign Out", signout_path %></li>
+        <li class="col-xs-12"><%= link_to_unless_current "Sign Out", signout_path %></li>
       <% end %>
     </ul>
   </footer>
