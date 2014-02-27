@@ -1,4 +1,4 @@
-<h1>Edit <%= @user.username %></h1>
+<h1>Edit <%= link_to @user.username, @user %></h1>
 <%= form_for [:admin, @user], url: admin_update_user_path(@user) do |f| -%>
   <div class='form-group'>
     <label for='user_admin' class='checkbox'>
