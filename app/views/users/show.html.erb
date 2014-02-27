@@ -64,7 +64,7 @@
 
             <% if mine? %>
               <div class="actions">
-                <%= link_to "<i class='fa fa-edit'></i>&nbsp;&nbsp;Edit Details".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
+                <%= link_to "<i class='fa fa-edit'></i>&nbsp;&nbsp;Edit Photo".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
 
                 <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
                   <%= f.hidden_field :avatar, value: true %>
