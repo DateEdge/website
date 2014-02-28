@@ -35,7 +35,7 @@ Profiles also have two lists of three properties.
 ## Requirements
 
 - [Ruby,  ~> 1.9.3](http://www.ruby-lang.org/)
-- [Rails, ~> 4.0.2](https://github.com/rails/rails/)
+- [Rails, ~> 4.0.3](https://github.com/rails/rails/)
 
 ## Installation
 
