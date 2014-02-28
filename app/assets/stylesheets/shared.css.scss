@@ -90,15 +90,22 @@ nav[role=navigation] {
   float: right;
   display: inline-block;
   margin-top:  10px;
-  
+
 }
 
-nav[role=navigation] input {
+[role=search] {
+  // display: inline-block;
+  float: left;
+  margin-top: 5px;
+  // outline: 1px solid red;
+}
+
+[role=search] input {
   background-color: #222;
   color: gray;
   border-color: gray;
   display: inline-block;
-  width: 70%;
+
   &:focus {
     color: #eee;
     background-color: #333;
