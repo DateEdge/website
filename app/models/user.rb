@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
     if ASSOCIATED_MAPPING.has_key?(field)
       { associated_against: {field => ASSOCIATED_MAPPING[field]}, query: query.values.first.gsub("/", " or ") }
     else
-      field = :username if DISALLOWED_COLUMNS.include? field
+      field = :username unless %w(genders diets labels).include? field.to_s
       { against: field, query: query.values.first }
     end
   }
