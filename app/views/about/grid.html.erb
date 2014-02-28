@@ -1,0 +1,16 @@
+<style>
+img {
+  width:  20px;
+  height: 20px;
+}
+</style>
+
+<%
+images = ""
+@users.all.each do |user|
+  image = image_tag(user.avatar)
+  images << image unless image.match(/placeholder/)
+end
+%>
+
+<%= images.html_safe %>
