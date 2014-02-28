@@ -73,6 +73,20 @@ class UsersController < ApplicationController
 
   private
   
+  def search_term
+    return unless params[:search]
+    search = params[:search].split("/", 2)
+    @search, @query, @column = if search.count.even?
+      [Hash[*search], search.last, search.first]
+    else
+      [search.first, search.first, nil]
+    end
+    if User::DISALLOWED_COLUMNS.include? @column.try(:to_sym)
+      @search, @column = [@query, nil]
+      params[:search] = @search
+    end
+  end
+
   def user_params
     params.require(:user).permit(
       :name,

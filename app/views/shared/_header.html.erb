@@ -1,15 +1,23 @@
 <header role="banner">
-
   <div class="container">
-    <h1><%= link_to_unless_current "Date Edge", root_path, rel: "home" %></h1>
+
+    <% if logged_in? %>
+      <h1>
+        <%= link_to root_path, rel: "home" do %>
+          <span class="sr-only">Home</span>
+          <i class='fa fa-lg fa-home'></i>
+        <% end %>
+      </h1>
+    <% else %>
+      <h1><%= link_to "Date Edge", root_path, rel: "home" %></h1>
+    <% end %>
+
     <nav role="navigation">
       <%= link_to "<i class='fa fa-lg fa-users'></i>".html_safe, people_path %>
     </nav>
 
-    
     <nav role="navigation">
       <% if logged_in? %>
-      
         <%= link_to conversations_path do %>
           <i class='fa fa-lg fa-envelope'></i>
           <% if unread_count %><span class="label label-danger"><%= unread_count %></span><% end %>
@@ -17,14 +25,20 @@
 
         <%= link_to "<i class='fa fa-lg fa-gear'></i>".html_safe, settings_path %>
         <%= link_to "<i class='fa fa-lg fa-user'></i>".html_safe, person_path(current_user.username) %>
-
       <% else %>
-
         <%= link_to "<i class='fa fa-lg fa-twitter'></i>".html_safe,  "/auth/twitter",  class: "btn btn-sm btn-info"    %>
         <%= link_to "<i class='fa fa-lg fa-facebook'></i>".html_safe, "/auth/facebook", class: "btn btn-sm btn-primary" %>
-
       <% end %>
     </nav>
-  </div>
 
+    <% if logged_in? %>
+      <%= form_tag "/people", method: :get, class: "form-inline col-xs-12 col-sm-3", role: "search" do %>
+        <div class="form-group">
+          <%= label_tag :search, "Search", class: "sr-only" %>
+          <%= search_field_tag :search, params[:search], class: "form-control input-sm input-inverse", placeholder: "People Search" %>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
 </header>
