@@ -346,10 +346,10 @@ class User < ActiveRecord::Base
   end
 
   def self.attribute(name)
-      superclass.send :define_method, name do
-        self
-      end
+    superclass.send :define_method, name do
+      self
     end
+  end
 
   %w(admin featured birthday_public real_name_public email_public).each do |method_name|
     define_method("#{method_name}?") do
