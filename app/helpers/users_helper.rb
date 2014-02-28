@@ -1,7 +1,11 @@
 module UsersHelper
 
-  def show_social_heading?
-    ! social_sites.map{ |site, url| @user.send("#{site.downcase.gsub(/ /, "")}_username") }.join.blank?
+  def show_section?(type)
+    if type == :social
+      ! social_sites.map{ |site, url| @user.send("#{site.downcase.gsub(/ /, "")}_username") }.join.blank?
+    elsif type == :contact
+      (@user.email? && @user.email_public?) # || @user.website?
+    end
   end
 
   def labels_list(user, type)

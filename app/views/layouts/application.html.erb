@@ -3,7 +3,7 @@
 <html dir="ltr" lang="en" id="<%= @slug %>" class="no-js">
 <%= render partial: "/shared/head" %>
 
-<body>
+<body <% if @slug == "person" %>class="h-card vcard"<% end %>>
 
   <% if welcome? %>
     <%= render partial: "/shared/welcome_header" %>
