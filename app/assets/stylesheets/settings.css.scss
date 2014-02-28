@@ -17,6 +17,11 @@
     text-align: left;
   }
 
+  .actions {
+    margin-top:    2em;
+    margin-bottom: 2em;
+  }
+
   /* photo settings... */
   section[role=main] h1 {
     font-weight: bold;
@@ -26,6 +31,10 @@
 
   #preview {
     margin-top: .5em;
+  }
+
+  #controls {
+    margin: 1em 0;
   }
 
   #preview img {
