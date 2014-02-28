@@ -59,6 +59,7 @@ Dxe::Application.routes.draw do
   get "/diets",                     to: "searches#index",  as: :diets            , column: "diets"
   get "/genders",                   to: "searches#index",  as: :genders          , column: "genders"
   get "/straightedgeness",          to: "searches#index",  as: :straightedgeness , column: "straightedgeness"
+  get "/straightedgeness",          to: "searches#index",  as: :label            , column: "straightedgeness"
   get "/search/*search/page/:page", to: "searches#show"
   get "/search/*search",            to: "searches#show",   as: :search
   
