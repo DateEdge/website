@@ -8,7 +8,7 @@ class Photo < ActiveRecord::Base
   private
   
   def clean_url
-    self.remote_image_url.gsub!("+", "%20")
+    self.remote_image_url.gsub!("+", "%20") if self.remote_image_url
   end
   
   def check_avatar

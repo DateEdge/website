@@ -62,7 +62,7 @@ Dxe::Application.routes.draw do
   get "/straightedgeness",          to: "searches#index",  as: :label            , column: "straightedgeness"
   get "/search/*search/page/:page", to: "searches#show"
   get "/search/*search",            to: "searches#show",   as: :search
-  
+
   # Last ditch effort to catch mistyped @username paths
   get "/:username", to: redirect { |params, request| "/@#{params[:username]}"}
 
