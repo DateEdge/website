@@ -25,7 +25,6 @@ module UserRule
   
   ASSOCIATED_MAPPING = {
     diet:    :name,
-    diet:    :name,
     label:   :name,
     state:   [:name, :abbreviation],
     country: [:name, :abbreviation]
