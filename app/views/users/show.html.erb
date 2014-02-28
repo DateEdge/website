@@ -25,10 +25,10 @@
     a
   <% else %>
     <%= @user.desired_diets.map(&:name).join.indefinite_article %>
-    <%= desired_diets(@user) %>
+    <%= labels_list(@user, :diet) %>
   <% end %>
 
-  <%= desired_labels(@user) %>
+  <%= labels_list(@user, :label) %>
 
   <b><%= link_to @user.you_gender, search_path(search: [:genders, @user.you_gender]) %></b>.
 </p>
