@@ -37,6 +37,11 @@ describe UsersController do
         get :index, search: "bookis"
         expect(assigns(:users)).to_not include bookis
       end
+      
+      it "redirects if searching on a bad field" do
+        get :index, search: "id/1"
+        expect(assigns(:search)).to eq "1"
+      end
     end
   end
   

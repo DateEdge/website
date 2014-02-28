@@ -83,6 +83,10 @@ class UsersController < ApplicationController
     else
       [search.first, search.first, nil]
     end
+    if User::DISALLOWED_COLUMNS.include? @column.try(:to_sym)
+      @search, @column = [@query, nil]
+      params[:search] = @search
+    end
   end
 
   def user_params
