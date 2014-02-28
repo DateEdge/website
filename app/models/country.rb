@@ -7,7 +7,7 @@ class Country < ActiveRecord::Base
         Country.find_by(name: "United States"),
         Country.find_by(name: "Canada")
       ]
-      countries << Country.order(:name).all
+      countries << Country.order(:name)
 
       countries.flatten.compact.map{ |c| [c.name.capitalize, c.id] }
     end

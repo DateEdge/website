@@ -25,7 +25,7 @@ gem "kgio"
 gem "pg_search"
 
 # image uploads
-gem "rmagick",            "~> 2.13.2"
+gem "rmagick",            "~> 2.13.2", require: false
 gem "fog",                "~> 1.12.1"
 gem "carrierwave"
 
