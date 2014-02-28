@@ -31,7 +31,7 @@
       <% social_sites.each do |site, url| %>
         <% unless @user.send("#{site.downcase.gsub(/ /, "")}_username").blank? %>
           <tr>
-            <th><%= site.titleize %></th>
+            <th><%= site %></th>
             <td>
               <% if url == "@@@" %>
                 <%= @user.send("#{site.downcase}_username") %>
