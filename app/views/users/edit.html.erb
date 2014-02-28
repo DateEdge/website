@@ -36,8 +36,8 @@
             <%= f.check_box :real_name_public %>
             Show publicly?
           </label>
-          <hr>
         </div>
+        <hr>
       </div>
 
       <% if @user.username.blank? %>
@@ -51,30 +51,29 @@
         <%= f.label       :email %>
         <%= f.email_field :email, autocapitalize: "off", autocorrect: "off", class: "form-control", required: true %>
 
-
         <div class="checkbox">
           <label>
             <%= f.check_box :email_public %>
             Show publicly?
           </label>
-          <hr>
         </div>
 
+        <%= f.label     :website %>
+        <%= f.url_field :website, autocapitalize: "off", autocorrect: "off", class: "form-control" %>
+        <hr>
       </div>
 
       <div class="form-group">
         <%= f.label :birthday %>
         <%= birthday_select_tag(f) %>
 
-
         <div class="checkbox">
           <label>
             <%= f.check_box :birthday_public %>
             Show publicly?
           </label>
-          <hr>
         </div>
-
+        <hr>
       </div>
 
       <div class="form-group">

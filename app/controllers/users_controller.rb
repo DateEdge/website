@@ -101,6 +101,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :name,
       :email,
+      :website,
       :birthday_public,
       :real_name_public,
       :email_public,

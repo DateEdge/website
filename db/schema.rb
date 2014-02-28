@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228053237) do
+ActiveRecord::Schema.define(version: 20140228171258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+  enable_extension "pg_stat_statements"
   enable_extension "unaccent"
 
   create_table "blocks", force: true do |t|
@@ -144,6 +145,7 @@ ActiveRecord::Schema.define(version: 20140228053237) do
     t.string   "tumblr_username"
     t.string   "twitter_username"
     t.string   "vine_username"
+    t.text     "website"
   end
 
   add_index "users", ["state_id"], name: "index_users_on_state_id", using: :btree

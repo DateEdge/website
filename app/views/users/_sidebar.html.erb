@@ -12,17 +12,14 @@
         </tr>
       <% end %>
 
-      <%# if @user.website_public? %>
-        <!--
+      <% if @user.website? %>
         <tr>
           <th>Website</th>
-          <td><%#= link_to @user.website, @user.website, class: "u-url url" %></td>
+          <td><%= link_to @user.website, @user.website, class: "u-url url" %></td>
         </tr>
-        -->
-      <%# end %>
+      <% end %>
     </table>
   <% end %>
-
 
 
   <% if show_section?(:social) %>
@@ -50,8 +47,5 @@
     </table>
   <% end %>
 
-
   <%#= render "/users/social/this_is_my_jam" %>
-
-
 </aside>
