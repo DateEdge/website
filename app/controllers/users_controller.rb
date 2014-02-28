@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @total = @users.count
     @users = @users.order('created_at desc').paginate(page: params[:page] ||= 1)
   end
-  
+
   def show
     @slug  = "people"
     find_user_by_username
@@ -104,6 +104,18 @@ class UsersController < ApplicationController
       :country_id,
       :bio,
       :diet_id,
+
+      :facebook_username,
+      :instagram_username,
+      :kik_username,
+      :lastfm_username,
+      :snapchat_username,
+      :spotify_username,
+      :thisismyjam_username,
+      :tumblr_username,
+      :twitter_username,
+      :vine_username,
+
       :me_gender,
       :you_gender,
       :label_id,

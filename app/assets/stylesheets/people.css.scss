@@ -3,6 +3,10 @@
 @media (min-width: 481px) { body .hidden-xs { display: inline !important; } }
 /* ...bootstrap override */
 
+main {
+  margin-bottom: 5em;
+}
+
 .person {
   clear: both;
   padding: 1em 0;
@@ -70,8 +74,3 @@
 
 }
 /* #people */
-
-.jam-jamvatar {
-  width:  100%;
-  height: 100%;
-}

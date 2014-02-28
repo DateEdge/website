@@ -357,13 +357,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # TODO put this into settings
-  def twitter_username;     false; end
-  def facebook_username;    false; end
-  def vine_username;        false; end
-  def kik_username;         false; end
-  def thisismyjam_username; false; end
-  def instagram_username;   false; end
 
   private
 

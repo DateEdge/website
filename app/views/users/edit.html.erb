@@ -217,8 +217,6 @@
         </div>
       <% end %>
 
-      <%# TODO wire this up to user settings %>
-      <% if false %>
       <div class="row" id="social-media">
         <div class="col-sm-12">
           <div class="page-header">
@@ -226,53 +224,17 @@
           </div>
         </div>
 
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="twitter_username">Twitter Username</label>
-            <input type="email" class="form-control" id="twitter_username" placeholder="Twitter Username">
+        <% social_sites.map{|k,v| k}.each do |site| %>
+          <div class="col-sm-6">
+              <div class="form-group">
+                <%# TODO wire this up to user settings instead of one column/method per site %>
+                <%= f.label      "#{site.downcase.gsub(/ /, "")}_username".to_sym, "#{site} Username" %>
+                <%= f.text_field "#{site.downcase.gsub(/ /, "")}_username".to_sym, class: "form-control", placeholder: "#{site} Username" %>
+              </div>
           </div>
-
-          <div class="form-group">
-            <label for="instagram_username">Instagram Username</label>
-            <input type="email" class="form-control" id="instagram_username" placeholder="Instagram Username">
-          </div>
-
-          <div class="form-group">
-            <label for="tumblr_username">Tumblr Username</label>
-            <input type="email" class="form-control" id="tumblr_username" placeholder="Tumblr Username">
-          </div>
-
-          <div class="form-group">
-            <label for="kik_username">Kik Username</label>
-            <input type="email" class="form-control" id="kik_username" placeholder="Kik Username">
-          </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="facebook_username">Facebook Username</label>
-            <input type="email" class="form-control" id="facebook_username" placeholder="Facebook Username">
-          </div>
-
-          <div class="form-group">
-            <label for="thisismyjam_username">This Is My Jam Username</label>
-            <input type="email" class="form-control" id="thisismyjam_username" placeholder="This Is My Jam Username">
-          </div>
-
-          <div class="form-group">
-            <label for="vine_username">Vine Username</label>
-            <input type="email" class="form-control" id="vine_username" placeholder="Vine Username">
-          </div>
-
-          <div class="form-group">
-            <label for="snapchat_username">Snapchat Username</label>
-            <input type="email" class="form-control" id="snapchat_username" placeholder="Snapchat Username">
-          </div>
-        </div>
+        <% end %>
 
       </div>
-      <% end %>
-
     </div>
   </div>
 
