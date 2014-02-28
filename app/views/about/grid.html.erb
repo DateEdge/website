@@ -57,7 +57,7 @@ images = ""
 @users.all.each do |user|
   image = image_tag(user.avatar)
   unless image.match(/placeholder/) || bads.include?(image)
-    images << image
+    images << link_to(image, person_path(user.username))
   end
 end
 %>
