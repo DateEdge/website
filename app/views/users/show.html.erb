@@ -14,9 +14,10 @@
   <% end %>
 
   <b><%= link_to @user.me_gender, search_path(search: [:genders, @user.me_gender]) %></b>.
-  
+
 
   <br class="xs-hidden" />
+
 
   I&rsquo;m looking for
 
@@ -24,22 +25,10 @@
     a
   <% else %>
     <%= @user.desired_diets.map(&:name).join.indefinite_article %>
-    <%=
-      # TODO refactor into a helper method
-      @user.desired_diets.map{ |dd|
-        "<b>#{ link_to dd.name.downcase, search_path(search: [:diets,dd.name]) }</b>"
-      }.join("<span style='color:#999'>/</span>").html_safe
-    %>
+    <%= desired_diets(@user) %>
   <% end %>
 
-  <% unless @user.desired_labels.blank? %>
-    <%=
-      # TODO refactor into a helper method
-      @user.desired_labels.map{ |dd|
-        "<b>#{ link_to dd.name.downcase, search_path(search: [:straightedgeness, dd.name]) }</b>"
-      }.join("<span style='color:#999'>/</span>").html_safe
-    %>
-  <% end %>
+  <%= desired_labels(@user) %>
 
   <b><%= link_to @user.you_gender, search_path(search: [:genders, @user.you_gender]) %></b>.
 </p>
