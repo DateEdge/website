@@ -1,4 +1,6 @@
 module UserRule
+  
+  ALLOWED_SEARCH_COLUMNS = %w(me_gender diets labels)
   DISALLOWED_COLUMNS = [
     :id, 
     :me_gender_map, 

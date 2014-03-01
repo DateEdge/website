@@ -30,5 +30,6 @@ class SearchesController < ApplicationController
     else
       [search.first, search.first, nil]
     end
+    @column = nil unless User::ALLOWED_SEARCH_COLUMNS.include? @column
   end
 end
