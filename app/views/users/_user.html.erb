@@ -1,4 +1,4 @@
-<div class="row person media h-card vcard">
+<div class="row person media">
 
   <div class="media col-xs-12">
     <%= link_to_avatar(user, @avatar_size) %>
@@ -13,10 +13,6 @@
             <span class="p-name fn n"><%= link_to user.username, person_path(user.username) %></span><%= render partial: "/users/age", locals: { user: user } %>
           <% end %>
         </h4>
-
-        <% if user.email_public? %>
-          <%= mail_to user.email, user.email, class: "u-email email" %>
-        <% end %>
 
         <p class="p-adr h-adr">
           <%= link_to google_map_url(user) do %>

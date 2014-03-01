@@ -20,6 +20,7 @@ Dxe::Application.routes.draw do
   get "/terms",                   to: "about#terms",      as: :terms
   get "/privacy-policy",          to: "about#privacy",    as: :privacy
   get "/about",                   to: "about#us",         as: :about
+  get "/grid",                    to: "about#grid",       as: :grid
   get "/goodbye",                 to: "about#goodbye",    as: :goodbye
   get "/page/:page",              to: "welcome#index"
 

@@ -27,7 +27,7 @@ main {
   font-weight: bold;
 }
 
-.person .u-email {
+#people .person .u-email {
   display: none;
 }
 
@@ -43,7 +43,7 @@ main {
 }
 /* ...profile actions */
 
-#people {
+#person {
   #photos {
     margin-top: 1em;
   }
