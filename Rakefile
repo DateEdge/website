@@ -39,9 +39,9 @@ namespace :db do
   
   task import: :environment do
     puts "Backing Up Production Database..."
-    `heroku pgbackups:capture --expire -a dxe`
+    `heroku pgbackups:capture --expire -a dateedge`
     puts "Downloading Database Dump..."
-    `curl -o db/dxe-production.dump \`heroku pgbackups:url -a dxe\``
+    `curl -o db/dxe-production.dump \`heroku pgbackups:url -a dateedge\``
     puts "Importing Production Data..."
     `pg_restore --verbose --clean --no-acl --no-owner -h localhost -U $USER -d dxe_development db/dxe-production.dump`
     puts "Deleting Dump File..."
