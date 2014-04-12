@@ -2,7 +2,7 @@ class MandrillIntake
   attr_accessor :data
   
   def initialize(data)
-    @data = data
+    @data = data.with_indifferent_access
   end
   
   def user
@@ -24,7 +24,7 @@ class MandrillIntake
   end
   
   def attachment
-    data["msg"]["attachments"][0]
+    data["msg"]["attachments"].values[0]
   end
   
   def tempfile

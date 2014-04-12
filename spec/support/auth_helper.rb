@@ -130,12 +130,12 @@ def mandrill_callback(user)
       text: "This is the body of the email",
       from_email: user.email,
       subject: "This is a subject",
-      attachments: [{
+      attachments: {"RokyErickson.jpg" => {
         name: "photo.jpg",
         type: "image/jpeg",
         content: File.read("spec/support/small.png"),
         base64: true
-      }],
+      }},
       spam_report: {}
     }
   }
