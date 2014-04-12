@@ -21,6 +21,14 @@ describe MandrillIntake do
     it "concats the subject and body" do
       expect(photo.caption).to eq "This is a subject. This is the body of the email"
     end
+    
+    context "when base64 encoded" do
+      let(:photo) { MandrillIntake.new(mandrill_callback(bookis, base64: true)).photo }
+      
+      it "decodes the content" do
+        expect {photo.save}.to change(Photo, :count).by(1)
+      end
+    end
       
   end
 end

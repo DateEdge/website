@@ -27,11 +27,15 @@ class MandrillIntake
     data["msg"]["attachments"].values[0]
   end
   
+  def content
+    attachment[:base64] ? Base64.decode64(attachment["content"]) : attachment["content"]
+  end
+  
   def tempfile
     if !@tempfile
       @tempfile ||= Tempfile.open(["file", ".png"])
       @tempfile.binmode
-      @tempfile << attachment["content"]
+      @tempfile << content
     end
     @tempfile
   end
