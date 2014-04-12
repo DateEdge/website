@@ -26,8 +26,13 @@ describe "tests user experience", js: true do
       first(:link, "veganstraightedge").click
       page.find('.message').click
       expect(page).to have_content "New Conversation"
+      
+      click_link "Preview"
+      expect(page.html).to include "Markdown"
+      
+      click_link "Write"
       fill_in("Body", with: "# Hello")
-      page.save_screenshot("#{Rails.root}/tmp/spec/screenshot.png")
+      click_link "Preview"
       expect(page.html).to include "<h1>Hello</h1>"
     end
   end
