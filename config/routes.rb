@@ -34,6 +34,7 @@ Dxe::Application.routes.draw do
   resources :conversations,       only:   [:index]
   
   #  Incoming Email
+  get  "/photos/email",           to: "photos#email"
   post "/photos/email",           to: "photos#email"
   
   # People pages
