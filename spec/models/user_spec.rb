@@ -295,14 +295,13 @@ describe User do
     
     it "finds by a field" do
       expect(User.search(username: "Bookis")).to include bookis
-      expect(User.search(city: "bookis")).to_not include bookis
-      expect(User.search(city: "seattle")).to    include bookis
+      expect(User.search("seattle")).to    include bookis
     end
     
-    it "does a field search" do
-      expect(User.field_search(city: "seattle")).to    include bookis
-      expect(User.field_search(username: "Bookis")).to include bookis
-    end
+    # it "does a field search" do
+    #   expect(User.field_search(city: "seattle")).to    include bookis
+    #   expect(User.field_search(username: "Bookis")).to include bookis
+    # end
     
     it "searches by gender" do
       bookis.update(me_gender: "boy")
