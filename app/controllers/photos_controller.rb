@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
   before_action :require_login, except: :email
-
+  skip_before_filter :verify_authenticity_token only: :email
+  
   before_action :set_photo,                     only: [:edit, :update, :destroy]
   before_action :confirm_photo_belongs_to_user, only: [:edit, :update, :destroy]
   
@@ -38,7 +39,6 @@ class PhotosController < ApplicationController
   def email
     data = JSON.parse(params[:mandrill_events])
     return head(:ok) if data.empty?
-    puts data.inspect
     intake = MandrillIntake.new(data[0])
     if intake.photo.save
       render nothing: true, status: 201
