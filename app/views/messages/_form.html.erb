@@ -3,7 +3,7 @@
 <% end %>
 
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#write" data-toggle="tab">Write</a></li>
+  <li class="active"><a href="#message_body" data-toggle="tab">Write</a></li>
   <li><a href="#preview" data-toggle="tab">Preview</a></li>
 </ul>
 
@@ -11,14 +11,13 @@
   
 <%= form_for @message, url: messages_path(@user.username), html: { class: "form" } do |f| %>
   <div class="form-group">
-    <%= f.label     :body, "Body", class: "sr-only" %>
     <div class='message-form tab-content'>
       <div id='preview' class='well lead markdown-preview tab-pane'></div>
+      <%= f.label :body, "Body", class: "sr-only" %>
       <%= f.text_area :body,
                       autocapitalize: "sentences",
                       class:          "form-control tab-pane active",
                       required:       true,
-                      id:             "write",
                       rows:           6,
                       placeholder:    "Say something nice and more than &lsquo;hey...&rsquo;".html_safe %>
     </div>
