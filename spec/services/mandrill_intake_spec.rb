@@ -4,7 +4,7 @@ describe MandrillIntake do
   describe "#from_mandrill" do
     let(:bookis) { create(:bookis) }
 
-    let(:photo) { MandrillIntake.new(mandrill_callback).photo }
+    let(:photo) { MandrillIntake.new(mandrill_callback(bookis)).photo }
     
     it "is a valid photo" do
       expect(photo).to be_valid

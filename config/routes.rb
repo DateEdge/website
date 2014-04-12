@@ -32,7 +32,10 @@ Dxe::Application.routes.draw do
   # People objects
   resources :photos,              except: [:index, :show]
   resources :conversations,       only:   [:index]
-
+  
+  #  Incoming Email
+  post "/photos/email",           to: "photos#email"
+  
   # People pages
   get    "/oops",                  to: redirect("/start")
   patch  "/oops",                  to: 'users#create',  as: :user_create

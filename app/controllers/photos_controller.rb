@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :require_login
+  before_action :require_login, except: :email
 
   before_action :set_photo,                     only: [:edit, :update, :destroy]
   before_action :confirm_photo_belongs_to_user, only: [:edit, :update, :destroy]
@@ -33,6 +33,15 @@ class PhotosController < ApplicationController
   def destroy
    @photo.destroy
    redirect_to person_path(current_user.username)
+  end
+  
+  def email
+    intake = MandrillIntake.new(params[:mandrill_events][0])
+    if intake.photo.save
+      render nothing: true, status: 201
+    else
+      render nothing: true, status: 422
+    end
   end
   
   private

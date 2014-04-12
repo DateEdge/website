@@ -122,13 +122,13 @@ def facebook_auth_response
   }
 end
 
-def mandrill_callback
+def mandrill_callback(user)
   {
     ts: Time.now.to_i,
     event: "inbound",
     msg: {
       text: "This is the body of the email",
-      from_email: bookis.email,
+      from_email: user.email,
       subject: "This is a subject",
       attachments: [{
         name: "photo.jpg",
