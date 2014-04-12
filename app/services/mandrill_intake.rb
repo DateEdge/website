@@ -6,7 +6,7 @@ class MandrillIntake
   end
   
   def user
-    @user ||= User.find_by("LOWER(email) = ?", @data[:msg][:from_email].downcase)
+    @user ||= User.find_by("LOWER(email) = ?", @data['msg']['from_email'].downcase)
   end
   
   def photo
@@ -16,22 +16,22 @@ class MandrillIntake
   def photo_data
     { image:   image, 
       user:    user,
-      caption: "#{data[:msg][:subject]}. #{data[:msg][:text]}" }
+      caption: "#{data['msg']['subject']}. #{data['msg']['text']}" }
   end
   
   def image
-    ActionDispatch::Http::UploadedFile.new(tempfile: tempfile, filename: attachment[:name], type: attachment[:type])
+    ActionDispatch::Http::UploadedFile.new(tempfile: tempfile, filename: attachment['name'], type: attachment['type'])
   end
   
   def attachment
-    data[:msg][:attachments][0]
+    data["msg"]["attachments"][0]
   end
   
   def tempfile
     if !@tempfile
       @tempfile ||= Tempfile.open(["file", ".png"])
       @tempfile.binmode
-      @tempfile << attachment[:content]
+      @tempfile << attachment["content"]
     end
     @tempfile
   end

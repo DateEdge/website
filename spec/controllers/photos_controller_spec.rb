@@ -28,7 +28,7 @@ describe PhotosController do
   
   describe "POST 'email'" do
     let(:bookis) { create(:bookis) }
-    let(:request) { post :email, mandrill_events: [mandrill_callback(bookis)] }
+    let(:request) { post :email, mandrill_events: [mandrill_callback(bookis)].to_json }
     it "is successful" do
       request
       expect(response.status).to eq 201
