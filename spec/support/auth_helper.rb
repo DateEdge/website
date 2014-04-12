@@ -121,3 +121,22 @@ def facebook_auth_response
     }
   }
 end
+
+def mandrill_callback
+  {
+    ts: Time.now.to_i,
+    event: "inbound",
+    msg: {
+      text: "This is the body of the email",
+      from_email: bookis.email,
+      subject: "This is a subject",
+      attachments: [{
+        name: "photo.jpg",
+        type: "image/jpeg",
+        content: File.read("spec/support/small.png"),
+        base64: true
+      }],
+      spam_report: {}
+    }
+  }
+end

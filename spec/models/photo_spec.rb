@@ -12,4 +12,5 @@ describe Photo do
   describe "cleaning url" do
     let(:photo) { Photo.new(remote_image_url: "http://placekitten.com/1/1?blah") }
   end
+
 end
