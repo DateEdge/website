@@ -36,6 +36,7 @@ class PhotosController < ApplicationController
   end
   
   def email
+    return head(:ok) unless params[:mandrill_events]
     intake = MandrillIntake.new(params[:mandrill_events][0])
     if intake.photo.save
       render nothing: true, status: 201
