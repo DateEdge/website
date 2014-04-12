@@ -4,16 +4,10 @@ describe YourLabel do
   require 'spec_helper'
 
   before do
-    DatabaseCleaner.clean
+    @user = create(:shane)
 
-    @user = User.create!(
-      name:     "Shane Becker",
-      username: "veganstraightedge",
-      email:    "veganstraightedge@gmail.com"
-    )
-
-    provider = Provider.create!(name: "twitter", uid: "641013", user_id: @user.id)
-    @label   = Label.create!(name: "straightedge")
+    provider = create(:provider, user: @user)
+    @label   = create(:label)
   end
 
   it "should belong to a user and a label" do
