@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe UsersController do
+  render_views
   let!(:shane) { create(:shane) }
   describe "GET 'index'" do
     let!(:bookis) { create(:bookis, visible: true) }
@@ -41,6 +42,11 @@ describe UsersController do
       it "redirects if searching on a bad field" do
         get :index, search: "id/1"
         expect(assigns(:search)).to eq "1"
+      end
+      
+      it "searches all if no search term" do
+        get :index, search: ""
+        expect(assigns(:users)).to include bookis
       end
     end
   end

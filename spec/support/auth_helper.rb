@@ -121,3 +121,25 @@ def facebook_auth_response
     }
   }
 end
+
+def mandrill_callback(user, options={base64: false})
+  file = File.read("spec/support/small.png")
+  content = options[:base64] ? Base64.encode64(file) : file
+  
+  {
+    ts: Time.now.to_i,
+    event: "inbound",
+    msg: {
+      text: "This is the body of the email",
+      from_email: user.email,
+      subject: "This is a subject",
+      attachments: {"RokyErickson.jpg" => {
+        name: "photo.jpg",
+        type: "image/jpeg",
+        content: content,
+        base64: options[:base64]
+      }},
+      spam_report: {}
+    }
+  }
+end

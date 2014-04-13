@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "1.9.3"
+ruby "2.1.1"
 
 gem "coffee-rails",            "~> 4.0.0"
 gem "email_address_validator", "0.0.3",   git: "git://github.com/bookis/email_address_validator"
@@ -8,7 +8,7 @@ gem "indefinite_article"
 gem "jquery-rails"
 gem "json"
 gem "pg"
-gem "rails",                   "~> 4.0.2"
+gem "rails",                   "~> 4.0.3"
 gem "redcarpet" # Markdown parser
 gem "rollbar"   # Exception notifier
 gem "sass-rails"
@@ -25,7 +25,7 @@ gem "kgio"
 gem "pg_search"
 
 # image uploads
-gem "rmagick",            "~> 2.13.2"
+gem "rmagick",            "~> 2.13.2", require: false
 gem "fog",                "~> 1.12.1"
 gem "carrierwave"
 

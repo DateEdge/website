@@ -4,8 +4,8 @@ class SearchesController < ApplicationController
   
   def index
     @title_text = params[:column].titleize
-    @groups = current_user.viewable_users.group_by_column(params[:column].to_sym)
-    @total = @groups.sum(&:last)
+    @groups     = current_user.viewable_users.group_by_column(params[:column].to_sym)
+    @total      = @groups.sum(&:last)
   end
   
   def show
@@ -30,5 +30,6 @@ class SearchesController < ApplicationController
     else
       [search.first, search.first, nil]
     end
+    @column = nil unless User::ALLOWED_SEARCH_COLUMNS.include? @column
   end
 end

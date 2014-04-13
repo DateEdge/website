@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140114061114) do
+ActiveRecord::Schema.define(version: 20140228171258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+  enable_extension "pg_stat_statements"
   enable_extension "unaccent"
 
   create_table "blocks", force: true do |t|
@@ -122,18 +123,29 @@ ActiveRecord::Schema.define(version: 20140114061114) do
     t.string   "me_gender_map"
     t.string   "you_gender"
     t.string   "you_gender_map"
-    t.boolean  "visible",            default: false
+    t.boolean  "visible",              default: false
     t.text     "bio"
     t.integer  "label_id"
     t.integer  "state_id"
     t.integer  "country_id"
     t.integer  "diet_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.datetime "agreed_to_terms_at"
     t.hstore   "settings"
     t.string   "canonical_username"
     t.string   "auth_token"
+    t.string   "facebook_username"
+    t.string   "instagram_username"
+    t.string   "kik_username"
+    t.string   "lastfm_username"
+    t.string   "snapchat_username"
+    t.string   "spotify_username"
+    t.string   "thisismyjam_username"
+    t.string   "tumblr_username"
+    t.string   "twitter_username"
+    t.string   "vine_username"
+    t.text     "website"
   end
 
   add_index "users", ["state_id"], name: "index_users_on_state_id", using: :btree

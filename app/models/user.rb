@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
     if ASSOCIATED_MAPPING.has_key?(field)
       { associated_against: {field => ASSOCIATED_MAPPING[field]}, query: query.values.first.gsub("/", " or ") }
     else
-      field = :username if DISALLOWED_COLUMNS.include? field
+      field = :username unless ALLOWED_SEARCH_COLUMNS.include? field.to_s
       { against: field, query: query.values.first }
     end
   }
@@ -346,10 +346,10 @@ class User < ActiveRecord::Base
   end
 
   def self.attribute(name)
-      superclass.send :define_method, name do
-        self
-      end
+    superclass.send :define_method, name do
+      self
     end
+  end
 
   %w(admin featured birthday_public real_name_public email_public).each do |method_name|
     define_method("#{method_name}?") do
@@ -357,13 +357,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # TODO put this into settings
-  def twitter_username;     false; end
-  def facebook_username;    false; end
-  def vine_username;        false; end
-  def kik_username;         false; end
-  def thisismyjam_username; false; end
-  def instagram_username;   false; end
 
   private
 

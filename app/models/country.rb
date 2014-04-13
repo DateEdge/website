@@ -4,12 +4,12 @@ class Country < ActiveRecord::Base
   class << self
     def options_for_select
       countries = [
-        Country.where(name: "United States").first,
-        Country.where(name: "Canada").first
+        Country.find_by(name: "United States"),
+        Country.find_by(name: "Canada")
       ]
-      countries << Country.order(:name).all
+      countries << Country.order(:name)
 
-      countries.flatten.map{ |c| [c.name.capitalize, c.id] }
+      countries.flatten.compact.map{ |c| [c.name.capitalize, c.id] }
     end
   end
 end
