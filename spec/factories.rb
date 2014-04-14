@@ -8,6 +8,11 @@ FactoryGirl.define do
     end
   end
   
+  factory :photo do
+    image Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/support/small.png')))
+    user
+  end
+  
   factory :user do
     name "User T. Duncan"
     sequence :username do |n| "User#{n}" end
