@@ -17,22 +17,21 @@ describe Photo do
   describe "manipulate" do
     context "with a valid manipulation" do
       
-      let(:image) { double("ImageUploader", remove_previously_stored_files_after_update: false) }
+      let(:image) { photo.image }
       let(:source) { double(:source) }
       before do
         photo
-        Photo.any_instance.stub(:image) { image }
       end
       
       it "rotates the image 90 degrees" do
         expect(image).to receive(:manipulate!).and_yield(source)
-        expect(source).to receive(:rotate).with(90)
+        expect(source).to receive(:rotate!).with(90)
         photo.update(manipulate: {rotate: 90})
       end
       
       it "rotates it with 180" do
         expect(image).to receive(:manipulate!).and_yield(source)
-        expect(source).to receive(:rotate).with(180)
+        expect(source).to receive(:rotate!).with(180)
         photo.update(manipulate: {rotate: 180})
       end
       

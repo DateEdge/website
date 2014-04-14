@@ -6,22 +6,17 @@ class Photo < ActiveRecord::Base
   before_create :clean_url
   before_save :check_avatar
   before_save :process_manipulation, if: :manipulate
+  after_save  :recreate_versions!, if: :manipulate
 
   private
   
+  def recreate_versions!
+    self.image.recreate_versions!
+  end
+  
   def process_manipulation
     return unless self.manipulate.respond_to? :has_key?
-    self.image.manipulate! do |source|
-      if self.manipulate.has_key? :rotate
-        source.rotate(self.manipulate[:rotate].to_i)
-      elsif self.manipulate.has_key? :flip
-        source.flip!
-      elsif self.manipulate.has_key? :flop
-        source.flop!
-      else 
-        source
-      end
-    end
+    self.image.rotate(self.manipulate)
   end
   
   def clean_url

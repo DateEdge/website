@@ -55,6 +55,21 @@ class ImageUploader < CarrierWave::Uploader::Base
      end
   end
   
+  def rotate(options)
+    manipulate! do |img|
+      if options.has_key? :rotate
+        img = img.rotate(options[:rotate].to_i)
+      end
+      if options.has_key? :flip
+        img.flip!
+      end
+      if options.has_key? :flop
+        img.flop!
+      end
+      img
+    end
+  end
+  
   def fix_exif_rotation
     manipulate! do |img|
       img.auto_orient!

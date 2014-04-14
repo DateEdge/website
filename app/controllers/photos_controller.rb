@@ -60,7 +60,7 @@ class PhotosController < ApplicationController
   end
   
   def photos_params
-    params.require(:photo).permit(:remote_image_url, :caption, :image, :avatar)
+    params.require(:photo).permit(:remote_image_url, :caption, :image, :avatar, manipulate: [:rotate, :flip, :flop])
   end
 
 end
