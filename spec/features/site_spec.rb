@@ -41,6 +41,12 @@ describe "tests user experience", js: true do
       click_link("Rotate 90°")
       click_link("Rotate 90°")
       expect(page.evaluate_script('$("form").serialize();')).to include "manipulate%5D%5Brotate%5D=180"
+      click_link("Flip Vertical")
+      expect(page.evaluate_script('$("form").serialize();')).to include "manipulate%5D%5Bflip%5D=true"
+      click_link("Flip Horizontal")
+      expect(page.evaluate_script('$("form").serialize();')).to include "manipulate%5D%5Bflop%5D=true"
+      click_link("Flip Vertical")
+      expect(page.evaluate_script('$("form").serialize();')).to_not include "manipulate%5D%5Bflip"
     end
     
     it "does everything" do
