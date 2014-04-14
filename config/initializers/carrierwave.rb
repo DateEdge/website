@@ -13,7 +13,7 @@ else
       region:                ENV["DXE_AWS_REGION"]
     }
     config.fog_directory  = ENV["FOG_DIRECTORY"]
-    config.asset_host     = ENV["FOG_ASSET_HOST"]
+    config.asset_host     = "https://#{ENV["FOG_DIRECTORY"]}.s3.amazonaws.com"
   end
 end
 
