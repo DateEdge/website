@@ -16,7 +16,7 @@ class MandrillIntake
   def photo_data
     { image:   image, 
       user:    user,
-      caption: "#{data['msg']['subject']}. #{data['msg']['text']}" }
+      caption: data['msg']['subject'] }
   end
   
   def image

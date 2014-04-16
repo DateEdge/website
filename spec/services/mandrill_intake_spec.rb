@@ -19,7 +19,7 @@ describe MandrillIntake do
     end
     
     it "concats the subject and body" do
-      expect(photo.caption).to eq "This is a subject. This is the body of the email"
+      expect(photo.caption).to eq "This is a subject"
     end
     
     context "when base64 encoded" do
