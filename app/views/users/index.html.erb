@@ -4,20 +4,18 @@
       <% if %w(diets genders straightedgeness).include? @column %>
         <%= link_to @column.capitalize, send("#{@column}_path") %> :
       <% else %>
-      Search:
+        Search:
       <% end %>
+
       <%= @query.capitalize %>
-      <small>
-        (<%= @total %>)
-      </small>
+      <small>(<%= @total %>)</small>
     </h1>
   </div>
   <% else %>
     <h1>Everyone</h1>
   <% end %>
 </div>
-  
-  
+
 <% @users.in_groups_of(2) do |group| %>
   <div class="row">
     <% group.each do |user| %>
