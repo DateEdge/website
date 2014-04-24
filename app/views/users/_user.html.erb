@@ -28,7 +28,10 @@
           <% end %>
         </p>
       <% end %>
-      <%= render partial: "/users/profile_actions", locals: { user: user } %>
+
+      <% if user_profile? %>
+        <%= render partial: "/users/profile_actions", locals: { user: user } %>
+      <% end %>
     </div>
   </div>
 
