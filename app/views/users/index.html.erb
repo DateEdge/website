@@ -16,16 +16,6 @@
   <% end %>
 </div>
 
-<% @users.in_groups_of(2) do |group| %>
-  <div class="row">
-    <% group.each do |user| %>
-      <% unless user.nil? %>
-        <div class="col-sm-6">
-          <%= render user %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-<% end %>
+<%= render "/users/listing" %>
 
 <%= render "/users/pagination" %>
