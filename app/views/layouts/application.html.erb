@@ -3,7 +3,7 @@
 <html dir="ltr" lang="en" id="<%= @slug %>" class="no-js">
 <%= render partial: "/shared/head" %>
 
-<body <% if @slug == "person" %>class="h-card vcard"<% end %>>
+<%= opening_body_tag %>
 
   <% if welcome? %>
     <%= render partial: "/shared/welcome_header" %>
@@ -54,5 +54,6 @@
   </footer>
 
   <%= render partial: "/shared/foot" %>
+
 </body>
 </html>

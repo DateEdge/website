@@ -1,5 +1,17 @@
 module ApplicationHelper
 
+  def opening_body_tag
+    if user_profile?
+      "<body class='h-card vcard'>".html_safe
+    else
+      "<body>".html_safe
+    end
+  end
+
+  def user_profile?
+    @slug == "person"
+  end
+
   def cache_key_for_users
     count          = User.count
     max_updated_at = User.maximum(:updated_at).try(:utc).try(:to_s, :number)
