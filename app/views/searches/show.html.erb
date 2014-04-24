@@ -23,6 +23,4 @@
   </div>
 <% end %>
 
-<div class="col-sm-12" id="pagination">
-  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
-</div>
+<%= render "/users/pagination" %>
