@@ -9,13 +9,16 @@ class SearchesController < ApplicationController
   end
 
   def show
-    @title = "People Using Date Edge"
-    @slug  = "people"
+    @title       = "People Using Date Edge"
+    @slug        = "people"
+    @avatar_size = :small
+
     @users = if logged_in?
       current_user.viewable_users.search(@search)
     else
       User.visible
     end
+
     @total = @users.count
     @users = @users.order('created_at desc').paginate(page: params[:page] ||= 1)
 
