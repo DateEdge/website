@@ -2,3 +2,5 @@
 *= require_self
 *= require_tree .
 */
+
+.out { outline: 1px solid red; }
