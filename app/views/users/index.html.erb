@@ -1,5 +1,32 @@
-<%= render "/users/header" %>
+<div class="page-header">
+  <% if @query %>
+    <h1>
+      <% if %w(diets genders straightedgeness).include? @column %>
+        <%= link_to @column.capitalize, send("#{@column}_path") %> :
+      <% else %>
+        Search :
+      <% end %>
 
-<%= render "/users/listing" %>
+      <%= @query.capitalize %>
+      <small>(<%= @total %>)</small>
+    </h1>
+  <% else %>
+    <h1>Everyone</h1>
+  <% end %>
+</div>
 
-<%= render "/users/pagination" %>
+<% @users.in_groups_of(2) do |group| %>
+  <div class="row">
+    <% group.each do |user| %>
+      <% unless user.nil? %>
+        <div class="col-sm-6">
+          <%= render user %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="col-sm-12" id="pagination">
+  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+</div>
