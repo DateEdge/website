@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
   def show
     @title       = "People Using Date Edge"
     @slug        = "people"
-    @avatar_size = :small
+    @avatar_size = :square
 
     @users = if logged_in?
       current_user.viewable_users.search(@search)
