@@ -43,7 +43,6 @@ class PhotosController < ApplicationController
     if intake.photo.save
       render nothing: true, status: 201
     else
-      puts intake.photo.errors.inspect
       render nothing: true, status: 422
     end
   end
