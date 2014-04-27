@@ -15,21 +15,7 @@
   <% end %>
 </div>
 
-<% @users.in_groups_of(4) do |group| %>
-  <div class="row">
-    <% group.each do |user| %>
-      <% unless user.nil? %>
-        <div class="col-sm-3">
-
-          <%# user... %>
-          <%= render user %>
-          <%# ...user %>
-
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-<% end %>
+<%= render "/users/listing", users: @users %>
 
 <div class="col-sm-12" id="pagination">
   <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
