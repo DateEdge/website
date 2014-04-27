@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def index
     @title       = "People Using Date Edge"
     @slug        = "people"
-    @avatar_size = :avatar
+    @avatar_size = :square
 
     @users = if logged_in?
       current_user.viewable_users.search(@search)
