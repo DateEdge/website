@@ -21,6 +21,9 @@ gem "memcachier"
 gem "dalli"
 gem "kgio"
 
+# background
+gem 'resque', "~> 1.22.0", require: "resque/server"
+
 # search
 gem "pg_search"
 
