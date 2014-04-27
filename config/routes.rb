@@ -1,3 +1,10 @@
+class AdminAuthenticator
+  def self.matches?(request)
+    user = User.find_by(auth_token: request.cookie_jar.signed[:auth_token]) unless request.cookie_jar[:auth_token].blank?
+    user && user.admin?
+  end
+end
+
 Dxe::Application.routes.draw do
 
   # No WWW
@@ -9,7 +16,7 @@ Dxe::Application.routes.draw do
 
   # Admin
   namespace :admin do
-    mount Resque::Server, :at => "/resque"
+    mount Resque::Server, :at => "/resque", constraints: AdminAuthenticator
     
     get    "/" => "dashboard#index",                as: :dashboard
     get    "/@:username/edit", to: "users#edit",    as: :edit_user,   username: /[^\/]+/
