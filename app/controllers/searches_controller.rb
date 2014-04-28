@@ -8,23 +8,6 @@ class SearchesController < ApplicationController
     @total      = @groups.sum(&:last)
   end
 
-  def show
-    @title       = "People Using Date Edge"
-    @slug        = "people"
-    @avatar_size = :square
-
-    @users = if logged_in?
-      current_user.viewable_users.search(@search)
-    else
-      User.visible
-    end
-
-    @total = @users.count
-    @users = @users.order('created_at desc').paginate(page: params[:page] ||= 1)
-
-    render "/users/index"
-  end
-
   private
 
   def search_term
