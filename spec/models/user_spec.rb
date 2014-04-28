@@ -54,12 +54,12 @@ describe User do
     user.label.name.should == "straightedge"
   end
 
-  it "should be able to have desired labels" do
+  it "should be able to have desired straightedgeness" do
     %w(straightedge drug-free).each do |label|
-      user.desired_labels.create!(name: label)
+      user.desired_straightedgeness.create!(name: label)
     end
 
-    user.desired_labels.map(&:id).sort.should eq Label.all.map(&:id).sort
+    user.desired_straightedgeness.map(&:id).sort.should eq Label.all.map(&:id).sort
   end
   
   describe "age group" do
@@ -79,7 +79,7 @@ describe User do
       @crunk = Label.create(name: 'crunk')
 
       user.providers << Provider.create(name: "twitter", uid: '123')
-      user.desired_labels << sxe
+      user.desired_straightedgeness << sxe
 
       @merging_user = User.create(username: "Becker",
                                   bio:      "This should merge into the old user",
@@ -87,13 +87,13 @@ describe User do
                                   email:    "test@example.com",
                                   birthday: 15.years.ago)
       @merging_user.providers << Provider.create(name: "fb", uid: '456')
-      @merging_user.desired_labels << [sxe, @crunk]
+      @merging_user.desired_straightedgeness << [sxe, @crunk]
 
       user.merge! @merging_user
     end
 
     it "Should add crunk to the og user" do
-      user.desired_labels.should include @crunk
+      user.desired_straightedgeness.should include @crunk
     end
   end
   
