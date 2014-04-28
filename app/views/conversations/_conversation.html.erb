@@ -23,7 +23,7 @@
       <p>
         <%= link_to conversation_path(user.username) do %>
         <span class="p-name"></span>
-        <span class="e-content"><%= conversation.messages.last.body %></span>
+        <span class="e-content"><%= user_inputed_text conversation.messages.last.body %></span>
         <% end %>
       </p>
 
