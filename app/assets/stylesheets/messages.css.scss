@@ -68,22 +68,24 @@
       margin-bottom: 1em;
     }
 
-    .message,
-    .messages {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
+    .e-content {
+      .message,
+      .messages {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
 
-    .message .person {
-      margin-bottom: 1em;
-      overflow: hidden;
-    }
+      .message .person {
+        margin-bottom: 1em;
+        overflow: hidden;
+      }
 
-    .message {
-      margin-bottom:  2em;
-      padding-bottom: 2em;
-      border-bottom: 1px solid #efefef;
+      .message {
+        margin-bottom:  2em;
+        padding-bottom: 2em;
+        border-bottom: 1px solid #efefef;
+      }
     }
   }
   /* ...inbox */

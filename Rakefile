@@ -10,9 +10,9 @@ Dxe::Application.load_tasks
 task recreate_photos: :environment do
   puts "Recreating Photos"
   Photo.all.each do |photo| 
-    puts "Recreating photo #{photo.id}"
+    puts "Queeing photo #{photo.id}"
     begin
-      photo.image.recreate_versions! 
+      Resque.enqueue(ImageProcessor, photo.id)
     rescue NoMethodError => e
       puts "IMAGE DOES NOT EXIST"
     end

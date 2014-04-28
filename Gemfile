@@ -8,7 +8,7 @@ gem "indefinite_article"
 gem "jquery-rails"
 gem "json"
 gem "pg"
-gem "rails",                   "~> 4.0.3"
+gem "rails",                   "~> 4.0.4"
 gem "redcarpet" # Markdown parser
 gem "rollbar"   # Exception notifier
 gem "sass-rails"
@@ -20,6 +20,9 @@ gem "will_paginate-bootstrap"
 gem "memcachier"
 gem "dalli"
 gem "kgio"
+
+# background
+gem 'resque', "~> 1.22.0", require: "resque/server"
 
 # search
 gem "pg_search"

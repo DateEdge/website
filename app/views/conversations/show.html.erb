@@ -11,7 +11,7 @@
     </h1>
   </div>
 
-  <ol class="messages">
+  <ol class="messages list list-unstyled">
     <% @messages.each_with_index do |message, index| %>
       <li class="h-entry message <%= "from-me" if message.sender == current_user %>">
         <%= render message.sender %>

@@ -28,12 +28,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :avatar do
-    # process resize_to_limit: [130, 130]
     process thumbnail: [130, 130]
   end
 
-  version :small do
-    process resize_to_limit: [300, 300]
+  version :square do
+    process thumbnail: [300, 300]
   end
 
   version :medium do
@@ -53,6 +52,21 @@ class ImageUploader < CarrierWave::Uploader::Base
        extension = original_filename.split(".").last
        "photo.#{extension}"
      end
+  end
+  
+  def rotate(options)
+    manipulate! do |img|
+      if options.has_key? :rotate
+        img.rotate!(options[:rotate].to_i)
+      end
+      if options.has_key? :flip
+        img.flip!
+      end
+      if options.has_key? :flop
+        img.flop!
+      end
+      img
+    end
   end
   
   def fix_exif_rotation

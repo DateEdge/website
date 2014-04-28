@@ -1,3 +1,10 @@
+class AdminAuthenticator
+  def self.matches?(request)
+    user = User.find_by(auth_token: request.cookie_jar.signed[:auth_token]) unless request.cookie_jar[:auth_token].blank?
+    user && user.admin?
+  end
+end
+
 Dxe::Application.routes.draw do
 
   # No WWW
@@ -9,6 +16,8 @@ Dxe::Application.routes.draw do
 
   # Admin
   namespace :admin do
+    mount Resque::Server, :at => "/resque", constraints: AdminAuthenticator
+    
     get    "/" => "dashboard#index",                as: :dashboard
     get    "/@:username/edit", to: "users#edit",    as: :edit_user,   username: /[^\/]+/
     patch  "/@:username",      to: "users#update",  as: :update_user, username: /[^\/]+/
@@ -32,7 +41,11 @@ Dxe::Application.routes.draw do
   # People objects
   resources :photos,              except: [:index, :show]
   resources :conversations,       only:   [:index]
-
+  
+  #  Incoming Email
+  get  "/photos/email",           to: "photos#email"
+  post "/photos/email",           to: "photos#email"
+  
   # People pages
   get    "/oops",                  to: redirect("/start")
   patch  "/oops",                  to: 'users#create',  as: :user_create
@@ -61,8 +74,8 @@ Dxe::Application.routes.draw do
   get "/genders",                   to: "searches#index",  as: :genders          , column: "genders"
   get "/straightedgeness",          to: "searches#index",  as: :straightedgeness , column: "straightedgeness"
   get "/straightedgeness",          to: "searches#index",  as: :label            , column: "straightedgeness"
-  get "/search/*search/page/:page", to: "searches#show"
-  get "/search/*search",            to: "searches#show",   as: :search
+  get "/search/*search/page/:page", to: "users#index"
+  get "/search/*search",            to: "users#index",   as: :search
 
   # Last ditch effort to catch mistyped @username paths
   get "/:username", to: redirect { |params, request| "/@#{params[:username]}"}

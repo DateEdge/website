@@ -1,36 +1,21 @@
-<div class="col-sm-12">
-  <div class="page-header">
-    <% if @query %>
-      <h1>
-        <% if %w(diets genders straightedgeness).include? @column %>
-          <%= link_to @column.capitalize, send("#{@column}_path") %> :
-        <% else %>
-        Search:
-        <% end %>
-        <%= @query.capitalize %>
-        <small>
-          (<%= @total %>)
-        </small>
-      </h1>
-    </div>
-    <% else %>
-      <h1>Everyone</h1>
-    <% end %>
-  </div>
-  
-  
-  <% @users.in_groups_of(2) do |group| %>
-    <div class="row">
-      <% group.each do |user| %>
-        <% unless user.nil? %>
-          <div class="col-sm-6">
-            <%= render user %>
-          </div>
-        <% end %>
+<div class="page-header">
+  <% if @query %>
+    <h1>
+      <% if %w(diets genders straightedgeness).include? @column %>
+        <%= link_to @column.capitalize, send("#{@column}_path") %> :
+      <% else %>
+        Search :
       <% end %>
-    </div>
+
+      <%= @query.capitalize %>
+      <small>(<%= @total %>)</small>
+    </h1>
+  <% else %>
+    <h1>Everyone</h1>
   <% end %>
 </div>
+
+<%= render "/users/listing", users: @users %>
 
 <div class="col-sm-12" id="pagination">
   <%= will_paginate @users, renderer: BootstrapPagination::Rails %>

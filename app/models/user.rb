@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
     end
   }
   
-  self.per_page = 30
+  self.per_page = 28
   store_accessor :settings, :admin, :featured, :birthday_public, :real_name_public, :email_public
 
   scope :with_setting, lambda { |key, value| where("settings -> ? = ?", key, value.to_s) }
