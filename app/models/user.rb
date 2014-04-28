@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   has_many :providers, dependent: :destroy
   has_many :photos, -> { order "created_at desc" }, dependent: :destroy
   has_many :your_labels
-  has_many :desired_labels, -> { uniq }, through: :your_labels, source: :label, as: :label, source_type: "Label"
+  has_many :desired_straightedgeness, -> { uniq }, through: :your_labels, source: :label, as: :label, source_type: "Label"
   has_many :desired_diets,  -> { uniq }, through: :your_labels, source: :label, as: :label, source_type: "Diet"
 
   accepts_nested_attributes_for :your_labels, allow_destroy: true, reject_if: proc { |obj| obj['label_id'] == "0" }
