@@ -51,16 +51,21 @@
               <%= simple_format photo.caption %>
             </div>
 
-            <% if mine? %>
-              <div class="actions">
+            <div class="actions">
+              <% if mine? %>
                 <%= link_to "<i class='fa fa-edit'></i>&nbsp;&nbsp;Edit Photo".html_safe, edit_photo_path(photo), class: "btn btn-default" %>
 
                 <%= form_for photo, html: { class: "form-inline", role: "form" } do |f| %>
                   <%= f.hidden_field :avatar, value: true %>
                   <%= f.button "<i class='fa fa-circle-o'></i>&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
                 <% end %>
-              </div> <!-- .actions -->
-            <% end %>
+              <% else %><%# not mine and logged in %>
+                <% if false # https://github.com/DateEdge/website/issues/76 %>
+                  <%= link_to "Flag this photo as inappropriate", "#", class: "btn btn-warning" %>
+                <% end %>
+              <% end %>
+            </div> <!-- .actions -->
+
           </li>
         <% end %>
       </ul>
@@ -70,3 +75,23 @@
   <%= render "sidebar" %>
 
 </div> <!-- .row -->
+
+<div id="flags">
+  <% if @user && not_mine? %>
+    <div class="row">
+      <% if false # https://github.com/DateEdge/website/issues/76 %>
+      <div class="col-sm-6">
+        <%= link_to "Flag @#{@user.username} as inappropriate", "#", class: "btn btn-warning btn-block" %>
+      </div>
+      <% end %>
+
+      <div class="col-sm-6">
+        <% if blocked? %>
+          <%= link_to "Unblock @#{@user.username}", action_unblock_path(@user.username), method: :delete, class: "btn btn-danger btn-block col-sm-6" %>
+        <% else %>
+          <%= link_to "Block @#{@user.username}", action_block_path(@user.username),     method: :post, class: "btn btn-danger btn-block col-sm-6" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

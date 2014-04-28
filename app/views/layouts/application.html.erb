@@ -30,15 +30,6 @@
   </section>
 
   <footer role="contentinfo" class="container">
-    <% if @user && not_mine? %>
-      <% if blocked? %>
-        <%= link_to "Unblock @#{@user.username}", action_unblock_path(@user.username), method: :delete, class: "btn btn-danger btn-block" %>
-      <% else %>
-        <%= link_to "Block @#{@user.username}", action_block_path(@user.username), method: :post, class: "btn btn-danger btn-block" %>
-      <% end %>
-    <% end %>
-
-
     <ul class="nav nav-pills pull-left row">
       <li class="col-xs-12"><%= link_to "About Date Edge", about_path %></li>
       <li class="col-xs-12"><%= link_to "Blog",            "http://blog.dateedge.com", rel: "external" %></li>
