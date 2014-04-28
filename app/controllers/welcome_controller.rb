@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
       @crushers         = current_user.crushers
       @crushes          = current_user.crushes
       @bookmarked_users = current_user.bookmarked_users
-      
+      @avatar_size      = :square
       @slug     = "people"
       return render("/welcome/dashboard")
     end
