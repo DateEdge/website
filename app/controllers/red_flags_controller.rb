@@ -1,0 +1,2 @@
+class RedFlagsController < ApplicationController
+end
