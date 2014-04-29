@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228171258) do
+ActiveRecord::Schema.define(version: 20140428230607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,8 +146,11 @@ ActiveRecord::Schema.define(version: 20140228171258) do
     t.string   "twitter_username"
     t.string   "vine_username"
     t.text     "website"
+    t.integer  "photos_count",         default: 0
   end
 
+  add_index "users", ["created_at"], name: "index_users_on_created_at", using: :btree
+  add_index "users", ["photos_count"], name: "index_users_on_photos_count", using: :btree
   add_index "users", ["state_id"], name: "index_users_on_state_id", using: :btree
 
   create_table "your_labels", force: true do |t|

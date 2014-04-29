@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     end
 
     @total = @users.count
-    @users = @users.order('created_at desc').paginate(page: params[:page] ||= 1)
+    @users = @users.listing_order.paginate(page: params[:page] ||= 1)
   end
 
   def show

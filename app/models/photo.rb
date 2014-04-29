@@ -1,6 +1,6 @@
 class Photo < ActiveRecord::Base
   attr_accessor :manipulate
-  belongs_to :user
+  belongs_to :user, counter_cache: true
   mount_uploader :image, ImageUploader
   validates :image, presence: true
   before_create :clean_url

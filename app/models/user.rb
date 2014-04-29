@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
 
   scope :with_setting, lambda { |key, value| where("settings -> ? = ?", key, value.to_s) }
   scope :featured, -> { with_setting(:featured, true) }
-
+  scope :listing_order, -> { order('photos_count <> 0 desc, created_at desc') }
   belongs_to :country
   belongs_to :diet
   belongs_to :state
