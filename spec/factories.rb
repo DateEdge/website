@@ -1,5 +1,10 @@
 FactoryGirl.define do
   
+  factory :red_flag do
+    user
+    reporter { create(:user) }
+  end
+  
   factory :provider do
     name "default"
     uid "1234"
