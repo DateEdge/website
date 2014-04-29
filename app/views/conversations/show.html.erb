@@ -19,6 +19,8 @@
         <div class="e-content message-body <%= "well lead" if index == (@conversation.messages.length - 1) %>">
           <%= user_inputed_text(message.body).html_safe %>
         </div>
+
+        <time class="dt-published" datetime="<%= message.created_at.xmlschema %>"><%= message.created_at.strftime("%Y-%m-%d %H:%M%p") %></time>
       </li>
     <% end %>
   </ol>

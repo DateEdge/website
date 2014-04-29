@@ -90,6 +90,12 @@
   }
   /* ...inbox */
 
+  .h-entry .dt-published {
+    color: #ccc;
+    margin-bottom: 1em;
+    display: block;
+    font-size: 0.9em;
+  }
 }
 /* #messages */
 

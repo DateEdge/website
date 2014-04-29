@@ -22,8 +22,9 @@
 
       <p>
         <%= link_to conversation_path(user.username) do %>
-        <span class="p-name"></span>
-        <span class="e-content"><%= strip_links user_inputed_text(conversation.messages.last.body) %></span>
+          <span class="p-name"></span>
+          <span class="e-content"><%= strip_links user_inputed_text(conversation.messages.last.body) %></span>
+          <time class="dt-published" datetime="<%= conversation.messages.last.created_at.xmlschema %>"><%= conversation.messages.last.created_at.strftime("%Y-%m-%d %H:%M%p") %></time>
         <% end %>
       </p>
 
