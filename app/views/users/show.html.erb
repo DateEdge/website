@@ -59,7 +59,7 @@
                   <%= f.hidden_field :avatar, value: true %>
                   <%= f.button "<i class='fa fa-circle-o'></i>&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
                 <% end %>
-              <% else %><%# not mine and logged in %>
+              <% elsif logged_in? %><%# not mine and logged in %>
               
                 <% if flagged?(photo) %>
                   <%= link_to "Flagged as Inappropriate", "#", disabled: true, class: "disabled btn btn-warning" %>
