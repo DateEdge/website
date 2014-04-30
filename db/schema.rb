@@ -106,7 +106,8 @@ ActiveRecord::Schema.define(version: 20140429002349) do
   end
 
   create_table "red_flags", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "flaggable_id"
+    t.string   "flaggable_type"
     t.integer  "reporter_id"
     t.datetime "created_at"
     t.datetime "updated_at"

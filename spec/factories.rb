@@ -1,7 +1,8 @@
 FactoryGirl.define do
   
   factory :red_flag do
-    user
+    flaggable_type "User"
+    flaggable { create(:user) }
     reporter { create(:user) }
   end
   

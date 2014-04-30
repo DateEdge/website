@@ -68,6 +68,7 @@ Dxe::Application.routes.draw do
   post   "/@:username/message(.:format)",    to: "messages#create",       as: :messages,            username: /[^\/]+/
   get    "/@:username/conversation",         to: "conversations#show",    as: :conversation,        username: /[^\/]+/
   delete "/@:username/conversation",         to: "conversations#destroy", as: :delete_conversation, username: /[^\/]+/
+  post   "/red-flags/:id",                   to: "red_flags#create",      as: :flag
 
   # filters
   get "/diets",                     to: "searches#index",  as: :diets            , column: "diets"

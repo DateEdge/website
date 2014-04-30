@@ -60,9 +60,16 @@
                   <%= f.button "<i class='fa fa-circle-o'></i>&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
                 <% end %>
               <% else %><%# not mine and logged in %>
-                <% if false # https://github.com/DateEdge/website/issues/76 %>
-                  <%= link_to "Flag this photo as inappropriate", "#", class: "btn btn-warning" %>
+              
+                <% if flagged?(photo) %>
+                  <%= link_to "Flagged as Inappropriate", "#", disabled: true, class: "disabled btn btn-warning" %>
+                <% else %>
+                  <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
+                    <%= f.hidden_field :flaggable_type, value: "Photo" %>
+                    <%= f.submit "Flag this photo as inappropriate", class: "btn btn-warning" %>
+                  <% end %>
                 <% end %>
+                
               <% end %>
             </div> <!-- .actions -->
 
@@ -79,11 +86,16 @@
 <div id="flags">
   <% if @user && not_mine? %>
     <div class="row">
-      <% if false # https://github.com/DateEdge/website/issues/76 %>
       <div class="col-sm-6">
-        <%= link_to "Flag @#{@user.username} as inappropriate", "#", class: "btn btn-warning btn-block" %>
+        <% if flagged?(@user) %>
+          <%= link_to "Flagged as Inappropriate", "#", disabled: true, class: "disabled btn btn-warning btn-block" %>
+        <% else %>
+          <%= form_for RedFlag.new, url: flag_path(@user.id) do |f| %>
+            <%= f.hidden_field :flaggable_type, value: "User" %>
+            <%= f.submit "Flag @#{@user.username} as inappropriate", class: "btn btn-warning btn-block" %>
+          <% end %>
+        <% end %>
       </div>
-      <% end %>
 
       <div class="col-sm-6">
         <% if blocked? %>
