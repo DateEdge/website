@@ -136,7 +136,7 @@ def mandrill_callback(user, options={base64: false})
       attachments: {"RokyErickson.jpg" => {
         name: "photo.jpg",
         type: "image/jpeg",
-        content: content,
+        content: content.force_encoding("ISO-8859-1").encode("UTF-8"),
         base64: options[:base64]
       }},
       spam_report: {}

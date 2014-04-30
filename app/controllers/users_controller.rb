@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       User.visible
     end
 
-    @total = @users.count
+    @total = @users.length
     @users = @users.listing_order.paginate(page: params[:page] ||= 1)
   end
 
