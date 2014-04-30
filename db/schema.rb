@@ -108,10 +108,13 @@ ActiveRecord::Schema.define(version: 20140429002349) do
   create_table "red_flags", force: true do |t|
     t.integer  "flaggable_id"
     t.string   "flaggable_type"
+    t.string   "slug"
     t.integer  "reporter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "red_flags", ["slug"], name: "index_red_flags_on_slug", using: :btree
 
   create_table "states", force: true do |t|
     t.string   "name"

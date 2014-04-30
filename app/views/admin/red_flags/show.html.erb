@@ -1,0 +1,13 @@
+<div class='row'>
+  <div class='col-lg-9'>
+    <%= render @object %>
+  </div>
+  <div class='col-lg-3 well'>
+    <legend><%= pluralize @red_flags.count, "Flag" %> Reported by</legend>
+    <ul>
+      <% @red_flags.map(&:reporter).each do |user| %>
+        <li><%= link_to user.username, user %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

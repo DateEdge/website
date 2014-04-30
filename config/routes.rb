@@ -7,6 +7,7 @@ end
 
 Dxe::Application.routes.draw do
 
+  get "red_flags/index"
   # No WWW
   constraints(subdomain: "www") do
     get '(*any)' => redirect { |params, request|
@@ -22,6 +23,8 @@ Dxe::Application.routes.draw do
     get    "/@:username/edit", to: "users#edit",    as: :edit_user,   username: /[^\/]+/
     patch  "/@:username",      to: "users#update",  as: :update_user, username: /[^\/]+/
     delete "/@:username",      to: "users#destroy", as: :user,        username: /[^\/]+/
+    
+    resources :red_flags, path: "red-flags"
   end
 
   # Static-y pages

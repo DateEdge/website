@@ -1,0 +1,12 @@
+<h1>Red Flags</h1>
+
+<table class='table'>
+  <tbody>
+    <% @red_flags.each do |slug, count| %>
+      <%= content_tag "tr", class: ("danger" if count > 1) do %>
+        <td><%= link_to slug, admin_red_flag_path(slug) %></td>
+        <td><%= count %></td>
+      <% end %>
+    <% end %>
+  </tbody>
+</table

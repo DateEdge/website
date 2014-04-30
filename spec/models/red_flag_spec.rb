@@ -47,4 +47,10 @@ describe RedFlag do
     end
 
   end
+  
+  describe "slug" do
+    it "sets the slug on creation" do
+      expect(red_flag.slug).to eq "user-#{red_flag.flaggable_id}"
+    end
+  end
 end
