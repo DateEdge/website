@@ -6,8 +6,6 @@ class AdminAuthenticator
 end
 
 Dxe::Application.routes.draw do
-
-  get "red_flags/index"
   # No WWW
   constraints(subdomain: "www") do
     get '(*any)' => redirect { |params, request|
@@ -18,17 +16,18 @@ Dxe::Application.routes.draw do
   # Admin
   namespace :admin do
     mount Resque::Server, :at => "/resque", constraints: AdminAuthenticator
-    
+
     get    "/" => "dashboard#index",                as: :dashboard
     get    "/@:username/edit", to: "users#edit",    as: :edit_user,   username: /[^\/]+/
     patch  "/@:username",      to: "users#update",  as: :update_user, username: /[^\/]+/
     delete "/@:username",      to: "users#destroy", as: :user,        username: /[^\/]+/
-    
+
     resources :red_flags, path: "red-flags"
   end
 
   # Static-y pages
   root to: "welcome#index"
+  get "/stats",                   to: "about#stats",      as: :stats
   get "/terms",                   to: "about#terms",      as: :terms
   get "/privacy-policy",          to: "about#privacy",    as: :privacy
   get "/about",                   to: "about#us",         as: :about
@@ -44,11 +43,11 @@ Dxe::Application.routes.draw do
   # People objects
   resources :photos,              except: [:index, :show]
   resources :conversations,       only:   [:index]
-  
+
   #  Incoming Email
   get  "/photos/email",           to: "photos#email"
   post "/photos/email",           to: "photos#email"
-  
+
   # People pages
   get    "/oops",                  to: redirect("/start")
   patch  "/oops",                  to: 'users#create',  as: :user_create
