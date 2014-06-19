@@ -86,7 +86,7 @@ class User < ActiveRecord::Base
   has_many :desired_diets,  -> { uniq }, through: :your_labels, source: :label, as: :label, source_type: "Diet"
 
   has_many :red_flags, as: :flaggable, dependent: :destroy
-  has_many :red_flag_reports, class_name: "RedFlag", foreign_key: :reporter_id
+  has_many :red_flag_reports, class_name: "RedFlag", foreign_key: :reporter_id, dependent: :destroy
 
   accepts_nested_attributes_for :your_labels, allow_destroy: true, reject_if: proc { |obj| obj['label_id'] == "0" }
 
