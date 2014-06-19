@@ -23,7 +23,7 @@ Dxe::Application.routes.draw do
     get    "/@:username/edit", to: "users#edit",    as: :edit_user,   username: /[^\/]+/
     patch  "/@:username",      to: "users#update",  as: :update_user, username: /[^\/]+/
     delete "/@:username",      to: "users#destroy", as: :user,        username: /[^\/]+/
-
+    resources :photos, only: [:show, :delete]
     resources :red_flags, path: "red-flags"
   end
 

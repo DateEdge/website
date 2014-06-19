@@ -12,5 +12,12 @@ describe "admin", js: true do
     page.find("#new_red_flag input[type=submit]").click
     expect(page).to have_selector ".alert"
     expect(page).to have_selector ".delete-flag"
+    visit "/admin"
+    click_link "1"
+    page.find(".red-flag a").click
+    click_button "Delete User"
+    expect(current_path).to eq "/admin"
+    visit person_path(shane)
+    expect(current_path).to eq "/"
   end
 end
