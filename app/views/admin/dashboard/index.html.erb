@@ -4,18 +4,7 @@
 
   <div class='col-lg-6'>
     <div class='well'>
-      <dl class="dl-horizontal">
-        <dt>Users</dt>
-        <dd><%= User.visible.count %> / <%= User.count %></dd>
-        <dt>Conversations Started</dt>
-        <dd><%= Conversation.count %></dd>
-        <dt>Messages Sent</dt>
-        <dd><%= Message.count %></dd>
-        <dt>Crushes Crushed</dt>
-        <dd><%= Crush.count %></dd>
-        <dt>Red Flags</dt>
-        <dd><%= link_to RedFlag.count, admin_red_flags_path %></dd>
-      </dl>
+      <%= link_to "Red Flags &rarr;".html_safe, admin_red_flags_path %>
     </div>
   </div>
 
@@ -23,12 +12,14 @@
     <div class='well'>
       <h1>2014 Goals</h1>
       <ul>
+        <li>New Homepage</li>
         <li>Map</li>
         <li>Social sidebar 2.0</li>
         <li>DxE Deck&trade;</li>
-        <li>Local meetups</li>
         <li>iOS app</li>
+        <li>&nbsp;</li>
         <li>5,000 users</li>
+        <li>Local meetups</li>
       </ul>
     </div>
   </div>
