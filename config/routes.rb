@@ -18,12 +18,12 @@ Dxe::Application.routes.draw do
   # Admin
   namespace :admin do
     mount Resque::Server, :at => "/resque", constraints: AdminAuthenticator
-    
+
     get    "/" => "dashboard#index",                as: :dashboard
     get    "/@:username/edit", to: "users#edit",    as: :edit_user,   username: /[^\/]+/
     patch  "/@:username",      to: "users#update",  as: :update_user, username: /[^\/]+/
     delete "/@:username",      to: "users#destroy", as: :user,        username: /[^\/]+/
-    
+
     resources :red_flags, path: "red-flags"
   end
 
@@ -44,11 +44,11 @@ Dxe::Application.routes.draw do
   # People objects
   resources :photos,              except: [:index, :show]
   resources :conversations,       only:   [:index]
-  
+
   #  Incoming Email
   get  "/photos/email",           to: "photos#email"
   post "/photos/email",           to: "photos#email"
-  
+
   # People pages
   get    "/oops",                  to: redirect("/start")
   patch  "/oops",                  to: 'users#create',  as: :user_create
@@ -72,6 +72,7 @@ Dxe::Application.routes.draw do
   get    "/@:username/conversation",         to: "conversations#show",    as: :conversation,        username: /[^\/]+/
   delete "/@:username/conversation",         to: "conversations#destroy", as: :delete_conversation, username: /[^\/]+/
   post   "/red-flags/:id",                   to: "red_flags#create",      as: :flag
+  delete "/red-flags/:id",                   to: "red_flags#destroy"
 
   # filters
   get "/diets",                     to: "searches#index",  as: :diets            , column: "diets"

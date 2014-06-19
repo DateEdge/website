@@ -60,16 +60,16 @@
                   <%= f.button "<i class='fa fa-circle-o'></i>&nbsp;&nbsp;Use as Avatar".html_safe, class: "btn btn-default" %>
                 <% end %>
               <% elsif logged_in? %><%# not mine and logged in %>
-              
+
                 <% if flagged?(photo) %>
-                  <%= link_to "Flagged as Inappropriate", "#", disabled: true, class: "disabled btn btn-warning" %>
+                  <%= unflag_button photo, class: "btn btn-default" %>
                 <% else %>
                   <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
                     <%= f.hidden_field :flaggable_type, value: "Photo" %>
                     <%= f.submit "Flag this photo as inappropriate", class: "btn btn-warning" %>
                   <% end %>
                 <% end %>
-                
+
               <% end %>
             </div> <!-- .actions -->
 
@@ -88,7 +88,7 @@
     <div class="row">
       <div class="col-sm-6">
         <% if flagged?(@user) %>
-          <%= link_to "Flagged as Inappropriate", "#", disabled: true, class: "disabled btn btn-warning btn-block" %>
+          <%= unflag_button @user, class: "btn btn-block btn-default" %>
         <% else %>
           <%= form_for RedFlag.new, url: flag_path(@user.id) do |f| %>
             <%= f.hidden_field :flaggable_type, value: "User" %>
