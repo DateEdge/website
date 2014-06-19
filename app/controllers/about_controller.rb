@@ -1,6 +1,11 @@
 class AboutController < ApplicationController
   skip_before_filter :restrict_non_visible_user, only: [:terms, :privacy]
 
+  def stats
+    @slug  = "stats"
+    @title = "Stats about Date Edge"
+  end
+
   def terms
     @slug  = "about"
     @title = "Terms &amp; Conditions on Date Edge"
