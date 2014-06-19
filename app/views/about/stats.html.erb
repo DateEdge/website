@@ -26,30 +26,24 @@ h3 {
   <div class="col-sm-4">
     <div class="well">
       <h2><%= number_with_delimiter User.count %></h2>
-      <h3>
-        <span class="btn btn-lg btn-default"><i class="fa fa-lg fa-users"></i></span>
-        People
-      </h3>
+      <h3><span class="btn btn-lg btn-default"><i class="fa fa-lg fa-users"></i></span>
+        People</h3>
     </div>
   </div>
 
   <div class="col-sm-4">
     <div class="well">
       <h2><%= number_with_delimiter Bookmark.count %></h2>
-      <h3>
-        <span class="btn btn-lg btn-warning"><i class="fa fa-lg fa-star"></i></span>
-        Bookmarks
-      </h3>
+      <h3><span class="btn btn-lg btn-warning"><i class="fa fa-lg fa-star"></i></span>
+        Bookmarks</h3>
     </div>
   </div>
 
   <div class="col-sm-4">
     <div class="well">
       <h2><%= number_with_delimiter Crush.count %></h2>
-      <h3>
-        <span class="btn btn-lg btn-danger"><i class="fa fa-lg fa-heart"></i></span>
-        Crushes
-      </h3>
+      <h3><span class="btn btn-lg btn-danger"><i class="fa fa-lg fa-heart"></i></span>
+        Crushes</h3>
     </div>
   </div>
 </div>
@@ -58,35 +52,68 @@ h3 {
   <div class="col-sm-4">
     <div class="well">
       <h2><%= number_with_delimiter Photo.count %></h2>
-      <h3>
-        <span class="btn btn-lg btn-success"><i class="fa fa-lg fa-picture-o"></i></span>
-        Photos
-      </h3>
+      <h3><span class="btn btn-lg btn-success"><i class="fa fa-lg fa-picture-o"></i></span>
+        Photos</h3>
     </div>
   </div>
 
   <div class="col-sm-4">
     <div class="well">
       <h2><%= number_with_delimiter Conversation.count %></h2>
-      <h3>
-        <span class="btn btn-lg btn-info"><i class="fa fa-lg fa-envelope"></i></span>
-        Conversations
-      </h3>
+      <h3><span class="btn btn-lg btn-info"><i class="fa fa-lg fa-envelope"></i></span>
+        Conversations</h3>
     </div>
   </div>
 
   <div class="col-sm-4">
     <div class="well">
       <h2><%= number_with_delimiter Message.count %></h2>
-      <h3>
-        <span class="btn btn-lg btn-info"><i class="fa fa-lg fa-comment"></i></span>
-        Messages
-      </h3>
+      <h3><span class="btn btn-lg btn-info"><i class="fa fa-lg fa-comment"></i></span>
+        Messages</h3>
     </div>
   </div>
 </div>
 
 
+<!--
+<h2><%= number_with_delimiter RedFlag.count %></h2>
+<h3>Red Flags</h3>
+-->
 
-      <h2><%= number_with_delimiter RedFlag.count %></h2>
-      <h3>Red Flags</h3>
+
+<div class="page-header">
+  <h1>
+    People Stats
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="well">
+      <h2><%= number_with_delimiter User.kids.count %></h2>
+      <h3>Adults</h3>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="well">
+      <h2><%= number_with_delimiter User.adults.count %></h2>
+      <h3>Kids</h3>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="well">
+      <h2>
+        <%=
+          number_with_delimiter(
+            User.count -
+            User.adults.count -
+            User.kids.count
+          )
+        %>
+      </h2>
+      <h3>No&nbsp;Birthday</h3>
+    </div>
+  </div>
+</div>
