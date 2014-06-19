@@ -1,0 +1,69 @@
+<style>
+h2,
+h3 {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 4em;
+}
+
+h3 {
+  font-size: 1.5em;
+  font-weight: normal;
+  color: #999;
+}
+</style>
+
+<div class="page-header">
+  <h1>
+    Stats about Date&nbsp;Edge
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="well">
+      <h2><%= number_with_delimiter User.count %></h2>
+      <h3>People</h3>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="well">
+      <h2><%= number_with_delimiter Crush.count %></h2>
+      <h3>Crushes</h3>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="well">
+      <h2><%= number_with_delimiter Bookmark.count %></h2>
+      <h3>Bookmarks</h3>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="well">
+      <h2><%= number_with_delimiter Conversation.count %></h2>
+      <h3>Conversations</h3>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="well">
+      <h2><%= number_with_delimiter Message.count %></h2>
+      <h3>Messages</h3>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="well">
+      <h2><%= number_with_delimiter RedFlag.count %></h2>
+      <h3>Red Flags</h3>
+    </div>
+  </div>
+</div>
