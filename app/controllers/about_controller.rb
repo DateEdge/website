@@ -4,6 +4,35 @@ class AboutController < ApplicationController
   def stats
     @slug  = "stats"
     @title = "Stats about Date Edge"
+
+    # total counts
+    @total_stats = [
+      [
+        [User.count,         "default", "users",     "People"   ],
+        [Bookmark.count,     "warning", "star",      "Bookmarks"],
+        [Crush.count,        "danger",  "heart",     "Crushes"  ]
+      ],
+      [
+        [Photo.count,        "success", "picture-o", "Photos"],
+        [Conversation.count, "info",    "envelope",  "Conversations"],
+        [Message.count,      "info",    "comment",   "Messages"]
+      ]
+    ]
+
+    # today counts
+    @today_stats = [
+      [
+        [User.where(created_at: Date.today).count,         "default", "users",     "People"   ],
+        [Bookmark.where(created_at: Date.today).count,     "warning", "star",      "Bookmarks"],
+        [Crush.where(created_at: Date.today).count,        "danger",  "heart",     "Crushes"  ]
+      ],
+      [
+        [Photo.where(created_at: Date.today).count,        "success", "picture-o", "Photos"],
+        [Conversation.where(created_at: Date.today).count, "info",    "envelope",  "Conversations"],
+        [Message.where(created_at: Date.today).count,      "info",    "comment",   "Messages"]
+      ]
+    ]
+
   end
 
   def terms
@@ -29,7 +58,7 @@ class AboutController < ApplicationController
   def grid
     @slug  = "grid"
     @title = "Everyone's Photo in One Big Grid for Screenshotting"
-    @users = User.all
+    @users = User.count
     render layout: false
   end
 end
