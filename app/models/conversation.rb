@@ -9,10 +9,12 @@ class Conversation < ActiveRecord::Base
 
   scope :with_user,   lambda { |user| where(['conversations.user_id = :id OR conversations.recipient_id = :id', id: user.id]).order("updated_at desc") }
   scope :not_deleted, lambda { |user| where("conversations.hidden_from_user_id IS NULL OR conversations.hidden_from_user_id != :id", id: user.id)}
+  scope :today, -> { where("created_at >= ?", Time.zone.now.beginning_of_day) }
+
   def participants
     [sender, recipient]
   end
-  
+
   def delete_from_user(user)
     if hidden_from_user_id? && hidden_from_user_id != user.id && participants.include?(user)
       self.destroy
@@ -43,5 +45,5 @@ class Conversation < ActiveRecord::Base
   def unhide
     self.update(hidden_from_user_id: nil)
   end
-  
+
 end

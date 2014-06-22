@@ -22,14 +22,14 @@ class AboutController < ApplicationController
     # today counts
     @today_stats = [
       [
-        [User.where(created_at: Date.today).count,         "default", "users",     "People"   ],
-        [Bookmark.where(created_at: Date.today).count,     "warning", "star",      "Bookmarks"],
-        [Crush.where(created_at: Date.today).count,        "danger",  "heart",     "Crushes"  ]
+        [User.today.count,         "default", "users",     "People"   ],
+        [Bookmark.today.count,     "warning", "star",      "Bookmarks"],
+        [Crush.today.count,        "danger",  "heart",     "Crushes"  ]
       ],
       [
-        [Photo.where(created_at: Date.today).count,        "success", "picture-o", "Photos"],
-        [Conversation.where(created_at: Date.today).count, "info",    "envelope",  "Conversations"],
-        [Message.where(created_at: Date.today).count,      "info",    "comment",   "Messages"]
+        [Photo.today.count,        "success", "picture-o", "Photos"],
+        [Conversation.today.count, "info",    "envelope",  "Conversations"],
+        [Message.today.count,      "info",    "comment",   "Messages"]
       ]
     ]
 

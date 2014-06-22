@@ -10,13 +10,14 @@ class Message < ActiveRecord::Base
   scope :unread, -> { where(unread: true)  }
   scope :read,   -> { where(unread: false) }
   scope :received, lambda { |user| where(recipient_id: user.id) }
-  
+  scope :today, -> { where("created_at >= ?", Time.zone.now.beginning_of_day) }
+
   private
 
   def create_conversation
     self.conversation = Conversation.create(recipient_id: self.recipient_id, user_id: self.sender_id)
   end
-  
+
   def unhide_conversation
     self.conversation.unhide
   end

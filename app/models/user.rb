@@ -97,6 +97,7 @@ class User < ActiveRecord::Base
   scope :adults,        -> { where(['birthday >= ?', 18.years.ago]) }
   scope :kids,          -> { where(['birthday <  ?', 18.years.ago]) }
   scope :secret,        -> { joins(:crushes).where('crushes.secret = "true"') }
+  scope :today,         -> { where("created_at >= ?", Time.zone.now.beginning_of_day) }
 
   validates :username, :canonical_username, presence: { on: :update }, length: { minimum: 1, maximum: 100 }, format: {with: /\A[\.a-zA-Z0-9_-]+\z/, message: "can only contain standard characters"}
   validates :username, uniqueness: {case_sensitive: false, on: :update}
