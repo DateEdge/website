@@ -4,5 +4,6 @@
 //= require markdown.min
 //= require layout
 //= require messages
+//= require users
 //= require images
 //= require paging_keys

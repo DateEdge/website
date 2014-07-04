@@ -49,6 +49,7 @@ class User < ActiveRecord::Base
 
   self.per_page = 28
   store_accessor :settings, :admin, :featured, :birthday_public, :real_name_public, :email_public
+  store_accessor :drug_use, :alcohol, :cigarettes, :marijuana, :drugs
 
   scope :with_setting, lambda { |key, value| where("settings -> ? = ?", key, value.to_s) }
   scope :featured, -> { with_setting(:featured, true) }

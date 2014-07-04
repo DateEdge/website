@@ -64,7 +64,6 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-
     if current_user.update(user_params)
       redirect_to(person_path(current_user.username), notice: "Your settings were successfully updated.")
     else
@@ -126,10 +125,13 @@ class UsersController < ApplicationController
       :tumblr_username,
       :twitter_username,
       :vine_username,
-
       :me_gender,
       :you_gender,
       :label_id,
+      :alcohol,
+      :cigarettes,
+      :marijuana,
+      :drugs,
       your_labels_attributes: [:label_id, :id, :_destroy, :label_type]
     )
   end

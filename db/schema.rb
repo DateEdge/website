@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429002349) do
+ActiveRecord::Schema.define(version: 20140704221652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,8 +140,8 @@ ActiveRecord::Schema.define(version: 20140429002349) do
     t.integer  "state_id"
     t.integer  "country_id"
     t.integer  "diet_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                                                                                                         null: false
+    t.datetime "updated_at",                                                                                                         null: false
     t.datetime "agreed_to_terms_at"
     t.hstore   "settings"
     t.string   "canonical_username"
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 20140429002349) do
     t.string   "vine_username"
     t.text     "website"
     t.integer  "photos_count",         default: 0
+    t.hstore   "drug_use",             default: {"drugs"=>"never", "alcohol"=>"never", "marijuana"=>"never", "cigarettes"=>"never"}
   end
 
   add_index "users", ["created_at"], name: "index_users_on_created_at", using: :btree

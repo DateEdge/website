@@ -13,7 +13,7 @@ describe "admin", js: true do
     expect(page).to have_selector ".alert"
     expect(page).to have_selector ".delete-flag"
     visit "/admin"
-    click_link "1"
+    click_link "Red Flags →"
     page.find(".red-flag a").click
     click_button "Delete User"
     expect(current_path).to eq "/admin"
