@@ -4,12 +4,6 @@ GIT
   specs:
     email_address_validator (0.0.3)
 
-GIT
-  remote: https://github.com/nazgum/will_paginate
-  revision: 887d615971e76c01d19e2e274856129acf5b9ec3
-  specs:
-    will_paginate (3.0.4)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -285,6 +279,7 @@ GEM
     vegas (0.1.11)
       rack (>= 1.0.0)
     websocket-driver (0.3.2)
+    will_paginate (3.0.5)
     will_paginate-bootstrap (1.0.0)
       will_paginate (>= 3.0.3)
     xpath (2.0.0)
@@ -331,5 +326,5 @@ DEPENDENCIES
   spring
   terminal-notifier-guard
   uglifier (>= 1.3.0)
-  will_paginate!
+  will_paginate
   will_paginate-bootstrap

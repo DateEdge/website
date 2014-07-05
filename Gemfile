@@ -13,7 +13,7 @@ gem "redcarpet" # Markdown parser
 gem "rollbar"   # Exception notifier
 gem "sass-rails"
 gem "uglifier",                ">= 1.3.0"
-gem "will_paginate", git: "https://github.com/nazgum/will_paginate"
+gem "will_paginate"
 gem "will_paginate-bootstrap"
 
 # caching
@@ -43,7 +43,7 @@ group :development do
   gem "foreman"
   gem "guard-rspec"
   gem "gx"
-  
+
   # For Rails 4.1
   gem "spring"
 end
