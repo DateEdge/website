@@ -4,3 +4,5 @@ rvm:
 before_script:
 - cp config/database.travis.yml config/database.yml
 - psql -c 'create database test;' -U postgres
+env:
+  secure: DTX/5xIJ17uRMYqp7e5do72I+mjt7KirvOlbNzuzSxCpZS19tx/aaFN/1xYq6jqNdx1+HZllww90MNVXKyiFjXTKCqinXRwg9zYz16fw9jt8mPLjPDXGCAb7qjsJzSqfyyC9STzv2Wrt3WPHLAjk2m1AG2O0I0rT1c0skRIfa4Q=
