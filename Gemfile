@@ -8,7 +8,7 @@ gem "indefinite_article"
 gem "jquery-rails"
 gem "json"
 gem "pg"
-gem "rails",                   "~> 4.1.0"
+gem "rails",                   "~> 4.1.4"
 gem "redcarpet" # Markdown parser
 gem "rollbar"   # Exception notifier
 gem "sass-rails"

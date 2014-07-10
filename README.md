@@ -3,6 +3,9 @@
 
 http://dateedge.com
 
+[![Build Status](https://travis-ci.org/dateedge/website.svg?branch=master)](https://travis-ci.org/dateedge/website)
+[![Code Climate](https://codeclimate.com/github/dateedge/website.png)](https://codeclimate.com/github/dateedge/website)
+
 ## Description
 
 **[Date Edge](https://dateedge.com)**
@@ -34,7 +37,7 @@ Profiles also have two lists of three properties.
 
 ## Requirements
 
-- [Ruby,  ~> 1.9.3](http://www.ruby-lang.org/)
+- [Ruby,  ~> 2.1.2](http://www.ruby-lang.org/)
 - [Rails, ~> 4.0.3](https://github.com/rails/rails/)
 
 ## Installation
