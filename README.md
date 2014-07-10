@@ -3,8 +3,8 @@
 
 http://dateedge.com
 
-[![Build Status](https://travis-ci.org/dateedge/website.svg?branch=master)](https://travis-ci.org/dateedge/website)
-[![Code Climate](https://codeclimate.com/github/dateedge/website.png)](https://codeclimate.com/github/dateedge/website)
+[![Build Status](https://travis-ci.org/DateEdge/website.svg?branch=master)](https://travis-ci.org/dateedge/website)
+[![Code Climate](https://codeclimate.com/github/DateEdge/website.png)](https://codeclimate.com/github/DateEdge/website)
 
 ## Description
 
