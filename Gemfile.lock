@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/larb/email_address_validator
-  revision: 4a2d74c794781c7b4eee8d546dcb7150cf526882
+  remote: git://github.com/bookis/email_address_validator
+  revision: ef6e414cd40da19739b6926aa31830e1612dbcbd
   specs:
     email_address_validator (0.0.3)
 
