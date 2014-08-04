@@ -347,7 +347,9 @@ class User < ActiveRecord::Base
   end
 
   def drug_friendly?
-    label.name.downcase == "drug-friendly"
+    unless label.nil?
+      label.name.downcase == "drug-friendly"
+    end
   end
 
   def self.generate_username
