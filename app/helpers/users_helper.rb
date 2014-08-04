@@ -31,5 +31,4 @@ module UsersHelper
       "Snapchat"       => "@@@"
     }
   end
-
 end

@@ -31,6 +31,18 @@
   <%= labels_list(@user, :straightedgeness) %>
 
   <b><%= link_to @user.you_gender, search_path(search: [:genders, @user.you_gender]) %></b>.
+
+
+  <% if @user.drug_friendly? %>
+    <br />
+    <span class="drug-friendliness">
+      My drug-friendliness is:
+      <% @user.drug_use.each do |k, v| %>
+        <b><%= k %></b>
+        <i><%= v %></i>
+      <% end %>
+    </span>
+  <% end %>
 </p>
 
 <div class="row">
