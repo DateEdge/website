@@ -358,7 +358,8 @@ class User < ActiveRecord::Base
     # but have since decided that it's better to force them to choose a username
     # than it is to make one that they'll want to change later
     # for now, the simplest way to remove this behavior is to make this method nil
-    nil
+
+    "username-#{Time.now.strftime('%Y%m%d%H%M%S')}"
   end
 
   def self.attribute(name)
