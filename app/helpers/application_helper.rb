@@ -7,7 +7,7 @@ module ApplicationHelper
       "<body>".html_safe
     end
   end
-  
+
   def strip_links(text)
     text.gsub(/<a /, "<span ").gsub(/<\/a>/, "<\/span>").html_safe
   end
@@ -24,7 +24,7 @@ module ApplicationHelper
 
   def user_inputed_text(text)
     options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
-    renderer = Redcarpet::Render::HTML.new(filter_html: true, no_styles: true)
+    renderer = DateEdgeHTML.new(filter_html: true, no_styles: true)
     markdown = Redcarpet::Markdown.new(renderer,
       no_intra_emphasis: true,
       no_links: true,
