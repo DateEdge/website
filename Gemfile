@@ -52,13 +52,13 @@ group :test, :development do
   gem "capybara"
   gem "factory_girl_rails"
   gem "poltergeist"
-  gem "rspec-rails"
+  gem "rspec-rails", "~> 2.99.0"
   gem "terminal-notifier-guard"
 end
 
 group :test do
   gem "database_cleaner"
-  gem "rspec"
+  gem "rspec", "~> 2.99.0"
 end
 
 group :production, :staging do
