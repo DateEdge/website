@@ -26,7 +26,7 @@ describe DateEdgeHTML do
     end
 
     it "only if it's a new word" do
-      expect(Redcarpet::Markdown.new(DateEdgeHTML).render("I am #cool_123-guy")).to include "<a href='/people?search=cool_123-guy'>#cool_123-guy</a>"
+      expect(Redcarpet::Markdown.new(DateEdgeHTML).render("I am #cool_123-guy")).to include "I am <a href='/people?search=cool_123-guy'>#cool_123-guy</a>"
     end
 
     it "starts with # is still an h1" do

@@ -10,13 +10,14 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 OmniAuth.config.test_mode = true
 RSpec.configure do |config|
+  config.infer_spec_type_from_file_location!
   DatabaseCleaner.strategy = :truncation
   Capybara.javascript_driver = :poltergeist
   config.include FactoryGirl::Syntax::Methods
   config.after(:each) do
     if Rails.env.test? || Rails.env.cucumber?
       FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads"])
-    end 
+    end
   end
   # == Mock Framework
   #
@@ -34,7 +35,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = false
-  
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
@@ -63,4 +64,3 @@ def sign_in(user=nil)
   user ||= User.create(username: "Shane", name: "SB", email: "test@example.com", birthday: 15.years.ago, agreed_to_terms_at: Time.now, visible: true)
   cookies.signed[:auth_token] = user.auth_token
 end
-
