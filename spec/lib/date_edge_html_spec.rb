@@ -13,6 +13,7 @@ describe DateEdgeHTML do
     it "handles ., _, -, and numbers" do
       expect(Redcarpet::Markdown.new(DateEdgeHTML).render("@examp1e.boy_1-mccool")).to include "<a href='/@examp1e.boy_1-mccool'>@examp1e.boy_1-mccool</a>"
     end
+
   end
 
   describe "#searches" do
@@ -21,6 +22,10 @@ describe DateEdgeHTML do
     end
 
     it "turns #search into a search link with numbers underscores and dashes" do
+      expect(Redcarpet::Markdown.new(DateEdgeHTML).render("I am #cool_123-guy")).to include "<a href='/people?search=cool_123-guy'>#cool_123-guy</a>"
+    end
+
+    it "only if it's a new word" do
       expect(Redcarpet::Markdown.new(DateEdgeHTML).render("I am #cool_123-guy")).to include "<a href='/people?search=cool_123-guy'>#cool_123-guy</a>"
     end
 
