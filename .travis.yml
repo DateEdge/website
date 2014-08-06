@@ -1,6 +1,9 @@
 language: ruby
 rvm:
 - 2.1.2
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate
+  - bundle exec rake db:test:prepare
 before_script:
 - cp config/database.travis.yml config/database.yml
 - cp config/travis/secrets.yml config/secrets.yml
