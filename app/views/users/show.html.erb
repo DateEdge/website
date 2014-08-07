@@ -79,7 +79,10 @@
                   <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
                     <%= f.hidden_field :flaggable_type, value: "Photo" %>
                     <button class="btn btn-default" type="submit">
-                      <i class='fa fa-flag-o'></i>&nbsp;&nbsp;Flag this photo as inappropriate
+                      <b class='text-warning'>
+                        <i class='fa fa-flag-o'></i>
+                        &nbsp;&nbsp;Flag this photo as inappropriate
+                      </b>
                     </button>
                     <% end %>
                 <% end %>
