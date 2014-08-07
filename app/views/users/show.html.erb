@@ -74,12 +74,12 @@
               <% elsif logged_in? %><%# not mine and logged in %>
 
                 <% if flagged?(photo) %>
-                  <%= unflag_button photo, class: "delete-flag btn btn-default" %>
+                  <%= unflag_button photo, class: "delete-flag btn btn-warning" %>
                 <% else %>
                   <%= form_for RedFlag.new, url: flag_path(photo) do |f| %>
                     <%= f.hidden_field :flaggable_type, value: "Photo" %>
-                    <button class="btn btn-warning" type="submit">
-                      <i class='fa fa-flag'>&nbsp;&nbsp;Flag this photo as inappropriate</i>
+                    <button class="btn btn-default" type="submit">
+                      <i class='fa fa-flag-o'>&nbsp;&nbsp;Flag this photo as inappropriate</i>
                     </button>
                     <% end %>
                 <% end %>
