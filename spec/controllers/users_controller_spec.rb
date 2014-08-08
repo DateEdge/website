@@ -100,7 +100,7 @@ describe UsersController do
     it "changes user visibility" do
       post :create, user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}
       bookis.reload
-      expect(bookis.visible).to be_true
+      expect(bookis.visible).to be_truthy
     end
 
     it "renders the edit form if there are errors" do
@@ -130,7 +130,7 @@ describe UsersController do
 
     it "updates settings" do
       patch :update, user: {birthday_public: true, admin: true }
-      expect(assigns(:user).birthday_public?).to be_true
+      expect(assigns(:user).birthday_public?).to be_truthy
       expect(assigns(:user).admin?).to be_nil
     end
   end
