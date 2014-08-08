@@ -4,7 +4,7 @@ class BlocksController < ApplicationController
     @block = current_user.blocks.build(blocked_user: @user)
 
     if @block.save
-      redirect_to people_path, notice: "Blocked! You will no longer see #{@user.username} unless you go directly to their profile page."
+      redirect_to people_path, notice: "Blocked! You will no longer see @#{@user.username} unless you go directly to their profile page."
     end
   end
   
@@ -13,7 +13,7 @@ class BlocksController < ApplicationController
     @block = current_user.blocks.where(blocked_id: @user.id)
 
     if @block.destroy_all
-      redirect_to people_path, notice: "Un-blocked! You'll now see #{@user.username} normally as you would anyone else."
+      redirect_to user_path(@user), notice: "Un-blocked! You'll now see @#{@user.username} normally as you would anyone else."
     end
   end
 end
