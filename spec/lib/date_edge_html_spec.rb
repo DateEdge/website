@@ -14,6 +14,10 @@ describe DateEdgeHTML do
       expect(Redcarpet::Markdown.new(DateEdgeHTML).render("@examp1e.boy_1-mccool")).to include "<a href='/@examp1e.boy_1-mccool'>@examp1e.boy_1-mccool</a>"
     end
 
+    it "ignores a period" do
+      expect(Redcarpet::Markdown.new(DateEdgeHTML).render("@examp1e.")).to include "<a href='/@examp1e'>@examp1e</a>."
+    end
+
   end
 
   describe "#searches" do
@@ -32,5 +36,10 @@ describe DateEdgeHTML do
     it "starts with # is still an h1" do
       expect(Redcarpet::Markdown.new(DateEdgeHTML).render("#Notice I am #cool")).to include "<h1>Notice"
     end
+
+    it "ignores a period" do
+      expect(Redcarpet::Markdown.new(DateEdgeHTML).render("link #examp1e.")).to include "link <a href='/people?search=examp1e'>#examp1e</a>."
+    end
+
   end
 end

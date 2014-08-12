@@ -5,11 +5,17 @@ class DateEdgeHTML < Redcarpet::Render::HTML
   end
 
   def autolink_at_usernames(html)
-    html.gsub(/(@[\.a-zA-Z0-9_-]+)/) {|m| "<a href='/#{$1}'>#{$1}</a>" }
+    html.gsub(/(@[\.a-zA-Z0-9_-]+)/) do |m|
+      chomped = $1[-1] == "."
+      "<a href='/#{$1.chomp('.')}'>#{$1.chomp('.')}</a>#{'.' if chomped}"
+    end
   end
 
   def autolink_searches(html)
-    html.gsub(/\s(#([\.a-zA-Z0-9_-]+))/) {|m| " <a href='/people?search=#{$2}'>#{$1}</a>" }
+    html.gsub(/\s(#([\.a-zA-Z0-9_-]+))/) do |m|
+      chomped = $1[-1] == "."
+     " <a href='/people?search=#{$2.chomp('.')}'>#{$1.chomp('.')}</a>#{'.' if chomped}"
+   end
   end
 
 end
