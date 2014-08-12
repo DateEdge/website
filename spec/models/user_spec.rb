@@ -100,7 +100,7 @@ describe User do
   describe "avatars" do
     it "assigns the photo as avatar" do
       user.photos.create(remote_image_url: "http://placehold.it/1/1.png")
-      expect(user.photos.first.avatar).to  be_true
+      expect(user.photos.first.avatar).to  be_truthy
     end
   end
 
@@ -109,7 +109,7 @@ describe User do
     let(:user) { User.create_for_facebook(OmniAuth.mock_auth_for(:facebook)) }
 
     it "is valid" do
-      expect(user.new_record?).to be_false
+      expect(user.new_record?).to be_falsey
     end
 
     it "assigns a remote photo" do
@@ -182,7 +182,7 @@ describe User do
     end
 
     it "has admin?" do
-      expect(user.admin?).to be_true
+      expect(user.admin?).to be_truthy
     end
 
     it "has featured" do
@@ -190,7 +190,7 @@ describe User do
     end
 
     it "has public settings" do
-      expect(user.birthday_public?).to  be_true
+      expect(user.birthday_public?).to  be_truthy
       expect(user.email_public?).to     be_nil
       expect(user.real_name_public?).to be_nil
     end
@@ -239,13 +239,13 @@ describe User do
 
     it "with_user for blocked" do
       create(:block, blocked_id: bookis.id, blocker_id: shane.id)
-      expect(bookis.block_with_user?(shane)).to be_true
+      expect(bookis.block_with_user?(shane)).to be_truthy
     end
 
     it "with_user for blockee" do
       create(:block, blocked_id: shane.id, blocker_id: bookis.id)
-      expect(bookis.block_with_user?(shane)).to be_true
-      expect(shane.block_with_user?(bookis)).to be_true
+      expect(bookis.block_with_user?(shane)).to be_truthy
+      expect(shane.block_with_user?(bookis)).to be_truthy
     end
 
   end
