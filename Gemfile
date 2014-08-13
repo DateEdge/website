@@ -54,7 +54,7 @@ group :test, :development do
   gem "poltergeist"
   gem "terminal-notifier-guard"
 
-  gem "rspec-rails", "~> 2.99.0"
+  gem "rspec-rails"
   gem "rspec-activemodel-mocks"
 end
 
