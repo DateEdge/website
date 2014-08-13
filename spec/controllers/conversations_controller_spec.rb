@@ -45,8 +45,8 @@ describe ConversationsController, :type => :controller do
 
     it "doesn't actually delete a convo if the same person delete it twice" do
       request
-      # TODO the .by(-1) part of this line is throwing a deprecation warning, can't figure out why
-      expect { delete :destroy, username: shane.username }.to_not change(Conversation, :count).by(-1)
+      before = Conversation.count
+      expect { delete :destroy, username: shane.username }.to_not change(Conversation, :count).from(before)
     end
 
     it "deletes the convo for one person" do
