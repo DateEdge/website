@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SearchesController do
+describe SearchesController, :type => :controller do
   let!(:shane) { create(:shane) }
   let!(:bookis) { create(:bookis, visible: true) }
   
@@ -9,7 +9,7 @@ describe SearchesController do
   describe "GET 'index'" do
     it "returns http success" do
       get 'index', column: :diets
-      response.should be_success
+      expect(response).to be_success
     end
     
   end

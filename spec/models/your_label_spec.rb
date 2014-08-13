@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe YourLabel do
+describe YourLabel, :type => :model do
   require 'spec_helper'
 
   before do
@@ -15,21 +15,21 @@ describe YourLabel do
     your_label.user_id  = @user.id
     your_label.label_id = @label.id
 
-    your_label.should be_valid
+    expect(your_label).to be_valid
   end
 
   it "should be invalid without a user id" do
     your_label = YourLabel.new
     your_label.label_id = @label.id
 
-    your_label.should be_invalid
+    expect(your_label).to be_invalid
   end
 
   it "should be invalid without a label id" do
     your_label = YourLabel.new
     your_label.user_id  = @user.id
 
-    your_label.should be_invalid
+    expect(your_label).to be_invalid
   end
 
   it "should not allow duplicate labels for a user"

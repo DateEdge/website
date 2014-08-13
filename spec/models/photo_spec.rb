@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Photo do
+describe Photo, :type => :model do
   let(:photo) { create(:photo) }
   describe "validations" do
     let(:photo) { build(:photo, image: nil) }

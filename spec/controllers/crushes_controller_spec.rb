@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CrushesController do
+describe CrushesController, :type => :controller do
   let!(:bookis) { create(:bookis) }
   let!(:shane)  { create(:shane)  }
   before { sign_in(bookis) }

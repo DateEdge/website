@@ -1,18 +1,18 @@
 require 'spec_helper'
 
-describe WelcomeController do
+describe WelcomeController, :type => :controller do
   let!(:user) { create(:user, visible: true) }
   
   describe "GET 'index'" do
     it "should be successful" do
       get 'index'
-      response.should be_success
+      expect(response).to be_success
     end
     
     describe "logged in" do
-      before { controller.stub(:current_user) { user } }
+      before { allow(controller).to receive(:current_user) { user } }
       it "calls viewable users on current user" do
-        user.should_receive(:viewable_users).once.and_return(User.all)
+        expect(user).to receive(:viewable_users).once.and_return(User.all)
         get :index
       end
       

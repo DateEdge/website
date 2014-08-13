@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "tests user experience", js: true do
+describe "tests user experience", type: :feature, js: true do
   let!(:bookis) { create(:bookis, bio: "This is my bio", visible: true, settings: {featured: true}) }
   let!(:shane)  { create(:shane, featured: true, visible: true)  }
   

@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Admin::RedFlagsController do
+describe Admin::RedFlagsController, :type => :controller do
 
   describe "GET 'index'" do
     it "returns http success" do
       sign_in(create(:user, admin: true))
       get 'index'
-      response.should be_success
+      expect(response).to be_success
     end
   end
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Provider do
+describe Provider, :type => :model do
   describe "#from_auth" do
     let!(:auth) { OmniAuth.mock_auth_for(:twitter) }
     let!(:provider) { create(:twitter, uid: auth.uid) }

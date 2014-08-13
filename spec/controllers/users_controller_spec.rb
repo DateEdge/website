@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
+describe UsersController, :type => :controller do
   # render_views
   let!(:shane) { create(:shane) }
   describe "GET 'index'" do
@@ -14,7 +14,7 @@ describe UsersController do
 
     context "#search" do
       it "by username field" do
-        User.should_receive(:search).with("username" => "veganstraightedge").once.and_return User.visible
+        expect(User).to receive(:search).with("username" => "veganstraightedge").once.and_return User.visible
         get :index, search: "username/veganstraightedge"
       end
       it "shows everyone" do
@@ -54,7 +54,7 @@ describe UsersController do
   describe "GET 'show'" do
     it "should be successful" do
       get 'show', username: "veganstraightedge"
-      response.should be_success
+      expect(response).to be_success
     end
 
     it "redirect to home if the user doesn't exit" do
@@ -66,12 +66,12 @@ describe UsersController do
 
   describe "GET 'edit'" do
     before {
-      shane.stub(:visible) { true }
+      allow(shane).to receive(:visible) { true }
       sign_in shane
     }
     it "should be successful" do
       get 'edit'
-      response.should be_success
+      expect(response).to be_success
     end
   end
 
@@ -111,7 +111,7 @@ describe UsersController do
 
   describe "PATCH 'update'" do
     before {
-      shane.stub(:visible) { true }
+      allow(shane).to receive(:visible) { true }
       sign_in(shane)
     }
 

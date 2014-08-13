@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe PhotosController do
+describe PhotosController, :type => :controller do
   context "when signed in" do
     
     before {
       sign_in
-      controller.stub(:confirm_photo_belongs_to_user) { true }
+      allow(controller).to receive(:confirm_photo_belongs_to_user) { true }
     }
     
     describe "GET 'new'" do
       it "should be successful" do
         get 'new'
-        response.should be_success
+        expect(response).to be_success
       end
     end
 
@@ -19,9 +19,9 @@ describe PhotosController do
       let(:photo) { mock_model("Photo") }
       
       it "should be successful" do
-        Photo.should_receive(:find).with("1").and_return(photo)
+        expect(Photo).to receive(:find).with("1").and_return(photo)
         get 'edit', id: 1
-        response.should be_success
+        expect(response).to be_success
       end
     end
   end
@@ -39,7 +39,7 @@ describe PhotosController do
     end
     
     context "when it doesn't save" do
-      before { Photo.any_instance.stub(:save) { false }}
+      before { allow_any_instance_of(Photo).to receive(:save) { false }}
       
       it "returns a 422" do
         request

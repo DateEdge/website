@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Conversation do
+describe Conversation, :type => :model do
   let(:sender)  { User.create(username: "Shane",  name: "SB", email: "test@example.com", birthday: 25.years.ago, visible: true, agreed_to_terms_at: Time.now) }
   let(:recipient) { User.create(username: "Bookis", name: "BS", email: "bs@example.com",   birthday: 25.years.ago, visible: true, agreed_to_terms_at: Time.now) }
 
