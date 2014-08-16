@@ -34,14 +34,18 @@
 
 
   <% if @user.drug_friendly? %>
-    <br />
-    <span class="drug-friendliness">
-      My drug-friendliness is:
-      <% @user.drug_use.each do |k, v| %>
-        <b><%= k %></b>
-        <i><%= v %></i>
-      <% end %>
-    </span>
+    <% unless drug_friendly_all_nevers?(@user) %>
+
+      <br />
+      <span class="drug-friendliness">
+        My drug-friendliness is:
+        <% @user.drug_use.each do |k, v| %>
+          <b><%= k %></b>
+          <i><%= v %></i>
+        <% end %>
+      </span>
+
+    <% end %>
   <% end %>
 </p>
 

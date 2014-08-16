@@ -101,4 +101,8 @@ module ApplicationHelper
     url
   end
 
+  def drug_friendly_all_nevers?(user)
+    user.drug_use.map{ |d| d.last }.uniq == ["never"]
+  end
+
 end
