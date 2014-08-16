@@ -63,7 +63,7 @@ class AboutController < ApplicationController
   def grid
     @slug  = "grid"
     @title = "Everyone's Photo in One Big Grid for Screenshotting"
-    @users = User.count
+    @users = User.all
     render layout: false
   end
 end
