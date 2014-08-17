@@ -3,7 +3,7 @@ require 'spec_helper'
 describe DateEdgeHTML do
   describe "@usernames" do
     it "turns @username into a link" do
-      expect(Redcarpet::Markdown.new(DateEdgeHTML).render("@username")).to include "<a href='/@username'>@username</a>"
+      expect(Redcarpet::Markdown.new(DateEdgeHTML).render("@username")).to include "<p><a href='/@username'>@username</a>"
     end
 
     it "wraps text around it" do
@@ -16,6 +16,10 @@ describe DateEdgeHTML do
 
     it "ignores a period" do
       expect(Redcarpet::Markdown.new(DateEdgeHTML).render("@examp1e.")).to include "<a href='/@examp1e'>@examp1e</a>."
+    end
+
+    it "ignores an email address" do
+      expect(Redcarpet::Markdown.new(DateEdgeHTML).render("bob@examp1e.com")).to eq "<p>bob@examp1e.com</p>\n"
     end
 
   end

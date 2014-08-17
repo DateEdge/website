@@ -5,9 +5,9 @@ class DateEdgeHTML < Redcarpet::Render::HTML
   end
 
   def autolink_at_usernames(html)
-    html.gsub(/(@[\.a-zA-Z0-9_-]+)/) do |m|
-      chomped = $1[-1] == "."
-      "<a href='/#{$1.chomp('.')}'>#{$1.chomp('.')}</a>#{'.' if chomped}"
+    html.gsub(/(\W|>)(@[\.a-zA-Z0-9_-]+)/) do |m|
+      chomped = $2[-1] == "."
+      "#{$1}<a href='/#{$2.chomp('.')}'>#{$2.chomp('.')}</a>#{'.' if chomped}"
     end
   end
 
