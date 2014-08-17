@@ -52,8 +52,10 @@ group :test, :development do
   gem "capybara"
   gem "factory_girl_rails"
   gem "poltergeist"
-  gem "rspec-rails", "~> 2.99.0"
   gem "terminal-notifier-guard"
+
+  gem "rspec-rails"
+  gem "rspec-activemodel-mocks"
 end
 
 group :test do

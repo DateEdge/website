@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RedFlagsController do
+describe RedFlagsController, :type => :controller do
   let(:user) { create(:user) }
   let(:reporter) { create(:user) }
   before { sign_in(reporter) }
@@ -17,7 +17,7 @@ describe RedFlagsController do
     end
     
     it "redirect to user" do
-      RedFlag.any_instance.stub(:save) { false }
+      allow_any_instance_of(RedFlag).to receive(:save) { false }
       request
       expect(flash[:notice]).to eq "Already flagged"
     end

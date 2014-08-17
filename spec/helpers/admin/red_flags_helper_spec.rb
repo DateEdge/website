@@ -11,6 +11,6 @@ require 'spec_helper'
 #   end
 # end
 
-describe Admin::RedFlagsHelper do
+describe Admin::RedFlagsHelper, :type => :helper do
   skip "add some examples to (or delete) #{__FILE__}"
 end

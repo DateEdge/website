@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe Label do
+describe Label, :type => :model do
   it "should have a name" do
     label = Label.new
     label.name = "straightedge"
     label.save
-    label.should be_valid
+    expect(label).to be_valid
   end
 
   it "should be invalid with no name" do
     label = Label.new
     label.save
-    label.should be_invalid
+    expect(label).to be_invalid
   end
 
   # it "should build options for select correctly" do

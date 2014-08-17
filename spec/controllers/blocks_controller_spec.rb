@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe BlocksController do
+describe BlocksController, :type => :controller do
   let(:user)  { create(:user) }
   let(:shane) { create(:shane) }
   before { sign_in(shane) }

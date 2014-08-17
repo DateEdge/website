@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Block do
+describe Block, :type => :model do
 end

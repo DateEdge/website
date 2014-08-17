@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe BookmarksController do
+describe BookmarksController, :type => :controller do
   let(:user)  { create(:bookis, visible: true) }
   let(:shane) { create(:shane) }
   
@@ -24,13 +24,13 @@ describe BookmarksController do
     end
     
     it "flashes a notice if the bookmark doesn't save" do
-      Bookmark.any_instance.stub(:save) { false }
+      allow_any_instance_of(Bookmark).to receive(:save) { false }
       request
       expect(flash[:notice]).to include "There was a problem bookmarking this user"
     end
     
     it "redirects back" do
-      controller.request.should_receive(:referer).and_return('/example.com/some-path')
+      expect(controller.request).to receive(:referer).and_return('/example.com/some-path')
       request
       expect(response).to redirect_to "/example.com/some-path"
     end

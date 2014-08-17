@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RedFlag do
+describe RedFlag, :type => :model do
   let(:red_flag) { create(:red_flag) }
 
   it "belongs_to a user" do

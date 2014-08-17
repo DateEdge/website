@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MessagesController do
+describe MessagesController, :type => :controller do
   let(:user)  { create(:shane) }
   let(:user2) { create(:bookis) }
   let(:conversation) { user.outbound_conversations.create(recipient: user2) }
@@ -12,7 +12,7 @@ describe MessagesController do
   describe "GET 'new'" do
     it "should be successful" do
       request
-      response.should be_success
+      expect(response).to be_success
     end
     
     it "is not success if current user age inappropriate" do
@@ -51,7 +51,7 @@ describe MessagesController do
   describe "POST 'create'" do
     it "should be successful" do
       post 'create', username: user2.username, message: {body: "Body"}
-      response.should redirect_to conversation_path(user2.username)
+      expect(response).to redirect_to conversation_path(user2.username)
     end
     
     it "is not success if age inappropriate" do
@@ -64,7 +64,7 @@ describe MessagesController do
     
     describe "blocked" do
       it "should redirect back to the convo" do
-        User.any_instance.stub(:block_with_user?) { true }
+        allow_any_instance_of(User).to receive(:block_with_user?) { true }
         post 'create', username: user2.username, message: {body: "Body"}
         expect(response).to redirect_to conversations_path
         expect(flash[:notice]).to include "@#{user2.username} is not available to message"

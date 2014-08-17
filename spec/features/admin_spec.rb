@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe "admin", js: true do
+describe "admin", type: :feature, js: true do
   let!(:bookis) { create(:bookis, bio: "This is my bio", visible: true, settings: {featured: true}, admin: true) }
   let!(:shane)  { create(:shane, featured: true, visible: true)  }
 
   it "manages things" do
-    ApplicationController.any_instance.stub(:current_user).and_return(bookis)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(bookis)
     visit "/admin"
     expect(current_path).to eq "/admin"
     visit person_path(shane)

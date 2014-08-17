@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe Provider do
+describe Provider, :type => :model do
   let!(:auth) { OmniAuth.mock_auth_for(:twitter) }
   let!(:provider) { create(:twitter, uid: auth.uid) }
+  
   describe "#from_auth" do
     it "assigns the handle" do
       expect(Provider.from_auth(auth)).to eq provider

@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Country do
+describe Country, :type => :model do
 end

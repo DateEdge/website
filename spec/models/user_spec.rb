@@ -1,13 +1,13 @@
 # encoding: UTF-8
 require 'spec_helper'
 
-describe User do
+describe User, :type => :model do
   let(:user)   { create(:user)  }
   let(:bookis) { create(:bookis) }
   let(:shane)  { create(:shane)  }
 
   it "should calculate the age correctly" do
-    user.age.should == 22
+    expect(user.age).to eq(22)
   end
 
   it "trims whitespace on save" do
@@ -25,7 +25,7 @@ describe User do
 
   it "should know if your birthday happened yet" do
     user.birthday = 728.days.ago
-    user.age.should == 1
+    expect(user.age).to eq(1)
   end
 
   it "doesn't allow duplicate names" do
@@ -51,7 +51,7 @@ describe User do
     user.label = Label.first
     user.save!
 
-    user.label.name.should == "straightedge"
+    expect(user.label.name).to eq("straightedge")
   end
 
   it "should be able to have desired straightedgeness" do
@@ -59,7 +59,7 @@ describe User do
       user.desired_straightedgeness.create!(name: label)
     end
 
-    user.desired_straightedgeness.map(&:id).sort.should eq Label.all.map(&:id).sort
+    expect(user.desired_straightedgeness.map(&:id).sort).to eq Label.all.map(&:id).sort
   end
 
   describe "age group" do
@@ -93,7 +93,7 @@ describe User do
     end
 
     it "Should add crunk to the og user" do
-      user.desired_straightedgeness.should include @crunk
+      expect(user.desired_straightedgeness).to include @crunk
     end
   end
 
@@ -105,7 +105,7 @@ describe User do
   end
 
   describe "auth from FB" do
-    before { ImageUploader.any_instance.stub(:download!) }
+    before { allow_any_instance_of(ImageUploader).to receive(:download!) }
     let(:user) { User.create_for_facebook(OmniAuth.mock_auth_for(:facebook)) }
 
     it "is valid" do
@@ -114,9 +114,9 @@ describe User do
 
     it "assigns a remote photo" do
       mock_user = mock_model("User")
-      User.should_receive(:create!).and_return(mock_user)
-      mock_user.stub(:photos).and_return([])
-      mock_user.photos.should_receive(:create).with(remote_image_url: "http://placekitten.com/10/10?type=large", avatar: true)
+      expect(User).to receive(:create!).and_return(mock_user)
+      allow(mock_user).to receive(:photos).and_return([])
+      expect(mock_user.photos).to receive(:create).with(remote_image_url: "http://placekitten.com/10/10?type=large", avatar: true)
       user
     end
   end
@@ -289,8 +289,8 @@ describe User do
     it "finds by age" do
       expect(User.search(age: 27)).to include bookis
       expect(User.search(age: 27)).to_not include shane
-      expect(User.search(age: (26..28))).to have(1).things
-      expect(User.search(age: (26..32))).to have(2).things
+      expect(User.search(age: (26..28)).size).to eq(1)
+      expect(User.search(age: (26..32)).size).to eq(2)
     end
 
     it "finds by a field" do

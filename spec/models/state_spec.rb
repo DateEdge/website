@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe State do
+describe State, :type => :model do
 end
