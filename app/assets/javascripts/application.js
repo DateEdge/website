@@ -7,3 +7,4 @@
 //= require users
 //= require images
 //= require paging_keys
+//= require map
