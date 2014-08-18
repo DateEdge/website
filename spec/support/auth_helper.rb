@@ -2,7 +2,7 @@ def twitter_auth_response
   {"provider"=>"twitter",
     "uid"=>"8553052",
     "info"=>
-     {"nickname"=>"dalecooper",
+     {"nickname"=> "dalecooper",
       "name"=>"dale cooper",
       "location"=>"Seattle, WA, USA",
       "image"=>"http://pbs.twimg.com/profile_images/1421207561/image_normal.jpg",
@@ -125,7 +125,7 @@ end
 def mandrill_callback(user, options={base64: false})
   file = File.read("spec/support/small.png")
   content = options[:base64] ? Base64.encode64(file) : file
-  
+
   {
     ts: Time.now.to_i,
     event: "inbound",

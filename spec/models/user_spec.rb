@@ -30,7 +30,9 @@ describe User, :type => :model do
 
   it "doesn't allow duplicate names" do
     bookis
-    expect(create(:bookis, username: "booKis")).to be_invalid
+    bad = create(:bookis, username: "booKis")
+    expect(bad).to be_invalid
+    expect(bad.errors[:username]).to include "has already been taken"
   end
 
   it "should not update the user" do
@@ -129,15 +131,15 @@ describe User, :type => :model do
 
     it "doesn't error when a nil username is given" do
       expect {User.available_username(nil)}.to_not raise_error
-      expect(User.available_username(nil)).to match /username.\d+/
+      expect(User.available_username(nil)).to eq false
     end
 
     it "a match return a temp user name" do
-      expect(User.available_username("Veganstraightedge")).to match /username.\d+/
+      expect(User.available_username("Veganstraightedge")).to eq false
     end
 
     it "a downcase match return a temp user name" do
-      expect(User.available_username("veganstraightedge")).to match /username.\d+/
+      expect(User.available_username("veganstraightedge")).to eq false
     end
 
     it "a user can change usernames" do
@@ -153,7 +155,7 @@ describe User, :type => :model do
     end
 
     it "a user can't have a taken username" do
-      expect(bookis.available_username('veganstraightedge')).to be_nil
+      expect(bookis.available_username('veganstraightedge')).to eq false
     end
 
   end

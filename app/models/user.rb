@@ -1,11 +1,3 @@
-class UsernameValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    if record.available_username(value).nil?
-      record.errors[attribute] << "#{value} has already been taken"
-    end
-  end
-end
-
 class EmailValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     if !EmailAddressValidator.validate_addr(value,true)
@@ -216,7 +208,7 @@ class User < ActiveRecord::Base
     end
 
     def available_username(username)
-      username.blank? || User.with_username(username).any? ? generate_username : username
+      username.blank? || User.with_username(username).any? ? false : username
     end
 
     def in_my_age_group(user)
@@ -253,7 +245,7 @@ class User < ActiveRecord::Base
   end
 
   def available_username(new_name)
-    (User.with_username(new_name) - [self]).any? ? nil : new_name
+    (User.with_username(new_name) - [self]).any? ? false : new_name
   end
 
   def conversations
@@ -395,7 +387,11 @@ class User < ActiveRecord::Base
   end
 
   def create_canonical_username
-    self.canonical_username = username.downcase if username
+    self.canonical_username = if username
+     username.downcase
+   else
+     User.generate_username
+   end
   end
 
   def generate_auth_token

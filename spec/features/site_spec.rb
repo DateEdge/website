@@ -3,18 +3,19 @@ require 'spec_helper'
 describe "tests user experience", type: :feature, js: true do
   let!(:bookis) { create(:bookis, bio: "This is my bio", visible: true, settings: {featured: true}) }
   let!(:shane)  { create(:shane, featured: true, visible: true)  }
-  
+
   it "does views users, crushes, bookmarks, and stuff" do
     visit "/"
     expect(page).to have_content "Date Edge"
     first(:link, "Bookis").click
     expect(page).to have_content "This is my bio"
   end
-  
+
   context "when logged in" do
     before do
       visit "/"
       first(:link, "Twitter").click
+      fill_in('Username', :with => 'dalecooper')
       fill_in('Email', :with => 'dale@example.com')
       select("January", from: "user_birthday_2i")
       select("1", from: "user_birthday_3i")
@@ -23,7 +24,7 @@ describe "tests user experience", type: :feature, js: true do
       click_button("Submit")
       click_link("No Thanks")
     end
-    
+
     it "rotates an image" do
       visit("/@dalecooper")
       click_link("Add Photo")
@@ -48,16 +49,16 @@ describe "tests user experience", type: :feature, js: true do
       click_link("Flip Vertical")
       expect(page.evaluate_script('$("form").serialize();')).to_not include "manipulate%5D%5Bflip"
     end
-    
+
     it "does everything" do
       visit("/people")
       first(:link, "veganstraightedge").click
       page.find('.message').click
       expect(page).to have_content "New Conversation"
-      
+
       click_link "Preview"
       expect(page.html).to include "Markdown"
-      
+
       click_link "Write"
       fill_in("Body", with: "# Hello")
 

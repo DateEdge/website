@@ -45,7 +45,6 @@ class UsersController < ApplicationController
 
   def create
     @user = current_user
-    params[:user][:username] = User.generate_username if params[:user][:username].blank?
 
     if @user.update(params.require(:user).permit(:username, :email, "birthday(1i)", "birthday(2i)", "birthday(3i)", :agreed_to_terms_at))
       @user.visiblize!
