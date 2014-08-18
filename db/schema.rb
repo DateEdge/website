@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 20140818040520) do
   end
 
   create_table "lat_lngs", force: true do |t|
-    t.decimal  "lat",        precision: 6, scale: 3
-    t.decimal  "lng",        precision: 6, scale: 3
+    t.decimal  "lat",        precision: 8, scale: 5
+    t.decimal  "lng",        precision: 8, scale: 5
     t.string   "username"
     t.string   "location"
     t.text     "avatar"

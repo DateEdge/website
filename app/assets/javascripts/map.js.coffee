@@ -14,16 +14,26 @@ $ ->
     map = new google.maps.Map(document.getElementById("map"),mapOptions);
     mc = new MarkerClusterer(map);
 
-    data = (n for n in [1..10])
-    for n in data
-      latLng = new google.maps.LatLng(-34.397 + n/5, 150.644 - n/10)
-      addMarker(latLng, mc)
+    data = $("#map").data('lat-lngs')
+    for lat in data
+      latLng = new google.maps.LatLng(lat[0], lat[1])
+      console.log lat
+      addMarker(latLng, mc, map, lat[2])
 
 
   google.maps.event.addDomListener(window, 'load', initialize);
 
-  addMarker = (latLng, mc) ->
+  addMarker = (latLng, mc, map, username) ->
     marker = new google.maps.Marker {
-      position: latLng
+      position: latLng,
+      title: "Blah"
     }
+
+    infowindow = new google.maps.InfoWindow {
+      content: username
+    }
+
+    google.maps.event.addListener marker, 'click', ->
+      infowindow.open(map,marker)
+
     mc.addMarker marker

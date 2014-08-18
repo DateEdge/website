@@ -37,7 +37,7 @@ Dxe::Application.routes.draw do
   get "/goodbye",                 to: "about#goodbye",  as: :goodbye
   get "/page/:page",              to: "welcome#index"
   get "/map",                     to: "map#index",      as: :map
-  
+
   # Auth
   get "/signout",                 to: "sessions#destroy", as: :signout
   get "/auth/:provider/callback", to: "sessions#create"
