@@ -1,11 +1,9 @@
-# SQLite version 3.x
-#   gem install sqlite3
 development:
   adapter: postgresql
   encoding: unicode
   database: dxe_development
   pool: 5
-  username: YOUR NAME HERE
+  username:
   password:
 
 # Warning: The database defined as "test" will be erased and
@@ -16,5 +14,5 @@ test:
   encoding: unicode
   database: dxe_test
   pool: 5
-  username: YOUR NAME HERE
+  username:
   password:
