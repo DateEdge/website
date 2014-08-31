@@ -6,18 +6,21 @@ $ ->
 
   initialize = ->
 
-    latLng = new google.maps.LatLng(-34.397, 150.644)
+    myLatLng = $("#map").data('current-lat-lng')
+    myLatLng ||= [-34.397, 150.644]
+    latLng = new google.maps.LatLng(myLatLng[0], myLatLng[1])
     mapOptions = {
       center: latLng,
-      zoom: 6
+      zoom: 6,
+      maxZoom: 12
     }
     map = new google.maps.Map(document.getElementById("map"),mapOptions);
     mc = new MarkerClusterer(map);
 
     data = $("#map").data('lat-lngs')
     for lat in data
-      latLng = new google.maps.LatLng(lat[0], lat[1])
       console.log lat
+      latLng = new google.maps.LatLng(lat[0], lat[1])
       addMarker(latLng, mc, map, lat[2])
 
 
@@ -25,12 +28,11 @@ $ ->
 
   addMarker = (latLng, mc, map, username) ->
     marker = new google.maps.Marker {
-      position: latLng,
-      title: "Blah"
+      position: latLng
     }
 
     infowindow = new google.maps.InfoWindow {
-      content: username
+      content: "<h1>" + username + "</h1>"
     }
 
     google.maps.event.addListener marker, 'click', ->
