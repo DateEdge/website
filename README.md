@@ -57,6 +57,12 @@ cp config/database.yml.example config/database.yml
 
 Update values to reflect your local environment.
 
+#### Redis
+
+```
+brew install redis
+```
+
 #### Setup ENV vars
 
 Create a .env file

@@ -9,7 +9,7 @@ Dxe::Application.load_tasks
 
 task recreate_photos: :environment do
   puts "Recreating Photos"
-  Photo.all.each do |photo| 
+  Photo.all.each do |photo|
     puts "Queeing photo #{photo.id}"
     begin
       Resque.enqueue(ImageProcessor, photo.id)
@@ -23,7 +23,7 @@ namespace :deploy do
   task parameterize_invalid_usernames: :environment do
     puts "Updating invalid usernames"
     users = User.where(visible: true)
-    users.each {|user| 
+    users.each {|user|
       if !user.valid?
         success = user.update(username: user.username.parameterize)
         if !success
@@ -32,12 +32,12 @@ namespace :deploy do
       end
     }
   end
-  
+
 end
 
 namespace :db do
-  
-  task import: :environment do
+
+  task :import do
     puts "Backing Up Production Database..."
     `heroku pgbackups:capture --expire -a dateedge`
     puts "Downloading Database Dump..."
