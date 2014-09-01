@@ -1,23 +1,12 @@
-<%= render partial: "sign_in_buttons" %>
+<div id="people">
+  <h1><%= link_to "Thousands of People are on Date&nbsp;Edge".html_safe, people_path %></h1>
 
-<div id="some-people">
-  <h3 class="h4">Some people on <b>Date Edge</b></h3>
+  <div class="sign-in buttons">
+    <h3>Sign in to get started</h3>
 
-  <div class="row">
-    <% @users.each do |user| %>
-      <div class="col-xs-4 col-sm-3 col-md-2">
-        <div class="thumbnail h-card">
-          <%= link_to_avatar(user) %>
-
-          <div class="caption">
-            <p><%= link_to_username(user) %></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
+    <%= button_to_sign_in_with(:twitter) %>
+    <%= button_to_sign_in_with(:facebook) %>
   </div>
-
-  <h4><%= link_to "See everyone on Date Edge", people_path %></h4>
 </div>
 
 <div id="about">
@@ -40,6 +29,13 @@
   <p>
     It&rsquo;s <b>FREE</b> and easy to join using your Facebook or Twitter account.
   </p>
-</div>
 
-<%= render partial: "sign_in_buttons" %>
+  <div class="sign-in buttons">
+    <h3>Sign in to get started</h3>
+
+    <%= button_to_sign_in_with(:twitter) %>
+    <%= button_to_sign_in_with(:facebook) %>
+
+    <%= render partial: "/shared/social_posting_info" %>
+  </div>
+</div>

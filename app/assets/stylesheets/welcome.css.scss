@@ -1,26 +1,33 @@
 /* welcome... */
 #welcome {
-  header[role=banner] h1 {
-    font-size: 400%;
-    letter-spacing: -.06em;
-    font-weight: normal;
-    font-weight: 100;
-    background: black;
-    color: white;
-    line-height: 150%;
-    display: block;
-    float: none;
-    margin: 0;
+  body {
+    background-image: url(homepage/mobile-2x.jpg);
   }
 
-  header[role=banner] h1 a {
-    text-decoration: none;
-    color: white;
-    display: block;
-  }
+  header[role=banner] {
+    h1 {
+      width: 110%;
+      font-size: 400%;
+      letter-spacing: -.06em;
+      font-weight: normal;
+      font-weight: 100;
+      background: black;
+      color: white;
+      line-height: 150%;
+      display: block;
+      float: none;
+      margin: 0;
+    }
 
-  header[role=banner] h2 {
-    margin: 0;
+    h1 a {
+      text-decoration: none;
+      color: white;
+      display: block;
+    }
+
+    h2 {
+      margin: 0;
+    }
   }
 
   /* twitter and facebook buttons container... */
@@ -29,30 +36,37 @@
   }
   /* ...twitter and facebook buttons */
 
-  .thumbnail {
-    border: none;
-    padding: none;
-  }
+  #people {
+    text-align: center;
+    color: white;
 
-  .u-url {
-    display: block;
-    width: 100%;
-  }
+    h1,
+    h3 {
+      margin-top: 0;
+      padding: 0;
+      text-align: center;
+      font-weight: bold;
+      text-shadow: black 0 0 5px;
 
-  .thumbnail img {
-    width: 100%;
-  }
-
-  .thumbnail .caption {
-    padding: 0;
-    overflow: hidden;
-    clear:both
+      a {
+        color: white;
+      }
+    }
   }
 
   #about {
+    outline: 15px solid white;
+    outline: 15px solid rgba(255,255,255,0.75);
+    background: white;
+    background: rgba(255,255,255,0.75);
     border-top: 1px solid #ddd;
-    padding-top: 2em;
-    margin: 2em 0;
+    padding: 0;
+    margin: 3em 0 2em 0;
+  }
+
+  footer[role=contentinfo] {
+    background: white;
+    background: rgba(255,255,255,0.75);
   }
 }
 /* ...#welcome */
@@ -60,6 +74,10 @@
 /* ipad... */
 @media screen and (min-width: 768px) {
   #welcome {
+    body {
+      background-image: url(homepage/desktop-2x.jpg);
+    }
+
     #about {
       font-size: 200%;
     }
