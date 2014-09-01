@@ -5,7 +5,6 @@ describe YourLabel, :type => :model do
 
   before do
     @user = create(:shane)
-
     provider = create(:provider, user: @user)
     @label   = create(:label)
   end
