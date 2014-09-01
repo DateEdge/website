@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 describe "tests user experience", type: :feature, js: true do
-  let!(:bookis) { create(:bookis, bio: "This is my bio", visible: true, settings: {featured: true}) }
-  let!(:shane)  { create(:shane, featured: true, visible: true)  }
+  let!(:bookis) { create(:bookis, bio: "This is my bio", visible: true) }
+  let!(:shane)  { create(:shane,                         visible: true) }
 
   it "does views users, crushes, bookmarks, and stuff" do
     visit "/"
     expect(page).to have_content "Date Edge"
-    first(:link, "Bookis").click
-    expect(page).to have_content "This is my bio"
+
+    first(:link, "Thousands of People are on Date Edge").click
+    expect(page).to have_content "Everyone"
   end
 
   context "when logged in" do
