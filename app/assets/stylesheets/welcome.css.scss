@@ -1,7 +1,7 @@
 /* welcome... */
 #welcome {
   body {
-    background-image: image-url("/homepage/mobile-2x.jpg");
+    background-image: image-url("mobile-2x.jpg");
   }
 
   header[role=banner] {
@@ -75,7 +75,7 @@
 @media screen and (min-width: 768px) {
   #welcome {
     body {
-      background-image: url(/assets/homepage/desktop-2x.jpg);
+      background-image: image-url("desktop-2x.jpg");
     }
 
     #about {
