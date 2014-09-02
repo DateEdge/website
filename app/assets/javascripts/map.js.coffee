@@ -2,12 +2,30 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 maxZoom = 12
-
 $ ->
   if (typeof(google) != "undefined")
     $("#map").css(height: $(window).height() - 75)
 
     initialize = ->
+
+      styles = [{
+        textColor: 'white',
+        url: $("#map").data("small-icon"),
+        height: 55,
+        width: 56
+      }, {
+        textColor: 'white',
+        url: $("#map").data("medium-icon"),
+        height: 55,
+        width: 56
+      }, {
+        textColor: 'white',
+        url: $("#map").data("large-icon"),
+        height: 55,
+        width: 56
+      }]
+
+      options = {maxZoom: maxZoom, styles: styles}
 
       myLatLng = $("#map").data('current-lat-lng')
       myLatLng ||= [-34.397, 150.644]
@@ -18,7 +36,7 @@ $ ->
         maxZoom: maxZoom
       }
       map = new google.maps.Map(document.getElementById("map"),mapOptions);
-      mc = new MarkerClusterer(map);
+      mc = new MarkerClusterer(map, [], options);
 
       google.maps.event.addListener mc, 'clusterclick', (cluster) ->
         if mc.map.zoom == maxZoom

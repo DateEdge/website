@@ -1,4 +1,12 @@
-<div data-current-lat-lng="<%= [@lat_lng.lat.to_f, @lat_lng.lng.to_f] if @lat_lng%>" data-lat-lngs="<%= LatLng.all.map { |l| [l.lat.to_f, l.lng.to_f, l.username || 'blah']} %>" id='map' style='width: 100%; height: 20px;'></div>
+<div
+  data-small-icon="<%= image_path('map/000-marker.png') %>"
+  data-medium-icon="<%= image_path('map/333-marker.png') %>"
+  data-large-icon="<%= image_path('map/666-marker.png') %>"
+  data-current-lat-lng="<%= [@lat_lng.lat.to_f, @lat_lng.lng.to_f] if @lat_lng%>"
+  data-lat-lngs="<%= LatLng.all.map { |l| [l.lat.to_f, l.lng.to_f, l.username || 'blah']} %>"
+  id='map'
+  style='width: 100%; height: 20px;'>
+</div>
 
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyBUsS11chK_veOLCCks6o2U2jp1XDD6wgU"></script>
 <script type='text/javascript' src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/1.0.2/src/markerclusterer_compiled.js"></script>
