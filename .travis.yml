@@ -1,10 +1,12 @@
 language: ruby
 rvm:
 - 2.1.2
+
 script:
   - RAILS_ENV=test bundle exec rake db:migrate
   - bundle exec rake db:test:prepare
   - bundle exec rspec
+
 before_script:
 - cp config/database.travis.yml config/database.yml
 - cp config/travis/secrets.yml config/secrets.yml
@@ -12,3 +14,12 @@ before_script:
 
 env:
   secure: DTX/5xIJ17uRMYqp7e5do72I+mjt7KirvOlbNzuzSxCpZS19tx/aaFN/1xYq6jqNdx1+HZllww90MNVXKyiFjXTKCqinXRwg9zYz16fw9jt8mPLjPDXGCAb7qjsJzSqfyyC9STzv2Wrt3WPHLAjk2m1AG2O0I0rT1c0skRIfa4Q=
+
+deploy:
+  provider: heroku
+  app: dateedge
+  api_key:
+    secure: TGYlxJM7AC/cSALxGiobmVWUfbir8AbzcdT7B6T8S363FObJh18wp/cnqxB7qWf79+6EH6a9xWbUnQh4GvVDShcJMkKQtacj3vJpTdETX0Cj33cjz99j7xMMS28LBF7Flrwx7G1BqoJpW4+zK7/5obbtk1osAXSPoBZqk0v1EeE=
+  run:
+  - bin/rake db:migrate
+  - restart
