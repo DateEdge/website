@@ -187,3 +187,14 @@ footer[role=contentinfo] {
   padding-bottom: 4em;
 }
 /* ...site footer */
+
+
+.js-user {
+  display: block;
+  width: 300px;
+  border-bottom: 1px solid gray;
+  padding: 5px 0;
+  &:nth-last-child(1) {
+    border-bottom: none;
+  }
+}

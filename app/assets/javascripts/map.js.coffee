@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 maxZoom = 12
+template = $('#js-user-card').html()
 $ ->
   if (typeof(google) != "undefined")
     $("#map").css(height: $(window).height() - 75)
@@ -41,10 +42,7 @@ $ ->
       google.maps.event.addListener mc, 'clusterclick', (cluster) ->
         if mc.map.zoom == maxZoom
           content = ""
-          console.log content
           $.each cluster.getMarkers(), (i, marker) ->
-            console.log marker
-            content += " & "  unless i == 0
             content += marker.infowindow.content
 
           marker = cluster.getMarkers()[0]
@@ -54,20 +52,28 @@ $ ->
       data = $("#map").data('lat-lngs')
       for lat in data
         latLng = new google.maps.LatLng(lat[0], lat[1])
-        addMarker(latLng, mc, map, lat[2])
+        user = {
+          username: lat[2],
+          avatar: lat[3],
+          location: lat[4],
+          user_id: lat[5]
+        }
+        addMarker(latLng, mc, map, user)
 
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
 
-    addMarker = (latLng, mc, map, username) ->
+    addMarker = (latLng, mc, map, user) ->
+      Mustache.parse(template)
+      rendered = Mustache.render(template, user);
+
       infowindow = new google.maps.InfoWindow {
-        content: "<span class='username'>" + username + "</span>"
+        content: rendered
       }
 
       marker = new google.maps.Marker {
         position: latLng,
-        username: username,
         infowindow: infowindow
       }
 
