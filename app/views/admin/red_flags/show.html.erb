@@ -7,6 +7,10 @@
   </div>
 
   <div class='col-lg-9'>
+    <% if @object.is_a?(Photo) %>
+      <%= render @object.user %>
+    <% end %>
+
     <%= render @object %>
   </div>
 
