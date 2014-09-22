@@ -1,18 +1,11 @@
-<h1>Hello Admin <%= current_user.username %></h1>
-
 <div class='row'>
 
-  <div class='col-lg-6'>
-    <div class='well'>
-      <%= link_to "Red Flags &rarr;".html_safe, admin_red_flags_path %>
-    </div>
-  </div>
+  <div class='col-sm-4'>
+    <h1>2014 Goals</h1>
 
-  <div class='col-lg-6'>
     <div class='well'>
-      <h1>2014 Goals</h1>
       <ul>
-        <li>New Homepage</li>
+        <li><s>New Homepage</s></li>
         <li>Map</li>
         <li>Social sidebar 2.0</li>
         <li>DxE Deck&trade;</li>
@@ -24,23 +17,26 @@
     </div>
   </div>
 
+  <%
+  {
+    "Flagged Users"  => @flagged_users,
+    "Flagged Photos" => @flagged_photos
+  }.each do |title, collection|
+  %>
+    <div class="col-sm-4">
+      <h1><%= title %></h1>
+
+      <table class='table'>
+        <% collection.each do |slug, count| %>
+          <%= content_tag "tr", class: red_flag_classes(count) do %>
+            <td><%= link_to slug, admin_red_flag_path(slug) %></td>
+            <td><%= count %></td>
+          <% end %>
+        <% end %>
+      </table>
+
+    </div>
+  <% end %>
+
+
 </div><!-- .row -->
-
-<table class='table table-striped table-bordered'>
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th width='50'>Featured</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.username, admin_edit_user_path(user) %></td>
-        <td class='text-center'><%= content_tag "i", "", class: "text-warning glyphicon glyphicon-star" if user.featured? %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= will_paginate @users %>
