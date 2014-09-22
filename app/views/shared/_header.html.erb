@@ -17,6 +17,10 @@
     </nav>
 
     <nav role="navigation">
+      <% if admin? %>
+        <span class="label label-danger"><%= link_to "ADMIN", admin_dashboard_path %></span>
+      <% end %>
+
       <% if logged_in? %>
         <%= link_to conversations_path do %>
           <i class='fa fa-lg fa-envelope'></i>

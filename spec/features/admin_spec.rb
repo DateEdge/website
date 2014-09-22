@@ -19,7 +19,7 @@ describe "admin", type: :feature, js: true do
     expect(page).to have_selector ".alert"
     expect(page).to have_selector ".unblock"
 
-    visit "/admin"
+    click_link "ADMIN"
     click_link "user-#{shane.id}"
     click_button "Delete User"
     expect(current_path).to eq "/admin"

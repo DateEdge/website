@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def admin?
+    current_user && current_user.admin?
+  end
+
   def opening_body_tag
     if user_profile?
       "<body class='h-card vcard'>".html_safe
