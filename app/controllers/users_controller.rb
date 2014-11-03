@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @users = if logged_in?
       current_user.viewable_users.search(@search)
     else
-      User.visible
+      User.visible.adults
     end
 
     @total = @users.length
