@@ -55,6 +55,11 @@ $ ->
 
       mc = new MarkerClusterer(map, window.dateEdge.markers, options);
 
+      google.maps.event.addListener map, 'click', ->
+        if !window.dateEdge.openCluster
+          window.dateEdge.infowindow.close()
+        window.dateEdge.openCluster = false
+
       google.maps.event.addListener mc, 'clusterclick', (cluster) ->
         if mc.map.zoom == maxZoom
           content = ""
@@ -62,13 +67,18 @@ $ ->
             content += marker.content
 
           marker = cluster.getMarkers()[0]
-          window.dateEdge.infowindow.content = content
+          window.dateEdge.openCluster = true
+          window.dateEdge.infowindow.content = infoWindowContent(content)
           window.dateEdge.infowindow.open(map)
           latLng = new google.maps.LatLng(marker.position.lat(), marker.position.lng())
           window.dateEdge.infowindow.setPosition(latLng)
 
+
     google.maps.event.addDomListener(window, 'load', initialize);
 
+
+    infoWindowContent = (content) ->
+      "<ul class='js-user-container info-window'>" + content + "</ul>"
 
     addMarker = (latLng, map, user) ->
       Mustache.parse(template)
@@ -82,5 +92,5 @@ $ ->
       window.dateEdge.markers.push(marker)
 
       google.maps.event.addListener marker, 'click', ->
-        window.dateEdge.infowindow.content = marker.content
+        window.dateEdge.infowindow.content = infoWindowContent(marker.content)
         window.dateEdge.infowindow.open(map,marker)

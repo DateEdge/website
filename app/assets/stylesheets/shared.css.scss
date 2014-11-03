@@ -191,10 +191,20 @@ footer[role=contentinfo] {
 
 .js-user {
   display: block;
-  width: 100%;
+  width: 280px;
+  overflow: hidden;
   border-bottom: 1px solid gray;
   padding: 5px 0;
+  .js-photo {
+    width: 70px;
+    margin-right: 10px;
+    float: left
+  }
   &:nth-last-child(1) {
+    padding-bottom: 0;
     border-bottom: none;
+  }
+  &:first-child {
+    padding-top: 0;
   }
 }
