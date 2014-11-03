@@ -69,9 +69,9 @@ $ ->
           marker = cluster.getMarkers()[0]
           window.dateEdge.openCluster = true
           window.dateEdge.infowindow.content = infoWindowContent(content)
-          window.dateEdge.infowindow.open(map)
           latLng = new google.maps.LatLng(marker.position.lat(), marker.position.lng())
           window.dateEdge.infowindow.setPosition(latLng)
+          window.dateEdge.infowindow.open(map)
 
 
     google.maps.event.addDomListener(window, 'load', initialize);
