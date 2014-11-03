@@ -10,7 +10,7 @@ $ ->
 
     initialize = ->
       window.dateEdge.markers = []
-      window.dateEdge.infowindow = new google.maps.InfoWindow { content: "Blah blah blah"}
+      window.dateEdge.infowindow = new google.maps.InfoWindow
 
       styles = [{
         textColor: 'white',
@@ -88,9 +88,11 @@ $ ->
         position: latLng,
         content: rendered
       }
-
       window.dateEdge.markers.push(marker)
 
       google.maps.event.addListener marker, 'click', ->
         window.dateEdge.infowindow.content = infoWindowContent(marker.content)
         window.dateEdge.infowindow.open(map,marker)
+
+    sortMarkers = (options) ->
+      window.dateEdge
