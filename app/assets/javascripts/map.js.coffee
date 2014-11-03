@@ -2,12 +2,15 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 maxZoom = 12
+window.dateEdge = {}
 template = $('#js-user-card').html()
 $ ->
   if (typeof(google) != "undefined")
     $("#map").css(height: $(window).height() - 75)
 
     initialize = ->
+      window.dateEdge.markers = []
+      window.dateEdge.infowindow = new google.maps.InfoWindow { content: "Blah blah blah"}
 
       styles = [{
         textColor: 'white',
@@ -37,17 +40,6 @@ $ ->
         maxZoom: maxZoom
       }
       map = new google.maps.Map(document.getElementById("map"),mapOptions);
-      mc = new MarkerClusterer(map, [], options);
-
-      google.maps.event.addListener mc, 'clusterclick', (cluster) ->
-        if mc.map.zoom == maxZoom
-          content = ""
-          $.each cluster.getMarkers(), (i, marker) ->
-            content += marker.infowindow.content
-
-          marker = cluster.getMarkers()[0]
-          marker.infowindow.content = content
-          marker.infowindow.open(map, marker)
 
       data = $("#map").data('lat-lngs')
       for lat in data
@@ -58,26 +50,37 @@ $ ->
           location: lat[4],
           user_id: lat[5]
         }
-        addMarker(latLng, mc, map, user)
+        addMarker(latLng, map, user)
 
+
+      mc = new MarkerClusterer(map, window.dateEdge.markers, options);
+
+      google.maps.event.addListener mc, 'clusterclick', (cluster) ->
+        if mc.map.zoom == maxZoom
+          content = ""
+          $.each cluster.getMarkers(), (i, marker) ->
+            content += marker.content
+
+          marker = cluster.getMarkers()[0]
+          window.dateEdge.infowindow.content = content
+          window.dateEdge.infowindow.open(map)
+          latLng = new google.maps.LatLng(marker.position.lat(), marker.position.lng())
+          window.dateEdge.infowindow.setPosition(latLng)
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
 
-    addMarker = (latLng, mc, map, user) ->
+    addMarker = (latLng, map, user) ->
       Mustache.parse(template)
       rendered = Mustache.render(template, user);
 
-      infowindow = new google.maps.InfoWindow {
+      marker = new google.maps.Marker {
+        position: latLng,
         content: rendered
       }
 
-      marker = new google.maps.Marker {
-        position: latLng,
-        infowindow: infowindow
-      }
+      window.dateEdge.markers.push(marker)
 
       google.maps.event.addListener marker, 'click', ->
-        infowindow.open(map,marker)
-
-      mc.addMarker marker
+        window.dateEdge.infowindow.content = marker.content
+        window.dateEdge.infowindow.open(map,marker)
