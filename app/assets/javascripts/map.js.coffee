@@ -6,11 +6,11 @@ window.dateEdge = {}
 template = $('#js-user-card').html()
 $ ->
   if (typeof(google) != "undefined")
-    $("#map").css(height: $(window).height() - 75)
+    $("#map").css(height: $(window).height() - 60)
 
     initialize = ->
       window.dateEdge.markers = []
-      window.dateEdge.infowindow = new google.maps.InfoWindow
+      window.dateEdge.infowindow = new google.maps.InfoWindow { content: ""}
 
       styles = [{
         textColor: 'white',
@@ -73,6 +73,12 @@ $ ->
           window.dateEdge.infowindow.setPosition(latLng)
           window.dateEdge.infowindow.open(map)
 
+      $(".user-filter").change () ->
+        User.where($(".filter")).then (users) ->
+          mc.clearMarkers()
+          $.each users, (index, user) ->
+            $.each window.dateEdge.markers, (index, marker) ->
+              if marker.user_id == user.id then mc.addMarker(marker)
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -86,13 +92,11 @@ $ ->
 
       marker = new google.maps.Marker {
         position: latLng,
-        content: rendered
+        content: rendered,
+        user_id: user.user_id
       }
       window.dateEdge.markers.push(marker)
 
       google.maps.event.addListener marker, 'click', ->
         window.dateEdge.infowindow.content = infoWindowContent(marker.content)
         window.dateEdge.infowindow.open(map,marker)
-
-    sortMarkers = (options) ->
-      window.dateEdge

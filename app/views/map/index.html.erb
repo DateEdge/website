@@ -1,6 +1,3 @@
-<div class='subheader'>
-  Blah
-</div>
 <div
   data-small-icon="<%= image_path('map/000-marker.png') %>"
   data-medium-icon="<%= image_path('map/333-marker.png') %>"
@@ -8,8 +5,41 @@
   data-current-lat-lng="<%= [@lat_lng.lat.to_f, @lat_lng.lng.to_f] if @lat_lng%>"
   data-lat-lngs="<%= @lat_lngs.map { |l| l.map_data} %>"
   id='map'
-  style='width: 100%; height: 20px;'>
+  style='height: 200px;'>
 </div>
+
+<div class='row subheader'>
+  <%= form_tag api_url("/users"), class: "filter", method: :get do %>
+    <div class='col-lg-3 col-lg-offset-2'>
+      <% Label.all.each do |label| %>
+        <div>
+          <%= check_box_tag 'label_id[]', label.id, false, id: "label_id_#{label.id}", class: "user-filter" %>
+          <%= label_tag "label_id_#{label.id}", label.name %>
+        </div>
+      <% end %>
+    </div>
+    <div class='col-lg-3'>
+      <% Diet.all.each do |diet| %>
+        <div>
+          <%= check_box_tag 'diet_id[]', diet.id, false, id: "diet_id_#{diet.id}", class: "user-filter" %>
+          <%= label_tag "diet_id_#{diet.id}", diet.name %>
+        </div>
+      <% end %>
+    </div>
+    <div class='col-lg-3'>
+        <div>
+          <%= check_box_tag 'me_gender[]', "male", false, id: "me_gender_male", class: "user-filter" %>
+          <%= label_tag "me_gender_male", "Male" %>
+        </div>
+        <div>
+          <%= check_box_tag 'me_gender[]', "female", false, id: "me_gender_female", class: "user-filter" %>
+          <%= label_tag "me_gender_female", "Female" %>
+        </div>
+    </div>
+
+  <% end %>
+</div>
+
 
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyBUsS11chK_veOLCCks6o2U2jp1XDD6wgU"></script>
 <script type='text/javascript' src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclusterer/1.0.2/src/markerclusterer_compiled.js"></script>

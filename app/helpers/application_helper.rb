@@ -109,4 +109,8 @@ module ApplicationHelper
     user.drug_use.map{ |d| d.last }.uniq == ["never"]
   end
 
+  def api_url(path)
+    ENV["API_URL"] + path
+  end
+
 end

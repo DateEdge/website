@@ -3,10 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #map {
-  position: absolute;
   width: 100%;
+  position: absolute;
   left: 0;
-  top: 90px;
+  top: 60px;
+  border-radius: 6px;
 }
 
 #map-container footer {
@@ -17,4 +18,12 @@
   max-height: 400px;
   margin: 0;
   padding: 0;
+}
+
+.subheader input, .subheader label {
+  margin: 0;
+  padding: 0;
+}
+.subheader {
+  margin-bottom: 5px;
 }
