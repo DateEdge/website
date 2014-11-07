@@ -4,9 +4,16 @@
 maxZoom = 12
 window.dateEdge = {}
 template = $('#js-user-card').html()
+
+resizeMap = ->
+  $("#map").css(height: $(window).height() - 60)
+
 $ ->
   if (typeof(google) != "undefined")
-    $("#map").css(height: $(window).height() - 60)
+    
+    resizeMap()
+    $(window).resize ->
+      resizeMap()
 
     initialize = ->
       window.dateEdge.markers = []
