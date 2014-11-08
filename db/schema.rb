@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20140818040520) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
-  enable_extension "pg_stat_statements"
   enable_extension "unaccent"
 
   create_table "blocks", force: true do |t|
@@ -36,36 +35,36 @@ ActiveRecord::Schema.define(version: 20140818040520) do
   create_table "conversations", force: true do |t|
     t.integer  "user_id"
     t.integer  "recipient_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "hidden_from_user_id"
   end
 
   create_table "countries", force: true do |t|
     t.string   "name"
     t.string   "abbreviation"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "crushes", force: true do |t|
     t.integer  "crusher_id"
     t.integer  "crushee_id"
     t.boolean  "secret",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "diets", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "labels", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "lat_lngs", force: true do |t|
@@ -85,13 +84,6 @@ ActiveRecord::Schema.define(version: 20140818040520) do
     t.integer  "recipient_id"
     t.text     "body"
     t.boolean  "unread",          default: true
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
-
-  create_table "my_labels", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "label_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -101,16 +93,16 @@ ActiveRecord::Schema.define(version: 20140818040520) do
     t.boolean  "avatar"
     t.text     "caption"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "providers", force: true do |t|
     t.string   "name"
     t.string   "uid"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "handle"
     t.datetime "last_login_at"
     t.string   "ip_address"
@@ -130,8 +122,8 @@ ActiveRecord::Schema.define(version: 20140818040520) do
   create_table "states", force: true do |t|
     t.string   "name"
     t.string   "abbreviation"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
@@ -151,8 +143,8 @@ ActiveRecord::Schema.define(version: 20140818040520) do
     t.integer  "state_id"
     t.integer  "country_id"
     t.integer  "diet_id"
-    t.datetime "created_at",                                                                                                         null: false
-    t.datetime "updated_at",                                                                                                         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.datetime "agreed_to_terms_at"
     t.hstore   "settings"
     t.string   "canonical_username"
@@ -179,8 +171,8 @@ ActiveRecord::Schema.define(version: 20140818040520) do
   create_table "your_labels", force: true do |t|
     t.integer  "user_id"
     t.integer  "label_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "label_type", default: "Label"
   end
 
