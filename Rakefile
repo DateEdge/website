@@ -44,16 +44,16 @@ namespace :db do
     puts "causes a conflict and therefore won't run."
     puts "To get around this (for now), you have to manually run this."
     puts "Copy and paste this long command into your prompt:"
-  
+
     puts "
-  echo 'Backing Up Production Database...' && 
-  heroku pgbackups:capture --expire -a dateedge && 
-  echo 'Downloading Database Dump...' && 
-  curl -o db/dxe-production.dump `heroku pgbackups:url -a dateedge` && 
-  echo 'Importing Production Data...' && 
-  pg_restore --verbose --clean --no-acl --no-owner -h localhost -U $USER -d dxe_development db/dxe-production.dump && 
-  echo 'Deleting Dump File...' && 
-  rm 'db/dxe-production.dump' && 
+  echo 'Backing Up Production Database...' &&
+  heroku pgbackups:capture --expire -a dateedge &&
+  echo 'Downloading Database Dump...' &&
+  curl -o db/dxe-production.dump `heroku pgbackups:url -a dateedge` &&
+  echo 'Importing Production Data...' &&
+  pg_restore --verbose --clean --no-acl --no-owner -h localhost -U $USER -d dxe_development db/dxe-production.dump &&
+  echo 'Deleting Dump File...' &&
+  rm 'db/dxe-production.dump' &&
   echo 'Finished Import!'"
 
     # TODO use this when Heroku Toolbelt plays nice with Ruby 2.1.x
