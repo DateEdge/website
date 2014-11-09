@@ -222,6 +222,10 @@ class User < ActiveRecord::Base
       end
     end
 
+    def uniq_gender_groups(n=2)
+      where.not(me_gender: [nil, ""]).group(:me_gender).select("me_gender, count(*)").having("count(*) > ?", n).order("count(*) desc").pluck(:me_gender)
+    end
+
   end
 
   def viewable_users

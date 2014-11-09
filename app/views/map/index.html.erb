@@ -27,14 +27,12 @@
       <% end %>
     </div>
     <div class='col-lg-3'>
+      <% User.uniq_gender_groups(3).each do |gender| %>
         <div>
-          <%= check_box_tag 'me_gender[]', "male", false, id: "me_gender_male", class: "user-filter" %>
-          <%= label_tag "me_gender_male", "Male" %>
+          <%= check_box_tag 'me_gender[]', gender, false, id: "me_gender_#{gender}", class: "user-filter" %>
+          <%= label_tag "me_gender_male", gender.capitalize %>
         </div>
-        <div>
-          <%= check_box_tag 'me_gender[]', "female", false, id: "me_gender_female", class: "user-filter" %>
-          <%= label_tag "me_gender_female", "Female" %>
-        </div>
+      <% end %>
     </div>
 
   <% end %>
