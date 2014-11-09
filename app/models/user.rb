@@ -87,8 +87,8 @@ class User < ActiveRecord::Base
   scope :invisible,     -> { where(visible: false) }
   scope :with_provider, lambda { |name, uid| joins(:providers).where(providers: {name: name, uid: uid}) }
   scope :with_username, lambda { |username| where(canonical_username: (username || "").downcase) }
-  scope :adults,        -> { where(['birthday >= ?', 18.years.ago]) }
-  scope :kids,          -> { where(['birthday <  ?', 18.years.ago]) }
+  scope :adults,        -> { where(['birthday <= ?', 18.years.ago]) }
+  scope :kids,          -> { where(['birthday >  ?', 18.years.ago]) }
   scope :secret,        -> { joins(:crushes).where('crushes.secret = "true"') }
   scope :today,         -> { where("created_at >= ?", Time.zone.now.beginning_of_day) }
 
@@ -215,7 +215,7 @@ class User < ActiveRecord::Base
     def in_my_age_group(user)
       if user.nil? || user.birthday.nil?
         User.all
-      elsif user.birthday? && user.birthday < 18.years.ago.to_date
+      elsif user.birthday? && user.birthday > 18.years.ago.to_date
         User.kids
       else
         User.adults
