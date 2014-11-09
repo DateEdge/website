@@ -100,6 +100,7 @@ class User < ActiveRecord::Base
   validates :agreed_to_terms_at, presence: { on: :update, message: "must be agreed upon"}
 
   before_save :groom_string_fields
+  after_save :create_lat_lng
 
   before_validation :create_canonical_username
   before_validation :generate_auth_token, on: :create
@@ -384,6 +385,10 @@ class User < ActiveRecord::Base
         send(field).strip!
       end
     end
+  end
+
+  def create_lat_lng
+    Resque.enqueue(GeocodeLookup, self.id)
   end
 
   def create_canonical_username

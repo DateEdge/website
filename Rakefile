@@ -35,6 +35,14 @@ namespace :deploy do
 
 end
 
+namespace :geocode do
+  task all: :environment do
+    users = User.all
+    users.each do |user|
+      Resque.enqueue(GeocodeLookup, user.id)
+    end
+  end
+end
 namespace :db do
 
   task :import do

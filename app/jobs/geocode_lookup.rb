@@ -5,6 +5,7 @@ class GeocodeLookup
   def self.perform(id)
     @user = User.find(id)
     LatLng.where(user_id: @user.id).destroy_all
+    return true if @user.city.blank? && @user.zipcode.blank?
     address = "#{@user.city} #{@user.state} #{@user.zipcode} #{@user.country.try(:name)}".strip
     geocode = Geocode.new(address)
     lat_lng = LatLng.new(geocode.lat_lng)
