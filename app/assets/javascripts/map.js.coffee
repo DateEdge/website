@@ -10,13 +10,13 @@ resizeMap = ->
 
 $ ->
   if (typeof(google) != "undefined")
-    
+
     resizeMap()
     $(window).resize ->
       resizeMap()
 
     initialize = ->
-      window.dateEdge.markers = []
+      window.dateEdge.markers = {}
       window.dateEdge.infowindow = new google.maps.InfoWindow { content: ""}
 
       styles = [{
@@ -59,7 +59,6 @@ $ ->
         }
         addMarker(latLng, map, user)
 
-
       mc = new MarkerClusterer(map, window.dateEdge.markers, options);
 
       google.maps.event.addListener map, 'click', ->
@@ -82,10 +81,11 @@ $ ->
 
       $(".user-filter").change () ->
         User.where($(".filter")).then (users) ->
+          markers = []
           mc.clearMarkers()
           $.each users, (index, user) ->
-            $.each window.dateEdge.markers, (index, marker) ->
-              if marker.user_id == user.id then mc.addMarker(marker)
+            marker = window.dateEdge.markers[user.id]
+            if marker then mc.addMarker(marker)
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -102,7 +102,7 @@ $ ->
         content: rendered,
         user_id: user.user_id
       }
-      window.dateEdge.markers.push(marker)
+      window.dateEdge.markers[user.user_id] = marker
 
       google.maps.event.addListener marker, 'click', ->
         window.dateEdge.infowindow.content = infoWindowContent(marker.content)
