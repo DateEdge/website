@@ -5,7 +5,7 @@ GIT
     email_address_validator (0.0.3)
 
 GIT
-  remote: git@github.com:bookis/heroku_resque_autoscaler.git
+  remote: git://github.com/bookis/heroku_resque_autoscaler.git
   revision: b189d0e4f55d0758f3cb52269849aeb2aa611547
   specs:
     heroku_resque_autoscaler (0.1.2)
