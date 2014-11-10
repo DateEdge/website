@@ -1,4 +1,5 @@
 class GeocodeLookup
+  extend HerokuResqueAutoscaler if Rails.env.production?
 
   @queue = :geocode_lookup
 

@@ -41,6 +41,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
+    Resque.stub(:enqueue).and_return(true)
     DatabaseCleaner.strategy = :transaction
   end
 

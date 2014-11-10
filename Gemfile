@@ -23,7 +23,7 @@ gem "kgio"
 
 # background
 gem 'resque', "~> 1.22.0", require: "resque/server"
-
+gem "heroku_resque_autoscaler"
 # search
 gem "pg_search"
 
