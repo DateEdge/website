@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/bookis/email_address_validator
+  remote: git://github.com/bookis/email_address_validator.git
   revision: ef6e414cd40da19739b6926aa31830e1612dbcbd
   specs:
     email_address_validator (0.0.3)
