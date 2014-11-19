@@ -3,6 +3,8 @@
 SECRET_KEY_BASE: # App base for config/initializers/secret_token.rb. Use `rake secret` to generate good strings.
 SECRET_TOKEN:    # App secrets for config/initializers/secret_token.rb. Use `rake secret` to generate good strings.
 
+API_URL:         # Something like: https://dateedge-api.herokuapp.com/v1 (from https://github.com/DateEdge/api)
+
 # Login services
 
 DXE_FACEBOOK_CONSUMER_KEY:    # Facebook Consumer key.
@@ -10,7 +12,7 @@ DXE_FACEBOOK_CONSUMER_SECRET: # Facebook Consumer Secret.
 DXE_TWITTER_CONSUMER_KEY:     # Twitter Consumer key.
 DXE_TWITTER_CONSUMER_SECRET:  # Twitter Consumer Secret.
 
-#Rollbar 
+#Rollbar
 
 ROLLBAR_ACCESS_TOKEN:         # Rollbar Access Token http://rollbar.com
 ROLLBAR_ENDPOINT:             # Rollbar Endpoint     http://rollbar.com
