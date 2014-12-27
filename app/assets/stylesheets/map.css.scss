@@ -20,10 +20,37 @@
   padding: 0;
 }
 
-.subheader input, .subheader label {
+.subheader-container input, .subheader-container label {
   margin: 0;
   padding: 0;
 }
-.subheader {
-  margin-bottom: 5px;
+.subheader-container {
+  position: absolute;
+  top: 60px;
+  left: 100px;
+  background-color: white;
+  padding: 0 15px 3px 15px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-shadow: 0px 0px 4px gray;
+  padding-bottom: 10px;
+}
+
+.filters {
+  display: none;
+}
+
+.show-filters-button {
+  font-weight: bold;
+  color: #222;
+  text-decoration: none;
+  &:hover, &:active, &:visited {
+    text-decoration: none;
+    color: black;
+  }
+  .up { display: none; }
+  &.active {
+    .up { display: inline; }
+    .down { display: none; }
+  }
 }

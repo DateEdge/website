@@ -6,10 +6,16 @@ window.dateEdge = {}
 template = $('#js-user-card').html()
 
 resizeMap = ->
-  $("#map").css(height: $(window).height() - 60)
+  offset = 60
+  $('.filters').css(width: $(window).width() - 250)
+  $("#map").css(height: $(window).height() - offset, top: offset)
 
 $ ->
   if (typeof(google) != "undefined")
+    $('.show-filters-button').click ->
+      $(this).toggleClass("active")
+      $(".filters").toggle()
+      false
 
     resizeMap()
     $(window).resize ->
