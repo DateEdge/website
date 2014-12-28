@@ -3,7 +3,7 @@
   data-medium-icon="<%= image_path('map/333-marker.png') %>"
   data-large-icon="<%= image_path('map/666-marker.png') %>"
   data-current-lat-lng="<%= [@lat_lng.lat.to_f, @lat_lng.lng.to_f] if @lat_lng%>"
-  data-lat-lngs="<%= @lat_lngs.map { |l| l.map_data} %>"
+  data-api-url="<%= api_url %>"
   id='map'>
 </div>
 

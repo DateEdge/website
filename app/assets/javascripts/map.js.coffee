@@ -18,6 +18,7 @@ $ ->
       false
 
     resizeMap()
+
     $(window).resize ->
       resizeMap()
 
@@ -43,29 +44,20 @@ $ ->
       }]
 
       options = {maxZoom: maxZoom, styles: styles}
-
-      myLatLng = $("#map").data('current-lat-lng')
-      myLatLng ||= [-34.397, 150.644]
-      latLng = new google.maps.LatLng(myLatLng[0], myLatLng[1])
       mapOptions = {
-        center: latLng,
+        center: LatLng.currentLatLng(),
         zoom: 6,
         maxZoom: maxZoom
       }
+
       map = new google.maps.Map(document.getElementById("map"),mapOptions);
-
-      data = $("#map").data('lat-lngs')
-      for lat in data
-        latLng = new google.maps.LatLng(lat[0], lat[1])
-        user = {
-          username: lat[2],
-          avatar: lat[3],
-          location: lat[4],
-          user_id: lat[5]
-        }
-        addMarker(latLng, map, user)
-
       mc = new MarkerClusterer(map, window.dateEdge.markers, options);
+
+      LatLng.all().then (data) ->
+        for ll in data
+          addMarker(ll.latLng(), map, ll.userContent())
+      .then () ->
+        mc.addMarkers window.dateEdge.markers
 
       google.maps.event.addListener map, 'click', ->
         if !window.dateEdge.openCluster
@@ -102,7 +94,6 @@ $ ->
     addMarker = (latLng, map, user) ->
       Mustache.parse(template)
       rendered = Mustache.render(template, user);
-
       marker = new google.maps.Marker {
         position: latLng,
         content: rendered,

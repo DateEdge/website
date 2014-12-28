@@ -1,4 +1,5 @@
-window.dateEdge = {}
+window.dateEdge ||= {}
+
 $ ->
   $("#user_label_id").change ->
     # TODO this is fragile and we should make it more betterer
