@@ -1,11 +1,11 @@
 FactoryGirl.define do
-  
+
   factory :red_flag do
     flaggable_type "User"
     flaggable { create(:user) }
     reporter { create(:user) }
   end
-  
+
   factory :provider do
     name "default"
     uid "1234"
@@ -13,12 +13,12 @@ FactoryGirl.define do
       name "twitter"
     end
   end
-  
+
   factory :photo do
     image Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/support/small.png')))
     user
   end
-  
+
   factory :user do
     name "User T. Duncan"
     sequence :username do |n| "User#{n}" end
@@ -26,25 +26,25 @@ FactoryGirl.define do
     birthday           { 22.years.ago }
     agreed_to_terms_at { Time.now }
     visible true
-    
+
     factory :shane do
       name     "Shane Becker"
       username "veganstraightedge"
       birthday { 32.years.ago }
     end
-    
+
     factory :bookis do
       name     "Bookis Smuin"
       username "Bookis"
       birthday { 27.years.ago }
     end
   end
-  
+
   factory :block do
     user
     association :blocked_user, factory: :bookis
   end
-  
+
   factory :state do
     name "Washington"
     abbreviation "WA"
@@ -53,7 +53,7 @@ FactoryGirl.define do
       abbreviation "CA"
     end
   end
-  
+
   factory :country do
     name "United States"
     abbreviation "US"
@@ -65,10 +65,14 @@ FactoryGirl.define do
   factory :label do
     name "sXe"
   end
-  
+
   factory :diet do
     name "Vegan"
   end
-  
-  
+
+  factory :credential do
+    provider
+    token "1234"
+  end
+
 end

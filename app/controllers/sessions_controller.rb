@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   skip_before_filter :restrict_non_visible_user
 
   def create
+    raise
     auth = request.env["omniauth.auth"]
     if current_user
       provider = Provider.from_auth(auth, ip_address: request.remote_ip)
@@ -25,7 +26,7 @@ class SessionsController < ApplicationController
     cookies.delete :auth_token
     redirect_to root_url, notice: "Signed out. Bye, for now!"
   end
-  
+
   def failure
     redirect_to root_url, notice: params[:message]
   end
