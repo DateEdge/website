@@ -49,9 +49,10 @@ ActiveRecord::Schema.define(version: 20141229031708) do
   end
 
   create_table "credentials", force: true do |t|
-    t.boolean  "expires",     default: false
+    t.boolean  "expires",       default: false
     t.datetime "expires_at"
-    t.integer  "provider_id"
+    t.integer  "user_id"
+    t.string   "provider_name"
     t.text     "token"
     t.datetime "created_at"
     t.datetime "updated_at"

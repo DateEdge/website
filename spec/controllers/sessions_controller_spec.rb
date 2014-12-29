@@ -2,14 +2,13 @@ require 'spec_helper'
 
 describe SessionsController, :type => :controller do
   describe "with facebook" do
+    before { request.env["omniauth.auth"] = auth }
     let(:auth) { OmniAuth.mock_auth_for(:facebook) }
     it "sign up creates a user" do
-      expect(controller.request.env).to receive(:[]).with("omniauth.auth").once.and_return(auth)
-      expect(controller.request.env).to receive(:[]).at_least(:once).and_call_original
       expect { get :create, provider: "facebook" }.to change(User, :count).by(1)
       expect(cookies[:auth_token]).to_not be_blank
     end
-    
+
     it "signs in the user" do
       expect(controller.request.env).to receive(:[]).with("omniauth.auth").once.and_return(auth)
       expect(controller.request.env).to receive(:[]).at_least(:once).and_call_original
@@ -18,14 +17,18 @@ describe SessionsController, :type => :controller do
       expect { get :create, provider: "facebook" }.to change(User, :count).by(0)
       expect(cookies[:auth_token]).to_not be_blank
     end
+
+    it 'creates a credential' do
+      expect { get :create, provider: "facebook" }.to change(Credential, :count).by(1)
+    end
   end
-  
+
   describe "sign up with twitter" do
+    let(:auth) { OmniAuth.mock_auth_for(:twitter) }
+    before { request.env["omniauth.auth"] = auth }
     it "is successful" do
-      expect(controller.request.env).to receive(:[]).with("omniauth.auth").once.and_return(OmniAuth.mock_auth_for(:twitter))
-      expect(controller.request.env).to receive(:[]).at_least(:once).and_call_original
       expect { get :create, provider: "twitter" }.to change(User, :count).by(1)
     end
   end
-  
+
 end

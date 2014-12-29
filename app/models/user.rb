@@ -81,6 +81,8 @@ class User < ActiveRecord::Base
   has_many :red_flags, as: :flaggable, dependent: :destroy
   has_many :red_flag_reports, class_name: "RedFlag", foreign_key: :reporter_id, dependent: :destroy
 
+  has_many :credentials
+
   accepts_nested_attributes_for :your_labels, allow_destroy: true, reject_if: proc { |obj| obj['label_id'] == "0" }
 
   scope :visible,       -> { where(visible: true) }
@@ -146,7 +148,6 @@ class User < ActiveRecord::Base
 
     def create_for_twitter(auth)
       location = auth["info"]["location"]
-
       provider = Provider.new(name: auth["provider"], uid: auth['uid'])
 
       u = create! do |user|

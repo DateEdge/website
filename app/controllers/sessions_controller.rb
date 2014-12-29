@@ -1,9 +1,8 @@
 class SessionsController < ApplicationController
   skip_before_filter :restrict_non_visible_user
+  after_action :create_credential, only: :create
 
   def create
-    raise
-    auth = request.env["omniauth.auth"]
     if current_user
       provider = Provider.from_auth(auth, ip_address: request.remote_ip)
       if provider
@@ -12,7 +11,6 @@ class SessionsController < ApplicationController
       else
         current_user.providers << Provider.create!(name: auth["provider"], uid: auth['uid'])
       end
-
     else
       provider = Provider.from_auth(auth, ip_address: request.remote_ip)
       user = provider ? provider.user : User.create_with_omniauth(auth)
@@ -29,5 +27,20 @@ class SessionsController < ApplicationController
 
   def failure
     redirect_to root_url, notice: params[:message]
+  end
+
+  private
+
+  def auth
+    request.env["omniauth.auth"]
+  end
+
+  def create_credential
+    current_user.credentials.create(
+      provider_name: auth.provider,
+      token: auth.credentials.token,
+      expires: auth.credentials.expires,
+      expires_at: Time.at(auth.credentials.expires_at)
+    )
   end
 end

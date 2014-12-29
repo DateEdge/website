@@ -37,6 +37,7 @@ gem "carrierwave"
 gem "omniauth-twitter",   "~> 1.0.1"
 gem "omniauth-facebook",  "~> 1.6.0"
 
+gem "koala"
 
 group :development do
   gem "better_errors"

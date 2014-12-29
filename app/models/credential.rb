@@ -1,4 +1,4 @@
 class Credential < ActiveRecord::Base
-  belongs_to :provider
-  validates :provider_id, :token, presence: true
+  belongs_to :user
+  validates :user_id, :token, :provider_name, presence: true
 end

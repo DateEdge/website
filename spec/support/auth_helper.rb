@@ -84,9 +84,8 @@ def facebook_auth_response
       "location"=>"Seattle, Washington",
       "verified"=>true},
     "credentials"=>
-     {"token"=>
-       "xxxxx",
-      "expires_at"=>1992443695,
+     {"token"=>"1234",
+      "expires_at"=> 60.days.from_now.to_i,
       "expires"=>true},
     "extra"=>
      {"raw_info"=>

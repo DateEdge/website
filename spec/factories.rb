@@ -71,8 +71,9 @@ FactoryGirl.define do
   end
 
   factory :credential do
-    provider
+    user
     token "1234"
+    provider_name "twitter"
   end
 
 end
