@@ -36,11 +36,12 @@ class SessionsController < ApplicationController
   end
 
   def create_credential
+    expires_at = auth.credentials.expires_at ? Time.at(auth.credentials.expires_at) : nil
     current_user.credentials.create(
       provider_name: auth.provider,
       token: auth.credentials.token,
       expires: auth.credentials.expires,
-      expires_at: Time.at(auth.credentials.expires_at)
+      expires_at: expires_at
     )
   end
 end

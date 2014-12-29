@@ -40,6 +40,12 @@ class UsersController < ApplicationController
 
     if @user.nil? or @user.visible?
       return redirect_to(root_path)
+    else
+      begin
+        @facebook = Social::Facebook.new(@user)
+        @user.birthday ||= @facebook.birthday
+      rescue Social::SocialError
+      end
     end
   end
 

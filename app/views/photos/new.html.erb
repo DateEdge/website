@@ -2,6 +2,13 @@
   <h1>Add a photo to your profile</h1>
 </div>
 
+<!-- Temporary, shouldn't show for anything except FB test users -->
+<% if @facebook && @facebook.valid? %>
+  <% @facebook.photos.each do |photo| %>
+    <%= image_tag photo["images"].last["source"] %>
+  <% end %>
+<% end %>
+
 <%= form_for @photo, html: { multipart: true, class: "form" } do |f| %>
   <% if getting_started? %>
     <div id="getting-started">
