@@ -14,7 +14,7 @@ class Social::Facebook
   end
 
   def birthday
-    Date.strptime(info["birthday"], "%m/%d/%Y")
+    Date.strptime(info["birthday"], "%m/%d/%Y") if info["birthday"]
   end
 
   def valid?
