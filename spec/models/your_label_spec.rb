@@ -31,5 +31,4 @@ describe YourLabel, :type => :model do
     expect(your_label).to be_invalid
   end
 
-  it "should not allow duplicate labels for a user"
 end
