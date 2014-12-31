@@ -1,19 +1,3 @@
-class EmailValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    if !EmailAddressValidator.validate_addr(value,true)
-      record.errors[attribute] << "is not valid"
-    end
-  end
-end
-
-class BirthdayValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    if value.blank? || value < 100.years.ago.to_date
-      record.errors[attribute] << "is required"
-    end
-  end
-end
-
 class User < ActiveRecord::Base
   include UserRule
   include PgSearch
