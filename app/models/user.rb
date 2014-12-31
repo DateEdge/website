@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   }
 
   self.per_page = 28
-  store_accessor :settings, :admin, :featured, :birthday_public, :real_name_public, :email_public
+  store_accessor :settings, :admin, :featured, :birthday_public, :real_name_public, :email_public, :email_crushes, :email_messages
   store_accessor :drug_use, :alcohol, :cigarettes, :marijuana, :drugs
 
   scope :with_setting, lambda { |key, value| where("settings -> ? = ?", key, value.to_s) }
@@ -94,6 +94,7 @@ class User < ActiveRecord::Base
   def to_param
     username
   end
+
   class << self
 
     def search(search)

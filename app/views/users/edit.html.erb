@@ -232,6 +232,25 @@
         <% end %>
 
       </div>
+      <div class="row" id="social-media">
+        <div class="col-sm-12">
+          <div class="page-header">
+            <h1>Email</h1>
+          </div>
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :email_crushes %>
+              <%= f.label     :email_crushes, "Email me when someone crushes me" %>
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :email_messages %>
+              <%= f.label     :email_messages, "Email me when someone messages me" %>
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

@@ -110,6 +110,8 @@ class UsersController < ApplicationController
       :birthday_public,
       :real_name_public,
       :email_public,
+      :email_crushes,
+      :email_messages,
       "birthday(1i)",
       "birthday(2i)",
       "birthday(3i)",

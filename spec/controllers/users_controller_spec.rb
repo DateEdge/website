@@ -129,9 +129,10 @@ describe UsersController, :type => :controller do
     end
 
     it "updates settings" do
-      patch :update, user: {birthday_public: true, admin: true }
+      patch :update, user: {email_crushes: true, birthday_public: true, admin: true }
       expect(assigns(:user).birthday_public?).to be_truthy
       expect(assigns(:user).admin?).to be_nil
+      expect(assigns(:user).email_crushes).to eq true
     end
   end
 

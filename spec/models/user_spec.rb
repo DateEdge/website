@@ -366,4 +366,13 @@ describe User, :type => :model do
 
   end
 
+  describe '#email_settings' do
+    it 'crushes default to false' do
+      expect(user.email_crushes).to eq nil
+    end
+    it 'messages default to false' do
+      expect(user.email_messages).to eq nil
+    end
+  end
+
 end
