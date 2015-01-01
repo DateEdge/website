@@ -16,6 +16,10 @@ class Message < ActiveRecord::Base
     Resque.enqueue(NotificationJob, :new_message, self.id)
   end
 
+  def needs_notify?
+    recipient.email_messages?
+  end
+
   private
 
   def create_conversation

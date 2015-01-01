@@ -351,7 +351,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  %w(admin featured birthday_public real_name_public email_public).each do |method_name|
+  %w(admin featured birthday_public real_name_public email_public email_messages).each do |method_name|
     define_method("#{method_name}?") do
       %w(true false 0 1).include?(send(method_name)) ? %w(true 1).include?(send(method_name)) : send(method_name)
     end

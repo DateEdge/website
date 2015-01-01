@@ -22,6 +22,7 @@ class MessagesController < ApplicationController
     message.recipient    = @user
     message.conversation = @conversation
     if message.save
+      message.notify if message.needs_notify?
       redirect_to conversation_path(@user.username)
     elsif message.errors.has_key? :restricted
       redirect_to conversations_path, notice: message.errors[:restricted]

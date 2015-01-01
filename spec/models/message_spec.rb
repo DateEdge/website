@@ -7,4 +7,15 @@ describe Message do
       message.notify
     end
   end
+
+  describe '#needs_notify' do
+    it 'does if recipient has email_messages to true' do
+      message.recipient.email_messages = true
+      expect(message.needs_notify?).to eq true
+    end
+    it 'does not if recipient has email_messages to false' do
+      message.recipient.email_messages = false
+      expect(message.needs_notify?).to eq false
+    end
+  end
 end
