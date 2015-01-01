@@ -8,9 +8,10 @@ class Notification < ActionMailer::Base
     mail to: @recipient.email, subject: "You have a new message from #{@sender.username}"
   end
 
-  def new_crush
-    @greeting = "Hi"
-
-    mail to: "to@example.org"
+  def new_crush(crush_id)
+    @crush = Crush.find(crush_id)
+    @recipient = @crush.crushee
+    @sender    = @crush.crusher
+    mail to: @recipient.email, subject: "You were crushed on by #{@sender.username}"
   end
 end

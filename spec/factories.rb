@@ -81,4 +81,8 @@ FactoryGirl.define do
     association :sender, factory: :user, username: "Sen-Der"
   end
 
+  factory :crush do
+    association :crushee, factory: :user, username: "R-E-Cipient", email: "r@example.com"
+    association :crusher, factory: :user, username: "Sen-Der"
+  end
 end
