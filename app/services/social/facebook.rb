@@ -6,7 +6,12 @@ class Social::Facebook
   end
 
   def photos
-    client.get_connections("me", "photos")
+    begin
+      client.get_connections("me", "photos")
+    rescue
+      Rollbar.error
+      []
+    end
   end
 
   def info

@@ -11,7 +11,7 @@ gem "json"
 gem "pg"
 gem "rails",                   "~> 4.1.7"
 gem "redcarpet" # Markdown parser
-gem "rollbar"   # Exception notifier
+gem "rollbar", "~> 1.3.1"   # Exception notifier
 gem "sass-rails"
 gem "uglifier",                ">= 1.3.0"
 gem "will_paginate"
