@@ -8,8 +8,8 @@ class Social::Facebook
   def photos
     begin
       client.get_connections("me", "photos")
-    rescue
-      Rollbar.error
+    rescue => e
+      Rollbar.error(e)
       []
     end
   end
