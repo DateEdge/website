@@ -76,4 +76,9 @@ FactoryGirl.define do
     provider_name "twitter"
   end
 
+  factory :message do
+    association :recipient, factory: :user, name: "R. E. Cipient"
+    association :sender, factory: :user, name: "Sen Der"
+  end
+
 end

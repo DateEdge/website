@@ -12,6 +12,10 @@ class Message < ActiveRecord::Base
   scope :received, lambda { |user| where(recipient_id: user.id) }
   scope :today, -> { where("created_at >= ?", Time.zone.now.beginning_of_day) }
 
+  def notify
+    Resque.enqueue(NotificationJob, :new_message, self.id)
+  end
+
   private
 
   def create_conversation
