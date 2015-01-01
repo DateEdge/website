@@ -77,8 +77,8 @@ FactoryGirl.define do
   end
 
   factory :message do
-    association :recipient, factory: :user, name: "R. E. Cipient"
-    association :sender, factory: :user, name: "Sen Der"
+    association :recipient, factory: :user, username: "R-E-Cipient", email: "r@example.com"
+    association :sender, factory: :user, username: "Sen-Der"
   end
 
 end
