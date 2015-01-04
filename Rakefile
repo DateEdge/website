@@ -36,7 +36,7 @@ namespace :deploy do
   task set_default_mailing_options: :environment do
     User.find_in_batches(batch_size: 50) do |group|
       puts "updating #{group.first.id}..."
-      group.each {|u| u.update(email_crushes: true, email_messages: true)}
+      group.each {|u| u.update(email_crushes: "1", email_messages: "1")}
     end
   end
 
