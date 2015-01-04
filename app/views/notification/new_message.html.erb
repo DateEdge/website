@@ -1,7 +1,7 @@
 <b>Hi @<%= @recipient.username %>!</b>
 
 <p>
-  <b><%= link_to "@#{@sender.username}", user_path(@sender) %></b> sent you a message.
+  <b><%= link_to "@#{@sender.username}", user_url(@sender) %></b> sent you a message.
   <%= link_to "Read it", conversation_url(@sender) %> on Date Edge.
 </p>
 
