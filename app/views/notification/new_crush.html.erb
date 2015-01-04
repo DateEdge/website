@@ -1,6 +1,11 @@
-<!-- TODO: Write me -->
-<strong>Hello</strong>
+<b>Hi @<%= @recipient.username %>!</b>
+
 <p>
-  <%= link_to @sender.username, user_url(@sender) %> has crushed on you.
-  Click <%= link_to "here", user_url(@sender) %> to see their profile.
+  <b>@<%= link_to @sender.username, user_url(@sender) %></b> crushed on you.
+  <%= link_to "View their profile", user_url(@sender) %> on Date Edge.
+  (If you like them too, you can crush on them back.)
+</p>
+
+<p>
+  <%= link_to user_url(@sender), user_url(@sender) %>
 </p>
