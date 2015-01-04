@@ -33,6 +33,13 @@ namespace :deploy do
     }
   end
 
+  task set_default_mailing_options: :environment do
+    User.find_in_batches(batch_size: 50) do |group|
+      puts "updating #{group.first.id}..."
+      group.each {|u| u.update(email_crushes: true, email_messages: true)}
+    end
+  end
+
 end
 
 namespace :geocode do
