@@ -1,6 +1,10 @@
-<!-- TODO: Write me -->
-<strong>Hello</strong>
+<b>Hi @<%= @recipient.username %>!</b>
+
 <p>
-  <%= link_to @sender.username, user_path(@sender) %> sent you a new message
-  click <%= link_to "here", conversation_url(@sender) %> to read it.
+  <b><%= link_to @sender.username, user_path(@sender) %></b> sent you a message.
+  <%= link_to "Read it", conversation_url(@sender) %> on Date Edge.
+</p>
+
+<p>
+  <%= link_to conversation_url(@sender), conversation_url(@sender) %>
 </p>

@@ -6,7 +6,7 @@ describe Notification do
     let(:mail) { Notification.new_message(message.id) }
 
     it "renders the headers" do
-      mail.subject.should eq("You have a new message from Sen-Der")
+      mail.subject.should eq("Date Edge: You have a new message from Sen-Der")
       mail.to.should eq(["r@example.com"])
       mail.from.should eq(["us@dateedge.com"])
     end
@@ -21,7 +21,7 @@ describe Notification do
     let(:mail) { Notification.new_crush(crush.id) }
 
     it "renders the headers" do
-      mail.subject.should eq("You were crushed on by Sen-Der")
+      mail.subject.should eq("Date Edge: You were crushed on by Sen-Der")
       mail.to.should eq(["r@example.com"])
       mail.from.should eq(["us@dateedge.com"])
     end
