@@ -141,6 +141,8 @@ class User < ActiveRecord::Base
         provider.last_login_at = Time.now
         user.name              = auth["info"]["name"]
 
+        user.email_crushes     = true
+        user.email_messages    = true
         unless location.blank?
           user.city             = location.split(",").first.strip
           user.state            = State.where(abbreviation: location.split(",").last.strip).first
@@ -174,6 +176,9 @@ class User < ActiveRecord::Base
         provider.handle        = auth.info.nickname || auth.info.name
         provider.last_login_at = Time.now
         user.name              = auth["info"]["name"]
+
+        user.email_crushes     = true
+        user.email_messages    = true
 
         unless location.blank?
           user.city       = location.split(",").first.strip

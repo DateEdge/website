@@ -114,6 +114,14 @@ describe User, :type => :model do
       expect(user.new_record?).to be_falsey
     end
 
+    it 'sets email_crushes to true' do
+      expect(user.email_crushes).to eq true
+    end
+
+    it 'sets email_messages to true' do
+      expect(user.email_messages).to eq true
+    end
+
     it "assigns a remote photo" do
       mock_user = mock_model("User")
       expect(User).to receive(:create!).and_return(mock_user)
