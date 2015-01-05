@@ -56,13 +56,13 @@ group :test, :development do
   gem "poltergeist"
   gem "terminal-notifier-guard"
 
-  gem "rspec-rails"
+  gem "rspec-rails", "~> 3.1.0"
   gem "rspec-activemodel-mocks"
 end
 
 group :test do
+  gem "rspec", "~> 3.1.0"
   gem "database_cleaner"
-  gem "rspec", "~> 2.99.0"
 end
 
 group :production, :staging do

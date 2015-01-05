@@ -6,13 +6,13 @@ describe Notification do
     let(:mail) { Notification.new_message(message.id) }
 
     it "renders the headers" do
-      mail.subject.should eq("Date Edge: You have a new message from @Sen-Der")
-      mail.to.should eq(["r@example.com"])
-      mail.from.should eq(["us@dateedge.com"])
+      expect(mail.subject).to eq("Date Edge: You have a new message from @Sen-Der")
+      expect(mail.to).to eq(["r@example.com"])
+      expect(mail.from).to eq(["us@dateedge.com"])
     end
 
     it "renders the body" do
-      mail.body.encoded.should match('href="http://example.com/@Sen-Der/conversation"')
+      expect(mail.body.encoded).to match('href="http://example.com/@Sen-Der/conversation"')
     end
   end
 
@@ -21,13 +21,13 @@ describe Notification do
     let(:mail) { Notification.new_crush(crush.id) }
 
     it "renders the headers" do
-      mail.subject.should eq("Date Edge: You were crushed on by @Sen-Der")
-      mail.to.should eq(["r@example.com"])
-      mail.from.should eq(["us@dateedge.com"])
+      expect(mail.subject).to eq("Date Edge: You were crushed on by @Sen-Der")
+      expect(mail.to).to eq(["r@example.com"])
+      expect(mail.from).to eq(["us@dateedge.com"])
     end
 
     it "renders the body" do
-      mail.body.encoded.should match('href="http://example.com/@Sen-Der"')
+      expect(mail.body.encoded).to match('href="http://example.com/@Sen-Der"')
     end
   end
 
