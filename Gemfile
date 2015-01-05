@@ -9,7 +9,11 @@ gem "indefinite_article"
 gem "jquery-rails"
 gem "json"
 gem "pg"
-gem "rails",                   "~> 4.1.7"
+gem "rails",                   "~> 4.2.0"
+
+# for respond_to, remove once json responses are moved to the API
+gem 'responders', '~> 2.0'
+
 gem "redcarpet" # Markdown parser
 gem "rollbar", "~> 1.3.1"   # Exception notifier
 gem "sass-rails"
