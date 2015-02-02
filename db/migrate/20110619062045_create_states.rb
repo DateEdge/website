@@ -77,6 +77,6 @@ class CreateStates < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :countries
+    drop_table :states
   end
 end
