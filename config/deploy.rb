@@ -5,8 +5,8 @@ set :application, 'dateedge'
 set :repo_url, 'git@github.com:DateEdge/website.git'
 
 # Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
-
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+# set :branch, :capistrano
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/var/www/dateedge'
 set :use_sudo, false
