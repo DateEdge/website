@@ -10,7 +10,7 @@ gem "jquery-rails"
 gem "json"
 gem "pg"
 gem "rails",                   "~> 4.2.0"
-
+gem "dotenv-rails"
 # for respond_to, remove once json responses are moved to the API
 gem 'responders', '~> 2.0'
 

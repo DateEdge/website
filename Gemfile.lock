@@ -104,6 +104,8 @@ GEM
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     dotenv (1.0.2)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
     erubis (2.7.0)
     excon (0.42.1)
     execjs (2.2.2)
@@ -383,6 +385,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   dalli
   database_cleaner
+  dotenv-rails
   email_address_validator (= 0.0.3)!
   factory_girl_rails
   fog (~> 1.22.1)
