@@ -11,6 +11,7 @@ gem "json"
 gem "pg"
 gem "rails",                   "~> 4.2.0"
 gem "dotenv-rails"
+gem "therubyracer"
 # for respond_to, remove once json responses are moved to the API
 gem 'responders', '~> 2.0'
 
