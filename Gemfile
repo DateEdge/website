@@ -43,6 +43,12 @@ gem "omniauth-facebook",  "~> 1.6.0"
 
 gem "koala"
 
+gem "capistrano"
+gem "capistrano-rvm"
+gem "capistrano-bundler"
+gem "capistrano-rails"
+gem "capistrano-passenger"
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
