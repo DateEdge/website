@@ -37,7 +37,7 @@ Profiles also have two lists of three properties.
 
 ## Requirements
 
-- [Ruby,  ~> 2.1.2](http://ruby-lang.org)
+- [Ruby,  ~> 2.2.0](http://ruby-lang.org)
 - [Rails, ~> 4.1.7](https://github.com/rails/rails)
 - [ImageMagick](http://imagemagick.org) (`brew install imagemagick`)
 

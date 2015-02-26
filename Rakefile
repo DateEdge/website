@@ -54,7 +54,7 @@ namespace :db do
 
   task :import do
     puts "Heroku Toolbelt packages its own Ruby at version 1.9.3."
-    puts "Date Edge specifies `ruby '2.1.2'` in the Gemfile."
+    puts "Date Edge specifies `ruby '2.2.0'` in the Gemfile."
     puts "Calling the `heroku` from within the Date Edge Ruby space"
     puts "causes a conflict and therefore won't run."
     puts "To get around this (for now), you have to manually run this."
