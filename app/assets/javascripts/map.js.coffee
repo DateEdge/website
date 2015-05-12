@@ -72,7 +72,7 @@ $ ->
 
           marker = cluster.getMarkers()[0]
           window.dateEdge.openCluster = true
-          window.dateEdge.infowindow.content = infoWindowContent(content)
+          window.dateEdge.infowindow.setContent(infoWindowContent(content))
           latLng = new google.maps.LatLng(marker.position.lat(), marker.position.lng())
           window.dateEdge.infowindow.setPosition(latLng)
           window.dateEdge.infowindow.open(map)
@@ -102,5 +102,6 @@ $ ->
       window.dateEdge.markers[user.user_id] = marker
 
       google.maps.event.addListener marker, 'click', ->
-        window.dateEdge.infowindow.content = infoWindowContent(marker.content)
+        console.log window.dateEdge.infowindow.content
+        window.dateEdge.infowindow.setContent infoWindowContent(marker.content)
         window.dateEdge.infowindow.open(map,marker)
