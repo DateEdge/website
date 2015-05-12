@@ -16,39 +16,38 @@ ActiveRecord::Schema.define(version: 20141229031708) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
-  enable_extension "pg_stat_statements"
   enable_extension "unaccent"
 
-  create_table "blocks", force: true do |t|
+  create_table "blocks", force: :cascade do |t|
     t.integer  "blocker_id"
     t.integer  "blocked_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "bookmarks", force: true do |t|
+  create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "bookmarkee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "conversations", force: true do |t|
+  create_table "conversations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "recipient_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "hidden_from_user_id"
   end
 
-  create_table "countries", force: true do |t|
+  create_table "countries", force: :cascade do |t|
     t.string   "name"
     t.string   "abbreviation"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "credentials", force: true do |t|
+  create_table "credentials", force: :cascade do |t|
     t.boolean  "expires",       default: false
     t.datetime "expires_at"
     t.integer  "user_id"
@@ -58,27 +57,27 @@ ActiveRecord::Schema.define(version: 20141229031708) do
     t.datetime "updated_at"
   end
 
-  create_table "crushes", force: true do |t|
+  create_table "crushes", force: :cascade do |t|
     t.integer  "crusher_id"
     t.integer  "crushee_id"
     t.boolean  "secret",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "diets", force: true do |t|
+  create_table "diets", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "labels", force: true do |t|
+  create_table "labels", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "lat_lngs", force: true do |t|
+  create_table "lat_lngs", force: :cascade do |t|
     t.decimal  "lat",        precision: 8, scale: 5
     t.decimal  "lng",        precision: 8, scale: 5
     t.string   "username"
@@ -89,44 +88,37 @@ ActiveRecord::Schema.define(version: 20141229031708) do
     t.datetime "updated_at"
   end
 
-  create_table "messages", force: true do |t|
+  create_table "messages", force: :cascade do |t|
     t.integer  "conversation_id"
     t.integer  "sender_id"
     t.integer  "recipient_id"
     t.text     "body"
     t.boolean  "unread",          default: true
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
-
-  create_table "my_labels", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "label_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "photos", force: true do |t|
+  create_table "photos", force: :cascade do |t|
     t.string   "image"
     t.boolean  "avatar"
     t.text     "caption"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "providers", force: true do |t|
+  create_table "providers", force: :cascade do |t|
     t.string   "name"
     t.string   "uid"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "handle"
     t.datetime "last_login_at"
     t.string   "ip_address"
   end
 
-  create_table "red_flags", force: true do |t|
+  create_table "red_flags", force: :cascade do |t|
     t.integer  "flaggable_id"
     t.string   "flaggable_type"
     t.string   "slug"
@@ -137,14 +129,14 @@ ActiveRecord::Schema.define(version: 20141229031708) do
 
   add_index "red_flags", ["slug"], name: "index_red_flags_on_slug", using: :btree
 
-  create_table "states", force: true do |t|
+  create_table "states", force: :cascade do |t|
     t.string   "name"
     t.string   "abbreviation"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.date     "birthday"
     t.string   "name"
     t.string   "username"
@@ -161,8 +153,8 @@ ActiveRecord::Schema.define(version: 20141229031708) do
     t.integer  "state_id"
     t.integer  "country_id"
     t.integer  "diet_id"
-    t.datetime "created_at",                                                                                                         null: false
-    t.datetime "updated_at",                                                                                                         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.datetime "agreed_to_terms_at"
     t.hstore   "settings"
     t.string   "canonical_username"
@@ -186,11 +178,11 @@ ActiveRecord::Schema.define(version: 20141229031708) do
   add_index "users", ["photos_count"], name: "index_users_on_photos_count", using: :btree
   add_index "users", ["state_id"], name: "index_users_on_state_id", using: :btree
 
-  create_table "your_labels", force: true do |t|
+  create_table "your_labels", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "label_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "label_type", default: "Label"
   end
 
