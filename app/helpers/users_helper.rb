@@ -25,7 +25,6 @@ module UsersHelper
       "Tumblr"         => "http://@@@.tumblr.com",
       "Last FM"        => "http://last.fm/user/@@@",
       "Spotify"        => "https://open.spotify.com/user/@@@",
-      "Tumblr"         => "http://@@@.tumblr.com",
       "Vine"           => "https://vine.co/@@@",
       "Kik"            => "@@@",
       "Snapchat"       => "@@@"
