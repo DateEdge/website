@@ -102,6 +102,5 @@ $ ->
       window.dateEdge.markers[user.user_id] = marker
 
       google.maps.event.addListener marker, 'click', ->
-        console.log window.dateEdge.infowindow.content
         window.dateEdge.infowindow.setContent infoWindowContent(marker.content)
         window.dateEdge.infowindow.open(map,marker)
