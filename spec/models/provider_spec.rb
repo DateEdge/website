@@ -30,18 +30,28 @@ describe Provider, :type => :model do
       expect(provider.reload.handle).to eq "dale cooper"
     end
 
+
+    context "when different twitter handle but same email" do
+      let(:new_auth) { OmniAuth.mock_auth_for(:twitter) }
+      it "creates with no email" do
+        Provider.from_auth(auth)
+        new_auth.uid = "1234fake"
+        expect { Provider.from_auth(new_auth) }.to_not raise_error
+      end
+    end
+
     context "when twitter handle changes" do
       let(:new_auth) { OmniAuth.mock_auth_for(:twitter) }
       it "doesn't throw an error" do
         Provider.from_auth(auth)
         new_auth.info.nickname = "Goose"
-        expect { Provider.from_auth(OmniAuth.mock_auth_for(:twitter)) }.to_not raise_error
+        expect { Provider.from_auth(new_auth) }.to_not raise_error
       end
 
       it "returns the same provider" do
         provider = Provider.from_auth(auth)
         new_auth.info.nickname = "Goose"
-        expect(Provider.from_auth(OmniAuth.mock_auth_for(:twitter)).id).to eq provider.id
+        expect(Provider.from_auth(new_auth).id).to eq provider.id
       end
     end
   end
