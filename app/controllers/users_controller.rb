@@ -79,6 +79,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = current_user
+    @user.photos.destroy_all
     @user.destroy
     cookies.delete :auth_token
     redirect_to root_path, notice: "Profile deleted. We'll miss you. Come on back any time."

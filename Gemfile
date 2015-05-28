@@ -34,8 +34,7 @@ gem "pg_search"
 
 # image uploads
 gem "rmagick",            "~> 2.13.2", require: false
-gem "fog",                "~> 1.22.1"
-gem "carrierwave"
+gem "carrierwave-aws"
 
 # auth
 gem "omniauth-twitter",   "~> 1.0.1"

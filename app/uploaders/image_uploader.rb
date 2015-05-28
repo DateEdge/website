@@ -3,7 +3,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
 
   process :fix_exif_rotation
-  
+
   def store_dir
     "uploads/photos/users/#{model.user.id}/#{model.id}"
   end
@@ -53,7 +53,7 @@ class ImageUploader < CarrierWave::Uploader::Base
        "photo.#{extension}"
      end
   end
-  
+
   def rotate(options)
     manipulate! do |img|
       if options.has_key? :rotate
@@ -68,7 +68,7 @@ class ImageUploader < CarrierWave::Uploader::Base
       img
     end
   end
-  
+
   def fix_exif_rotation
     manipulate! do |img|
       img.auto_orient!
