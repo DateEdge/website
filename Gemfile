@@ -1,7 +1,5 @@
 source "https://rubygems.org"
-
-
-ruby "2.2.1"
+ruby "2.2.3"
 
 gem "coffee-rails",            "~> 4.0.0"
 gem "email_address_validator", "0.0.3",   github: "bookis/email_address_validator"
@@ -34,8 +32,7 @@ gem "pg_search"
 
 # image uploads
 gem "rmagick",            "~> 2.13.2", require: false
-gem "fog",                "~> 1.22.1"
-gem "carrierwave"
+gem "carrierwave-aws"
 
 # auth
 gem "omniauth-twitter",   "~> 1.0.1"
