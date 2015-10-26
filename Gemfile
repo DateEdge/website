@@ -32,7 +32,7 @@ gem "pg_search"
 
 # image uploads
 gem "rmagick",            "~> 2.13.2", require: false
-gem "carrierwave-aws"
+gem "carrierwave-aws", "~> 1.0.0"
 
 # auth
 gem "omniauth-twitter",   "~> 1.0.1"
@@ -44,6 +44,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem "foreman"
+  gem "dotenv-rails"
   gem "guard-rspec"
   gem "gx"
 

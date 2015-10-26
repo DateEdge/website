@@ -8,10 +8,9 @@ else
     CarrierWave.configure do |config|
       config.storage =  :aws
       config.aws_credentials = {
-        provider:              'AWS',
-        aws_access_key_id:     ENV["DXE_AWS_ACCESS_KEY"],
-        aws_secret_access_key: ENV["DXE_AWS_SECRET_KEY"],
-        region:                ENV["DXE_AWS_REGION"]
+        access_key_id:     ENV["DXE_AWS_ACCESS_KEY"],
+        secret_access_key: ENV["DXE_AWS_SECRET_KEY"],
+        region:            ENV["DXE_AWS_REGION"]
       }
       config.aws_bucket  = ENV["FOG_DIRECTORY"]
       config.asset_host     = "https://#{ENV["FOG_DIRECTORY"]}.s3.amazonaws.com"
