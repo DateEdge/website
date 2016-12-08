@@ -10,7 +10,7 @@ class Geocode
 
   def query_string
     {
-      key: "AIzaSyBUsS11chK_veOLCCks6o2U2jp1XDD6wgU",
+      key: "AIzaSyAFb3z7FJzTUMKPJU5TmVDNIiKM9MiPlLk",
       address: @address
     }.to_query
   end
