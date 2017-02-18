@@ -52,6 +52,7 @@ group :development do
 end
 
 group :test, :development do
+  gem "rails-controller-testing"
   gem "capybara"
   gem "factory_girl_rails"
   gem "poltergeist"

@@ -23,14 +23,14 @@ describe ConversationsController, :type => :controller do
   describe "GET 'show'" do
 
     it "should be successful" do
-      get 'show', username: shane.username
+      get 'show', params: {username: shane.username}
       expect(response).to be_success
       expect(assigns(:conversation)).to eq conversation
     end
   end
 
   describe "DELETE 'destroy'" do
-    let(:request) { delete :destroy, username: shane.username }
+    let(:request) { delete :destroy, params: {username: shane.username }}
     it "updates the conversations" do
       request
       conversation.reload
@@ -40,25 +40,25 @@ describe ConversationsController, :type => :controller do
     it "actually deletes the convo" do
       request
       allow(controller).to receive(:current_user) { shane }
-      expect { delete :destroy, username: user.username }.to change(Conversation, :count).by(-1)
+      expect { delete :destroy, params: {username: user.username} }.to change(Conversation, :count).by(-1)
     end
 
     it "doesn't actually delete a convo if the same person delete it twice" do
       request
       before = Conversation.count
-      expect { delete :destroy, username: shane.username }.to_not change(Conversation, :count).from(before)
+      expect { delete :destroy, params: {username: shane.username} }.to_not change(Conversation, :count).from(before)
     end
 
     it "deletes the convo for one person" do
       request
-      get 'show', username: shane.username
+      get 'show', params: {username: shane.username}
       expect(response).to be_successful
     end
 
     it "loads show for other user" do
       request
       allow(controller).to receive(:current_user) { shane }
-      get :show, username: user.username
+      get :show, params: {username: user.username}
       expect(response).to be_successful
     end
   end

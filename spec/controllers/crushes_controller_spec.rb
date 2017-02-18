@@ -5,9 +5,9 @@ describe CrushesController, :type => :controller do
   let!(:shane)  { create(:shane)  }
   before { sign_in(bookis) }
   describe "POST 'create'" do
-    let(:make_request) { post :create, username: shane.username }
+    let(:make_request) { post :create, params: {username: shane.username} }
     it "creates a crush" do
-      expect { post :create, username: shane.username }.to change(Crush, :count).by(1)
+      expect { post :create, params: {username: shane.username} }.to change(Crush, :count).by(1)
     end
 
     it "redirects if the user is age inappropriate" do
@@ -33,7 +33,7 @@ describe CrushesController, :type => :controller do
   describe "DELETE 'destroy'" do
     it "deletes a crush" do
       bookis.crushings.create(crushee_id: shane.id)
-      expect { delete :destroy, username: shane.username }.to change(Crush, :count).by(-1)
+      expect { delete :destroy, params: {username: shane.username} }.to change(Crush, :count).by(-1)
     end
   end
 end

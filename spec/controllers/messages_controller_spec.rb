@@ -4,7 +4,7 @@ describe MessagesController, :type => :controller do
   let(:user)  { create(:shane) }
   let(:user2) { create(:bookis) }
   let(:conversation) { user.outbound_conversations.create(recipient: user2) }
-  let(:request) { get 'new', username: user2.username }
+  let(:request) { get 'new', params: {username: user2.username} }
   before do
     sign_in(user)
   end
@@ -49,7 +49,7 @@ describe MessagesController, :type => :controller do
   end
 
   describe "POST 'create'" do
-    let(:make_request) { post 'create', username: user2.username, message: {body: "Body"} }
+    let(:make_request) { post 'create', params: {username: user2.username, message: {body: "Body"}} }
     it "should be successful" do
       make_request
       expect(response).to redirect_to conversation_path(user2.username)
@@ -70,7 +70,7 @@ describe MessagesController, :type => :controller do
     it "is not success if age inappropriate" do
       user.update(birthday: 21.years.ago)
       user2.update(birthday: 10.years.ago)
-      post 'create', username: user2.username, message: {body: "Body"}
+      post 'create', params: {username: user2.username, message: {body: "Body"}}
       expect(response).to redirect_to conversations_path
       expect(flash[:notice]).to include 'You can\'t send a message to that user'
     end
@@ -78,7 +78,7 @@ describe MessagesController, :type => :controller do
     describe "blocked" do
       it "should redirect back to the convo" do
         allow_any_instance_of(User).to receive(:block_with_user?) { true }
-        post 'create', username: user2.username, message: {body: "Body"}
+        post 'create', params: {username: user2.username, message: {body: "Body"}}
         expect(response).to redirect_to conversations_path
         expect(flash[:notice]).to include "@#{user2.username} is not available to message"
       end

@@ -6,7 +6,7 @@ describe BlocksController, :type => :controller do
   before { sign_in(shane) }
 
   describe "POST 'create'" do
-    let(:request) { post :create, username: user.username }
+    let(:request) { post :create, params: {username: user.username} }
     it "creates a post" do
       expect {request}.to change(Block, :count).by(1)
     end
@@ -14,7 +14,7 @@ describe BlocksController, :type => :controller do
 
   describe "DELETE 'destroy" do
     let(:block) { create(:block, blocker_id: shane.id, blocked_id: user.id) }
-    let(:request) { delete :destroy, username: user.username }
+    let(:request) { delete :destroy, params: {username: user.username} }
 
     it "redirect to user path" do
       request

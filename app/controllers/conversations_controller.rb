@@ -5,7 +5,7 @@ class ConversationsController < ApplicationController
   def index
     @title = "Inbox on Date Edge"
     @slug  = "inbox"
-    @conversations = current_user.conversations.not_deleted(current_user).uniq
+    @conversations = current_user.conversations.not_deleted(current_user).distinct
   end
 
   def show

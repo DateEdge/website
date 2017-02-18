@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   before_action :require_login, except: :email
-  skip_before_filter :verify_authenticity_token, only: :email
+  skip_before_action :verify_authenticity_token, only: :email
 
   before_action :set_photo,                     only: [:edit, :update, :destroy]
   before_action :confirm_photo_belongs_to_user, only: [:edit, :update, :destroy]
@@ -42,9 +42,9 @@ class PhotosController < ApplicationController
     return head(:ok) if params[:mandrill_events].nil? || data.empty?
     intake = MandrillIntake.new(data[0])
     if intake.photo.save
-      render nothing: true, status: 201
+      head :created
     else
-      render nothing: true, status: 422
+      head :unprocessable_entity
     end
   end
 
