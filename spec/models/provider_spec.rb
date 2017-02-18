@@ -66,7 +66,7 @@ describe Provider, :type => :model do
       user = create(:user)
       user.providers << provider
       user.destroy
-      expect {provider.reload}.to raise_error
+      expect {provider.reload}.to raise_error ActiveRecord::RecordNotFound
     end
   end
 end
