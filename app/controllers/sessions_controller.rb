@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter :restrict_non_visible_user
+  skip_before_action :restrict_non_visible_user
   after_action :create_credential, only: :create
 
   def create

@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   include PgSearch
   pg_search_scope :text_search,
     against: {username: "A", city: "B", me_gender: "C"},
-    using: {tsearch: {dictionary: "english", prefix: true, suffix: true}},
+    # TODO: removed suffix: true from using: hash...
+    using: {tsearch: {dictionary: "english", prefix: true}},
     ignoring: :accents,
     associated_against: {
       state:   [:name, :abbreviation],
@@ -59,8 +60,8 @@ class User < ActiveRecord::Base
   has_many :providers, dependent: :destroy
   has_many :photos, -> { order "created_at desc" }, dependent: :destroy
   has_many :your_labels
-  has_many :desired_straightedgeness, -> { uniq }, through: :your_labels, source: :label, as: :label, source_type: "Label"
-  has_many :desired_diets,  -> { uniq }, through: :your_labels, source: :label, as: :label, source_type: "Diet"
+  has_many :desired_straightedgeness, -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "Label"
+  has_many :desired_diets,  -> { distinct }, through: :your_labels, source: :label, as: :label, source_type: "Diet"
 
   has_many :red_flags, as: :flaggable, dependent: :destroy
   has_many :red_flag_reports, class_name: "RedFlag", foreign_key: :reporter_id, dependent: :destroy

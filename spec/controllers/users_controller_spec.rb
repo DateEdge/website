@@ -15,7 +15,7 @@ describe UsersController, :type => :controller do
     context "#search" do
       it "by username field" do
         expect(User).to receive(:search).with("username" => "veganstraightedge").once.and_return User.visible
-        get :index, search: "username/veganstraightedge"
+        get :index, params: {search: "username/veganstraightedge"}
       end
       it "shows everyone" do
         get :index
@@ -29,23 +29,23 @@ describe UsersController, :type => :controller do
       end
 
       it "shows everyone" do
-        get :index, search: "bookis"
+        get :index, params: {search: "bookis"}
         expect(assigns(:users)).to include bookis
       end
 
       it "doesn't show blocked people" do
         shane.blocks << Block.create(blocked_id: bookis.id)
-        get :index, search: "bookis"
+        get :index, params: {search: "bookis"}
         expect(assigns(:users)).to_not include bookis
       end
 
       it "redirects if searching on a bad field" do
-        get :index, search: "id/1"
+        get :index, params: {search: "id/1"}
         expect(assigns(:search)).to eq "1"
       end
 
       it "searches all if no search term" do
-        get :index, search: ""
+        get :index, params: {search: ""}
         expect(assigns(:users)).to include bookis
       end
     end
@@ -53,12 +53,12 @@ describe UsersController, :type => :controller do
 
   describe "GET 'show'" do
     it "should be successful" do
-      get 'show', username: "veganstraightedge"
+      get 'show', params: {username: "veganstraightedge"}
       expect(response).to be_success
     end
 
     it "redirect to home if the user doesn't exit" do
-      get :show, username: "imnotreal"
+      get :show, params: {username: "imnotreal"}
       expect(response).to redirect_to root_path
     end
 
@@ -79,11 +79,11 @@ describe UsersController, :type => :controller do
     let(:bookis) { create(:bookis, visible: true, agreed_to_terms_at: Time.now) }
     before { sign_in(bookis) }
     it "destroys a user" do
-      expect { delete :destroy, username: "@bookis" }.to change(User, :count).by(-1)
+      expect { delete :destroy, params: {username: "@bookis"} }.to change(User, :count).by(-1)
     end
 
     it "redirects to home" do
-      delete :destroy, username: "@bookis"
+      delete :destroy, params: {username: "@bookis"}
       expect(response).to redirect_to root_path
     end
   end
@@ -93,18 +93,18 @@ describe UsersController, :type => :controller do
     before { sign_in(bookis) }
 
     it "redirects to people path" do
-      post :create, user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}
+      post :create, params: {user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}}
       expect(response).to redirect_to new_photo_path(getting: "started")
     end
 
     it "changes user visibility" do
-      post :create, user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}
+      post :create, params: {user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1, agreed_to_terms_at: Time.now}}
       bookis.reload
       expect(bookis.visible).to be_truthy
     end
 
     it "renders the edit form if there are errors" do
-      post :create, user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1}
+      post :create, params: {user: {username: User.generate_username, email: "b@c.com", "birthday(1i)" => 2013,"birthday(2i)" => 1,"birthday(3i)" => 1}}
       expect(response).to render_template :new
     end
   end
@@ -116,20 +116,20 @@ describe UsersController, :type => :controller do
     }
 
     it "updates name" do
-      patch :update, user: {name: "BKS"}
+      patch :update, params: {user: {name: "BKS"}}
       expect(response).to redirect_to person_path(shane.username)
     end
 
     it "doesn't update username" do
-      expect { patch :update, user: {username: "BKS"} }.to_not change(shane, :username)
+      expect { patch :update, params: {user: {username: "BKS"}} }.to_not change(shane, :username)
     end
 
     it "doesn't update email" do
-      expect { patch :update, user: {email: "b@example.com"} }.to_not change(shane, :email)
+      expect { patch :update, params: {user: {email: "b@example.com"}} }.to_not change(shane, :email)
     end
 
     it "updates settings" do
-      patch :update, user: {email_crushes: true, birthday_public: true, admin: true }
+      patch :update, params: {user: {email_crushes: true, birthday_public: true, admin: true }}
       expect(assigns(:user).birthday_public?).to be_truthy
       expect(assigns(:user).admin?).to be_nil
       expect(assigns(:user).email_crushes).to eq true

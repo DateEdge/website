@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  skip_before_filter :restrict_non_visible_user
+  skip_before_action :restrict_non_visible_user
 
   def index
     if logged_in?

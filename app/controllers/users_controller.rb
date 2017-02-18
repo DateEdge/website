@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :restrict_non_visible_user, only: [:new, :create]
+  skip_before_action :restrict_non_visible_user, only: [:new, :create]
   before_action      :require_login,             only: [:edit, :update, :destroy]
   before_action      :search_term,               only: :index
 
