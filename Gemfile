@@ -1,21 +1,20 @@
 source "https://rubygems.org"
-ruby "2.3.0"
+ruby "2.4.0"
 
-gem "coffee-rails",            "~> 4.0.0"
+gem "coffee-rails"
 gem "email_address_validator", "0.0.3",   github: "bookis/email_address_validator"
 gem "indefinite_article"
 gem "jquery-rails"
 gem "json"
 gem "pg"
-gem "rails",                   "~> 4.2.0"
+gem "rails",                   "~> 5.0.1"
 
 # for respond_to, remove once json responses are moved to the API
-gem 'responders', '~> 2.0'
-
+gem 'responders'
 gem "redcarpet" # Markdown parser
-gem "rollbar", "~> 1.3.1"   # Exception notifier
+gem "rollbar"
 gem "sass-rails"
-gem "uglifier",                ">= 1.3.0"
+gem "uglifier"
 gem "will_paginate"
 gem "will_paginate-bootstrap"
 
@@ -25,18 +24,18 @@ gem "dalli"
 gem "kgio"
 
 # background
-gem 'resque', "~> 1.22.0", require: "resque/server"
+gem 'resque'#, require: "resque/server"
 gem "heroku_resque_autoscaler", github: "bookis/heroku_resque_autoscaler"
 # search
 gem "pg_search"
 
 # image uploads
-gem "rmagick",            "~> 2.13.2", require: false
-gem "carrierwave-aws", "~> 1.0.0"
+gem "rmagick", require: false
+gem "carrierwave-aws"
 
 # auth
-gem "omniauth-twitter",   "~> 1.0.1"
-gem "omniauth-facebook",  "~> 1.6.0"
+gem "omniauth-twitter"
+gem "omniauth-facebook"
 
 gem "koala"
 
@@ -58,12 +57,12 @@ group :test, :development do
   gem "poltergeist"
   gem "terminal-notifier-guard"
 
-  gem "rspec-rails", "~> 3.1.0"
+  gem "rspec-rails"
   gem "rspec-activemodel-mocks"
 end
 
 group :test do
-  gem "rspec", "~> 3.1.0"
+  gem "rspec"
   gem "database_cleaner"
 end
 

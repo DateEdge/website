@@ -1,15 +1,15 @@
 workers Integer(ENV['PUMA_WORKERS'] || 0)
-threads Integer(ENV['MIN_THREADS']  || 1), Integer(ENV['MAX_THREADS'] || 16)
 
-preload_app!
+threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }.to_i
+threads threads_count, threads_count
 
-rackup      DefaultRackup
-port        ENV['PORT']     || 3000
-environment ENV['RACK_ENV'] || 'development'
+# Specifies the `port` that Puma will listen on to receive requests, default is 3000.
+port        ENV.fetch("PORT") { 3000 }
+
+# Specifies the `environment` that Puma will run in.
+environment ENV.fetch("RAILS_ENV") { "development" }
 
 on_worker_boot do
-  # worker specific setup
-  ActiveSupport.on_load(:active_record) do
-    ActiveRecord::Base.establish_connection
-  end
+  ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 end
+
