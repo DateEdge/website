@@ -13,6 +13,11 @@ Dxe::Application.routes.draw do
     }
   end
 
+  namespace :api do
+    resources :lat_lngs, only: :index
+    resources :users, only: [:index, :show]
+  end
+
   # Admin
   namespace :admin do
     # mount Resque::Server, :at => "/resque", constraints: AdminAuthenticator
