@@ -15,7 +15,7 @@ class DateEdgeHTML < Redcarpet::Render::HTML
     html.gsub(/\s(#([\.a-zA-Z0-9_-]+))/) do |m|
       chomped = $1[-1] == "."
      " <a href='/people?search=#{$2.chomp('.')}'>#{$1.chomp('.')}</a>#{'.' if chomped}"
-   end
+    end
   end
 
 end
