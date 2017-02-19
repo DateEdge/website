@@ -368,6 +368,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  def create_lat_lng
+    Resque.enqueue(GeocodeLookup, self.id)
+  end
 
   private
 
@@ -386,10 +389,6 @@ class User < ActiveRecord::Base
         send(field).strip!
       end
     end
-  end
-
-  def create_lat_lng
-    Resque.enqueue(GeocodeLookup, self.id)
   end
 
   def create_canonical_username

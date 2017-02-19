@@ -9,6 +9,7 @@ class Photo < ActiveRecord::Base
   before_save :process_manipulation, if: :manipulate
   after_save  :recreate_versions!, if: :manipulate
   scope :today, -> { where("created_at >= ?", Time.zone.now.beginning_of_day) }
+  after_destroy { |photo| photo.user.create_lat_lng }
 
   private
 
