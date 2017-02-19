@@ -256,6 +256,10 @@ class User < ActiveRecord::Base
     photo ? photo.image_url(size) : placeholder_avatar_url
   end
 
+  def location
+    "#{city} #{state} #{zipcode} #{country.try(:name)}".strip
+  end
+
   def you_gender
     self.you_gender? ? super : "person"
   end
