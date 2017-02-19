@@ -115,11 +115,11 @@ describe User, :type => :model do
     end
 
     it 'sets email_crushes to true' do
-      expect(user.email_crushes).to eq true
+      expect(user.email_crushes?).to eq true
     end
 
     it 'sets email_messages to true' do
-      expect(user.email_messages).to eq true
+      expect(user.email_messages?).to eq true
     end
 
     it "assigns a remote photo" do

@@ -13,7 +13,7 @@ class BookmarksController < ApplicationController
       redirect_to back_or(root_path), notice: "There was a problem bookmarking this user. Maybe, try it again?"
     end
   end
-  
+
   def destroy
     @bookmarks = current_user.bookmarks.where(bookmarkee_id: @user.id)
     @bookmarks.destroy_all

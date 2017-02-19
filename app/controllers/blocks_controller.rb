@@ -6,10 +6,10 @@ class BlocksController < ApplicationController
     if @block.save
       redirect_to people_path,
                   notice: "Blocked! You will no longer see @#{@user.username} unless you go directly to their profile page.
-                           (Or you can <a href='/@#{@user.username}/unblock' class='unblock' data-method='delete'>unblock @#{@user.username}</a> now.)".html_safe
+                           (Or you can <a href='/@#{@user.username}/unblock' class='unblock' data-method='delete'>unblock @#{@user.username}</a> now.)"
     end
   end
-  
+
   def destroy
     @user = User.find_by(username: params[:username])
     @block = current_user.blocks.where(blocked_id: @user.id)

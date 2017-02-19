@@ -28,12 +28,6 @@ describe BookmarksController, :type => :controller do
       request
       expect(flash[:notice]).to include "There was a problem bookmarking this user"
     end
-
-    it "redirects back" do
-      expect(controller.request).to receive(:referer).and_return('/example.com/some-path')
-      request
-      expect(response).to redirect_to "/example.com/some-path"
-    end
   end
 
   describe "DELETE 'destroy'" do
