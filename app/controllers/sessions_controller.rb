@@ -14,14 +14,14 @@ class SessionsController < ApplicationController
     else
       provider = Provider.from_auth(auth, ip_address: request.remote_ip)
       user = provider ? provider.user : User.create_with_omniauth(auth)
-      cookies.signed[:auth_token] = {value: user.auth_token, expires: 2.weeks.from_now, secure: Rails.env.production?}
+      cookies.signed[:dateedge_auth_token] = {value: user.auth_token, expires: 2.weeks.from_now, secure: Rails.env.production?}
     end
 
     redirect_to people_path
   end
 
   def destroy
-    cookies.delete :auth_token
+    cookies.delete :dateedge_auth_token
     redirect_to root_url, notice: "Signed out. Bye, for now!"
   end
 
