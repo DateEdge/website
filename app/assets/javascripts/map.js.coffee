@@ -5,6 +5,10 @@ maxZoom = 12
 window.dateEdge = {}
 template = $('#js-user-card').html()
 
+window.dateEdge.markersArray = () ->
+  Object.values(this.markers)
+
+
 resizeMap = ->
   offset = 60
   $('.filters').css(width: $(window).width() - 250)
@@ -50,22 +54,22 @@ $ ->
         maxZoom: maxZoom
       }
 
-      map = new google.maps.Map(document.getElementById("map"),mapOptions);
-      mc = new MarkerClusterer(map, window.dateEdge.markers, options);
+      map = new google.maps.Map(document.getElementById("map"),mapOptions)
+      markerClusterer = new MarkerClusterer(map, window.dateEdge.markersArray(), options)
 
       LatLng.all().then (data) ->
         for ll in data
           addMarker(ll.latLng(), map, ll.userContent())
       .then () ->
-        mc.addMarkers window.dateEdge.markers
+        markerClusterer.addMarkers window.dateEdge.markersArray()
 
       google.maps.event.addListener map, 'click', ->
         if !window.dateEdge.openCluster
           window.dateEdge.infowindow.close()
         window.dateEdge.openCluster = false
 
-      google.maps.event.addListener mc, 'clusterclick', (cluster) ->
-        if mc.map.zoom == maxZoom
+      google.maps.event.addListener markerClusterer, 'clusterclick', (cluster) ->
+        if markerClusterer.map.zoom == maxZoom
           content = ""
           $.each cluster.getMarkers(), (i, marker) ->
             content += marker.content
@@ -80,12 +84,12 @@ $ ->
       $(".user-filter").change () ->
         User.where($(".filter")).then (users) ->
           markers = []
-          mc.clearMarkers()
+          markerClusterer.clearMarkers()
           $.each users, (index, user) ->
             marker = window.dateEdge.markers[user.id]
-            if marker then mc.addMarker(marker)
+            if marker then markerClusterer.addMarker(marker)
 
-    google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', initialize)
 
 
     infoWindowContent = (content) ->
@@ -93,7 +97,7 @@ $ ->
 
     addMarker = (latLng, map, user) ->
       Mustache.parse(template)
-      rendered = Mustache.render(template, user);
+      rendered = Mustache.render(template, user)
       marker = new google.maps.Marker {
         position: latLng,
         content: rendered,
