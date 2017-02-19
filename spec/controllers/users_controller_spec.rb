@@ -132,7 +132,7 @@ describe UsersController, :type => :controller do
       patch :update, params: {user: {email_crushes: true, birthday_public: true, admin: true }}
       expect(assigns(:user).birthday_public?).to be_truthy
       expect(assigns(:user).admin?).to be_nil
-      expect(assigns(:user).email_crushes).to eq true
+      expect(assigns(:user).email_crushes).to eq true.to_s
     end
   end
 

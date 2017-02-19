@@ -1,4 +1,6 @@
 class Provider < ActiveRecord::Base
+  class CantBeDestroyedError < StandardError;end
+
   belongs_to :user
   validates  :uid, uniqueness: { scope: :name }
   before_destroy :can_be_destroyed?
@@ -15,6 +17,6 @@ class Provider < ActiveRecord::Base
   end
 
   def can_be_destroyed?
-    destroyed_by_association.present?
+    raise CantBeDestroyedError unless destroyed_by_association
   end
 end

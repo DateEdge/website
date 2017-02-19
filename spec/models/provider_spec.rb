@@ -58,8 +58,7 @@ describe Provider, :type => :model do
 
   describe "#destroy" do
     it "doesn't work" do
-      provider.destroy
-      expect {provider.reload}.to_not raise_error
+      expect { provider.destroy }.to raise_error Provider::CantBeDestroyedError
     end
 
     it "works if the user is being destroyed too" do
