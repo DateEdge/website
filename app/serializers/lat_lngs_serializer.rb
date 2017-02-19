@@ -12,9 +12,9 @@ class LatLngsSerializer
       id:       ll.id,
       lat:      ll.lat,
       lng:      ll.lng,
-      username: ll.user.username,
-      location: ll.user.location,
-      avatar:   ll.user.avatar,
+      username: ll.username,
+      location: ll.location,
+      avatar:   ll.avatar,
       user_id:  ll.user_id
     } }
   end
