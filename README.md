@@ -39,7 +39,7 @@ Profiles also have two lists of three properties.
 
 - [Ruby,  ~> 2.1.2](http://ruby-lang.org)
 - [Rails, ~> 4.1.7](https://github.com/rails/rails)
-- [ImageMagick](http://imagemagick.org) (`brew install imagemagick`)
+- [ImageMagick](http://imagemagick.org) (`brew install imagemagick@6 && brew link --force imagemagick@6`)
 
 ## Installation
 
