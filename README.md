@@ -52,7 +52,7 @@ bundle
 #### Setup Database
 
 ```bash
-cp config/database.yml.example config/database.yml
+cp config/database.example.yml config/database.yml
 ```
 
 Update values to reflect your local environment.
