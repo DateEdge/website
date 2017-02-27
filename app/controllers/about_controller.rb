@@ -55,11 +55,6 @@ class AboutController < ApplicationController
     @title = "Goodbye, old friend! Come back anytime."
   end
 
-  def sponsors
-    @slug  = "sponsors"
-    @title = "Date Edge Sponsors"
-  end
-
   def grid
     @slug  = "grid"
     @title = "Everyone's Photo in One Big Grid for Screenshotting"
