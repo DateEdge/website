@@ -35,7 +35,7 @@ gem "carrierwave-aws"
 
 # auth
 gem "omniauth-twitter"
-gem "omniauth-facebook"
+gem "omniauth-facebook", "~> 4.0.0"
 
 gem "koala"
 

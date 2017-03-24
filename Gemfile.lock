@@ -363,7 +363,7 @@ DEPENDENCIES
   koala
   memcachier
   newrelic_rpm
-  omniauth-facebook
+  omniauth-facebook (~> 4.0.0)
   omniauth-twitter
   pg
   pg_search
