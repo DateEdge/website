@@ -48,10 +48,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-     if original_filename
-       extension = original_filename.split(".").last
-       "photo.#{extension}"
-     end
+    if original_filename
+      extension = original_filename.split(".").last
+      "photo.#{extension}"
+    end
   end
 
   def rotate(options)

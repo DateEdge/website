@@ -3,7 +3,7 @@ class Photo < ActiveRecord::Base
   belongs_to :user, counter_cache: true
   has_many :red_flags, as: :flaggable, dependent: :destroy
   mount_uploader :image, ImageUploader
-  validates :image, presence: true
+  # validates :image, presence: true
   before_create :clean_url
   before_save :check_avatar
   before_save :process_manipulation, if: :manipulate
