@@ -4,14 +4,6 @@ GIT
   specs:
     email_address_validator (0.0.3)
 
-GIT
-  remote: git://github.com/bookis/heroku_resque_autoscaler.git
-  revision: b189d0e4f55d0758f3cb52269849aeb2aa611547
-  specs:
-    heroku_resque_autoscaler (0.1.2)
-      heroku-api (~> 0.3.5)
-      resque (~> 1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -103,7 +95,7 @@ GEM
       dotenv (= 2.2.0)
       railties (>= 3.2, < 5.1)
     erubis (2.7.0)
-    excon (0.55.0)
+    excon (0.57.1)
     execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
@@ -142,6 +134,9 @@ GEM
     heroku-api (0.3.23)
       excon (~> 0.44)
       multi_json (~> 1.8)
+    heroku_resque_autoscaler (0.2.0)
+      heroku-api (~> 0.3.5)
+      resque (~> 1.0)
     i18n (0.8.0)
     indefinite_article (0.2.4)
       activesupport
@@ -355,7 +350,7 @@ DEPENDENCIES
   foreman
   guard-rspec
   gx
-  heroku_resque_autoscaler!
+  heroku_resque_autoscaler
   indefinite_article
   jquery-rails
   json
@@ -391,4 +386,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.14.3
+   1.14.6
