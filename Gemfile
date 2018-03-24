@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "2.4.2"
+ruby "2.5.0"
 
 gem "coffee-rails"
 gem "email_address_validator", "0.0.3",   github: "bookis/email_address_validator"
