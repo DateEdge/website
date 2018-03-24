@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.5.0'
 
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.0.6'
 gem 'email_address_validator', '0.0.3',   github: 'bookis/email_address_validator'
 gem 'coffee-rails'
 gem 'indefinite_article'
