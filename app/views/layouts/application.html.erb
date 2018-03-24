@@ -11,6 +11,37 @@
   <% end %>
 
   <section role="main" class="container">
+    <div class="alert alert-danger" id="goodbye">
+      <h1>Bad News!</h1>
+      <h2>Date Edge will shut down on May 1, 2018.</h2>
+
+      <p>
+        We’re very sorry to see it go. Unfortunately, we haven’t been able to give
+        the site and the users the time that they deserve. They software and site
+        design has languished, basically neglected for a few years now. Additionally,
+        neither of us has the time to properly ensure that Date Edge isn’t a vector
+        for spam, abuse or harassment. Two things:
+      </p>
+
+      <br>
+
+      <ol>
+        <li>
+          If you want an archival copy of your profile and your direct messages,
+          email <b><%= mail_to "us@dateedge.com" %></b> and we’ll email it to you after we
+          close the site down.
+        </li>
+
+        <li>
+          If you have a success story, we’d still love to hear them. The site has been
+          up and running for about five years. We’ve heard of a few love stories.
+          If you’ve found love or friendship through the site, <b><%= mail_to "tell us all about it!" %></b>
+        </li>
+      </ol>
+
+      <p>— 💔 Shane &amp; Bookis</p>
+    </div>
+
     <%= render partial: "/shared/browse_happy" %>
 
     <% unless logged_in? || controller_name == "welcome" %>

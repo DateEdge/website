@@ -1,7 +1,9 @@
 /* welcome... */
 #welcome {
-  body {
-    background-image: image-url("homepage/mobile-2x.jpg");
+  #goodbye {
+    h1 {
+      margin: 0;
+    }
   }
 
   header[role=banner] {
@@ -37,6 +39,8 @@
   /* ...twitter and facebook buttons */
 
   #people {
+    background: black;
+    padding: 1em 0;
     text-align: center;
     color: white;
 
@@ -74,10 +78,6 @@
 /* ipad... */
 @media screen and (min-width: 768px) {
   #welcome {
-    body {
-      background-image: image-url("homepage/desktop-2x.jpg");
-    }
-
     #about {
       font-size: 200%;
     }
