@@ -273,7 +273,7 @@ GEM
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
     rmagick (2.16.0)
-    rollbar (2.14.0)
+    rollbar (2.15.5)
       multi_json
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
