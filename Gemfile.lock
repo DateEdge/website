@@ -149,7 +149,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (2.1.0)
     jwt (1.5.6)
-    kgio (2.11.0)
+    kgio (2.11.2)
     koala (2.5.0)
       addressable
       faraday
